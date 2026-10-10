@@ -1,0 +1,1030 @@
+\chapter{Overview of the proof}\label{sec:overview}
+
+In this section, we explain the proof of \cref{thm:main}, which
+occupies \crefrange{sec:fnd}{sec:b7}. For each step, we state its main
+estimate in the form in which it is proved, give the precise reference,
+and explain briefly why the estimate holds and where it is used.
+\Cref{sec:overview-map} contains a map of the proof, and
+\cref{sec:overview-profiles} discusses three conventions that recur in
+every part of it. Throughout, $\beta>1$ is fixed. We write
+$X\lesssim Y$ if $X\le C_\beta Y$ for a constant $C_\beta$ that depends
+only on $\beta$. Our estimates are uniform in the system size $N$, the interpolation
+parameter $\rho$, the tilt $\lambda$, the minimizing profile, and the
+positions and masses of its atoms. Much of the technical work goes into
+this uniformity.
+
+\section{The structure of the argument}\label{subsec:intro-outline}
+
+We follow the interpolation scheme of~\cite{AL}; what changes is how
+we estimate the self-overlap variance along the interpolation. The argument has four steps.
+
+First, we reduce \cref{thm:main} to a bound on a fractional-moment
+error $e_{N,\beta}(\lambda)$, which compares a normalized logarithmic
+moment of order $\lambda/\beta$ of the partition function with a Parisi
+problem constrained to have mass at least $\lambda/\beta$ at zero. By
+\cref{prop:fnd-mean-bias}, the mean bias divided by $\beta$ is at most
+$2e_{N,\beta}(\lambda)$ plus a term of order $\lambda^5$, and it
+suffices to prove that $e_{N,\beta}(N^{-7/50})\lesssim N^{-7/10}$
+(\cref{sec:overview-reduction}).
+
+Second, we write $4e_{N,\beta}(\lambda)$ as the integral over
+$\rho\in(0,1]$ of a defect $\calD_N(\rho)=\beta(A+2J+V)$ along an
+interpolation, evaluated at a minimizing profile of a variational
+problem in dimension $N$ (\cref{sec:overview-interpolation}). The terms
+$A$ and $J$ are at most of order $\log^2(2+N)/(N\rho\lambda)$
+(\cref{sec:overview-thermal}), and the difficulty is the self-overlap
+variance $V$.
+
+Third, we bound $V$ in two regimes. Near $\rho=0$, we combine estimates
+on quantile intervals of the minimizing profile with a localization of
+its lowest quantiles (\cref{sec:overview-shells}). For
+$\rho$ above a cutoff $\rho_0$, we bound $V$ by a one-site cavity argument
+(\cref{sec:overview-cavity}), which contracts if a scalar response
+operator at the minimizing profile is at most $1+\rho/4$. We prove this
+bound by showing that the operator is at most the identity at the Parisi
+measure (\cref{sec:overview-stability}) and that the minimizing profile
+is close to a scalar trial profile (\cref{sec:overview-localization}).
+The two regimes give the following bounds. For almost every
+$\rho\in[\rho_0,1]$, we have
+\begin{equation}\label{eq:ov-stable}
+ \calD_N(\rho)\lesssim\frac{\log^2(2+N)}{N\lambda\rho^2}
+\end{equation}
+by \cref{cor:c7-defect}, and for almost every $\rho\in(0,1]$, we have
+\begin{equation}\label{eq:ov-small}
+ \calD_N(\rho)\lesssim\frac{\log^2(2+N)}{N\rho\lambda}+(N\rho)^{-2/3}
+ +(N\rho)^{-2/3}\lambda^{-1/3}\omega(\rho,\eta)^{2/3}
+\end{equation}
+by \cref{prop:sm-small}. Here $\eta=e_{N,\beta}(\lambda)+L_s\lambda^5$
+is the trial budget of \cref{lem:fnd-trial}, with $L_s\ge1$ depending
+only on $\beta$, and $\omega(\rho,\eta)=\min\{1,(\eta/\rho)^{1/6}\}$.
+
+Fourth, the cutoff is $\rho_0=\min\{1,K\eta^{1/7}\}$, with $K$
+depending only on $\beta$. Note that $\rho_0$ is defined through the
+trial budget, which contains the unknown error. Integrating
+\eqref{eq:ov-stable} over $[\rho_0,1]$ and \eqref{eq:ov-small} over
+$(0,\rho_0]$, we obtain an implicit inequality whose leading term is
+$N^{-2/3}\eta^{1/21}$. At $\lambda=N^{-7/50}$, this inequality
+implies that $e_{N,\beta}(\lambda)\lesssim N^{-7/10}$
+(\cref{sec:overview-closure}).
+
+We take the first two steps from~\cite{AL}, where the same scheme
+gives the rate $N^{-2/3}$~\cite[Theorem~1.4]{AL}, and our estimates
+near $\rho=0$ refine those of~\cite[Sections~3 and~7]{AL}. We use the
+cavity argument, and the stability and isolation estimates that it
+requires, only above the cutoff.
+
+\section{Reduction to the fractional-moment error}
+\label{sec:overview-reduction}
+
+As in~\cite[Section~1.1]{AL}, we complete the Hamiltonian by an
+independent diagonal Gaussian term $D_N$, so that the completed
+Hamiltonian has covariance exactly $NR^2/2$, where $R$ is the overlap
+(\cref{sec:fnd-completion}). For $0<\lambda<\beta$, the
+fractional-moment error is
+\[
+ e_{N,\beta}(\lambda)=E_\beta(\lambda)-\psi(\lambda),\qquad
+ \psi(\lambda)=\frac1{N\lambda}\log\E_{\rm ref}
+ e^{\lambda(F_{N,\beta}/\beta+D_N)},
+\]
+where $E_\beta(\lambda)=\beta^{-1}P_\beta(\lambda/\beta)$, and
+$P_\beta(s)$ is the minimum of the Parisi functional over probability
+measures $\mu$ on $[0,1]$ with $\mu(\{0\})\ge s$
+\eqref{eq:fnd-error-definition}. Talagrand showed that the normalized
+moments converge to this constrained
+value~\cite{Talagrand2007FractionalMoments}; we need a rate.
+
+The reduction is the midpoint argument of~\cite[Theorem~7.8,
+Step~1]{AL}. Since $F_{N,\beta}/\beta+D_N$ is a convex Lipschitz function
+of the Gaussian variables $(g_{ij},z_i)$, Chen's convexity
+theorem~\cite[Theorem~1]{ChenConvexity} implies that $\psi$ extends to
+a convex function on $[0,\infty)$ with
+$\psi(0)=p_{N,\beta}/\beta$~\cite[Lemma~5.2]{AL}. Using
+$\psi(0)\ge2\psi(\lambda)-\psi(2\lambda)$ and
+$e_{N,\beta}(2\lambda)\ge0$, we find that
+\[
+ \frac{P_\beta-p_{N,\beta}}\beta
+ \le E_\beta(0)-2E_\beta(\lambda)+E_\beta(2\lambda)
+ +2e_{N,\beta}(\lambda).
+\]
+The second difference of $E_\beta$ is controlled by the cost of the
+prescribed mass at zero. By~\cite[Lemma~7.2]{AL}, the Parisi profile
+$\gamma_\beta=\beta\alpha_\beta$ grows linearly near $0$. As a consequence,
+the scalar trial profile $\gamma^{\rm tr}_\lambda=\max\{\lambda,\gamma_\beta\}$
+differs from it only on an interval of length of order $\lambda$, on
+which the first variation vanishes at $\gamma_\beta$. The cost of the
+trial profile is at most $L_s\lambda^5$
+\eqref{eq:fnd-scalar-trial-cost}. Combining these facts, we arrive at
+the bound of \cref{prop:fnd-mean-bias},
+\[
+ 0\le\frac{P_\beta-p_{N,\beta}}\beta\le32L_s\lambda^5
+ +2e_{N,\beta}(\lambda)\qquad(0<\lambda\le\lambda_0),
+\]
+with $\lambda_0>0$ depending only on $\beta$. We take
+$\lambda=N^{-7/50}$ for $N$ so large that $\lambda\le\lambda_0$, and
+then $\lambda^5=N^{-7/10}$. The tilt must be positive, because our
+bounds on the defect degenerate as $\lambda\downarrow0$; we fix its exponent
+in \cref{sec:overview-closure} by matching $\lambda^5$ with the
+final bound on the error.
+
+\section{The interpolation and the defect}
+\label{sec:overview-interpolation}
+
+The interpolation of~\cite[Section~2]{AL} is a finite-dimensional,
+quantitative version of Guerra's interpolation~\cite{Guerra2003}, in the
+form that Talagrand used for positive fractional
+moments~\cite{Talagrand2007FractionalMoments}. For $0<\rho\le1$, let
+$t=1-\rho$, $c=\beta^2\rho$, and $M=Nc$. An admissible profile is a
+deterministic probability measure $\mu=s\delta_0+\nu$ on $[0,1]$, where
+$s=\lambda/\beta$ and $\nu\ge0$, with distribution function
+$a(q)=\mu([0,q])$. We solve the Parisi equation in $\R^N$,
+\[
+ \partial_qU=-\frac c2\bigl(\Delta U+a(q)|\nabla U|^2\bigr),\qquad
+ U(1,x;W)=\log\sum_{\sigma\in\{-1,1\}^N}
+ e^{\beta\sqrt t\,\sigma^TW\sigma/2+x\cdot\sigma},
+\]
+and we minimize the functional $\mathcal F_{t,s}(\mu)$ of
+\eqref{eq:fnd-functional} over admissible profiles. At $t=0$, the
+equation separates into $N$ scalar Parisi equations, and the minimum is
+$P_\beta(s)$; at $t=1$, the minimum is the completed fractional moment
+\eqref{eq:fnd-endpoints}. The fractional-moment error is
+$\beta^{-1}$ times the decrease of the minimum along the interpolation.
+
+\paragraph{The tilted law.}
+Each profile defines a joint law of the couplings, an auxiliary field
+$X_q\in\R^N$, $q\in[0,1]$, and a terminal spin $\sigma$. In this law, $W$ is
+tilted by $e^{sU(0,0;W)}$, the field is a diffusion with drift
+$ca(q)\nabla U(q,X_q;W)$ and noise coefficient $\sqrt c$, and $\sigma$ has
+the Gibbs law in the external field $X_1$ (\cref{subsec:fnd-law}). We write $\calG_q$ for the
+information revealed up to level $q$, $m_q$ and $C_q$ for the
+conditional mean and covariance of $\sigma$ given $\calG_q$,
+$H_q=\nabla^2U(q,X_q;W)$, and $S_q=|m_q|^2/N$. By
+\cref{prop:fnd-contact}, $m_q$ is a martingale with
+$\dd m_q=\sqrt c\,H_q\dd B_q$, and $a(q)C_q\preceq H_q\preceq C_q$. If
+$\mu$ is a minimizer, every point $q$ of $\supp\nu$, called a contact
+level, satisfies $\E S_q=q$ and $\E\Tr H_q^2\le N/c$, which are the
+counterparts of the optimality conditions for the Parisi measure.
+
+\paragraph{The defect.}
+Let $R_q$ be the overlap of two replicas that are conditionally
+independent given $\calG_q$. By \cref{prop:fnd-interpolation}, the
+derivative of $\mathcal F_{t,s}(\mu)$ in $t$ is
+$-(\beta^2/4)\int\E(R_q-q)^2\,\nu(\dd q)$ for every profile. It is a
+square because the completed Hamiltonian has covariance $NR^2/2$, and
+only $\nu$ appears because the outer moment of order $s$ cancels the
+prescribed mass $s\delta_0$. At a contact level,
+$R_q-S_q$ splits into three conditionally orthogonal pieces, which
+gives $\E(R_q-q)^2=a^{\rm th}_q+2j_q+\Var(S_q)$ (\cref{lem:fnd-decomp}).
+Integrating against $\nu$, we obtain \cref{cor:fnd-defect}, which
+states that at almost every $\rho$ and at every minimizer,
+\[
+ \calD_N(\rho)=-\frac4\beta f_{N,s}'(1-\rho)=\beta(A+2J+V),
+ \qquad 4e_{N,\beta}(\lambda)=\int_0^1\calD_N(\rho)\dd\rho,
+\]
+where $f_{N,s}(t)$ is the minimum of $\mathcal F_{t,s}$ and
+\[
+ A=\int\frac{\E\Tr C_q^2}{N^2}\,\nu(\dd q),\qquad
+ J=\int\frac{\E[m_q^TC_qm_q]}{N^2}\,\nu(\dd q),\qquad
+ V=\int\Var(S_q)\,\nu(\dd q).
+\]
+The terms $A$ and $J$ measure conditional fluctuations of the terminal
+spin given $\calG_q$, while $V$ measures fluctuations of the information
+that the field has revealed by level $q$. Each term may depend on the
+minimizer, but their combination does not. We bound all three at an
+arbitrary minimizer.
+
+\paragraph{The posterior variance bound.}
+Let $L_q=(\sigma\cdot m_q-|m_q|^2/2)/N$, whose conditional mean given
+$\calG_q$ is $S_q/2$. By \cref{prop:fnd-variance}, we have, at a
+minimizer and for every deterministic $k\in L^2(\nu)$,
+\[
+ \Var\Bigl(\int k(q)L_q\,\nu(\dd q)\Bigr)
+ \le\frac1M\int\frac{k(q)^2}{a(q)}\,\nu(\dd q),
+ \qquad A\le\frac1{Ms}.
+\]
+With the terminal spin fixed, the Gaussian coordinates that generate
+$W$ and the field have a uniformly log-concave law, and the bound
+follows from the Brascamp--Lieb inequality~\cite{BrascampLieb1976}, in
+the form of~\cite[Proposition~2.2]{AL}, and the contact identities.
+Note that the factor $a(q)^{-1}\le s^{-1}$ is where the prescribed mass
+enters. We integrate such factors through the quantile function $Q$ of
+$\nu$ \eqref{eq:fnd-quantile}, which pushes Lebesgue measure on
+$(0,1-s)$ forward to $\nu$ and satisfies $a(Q(v))\ge s+v$.
+
+\paragraph{The trial budget.}
+In the energy normalization, we set $\gamma=\beta a$ and
+$F_\rho(\gamma)=\beta^{-1}\mathcal F_{1-\rho,s}(\mu)$. By
+\cref{lem:fnd-trial}, we have, for every $\rho\in(0,1]$,
+\[
+ 0\le F_\rho(\gamma^{\rm tr}_\lambda)-\min_\gamma F_\rho(\gamma)
+ \le e_{N,\beta}(\lambda)+L_s\lambda^5=\eta .
+\]
+Indeed, $\mathcal F_{t,s}(\mu)$ and its minimum are nonincreasing in
+$t$, so that $F_\rho(\gamma^{\rm tr}_\lambda)$ is at most the scalar
+value of the trial profile, which is at most $E_\beta(0)+L_s\lambda^5$,
+while $\min F_\rho\ge\psi(\lambda)=E_\beta(\lambda)-e_{N,\beta}(\lambda)$
+and $E_\beta(\lambda)\ge E_\beta(0)$. In words, the scalar trial profile has value at most $\eta$ above the minimum at every $\rho$. This budget controls
+how far a minimizer can be from the trial profile
+(\cref{sec:lz,sec:lz-root}), and it fixes the cutoff $\rho_0$
+(\cref{sec:b7}). Since it contains the unknown error, the final inequality
+is implicit.
+
+\section{The thermal terms}\label{sec:overview-thermal}
+
+At a contact level, by the covariance order, we have
+$\Tr H_q^2\ge a(q)\Tr(H_qC_q)\ge a(q)^2\Tr C_q^2$, and the contact bound
+on $\E\Tr H_q^2$ implies that $\E\Tr C_q^2/N^2\le(Ma(q)^2)^{-1}$. In
+the quantile variable, we have
+\[
+ A\le\frac1M\int_0^{1-s}\frac{\dd v}{a(Q(v))^2}
+ \le\frac1M\int_0^{1-s}\frac{\dd v}{(s+v)^2}\le\frac1{Ms}.
+\]
+
+The mean--covariance term needs more work, because
+$j_q=N^{-2}\E[m_q^TC_qm_q]$ involves the conditional covariance in the
+direction $m_q$, which is revealed at level $q$ itself. For a
+direction $b$ that is measurable with respect to $\calG_{q'}$ for some
+$q'<q$, we show by a scalar Riccati inequality that $\E[b^TC_qb]$ is at most
+$\E|b|^2$ divided by the accumulated clock $c\int_{q'}^qa(u)^2\dd u$
+(\cref{lem:th-ric}). However, this bound does not apply to $b=m_q$. To
+overcome this obstacle, we write $m_{Q(v)}$ as a weighted average of
+the earlier means $m_{Q(w)}$, $w<v$, plus increments. First-order
+optimality implies that $\E S_r$ is $2$-Lipschitz toward every point
+$q$ of $\supp\nu$, which bounds $\E|m_q-m_r|^2$ by $2N|q-r|$
+(\cref{lem:th-gamma}). We control the increments by combining this
+bound with \cref{lem:th-ric} in a dyadic decomposition (\cref{lem:th-res}).
+The conditional covariance in the direction of the average is
+controlled by the posterior variance bound. With a quadratic weight
+$(s+w)^2$, both contributions are at most of order $(s+v)^{-2}$. We obtain
+\[
+ j_{Q(v)}\le\frac{341(1+\log_+M)^2}{M(s+v)^2},\qquad
+ J\le\frac{341(1+\log_+M)^2}{Ms}
+\]
+(\cref{prop:th-j}).
+Since $Ms=\beta N\rho\lambda$ and $M\le\beta^2N$, we conclude that
+\[
+ \beta(A+2J)\le\frac{1+682(1+\log_+M)^2}{N\rho\lambda}
+ \lesssim\frac{\log^2(2+N)}{N\rho\lambda}.
+\]
+Integrated over $\rho\in[1/N,1]$, this is at most of order
+$\log^3(2+N)/(N\lambda)$, which equals $N^{-43/50}\log^3(2+N)$ at
+$\lambda=N^{-7/50}$ and is smaller than $N^{-7/10}$ by a power of $N$.
+
+\section{The self-overlap variance for small \texorpdfstring{$\rho$}{rho}}
+\label{sec:overview-shells}
+
+The posterior variance bound controls averages of $L_q$ over levels.
+However, $V$ involves $S_q$ at single levels, which may carry little
+mass of $\nu$. Following~\cite[Lemma~3.3]{AL}, we compare $S_q$ with
+averages of $L_p$ over windows of quantile levels next to $q$
+(\cref{sec:wi}).
+
+\paragraph{Two comparisons.}
+For $p\ge q$, the conditional Jensen inequality for the martingale $m$
+implies that $S_q\le2\E[L_p\mid\calG_q]$, and for $p\le q$, we have
+$\E[L_p\mid\calG_q]=S_q/2-|m_q-m_p|^2/(2N)$. Averaging over a window
+of quantile levels after or before $q$, with mean level $\bar p$, we
+show in \cref{lem:wi-two} that, at a minimizer, $S_q-q$ is at most
+(for a window after $q$) or at least (for a window before $q$) the sum
+of $\bar p-q$ and twice the conditional expectation of a centered
+average of $L_p$. If the window has quantile length $r$ and $a\ge u$ on
+it, this conditional expectation has second moment at most
+$(Mur)^{-1}$. Note that conditioning on $\calG_q$ removes the centered part
+$N^{-1}(\sigma-m_q)\cdot m_q$ of $L_q$, which in~\cite[Lemma~3.3]{AL}
+produces additional residual terms; we bound its variance $j_q$
+separately (\cref{sec:overview-thermal}).
+
+\paragraph{Variance on a quantile interval.}
+Let $I\subset(0,1-s)$ be an interval of length $h$ such that
+$a(Q(v))\ge u$ for $v\in I$, let $\ell$ be the diameter of $Q(I)$, and
+set $\epsilon=(Mu)^{-1}$. For a threshold $\tau$, we take windows of
+radius of order $\epsilon/\tau$, whose random parts have second moment
+less than $\tau$. A point whose two windows lie in $I$ and for which
+$\Var(S_{Q(v)})>\tau$ must then see an
+increment of $Q$ at least of order $\tau^{1/2}$ across its window, and since $Q$
+is nondecreasing with total increase $\ell$ on $I$, such points form a
+set of measure at most of order $\epsilon\ell\tau^{-3/2}$. The remaining
+points lie within distance of order $\epsilon/\tau$ of the ends of $I$. Integrating
+$\min\{h,\epsilon\ell\tau^{-3/2}\}$ over $\tau$, we find the main term
+in the bound of \cref{prop:wi-vfs},
+\begin{equation}\label{eq:ov-vfs}
+ \int_I\Var(S_{Q(v)})\dd v
+ \le128\Bigl[\min\bigl\{h,\epsilon\bigl(1+\log_+(h/\epsilon)\bigr)\bigr\}
+ +(\epsilon\ell)^{2/3}h^{1/3}\Bigr].
+\end{equation}
+The first term is at most $\epsilon$ up to a logarithm, and the
+interval may contain part of the quantile interval of an atom.
+
+\paragraph{Dyadic shells and root localization.}
+In the proof of \cref{prop:sm-small}, we cover $(0,1-s)$ by dyadic
+shells $I_u=\{v:u\le s+v<2u\}$, $u=2^js<1$, on which $a(Q(v))\ge u$,
+$h\le u$, and $\epsilon=(Mu)^{-1}$. If we only use $\ell\le1$, the second
+term in \eqref{eq:ov-vfs} is at most $M^{-2/3}u^{-1/3}$, and summing over
+shells, with $\beta M^{-2/3}s^{-1/3}=(N\rho)^{-2/3}\lambda^{-1/3}$, we
+would find only
+\[
+ \beta V\lesssim(N\rho)^{-2/3}\lambda^{-1/3}
+ +\frac{\log^2(2+N)}{N\rho\lambda}.
+\]
+The bound $\beta V\le C(N\rho)^{-2/3}\lambda^{-1/3}$ that follows
+from~\cite[(4.2)]{AL} has the same form. At $\lambda=N^{-7/50}$, the
+factor $\lambda^{-1/3}=N^{7/150}$ would leave a positive power of $N$
+after the normalization of \cref{sec:overview-closure}. To remove it, we
+use the root localization of \cref{cor:lz-omega}, which states that at
+every minimizer and for every trial budget $\eta$,
+\[
+ Q(v)\le C_Q\bigl(s+v+\omega(\rho,\eta)\bigr),\qquad
+ \omega(\rho,\eta)=\min\{1,(\eta/\rho)^{1/6}\},
+\]
+with $C_Q$ depending only on $\beta$. Then
+$\ell(I_u)\le2C_Q(u+\omega)$, the second term in \eqref{eq:ov-vfs} is
+at most of order $M^{-2/3}(u^{1/3}+u^{-1/3}\omega^{2/3})$,
+and its sum over shells is at most of order $M^{-2/3}(1+s^{-1/3}\omega^{2/3})$.
+Together with the thermal terms, this proves \eqref{eq:ov-small}, that
+is, \eqref{eq:sm-pointwise}. Its leading term $(N\rho)^{-2/3}$ does not
+depend on $\lambda$, and the correction is integrable at $\rho=0$,
+because $\omega^{2/3}\le(\eta/\rho)^{1/9}$. Below $\rho=1/N$, we rely
+instead on the bound $\calD_N(\rho)\le C(N\rho)^{-1/2}$
+of~\cite[Lemma~4.1]{AL}, recalled in \eqref{eq:fnd-moving}. Integrating,
+we arrive at \eqref{eq:sm-integrated}, which states that for
+$0<\rho_0\le1$,
+\begin{equation}\label{eq:ov-small-integrated}
+ \int_0^{\rho_0}\calD_N(\rho)\dd\rho
+ \lesssim N^{-1}+\frac{\log^3(2+N)}{N\lambda}
+ +N^{-2/3}\rho_0^{1/3}
+ +N^{-2/3}\lambda^{-1/3}\eta^{1/9}\rho_0^{2/9}.
+\end{equation}
+
+\paragraph{\texorpdfstring{The barrier at $2/3$.}{The barrier at 2/3.}}
+For $\rho_0=1$, the third term in \eqref{eq:ov-small-integrated} is of
+order $N^{-2/3}$. This is the mechanism of~\cite[Proposition~7.7]{AL},
+in which quantile estimates~\cite[Lemma~3.3]{AL} and a localization of
+low quantiles~\cite[Lemma~7.6]{AL} lead to
+$e_{N,\beta}(\lambda)\lesssim N^{-2/3}+N^{-3/4}\lambda^{-1/2}
++\log(2+N)/(N\lambda)$~\cite[(7.43)]{AL}, and the tilt
+$\lambda=N^{-2/15}$ gives the rate $N^{-2/3}$
+of~\cite[Theorem~1.4]{AL}. When $\rho$ is of order one, however,
+$(N\rho)^{-2/3}$ is much larger than the cavity bound
+\eqref{eq:ov-stable}, as we discuss heuristically in
+\cref{subsec:intro-physics}. We therefore use
+\eqref{eq:ov-small-integrated} only below the cutoff, where it
+contributes $N^{-2/3}\rho_0^{1/3}$.
+
+\section{The cavity contraction}\label{sec:overview-cavity}
+
+Let $\mu$ be a minimizer at $(\rho,s)$ with distribution function $a$,
+let $d=\beta^2(1-t/N)$, and let $J^{\scal}_{a,d}$ be the scalar response
+operator of \cref{sec:overview-stability}, which acts on a subspace
+$\mathcal H_\nu$ of $L^2(\nu)$. In \cref{prop:c7-closure}, we show that
+if
+\begin{equation}\label{eq:ov-stability}
+ J^{\scal}_{a,d}\preceq(1+\eps_N)I\quad\text{on }\mathcal H_\nu,
+ \qquad 0\le\eps_N\le\frac\rho4,
+\end{equation}
+then
+\[
+ \frac{3\rho}4V\le C_{\rm cav}\bigl[N^{-1}+A+J+H_3\bigr],\qquad
+ H_3=\int\E|S_q-q|^3\,\nu(\dd q),
+\]
+with $C_{\rm cav}$ depending only on $\beta$. The argument occupies
+\cref{part:cavity}, and \cref{sec:c7-mechanism} explains how the
+inequality closes before the proofs begin.
+
+\paragraph{Exchangeability.}
+Let $n=N-1$, let $m_N(p)$ be the conditional magnetization of the last
+spin given $\calG_p$, and let $A^-_p$ be the self-overlap of the
+conditional mean of the other $n$ spins, which we call the rest
+self-overlap. Then $NS_p=m_N(p)^2+nA^-_p$. Since the tilted law is
+invariant under permutations of the sites, we have
+$\Cov(S_p,m_N(p)^2)=\Var(S_p)$ \eqref{eq:c7-exchange}, and it follows
+that
+\[
+ \Var(S_p)=\frac1N\Var\bigl(m_N(p)^2\bigr)
+ +\frac nN\Cov\bigl(m_N(p)^2,A^-_p\bigr).
+\]
+Up to an error of order $N^{-1}$, the variance $V$ is the integrated
+covariance between the squared magnetization of one spin and the
+self-overlap of the others. Exchangeability is used in the same way in
+the cavity method of~\cite[Section~1.6]{TalagrandVolI2011}.
+
+\paragraph{The cavity interpolation.}
+For $u\in[0,1]$, we give each coupling between the last spin and the
+others variance $\alpha u/n$, and the last coordinate of the field
+variance coefficient $b(u)=d-\alpha u$, where $\alpha=\beta^2tn/N$ and
+$d=c+\alpha$ \eqref{eq:cavityparameters}. At $u=1$, we recover the
+tilted law of the full system. At $u=0$, the last spin is independent
+of the others: the law is a product of the tilted law of an $n$-spin
+system, with the same profile, and the scalar law of \cref{sec:sc} with
+coefficient $d$. In particular,
+$\mathcal C_{pp}(u)=\Cov_u(m_N(p)^2,A^-_p)$ vanishes at $u=0$. By Taylor's formula, we
+have
+\[
+ \mathcal C_{pp}(1)=\mathcal C_{pp}'(0)
+ +\int_0^1(1-u)\,\mathcal C_{pp}''(u)\dd u .
+\]
+Note that the $n$-spin system at $u=0$ carries the profile of the full
+system, which need not minimize its own functional.
+
+\paragraph{Tree laws and the remainder.}
+Derivatives in $u$ produce products of conditional expectations at
+several levels. We represent these products by laws of finitely many
+descendants on marked trees, in which deleting a leaf does not change
+the law of the others (\cref{subsec:c7-tree}). Normalized replica trees of this
+kind were developed in~\cite[Section~2]{OpenAIFluctuationScale}. By
+\cref{lem:streaming}, the derivative in $u$ of a tree moment is
+$\alpha/2$ times a combination of moments with one more overlap defect
+$D_{\mathsf{ab}}=\epsilon_{\mathsf a}\epsilon_{\mathsf b}(R^-_{\mathsf{ab}}-q_{\mathsf{ab}})$,
+plus a term from the normalization of the tilt. The row contributes the
+rest overlap $R^-_{\mathsf{ab}}$ of two leaves, and the decrease of
+$b(u)$ subtracts the level $q_{\mathsf{ab}}$ at which they split. It
+follows that nonnegative tree moments at different values of $u$ agree
+up to a factor $K_{\beta,k}$ that depends only on $\beta$ and the
+number $k$ of leaves (\cref{cor:comparison}), and that every term of
+$\mathcal C_{pp}''$ contains three defects. By
+\cref{lem:cav-threeproducts,lem:remainder,lem:c7-thermal}, the Taylor
+remainder is at most $C_\beta\sup_u\mathcal M_3(u)$, where
+$\mathcal M_3(u)=\int\E_{2,q,u}|R^-_{12}-q|^3\,\nu(\dd q)$, and this
+supremum is at most $K_{\beta,2}[64(A+J)+16H_3+32N^{-3}]$.
+
+\paragraph{The linear term.}
+Along the interpolation, the fields acting on the last spins of two
+leaves have covariance
+$dq_{\mathsf{ab}}+\alpha u(R^-_{\mathsf{ab}}-q_{\mathsf{ab}})$
+(\cref{sec:c7-mechanism}). In the scalar law, if we replace the covariance $d(q\wedge r)$ of the
+field by $dT(q\wedge r)$ with $T(q)=q+\theta\varphi(q)$, the mean square
+magnetization at level $p$ changes at the rate $(J_{a,d}\varphi)(p)$
+(\cref{lem:sc-response}). Heuristically, the row acts on the last spin
+as a random transport of levels with displacement
+$(\alpha u/d)(A^-_q-q)$, and we expect the main term of
+$\mathcal C_{pp}'(0)$ to be $(\alpha/d)(J^{\scal}_{a,d}\Sigma^-)(p,p)$,
+where $\Sigma^-(p,q)=\Cov^-(A^-_p,A^-_q)$ is the covariance of the rest
+self-overlap at $u=0$. In \cref{lem:linear}, we prove the exact
+identity
+\[
+ \int\mathcal C_{pp}'(0)\,\nu(\dd p)
+ =\alpha\Bigl[\frac1d\Tr_\nu(J^{\scal}_{a,d}\Sigma^-)-\frac12\mathcal P
+ +\int T_p\,\nu(\dd p)\Bigr],\qquad\mathcal P\ge0 .
+\]
+The term $-\mathcal P/2$ comes from the difference between conditional
+and unconditional covariances of the rest self-overlap; we discard
+it. The errors $T_p$ raise an obstacle: they contain covariances of
+centered variables of the rest system with $A^-_p$, and if we applied the
+Cauchy--Schwarz inequality at a single level, the bound would involve
+$\Var^-(A^-_p)$, whose integral is what we want to control. To overcome this obstacle, we first integrate in $p$ against
+the deterministic kernels of the scalar law, so that the covariance
+order and the bound \eqref{eq:cl-BL} on the variance of $\nu$-averages
+of $A^-$ apply. After a comparison with the full system through
+\cref{cor:comparison}, we find in \cref{lem:cl-response} that
+\[
+ \alpha\Bigl|\int T_p\,\nu(\dd p)\Bigr|
+ \le192\beta^2K_{\beta,3}\bigl[A+J+N^{-2}\bigr].
+\]
+
+\paragraph{\texorpdfstring{The factor $1-\rho$.}{The factor 1-rho.}}
+Combining these identities, we obtain the trace identity of
+\cref{lem:cav-trace},
+\[
+ V=\frac{V^{\rm site}}N+\frac nN\Bigl[
+ \frac\alpha d\Tr_\nu(J^{\scal}_{a,d}\Sigma^-)
+ -\frac\alpha2\mathcal P+\alpha\int T_p\,\nu(\dd p)
+ +\mathcal R_{\rm cav}\Bigr],
+\]
+where $0\le V^{\rm site}\le1/4$ and $\mathcal R_{\rm cav}$ is the Taylor
+remainder. The operator $\Sigma^-$ is positive, with range in
+$\mathcal H_\nu$ and trace $V^-=\int\Var^-(A^-_p)\,\nu(\dd p)$. Under
+\eqref{eq:ov-stability}, the trace $\Tr_\nu(J^{\scal}_{a,d}\Sigma^-)$ is
+therefore at most $(1+\eps_N)V^-$. The contraction comes from the ratio
+\[
+ \frac\alpha d=t\,\frac{N-1}{N-t}\le t=1-\rho
+\]
+\eqref{eq:c7-alpha-d}. Indeed, the field acting on the last spin has
+variance coefficient $d$, and at $u=1$, the part $c=\beta^2\rho$ of it
+comes from the auxiliary field, whose covariance is deterministic; only
+the part $\alpha$ that comes from the couplings feels the fluctuations
+of the rest overlap. We conclude that
+$V\le(1-\rho)(1+\eps_N)V^-+{}$errors.
+
+\paragraph{Comparison with coefficient one.}
+It remains to compare $V^-$ with $V$, and the comparison must have
+coefficient one. If we compared the endpoints through
+\cref{cor:comparison}, we would obtain only $V^-\le KV+{}$errors with
+some $K>1$, and the inequality $V\le(1-\rho)K(1+\eps_N)V+{}$errors bounds $V$
+only if $(1-\rho)K(1+\eps_N)<1$, which fails for $\rho\le1-1/K$. In
+\cref{lem:cl-star}, we prove instead that
+\[
+ V^-\le V+C_\beta\sup_{0\le u\le1}\mathcal M_3(u)+\frac1{4n^2}.
+\]
+For each $p$, the second moment $\E_u(A^-_p-p)^2$ is the mean of a
+product of two overlap defects on four leaves that split at $p$. Its
+derivative in $u$ contains three defects, and after integration against
+$\nu$, the values at $u=0$ and $u=1$ differ by at most
+$C_\beta\sup_u\mathcal M_3(u)$. At $u=0$, it bounds $\Var^-(A^-_p)$, even
+though we do not know that $\E^-A^-_p=p$. At $u=1$, exchangeability and
+the contact identity $\E S_p=p$ show that it is at most
+$\Var(S_p)+1/(4n^2)$.
+
+\paragraph{Closing.}
+As $(1-\rho)(1+\rho/4)\le1-3\rho/4$, these bounds imply that
+$V\le(1-3\rho/4)V+C_\beta[N^{-1}+A+J+H_3]$, which is
+\cref{prop:c7-closure}. By \cref{cor:wi-cub}, if $M\ge1$, then
+\[
+ H_3\le zV+\frac{425}{Ms}\log(2M)\log\frac2z\qquad(0<z\le1/4).
+\]
+We take $z$ proportional to $\rho$ and absorb $zV$ in the margin
+$3\rho/4$. Inserting the bounds on $A$ and $J$ and using
+$Ms=\beta N\rho\lambda$, we arrive at \cref{cor:c7-defect}, which states
+that at every minimizer that satisfies \eqref{eq:ov-stability}, we have
+\[
+ \beta(A+2J+V)\le C_\beta\frac{\log^2(2+N)}{N\lambda\rho^2}
+ \qquad(1/N\le\rho\le1).
+\]
+One factor $\rho^{-1}$ comes from the margin, and the other from $Ms$.
+
+The framework of differentiation, comparison, and contraction on one
+site is that of~\cite[Section~1.6]{TalagrandVolI2011}. A one-site
+expansion with an independent scalar endpoint also appears
+in~\cite[Lemma~2.2]{OpenAILimitingLaw}, where the resulting linear
+equation is inverted under a gap condition on the scalar
+response~\cite[Proposition~5.1]{OpenAILimitingLaw}; we compare the two
+arguments in \cref{subsec:intro-openai}. We use no gap condition. The
+multiplier that dominates our scalar response equals one on the support
+of the Parisi measure, and the contraction comes from the ratio
+$\alpha/d$.
+
+\section{Stability of the scalar response}\label{sec:overview-stability}
+
+At the independent endpoint, the last spin follows the scalar law with
+the profile $a_N$ of the $N$-spin minimizer and the coefficient
+$d_N=\beta^2(1-t/N)$, not with the Parisi measure. In \cref{sec:sc}, we
+verify \eqref{eq:ov-stability} with an explicit $\eps_N$.
+
+\paragraph{The response operator.}
+For a profile $a$ and $d\in[\beta^2/2,\beta^2]$, let $u=u_{a,d}$ solve
+the scalar Parisi equation with coefficient $d$ \eqref{eq:sc-pde}, and
+let $Y$ be its diffusion. With $m_q=\partial_xu(q,Y_q)$ and
+$h_q=\partial_{xx}u(q,Y_q)$, we define
+\[
+ \Gamma_{a,d}(q)=\E^0m_q^2,\qquad k_{a,d}(q)=d\,\E^0h_q^2,
+\]
+so that $\Gamma_{a,d}'=k_{a,d}$ \eqref{eq:sc-martingale}; we call
+$k_{a,d}$ the scalar multiplier. By \cref{lem:sc-response}, the
+operator $J_{a,d}$ of \eqref{eq:scalarJexplicit} is the derivative of
+$\Gamma_{a,d}$ under transports of covariance levels: if we replace the
+covariance $d(q\wedge r)$ of the field by $dT_\theta(q\wedge r)$, where
+$T_\theta(q)=q+\theta\varphi(q)$ and $\varphi(0)=\varphi(1)=0$, the mean
+square magnetization at level $p$ has derivative $(J_{a,d}\varphi)(p)$
+at $\theta=0$. The scalar response operator $J^{\scal}_{a,d}$ is the
+compression of $J_{a,d}$ to the space $\mathcal H_\nu$ of functions in
+$L^2(\nu)$ that vanish at $0$ and $1$ when these are atoms of $\nu$. Its
+kernel has no sign, and a direct estimate bounds its norm only by
+$C_\beta$.
+
+\paragraph{Domination by the multiplier.}
+The following observation reduces the operator bound to a pointwise
+bound. In \cref{lem:Jdom}, we show that, for every profile,
+$J^{\scal}_{a,d}$ is self-adjoint and
+\[
+ J^{\scal}_{a,d}\preceq M_{k_{a,d}},\qquad
+ (M_{k_{a,d}}v)(q)=k_{a,d}(q)v(q).
+\]
+To prove it, we follow the scalar Parisi functional $\mathcal P_d$ along
+a transport of levels, $\Pi(\theta)=\mathcal P_d(a\circ T_\theta^{-1})$.
+By \cref{lem:sc-response}, we have
+$\Pi''(0)=(d/2)\langle\varphi,(I-J_{a,d})\varphi\rangle$
+\eqref{eq:transporthess}; the first derivative is the first variation
+under transports of levels due to
+Talagrand~\cite{Talagrand2006ParisiMeasures}
+(see~\cite[Section~3, (19)]{AuffingerChen2015Properties}). Since the functional is convex along segments of distribution
+functions~\cite{AuffingerChen2015Uniqueness}, its increment along the
+transport is at least its first variation at $a$, applied to
+$a\circ T_\theta^{-1}-a$. We expand this lower bound to second order in
+$\theta$, which produces the integral of $(1-k_{a,d})\varphi^2$ against
+$\nu$. Comparing the two expansions, we find that
+$\langle\varphi,J_{a,d}\varphi\rangle\le\langle\varphi,k_{a,d}\varphi\rangle$.
+Note that $\Pi$ need not be convex, because
+$\theta\mapsto a\circ T_\theta^{-1}$ is not affine; the term
+$1-k_{a,d}$ accounts for this. It therefore suffices to show that
+$\sup_qk_{a_N,d_N}(q)\le1+\eps_N$.
+
+\paragraph{The multiplier at the Parisi measure.}
+In \cref{lem:reference}, we prove that
+\[
+ k_{\alpha_\beta,\beta^2}(q)=1\quad(0\le q\le q_\beta),\qquad
+ k_{\alpha_\beta,\beta^2}(q)\le e^{-\beta^2(q-q_\beta)/2}
+ \quad(q_\beta\le q\le1).
+\]
+On the support, we rely on an identity of
+Talagrand~\cite{Talagrand2006ParisiMeasures}, in the form
+of~\cite[Theorem~5]{AuffingerChen2015Properties}
+and~\cite[Lemma~2.6]{Lopatto}, which states that $\Gamma(q)=q$ on
+$\supp\mu_\beta$. As the support is the interval
+$[0,q_\beta]$~\cite[Theorem~1.1]{Lopatto}, we may differentiate this
+identity along it, which gives $k=\Gamma'=1$. Above the support,
+we have $\alpha_\beta=1$, and the solution $u$ is explicit. A
+transformed density $z_q$ of $Y_q$ evolves there by the heat
+equation~\cite[Lemma~2.4(ii)]{Lopatto}, and $z_{q_\beta}$ is even and
+log-concave~\cite[Proposition~4.1]{Lopatto}. In particular,
+$z_{q_\beta}$ is decreasing on $(0,\infty)$. The multiplier is an
+explicit multiple of the integral of $z_q$ against $\sech^3$
+\eqref{eq:sc-k-plateau}, and Gaussian smoothing of an even decreasing
+density does not increase its integral against an even decreasing
+function; this gives the exponential bound. We need it on all of
+$[0,1]$, because a finite-dimensional minimizer may place mass above
+$q_\beta$.
+
+\paragraph{Marginality.}
+At the Parisi measure, the multiplier equals one on the whole support,
+and the domination gives no contraction there. The cavity
+inequality contracts because of the ratio $\alpha/d\le1-\rho$, which
+leaves a margin of order $\rho$ only. This is why we need $\eps_N\le\rho/4$ in
+\eqref{eq:ov-stability}, and why stability holds only above a cutoff.
+The equality $k=1$ on the support expresses, in scalar form, the
+marginal stability that De~Dominicis and Kondor found in a truncated
+replica model near the critical
+temperature~\cite[pp.~606--608]{DeDominicisKondor1983}; see
+\cref{subsec:intro-physics}.
+
+\paragraph{Transfer to the minimizer.}
+By \cref{lem:scalarcontinuity}, the multiplier depends Lipschitz
+continuously on the profile and coefficient, in the sense that
+\[
+ \sup_{0\le q\le1}|k_{a,d}(q)-k_{\widetilde a,\widetilde d}(q)|
+ \le C_\beta\bigl(\|a-\widetilde a\|_{L^1(0,1)}+|d-\widetilde d|\bigr).
+\]
+We have $|d_N-\beta^2|\le\beta^2/N$ and
+$\|\gamma^{\rm tr}_\lambda-\gamma_\beta\|_{L^1(0,1)}\lesssim\lambda^2$
+\eqref{eq:sc-floor}. Combining these facts with the isolation estimate
+of \cref{sec:overview-localization}, we obtain \cref{prop:lz-stability},
+which states that on the space $\mathcal H_{\nu_N}$ of the minimizer
+itself,
+\[
+ J^{\scal}_{a_N,d_N}\preceq(1+\eps_N)I,\qquad
+ \eps_N\le C_{\rm st}\bigl[\rho^{-3/4}\eta^{1/4}+\lambda^2+N^{-1}\bigr],
+\]
+with $C_{\rm st}$ depending only on $\beta$. We compare only the multipliers of
+the two profiles, and the operator inequality comes from
+\cref{lem:Jdom} at $a_N$.
+
+\section{Localization of the minimizing profile}
+\label{sec:overview-localization}
+
+We need two bounds on the distance between a minimizer $\gamma_*$ of
+$F_\rho$ and the scalar trial profile $\gamma^{\rm tr}$, in terms of a
+trial budget $\eta$: a bound in $L^1(0,1)$ for the stability of the
+scalar response (\cref{sec:lz}), and a localization of the lowest
+quantiles for small $\rho$ (\cref{sec:lz-root}).
+
+\paragraph{Convexity and response.}
+From~\cite[Section~7.4 and Appendix~A]{AL}, we import the following
+facts (\cref{prop:loc-inputs}). The functional $F_\rho$ is convex along
+segments $\gamma_\theta=(1-\theta)\gamma_0+\theta\gamma_1$. Let
+$f(\theta)=F_\rho(\gamma_\theta)$
+and $\zeta_\theta(q)=\beta^2N^{-1}\E_{\gamma_\theta}\Tr H_q^2$, so that
+$\rho\zeta_\theta$ is the derivative of the expected self-overlap. The
+second variation controls how the self-overlap responds to
+$\gamma_1-\gamma_0$:
+\[
+ \rho\left|\int_0^1(\gamma_1-\gamma_0)\zeta_\theta\varphi\dd q\right|
+ \le\Bigl(\frac{f''(\theta)}\rho\Bigr)^{1/2}
+ \bigl[Y^{1/2}+2(Y+Z)^{1/2}\bigr]
+\]
+\eqref{eq:loc-response}, for Lipschitz cutoffs $\varphi$, where $Y$ is a
+weighted Dirichlet energy of $\varphi$ and $Z$ is the integral of
+$\rho\varphi^2\zeta_\theta$ against $\dd\gamma_\theta$. Further,
+$\zeta_\theta\ge k_\beta^2$ for a constant $k_\beta>0$
+\eqref{eq:loc-in-curv}. The midpoint inequality \eqref{eq:loc-midpoint}
+bounds the integral of $\min\{\theta,1-\theta\}f''(\theta)$ over
+$(0,1)$ by $F_\rho(\gamma_0)+F_\rho(\gamma_1)-2\min F_\rho$. If both
+endpoints are nearly minimal, the segment has little
+curvature, while a difference of one sign and of definite size on some
+region forces curvature (\cref{lem:loc-coercive}).
+
+\paragraph{\texorpdfstring{Isolation in $L^1$.}{Isolation in L1.}}
+A minimizer may have atoms, and $Z$ contains $\dd\gamma_\theta$ on the
+support of the cutoff. To overcome this difficulty, we first spread the
+free mass of $\gamma_*$ on a scale $h$ by a reflected regularization
+(\cref{lem:loc-smoothing}). It creates a density at most $\beta/h$ at a
+cost at most $\rho\beta h^2/12$; the cost is quadratic because the
+first-variation potential is semiconcave, as in~\cite[Lemma~7.5]{AL}.
+Along the segment from the regularized minimizer to $\gamma^{\rm tr}$,
+we use cutoffs of one sign built from one-sided averages of
+superlevel sets of the difference, away from the atom of
+$\gamma^{\rm tr}$ at $q_\beta$; below $q_\beta$, the trial profile is
+Lipschitz (\cref{lem:loc-lipschitz}). Using the layer-cake formula, we
+find that $f''\gtrsim\rho^2\min\{\rho D^4,hD^2\}$, where
+$D=\|\gamma_*-\gamma^{\rm tr}\|_{L^1(0,1)}$ \eqref{eq:loc-E2-second}.
+For $h$ proportional to $\rho D^2$, we have $f''\gtrsim\rho^3D^4$, and
+the smoothing cost is a small fraction of $\rho^3D^4$. The midpoint
+inequality implies that $\rho^3D^4\lesssim\eta$, which is the bound of
+\cref{prop:loc-isolation},
+\[
+ \|\gamma_*-\gamma^{\rm tr}\|_{L^1(0,1)}
+ \le C\min\{1,\rho^{-3/4}\eta^{1/4}\},
+\]
+for every minimizer and every trial budget, with $C$ depending only on
+$\beta$.
+
+\paragraph{Root localization.}
+In the isolation argument, the lower bound
+$\rho\int\zeta_\theta\varphi\ge\rho k_\beta^2\int\varphi$ on the response
+carries a factor $\rho$, which is too costly near $\rho=0$. To avoid it,
+we use the local deficit certificate of \cref{lem:lz-certificate}. Suppose that
+two nearly minimal profiles have bounded densities on an interval $I$ of
+length $\ell$, that the density of the second is also bounded below,
+and that the second exceeds the first by a definite amount on $I$. Then
+the certificate bounds $\eta/\rho$ from below by an explicit expression
+in $\ell$, the gap, and the density bounds. In
+its proof, we move mass of the profile toward the middle of $I$ along a
+bump. Since both endpoints are nearly minimal and $F_\rho$ is convex,
+the response integrated against the bump must be at least of order
+$\ell$, without the factor $\rho$. To localize
+a quantile $Q_{\gamma_*}(v)$, we bound its truncation
+$q=\min\{Q_{\gamma_*}(v),T_1\}$ at the level $T_1$ of
+\cref{lem:lz-rootdensity}, which depends only on $\beta$; this suffices,
+because $Q_{\gamma_*}(v)\le q/T_1$. If $q$ is large compared with
+$\lambda+v$, we regularize the free mass of the minimizer below $q$ only. The result
+is small on $(q/4,3q/4)$, where the trial profile has density at least
+$k_0/2$ (\cref{lem:lz-rootdensity}) and exceeds it by an amount of order
+$q$. Using the certificate, we find that
+$\eta/\rho\gtrsim\min\{q^6,q^4/(m/h+C)\}$, where $m/h$ is the density
+created by the regularization. With a width adapted to the moved mass,
+we obtain \cref{prop:lz-quantile},
+which states that
+\[
+ Q_{\gamma_*}(v)\le C\bigl[\lambda+v+\min\{1,(\eta/\rho)^{1/6}\}\bigr]
+ \qquad(0<v<\beta-\lambda),
+\]
+together with its form \eqref{eq:lz-Q} in the probability
+normalization. We follow the strategy of~\cite[Lemma~7.6]{AL}. Compared
+with~\cite[(7.30)]{AL}, the bound depends on $\eta$ and $\rho$ only
+through $\eta/\rho$, and the certificate is what gives this dependence.
+
+\section{Closing the implicit inequality}\label{sec:overview-closure}
+
+By \cref{prop:lz-stability}, the stability assumption
+\eqref{eq:ov-stability} holds as soon as
+$C_{\rm st}[\rho^{-3/4}\eta^{1/4}+\lambda^2+N^{-1}]\le\rho/4$. Recall
+that $\eta\ge L_s\lambda^5\ge\lambda^5$, so that
+$\eta^{1/7}\ge\lambda^{5/7}=N^{-1/10}$, which is at least $\lambda^2$ and
+$N^{-1}$. The first term satisfies $\rho^{-3/4}\eta^{1/4}\lesssim\rho$
+exactly when $\rho\gtrsim\eta^{1/7}$. With $K=12C_{\rm st}$, we set
+\[
+ \rho_0=\min\{1,K\eta^{1/7}\}
+\]
+\eqref{eq:b7-cutoff}. If $\rho_0<1$, then $\eps_N\le\rho/4$ for every
+$\rho\in[\rho_0,1]$ and every minimizer, and \eqref{eq:ov-stable}
+applies; if $\rho_0=1$, the stable interval is empty. Using
+$\rho_0\ge\lambda^{5/7}$, we find that
+\[
+ \int_{\rho_0}^1\calD_N(\rho)\dd\rho
+ \lesssim\frac{\log^2(2+N)}{N\lambda\rho_0}
+ \lesssim\frac{\log^2(2+N)}{N\lambda^{12/7}}
+ =N^{-19/25}\log^2(2+N).
+\]
+On $(0,\rho_0]$, we insert $\rho_0\le K\eta^{1/7}$ into
+\eqref{eq:ov-small-integrated}, which gives
+$\rho_0^{1/3}\lesssim\eta^{1/21}$ and
+$\eta^{1/9}\rho_0^{2/9}\lesssim\eta^{1/7}$. Adding the two
+contributions and recalling that
+$4e_{N,\beta}(\lambda)=\int_0^1\calD_N(\rho)\dd\rho$, we obtain the
+bound \eqref{eq:b7-normalized-input},
+\begin{equation}\label{eq:ov-implicit}
+ e_{N,\beta}(\lambda)\lesssim N^{-19/25}\log^3(2+N)
+ +N^{-2/3}\eta^{1/21}+N^{-2/3}\lambda^{-1/3}\eta^{1/7}.
+\end{equation}
+
+But there is an apparent circularity here, since the cutoff $\rho_0$ is
+defined through $\eta=e_{N,\beta}(\lambda)+L_s\lambda^5$, which contains
+the quantity that we want to bound. The way out is that the error
+enters \eqref{eq:ov-implicit} only through powers of $\eta$ smaller
+than one. Let $r=N^{-7/10}=\lambda^5$ and $x=\eta/r$, which is finite
+and at least $L_s\ge1$. Dividing \eqref{eq:ov-implicit} by $r$ and
+adding $L_s$ to both sides, we find \eqref{eq:b7-normalized},
+\[
+ x\le L_s+C_\beta\bigl[N^{-3/50}\log^3(2+N)+x^{1/21}
+ +N^{-1/50}x^{1/7}\bigr]\le C_\beta x^{1/7},
+\]
+which implies that $x\le C_\beta^{7/6}$ and
+$e_{N,\beta}(\lambda)\le\eta=rx\lesssim N^{-7/10}$. We need no preliminary bound
+on the error. The proof of~\cite[Proposition~7.7]{AL} closes
+an inequality in which the unknown error enters the trial budget in the
+same way. By \cref{prop:fnd-mean-bias}, we conclude that
+$P_\beta-p_{N,\beta}\lesssim N^{-7/10}$ for all large $N$, and the
+finitely many remaining values of $N$ only change the constant.
+
+\paragraph{The exponent.}
+If $\eta$ is of order $N^{-a}$, the leading term
+$N^{-2/3}\eta^{1/21}$ in \eqref{eq:ov-implicit} is of the same order as
+$\eta$ when
+\[
+ a=\frac23+\frac a{21},\qquad\text{that is,}\qquad a=\frac7{10},
+\]
+and the cost $\lambda^5$ is of the same order when $\lambda=N^{-7/50}$
+(\cref{rem:b7-exponents}). \Cref{tab:overview-terms} lists the terms of
+\eqref{eq:ov-implicit} after division by $N^{-7/10}$. Only the leading
+term has no polynomial slack; the others carry the factors $N^{-1/50}$,
+$N^{-3/50}$, $N^{-4/25}$, and $N^{-3/10}$, up to logarithms. After the
+closure, we have $L_sN^{-7/10}\le\eta\lesssim N^{-7/10}$, and the
+cutoff is then comparable to $N^{-1/10}$ for large $N$.
+\Cref{tab:overview-exponents} collects the exponents of the proof and
+the statements in which they arise.
+
+\begin{table}[!tb]
+\centering
+\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}
+ >{\raggedright\arraybackslash}p{0.42\textwidth}
+ >{\raggedright\arraybackslash}p{0.23\textwidth}@{}}
+\toprule
+Term & Origin & After division by $N^{-7/10}$\\
+\midrule
+$N^{-1}$ & $\rho\le1/N$, by \eqref{eq:fnd-moving} & $N^{-3/10}$\\
+$N^{-43/50}\log^3(2+N)$ & thermal and logarithmic terms on
+ $[1/N,\rho_0]$, \eqref{eq:sm-pointwise} & $N^{-4/25}\log^3(2+N)$\\
+$N^{-19/25}\log^2(2+N)$ & stable interval $[\rho_0,1]$,
+ \cref{cor:c7-defect} & $N^{-3/50}\log^2(2+N)$\\
+$N^{-2/3}\eta^{1/21}$ & quantile shells on $(0,\rho_0]$,
+ \cref{prop:wi-vfs} & $x^{1/21}$\\
+$N^{-2/3}\lambda^{-1/3}\eta^{1/7}$ & root localization correction,
+ \cref{cor:lz-omega} & $N^{-1/50}x^{1/7}$\\
+\bottomrule
+\end{tabular}
+\caption{The terms of the bound on $e_{N,\beta}(\lambda)$ at
+$\lambda=N^{-7/50}$, with $x=\eta/N^{-7/10}$. The first three terms are
+combined into one in \eqref{eq:ov-implicit}; see
+\cref{subsec:b7-general}.}
+\label{tab:overview-terms}
+\end{table}
+
+\begin{table}[!tb]
+\centering
+\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.2\textwidth}
+ >{\raggedright\arraybackslash}p{0.47\textwidth}
+ >{\raggedright\arraybackslash}p{0.25\textwidth}@{}}
+\toprule
+Quantity & Where it comes from & Statement\\
+\midrule
+$\lambda^5$ & cost of the prescribed mass at zero, at the scalar end
+ & \eqref{eq:fnd-scalar-trial-cost}, \cite[Lemma~7.2]{AL}\\
+$(N\rho)^{-2/3}$ & variance on dyadic quantile shells, after root
+ localization & \cref{prop:wi-vfs}, \eqref{eq:sm-pointwise}\\
+$(\eta/\rho)^{1/6}$ & localization of the lowest quantiles
+ & \cref{prop:lz-quantile}, \cref{cor:lz-omega}\\
+$\rho^{-3/4}\eta^{1/4}$ & $L^1$ isolation of the minimizing profile
+ & \cref{prop:loc-isolation}\\
+$\rho/4$ & admissible error in the scalar response; it leaves the
+ margin $3\rho/4$ & \eqref{eq:c7-stab}\\
+$\eta^{1/7}$ & cutoff: $\rho^{-3/4}\eta^{1/4}\lesssim\rho$ when
+ $\rho\gtrsim\eta^{1/7}$ & \eqref{eq:b7-cutoff}\\
+$(N\lambda\rho^2)^{-1}$ & cavity bound: margin $3\rho/4$ and
+ $Ms=\beta N\rho\lambda$ & \cref{cor:c7-defect}\\
+$\rho_0^{1/3}$ & integral of $(N\rho)^{-2/3}$ over $(0,\rho_0]$
+ & \eqref{eq:sm-integrated}\\
+$\eta^{1/21}$ & $\rho_0^{1/3}$ with $\rho_0\le K\eta^{1/7}$
+ & \eqref{eq:b7-normalized-input}\\
+$a=7/10$ & balance $a=2/3+a/21$ & \cref{rem:b7-exponents}\\
+$\lambda=N^{-7/50}$ & $\lambda^5=N^{-7/10}$ & \eqref{eq:b7-parameters}\\
+\bottomrule
+\end{tabular}
+\caption{The exponents of the proof.}
+\label{tab:overview-exponents}
+\end{table}
+
+\paragraph{What would improve the exponent.}
+The exponent $1/21$ is the product of the exponent $1/3$ of $\rho_0$ in
+the integrated shell estimate and the exponent $1/7$ of $\eta$ in the
+cutoff, which comes from the isolation estimate. A larger exponent in
+either place would improve the balance. A smaller cutoff, however,
+increases the contribution $\log^2(2+N)/(N\lambda\rho_0)$ of the stable
+interval, and such an improvement requires rechecking the other
+terms of \cref{tab:overview-terms}. If the cavity bound
+\eqref{eq:ov-stable} held down to $\rho$ of order $N^{-1/4}$, and if we
+ignored logarithms and the tilt, the two regimes would give $N^{-3/4}$;
+we discuss this heuristic in \cref{subsec:intro-physics}.
+
+\section{Minimizers, arbitrary profiles, and atoms}
+\label{sec:overview-profiles}
+
+Three conventions recur throughout the proof.
+
+\paragraph{Which statements use minimality.}
+Estimates that use the contact identities \eqref{eq:in-contact} or the
+trial budget hold at minimizers: the main results of
+\cref{sec:wi,sec:th,sec:lz,sec:lz-root}, Step~2 of the proof of
+\cref{lem:cl-star}, and everything built on them. The Gaussian tools of
+\cref{sec:gauss}, the lemmas of \cref{sec:sc} on the scalar law of an
+arbitrary profile, and the cavity calculus of
+\cref{sec:c7,sec:c7-endpoint} hold for every deterministic profile (with
+$\nu(\{1\})=0$ in \cref{sec:c7-endpoint}). The reference estimate
+\cref{lem:reference} concerns the Parisi measure $\mu_\beta$ itself, and
+\cref{prop:lz-stability} concerns minimizing profiles. We need this generality,
+since at the independent endpoint, the $n$-spin system carries the
+profile of the full system.
+
+\paragraph{Every minimizer.}
+A minimizer need not be unique, and it may depend on $N$, $\rho$, and
+$\lambda$, but not on the couplings. Since \eqref{eq:in-envelope} holds at
+every minimizer, and since our bounds on $A$, $J$, and $V$ hold at every
+minimizer with the same constants, we can integrate in $\rho$ without a
+measurable choice of minimizers.
+
+\paragraph{Atoms.}
+Minimizing profiles may have atoms in $[0,1)$, and $\nu$ may charge
+$0$, but $\nu(\{1\})=0$ by \cref{prop:fnd-contact}. Distribution functions are right-continuous, so that $a(q)$
+includes an atom at $q$ while $(q,1]$ excludes it. We compute integrals
+against $\nu$ through quantiles, and a quantile window may contain part
+of an atom (\cref{sec:wi-setup}). We handle scalar and tree laws
+through exact path likelihoods (\cref{lem:sc-likelihood,lem:tree-density})
+and through the heat identity of \cref{lem:fnd-path-heat}, in which
+profile measures are held fixed with their atoms. In
+\cref{sec:lz,sec:lz-root}, we spread the free mass before using cutoffs.
+
+\section{A map of the proof}\label{sec:overview-map}
+
+\Cref{tab:overview-map} lists, for each section, its main results, its
+main inputs, and the places where its results are used. The proof
+of \cref{thm:main} in \cref{subsec:b7-general} begins with a table of
+its inputs and of the parameters at which they are used. In terms of
+these results, the proof has the following structure.
+\begin{itemize}
+\item \Cref{prop:fnd-mean-bias}, \cref{cor:fnd-defect}, and
+\cref{lem:fnd-trial} reduce the theorem to a bound on the integral of
+$\calD_N$, evaluated at any minimizer, and give the trial budget $\eta$
+that defines the cutoff $\rho_0$.
+\item On $(0,\rho_0]$, \cref{prop:sm-small} bounds the defect, using
+\cref{prop:wi-vfs}, \cref{cor:lz-omega}, \eqref{eq:in-Lvar},
+\cref{prop:th-j}, and \eqref{eq:fnd-moving}.
+\item On $[\rho_0,1]$, \cref{cor:c7-defect} bounds the defect, using
+\cref{prop:c7-closure}, \cref{cor:wi-cub}, and \cref{prop:th-j}. The
+contraction of \cref{prop:c7-closure} combines
+\cref{lem:cav-trace,lem:linear,lem:remainder,lem:cl-response,lem:cl-star,lem:c7-thermal},
+and its stability hypothesis \eqref{eq:c7-stab} is verified by
+\cref{prop:lz-stability}, which combines
+\cref{lem:Jdom,lem:reference,lem:scalarcontinuity,prop:loc-isolation}.
+\item The closure in \cref{subsec:b7-general} combines the two bounds.
+\end{itemize}
+
+\begin{table}[!tb]
+\centering
+\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.06\textwidth}
+ >{\raggedright\arraybackslash}p{0.31\textwidth}
+ >{\raggedright\arraybackslash}p{0.3\textwidth}
+ >{\raggedright\arraybackslash}p{0.25\textwidth}@{}}
+\toprule
+Sec. & Main results & Main inputs & Used in\\
+\midrule
+\ref{sec:fnd} & defect identity \eqref{eq:in-envelope}; contact and
+ variance bounds, \cref{prop:fnd-contact,prop:fnd-variance}; trial
+ budget, \cref{lem:fnd-trial}; reduction, \cref{prop:fnd-mean-bias}
+ & \cite[Section~2, Lemma~7.2, Theorem~7.8]{AL},
+ \cite{ChenConvexity} & all later sections\\
+\ref{sec:gauss} & posterior bound for arbitrary profiles,
+ \cref{lem:fnd-posterior}; heat identity, \cref{lem:fnd-path-heat}
+ & \cite[Section~2]{AL},
+ \cite[Lemma~2.3]{OpenAIFluctuationScale}
+ & \cref{sec:sc,sec:c7,sec:c7-endpoint}\\
+\ref{sec:wi} & variance on quantile intervals, \cref{prop:wi-vfs};
+ cubic moment, \cref{cor:wi-cub}
+ & \cref{prop:fnd-contact,prop:fnd-variance}
+ & \cref{prop:sm-small,cor:c7-defect}\\
+\ref{sec:th} & mean--covariance term, \cref{prop:th-j}
+ & \cref{prop:fnd-contact,prop:fnd-variance}
+ & \cref{prop:sm-small,cor:c7-defect}\\
+\ref{sec:lz} & isolation, \cref{prop:loc-isolation}
+ & \cite[Section~7.4, Appendix~A]{AL}, \cite[Theorem~1.1]{Lopatto},
+ \cref{lem:fnd-trial}
+ & \cref{sec:lz-root}, \cref{prop:lz-stability}\\
+\ref{sec:lz-root} & root localization,
+ \cref{prop:lz-quantile,cor:lz-omega}
+ & \cref{prop:loc-inputs,lem:loc-smoothing,lem:loc-coercive}
+ & \cref{prop:sm-small}\\
+\ref{sec:sc} & response identity, \cref{lem:sc-response}; domination,
+ \cref{lem:Jdom}; reference multiplier, \cref{lem:reference};
+ stability, \cref{prop:lz-stability}
+ & \cref{sec:gauss}, \cref{prop:loc-isolation},
+ \cite{Lopatto,AuffingerChen2015Uniqueness}
+ & \cref{lem:linear,prop:c7-closure}; proof of \cref{thm:main}\\
+\ref{sec:c7} & tree calculus, \cref{lem:streaming,cor:comparison};
+ remainder, \cref{lem:cav-threeproducts,lem:remainder}
+ & \cref{sec:gauss}, scalar law of \cref{sec:sc}
+ & \cref{sec:c7-endpoint,sec:c7-closure}\\
+\ref{sec:c7-endpoint} & linear response, \cref{lem:linear}; errors,
+ \cref{lem:cl-response}
+ & \cref{sec:c7}, \eqref{eq:scalarJexplicit}, \cref{lem:fnd-path-heat}
+ & \cref{lem:cav-trace,prop:c7-closure}\\
+\ref{sec:c7-closure} & coefficient one, \cref{lem:cl-star}; trace
+ identity, \cref{lem:cav-trace}; contraction, \cref{prop:c7-closure};
+ defect, \cref{cor:c7-defect}
+ & \cref{sec:c7,sec:c7-endpoint}, \cref{lem:Jdom},
+ \cref{cor:wi-cub,prop:th-j}
+ & proof of \cref{thm:main}\\
+\ref{sec:b7} & small $\rho$, \cref{prop:sm-small}; \cref{thm:main}
+ & \cref{sec:fnd,sec:wi,sec:th,sec:lz-root,sec:sc,sec:c7-closure}
+ & ---\\
+\bottomrule
+\end{tabular}
+\caption{The sections of the proof, their main results and inputs, and
+where the results are used.}
+\label{tab:overview-map}
+\end{table}

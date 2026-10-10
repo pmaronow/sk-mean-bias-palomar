@@ -1,0 +1,1132 @@
+\chapter{The interpolation and the defect}\label{sec:fnd}
+
+In this section, we recall the interpolation of \cite[Section~2]{AL},
+which compares the fractional moments of the partition function with the
+constrained scalar Parisi problem. We also fix the normalizations, the
+tilted law, and the observables that we use in the rest of the
+paper. The later sections build on two results. The first is the
+defect identity \eqref{eq:in-envelope} of \cref{cor:fnd-defect}. It states
+that four times the fractional-moment error $e_{N,\beta}(\lambda)$
+is the integral over the interpolation of a defect
+$\calD_N(\rho)=\beta(A+2J+V)$, whose three terms are overlap observables
+at a minimizing profile. The second is \cref{prop:fnd-mean-bias}, where
+we show that $(P_\beta-p_{N,\beta})/\beta$ is at
+most $2e_{N,\beta}(\lambda)$ plus a term of order $\lambda^5$. Along the
+way, we record the martingale and contact identities in
+\cref{prop:fnd-contact}, the integrated variance bound in
+\cref{prop:fnd-variance}, the decomposition of the overlap error in
+\cref{lem:fnd-decomp}, the interpolation identity in
+\cref{prop:fnd-interpolation}, and the trial budget in
+\cref{lem:fnd-trial}.
+
+Most of these facts are proved in \cite{AL}. We state each of them in
+full, with its location in \cite{AL}. Where the argument is short, we
+also sketch the proof, so that this section can be read without \cite{AL}
+at hand. Besides \cite{AL}, this section uses only the scalar Parisi
+functional \eqref{eq:intro-parisi} and the notation of
+\cref{sec:intro-background}, together with the support theorem
+\cite[Theorem~1.1]{Lopatto}. Its results are used throughout the
+paper. \Cref{prop:fnd-contact,prop:fnd-variance,lem:fnd-decomp} are
+used in \cref{sec:wi,sec:th,sec:c7,sec:c7-closure}; the energy
+normalization and the trial budget in \cref{sec:lz,sec:lz-root,sec:sc};
+and \eqref{eq:in-envelope}, \eqref{eq:fnd-moving}, and
+\cref{prop:fnd-mean-bias} in \cref{sec:c7-closure,sec:b7}. We treat the
+laws with anisotropic fields in \cref{sec:gauss}, where we
+also prove the two Gaussian tools that we need for profiles that do not
+minimize the functional.
+
+Throughout this section, we fix $\beta>1$ and $N\ge1$, and we assume no
+relation between the tilt $\lambda$ and $N$. The completion,
+the interpolating functional, and the identities of
+\cref{subsec:fnd-law,sec:fnd-contact,sec:fnd-variance,sec:fnd-defect}
+hold for every $\beta>0$. We use the hypothesis $\beta>1$ for the support
+of the Parisi measure in \cref{sec:fnd-completion} and for the
+cost of the scalar floor in \cref{sec:fnd-trial}.
+
+The interpolation of \cite[Section~2]{AL} is a quantitative form of the
+Guerra interpolation that Talagrand used for the positive fractional
+moments of the partition function, whose limits he determined in
+\cite{Talagrand2007FractionalMoments}; see \cite[Section~1.2]{AL}. For
+fixed $0<s<1$, the limit of the normalized logarithmic moment of order
+$s$ is the minimum of the Parisi functional over probability measures
+with mass at least $s$ at zero. For the SK model at zero field, this
+formula is also contained in the one-level case of
+\cite[Theorem~2.1]{ContucciMingione2019}, and it is stated in this form
+in \cite[Theorem~2.1]{ChenEtAl2026LargeDeviations}, in a normalization
+of the spins that changes the functional by the constant $\log2$. The
+finite-$N$ functional of \cref{sec:fnd-functional} carries the same
+constraint, in the sense that its profiles have the
+prescribed mass $s$ at $0$.
+
+\section{Completion and the constrained scalar value}
+\label{sec:fnd-completion}
+
+Let $W$ be the symmetric $N\times N$ matrix with entries
+$W_{ij}=g_{ij}/\sqrt N$ for $i<j$ and $W_{ii}=\sqrt{2/N}\,z_i$, where
+$z_1,\ldots,z_N$ are standard Gaussian variables, independent of each
+other and of the couplings $(g_{ij})$. We write $\E_{\rm ref}$ for
+expectation over $(g_{ij},z_i)$ under this Gaussian law; the subscript
+distinguishes it from the tilted law of \cref{subsec:fnd-law}.
+Following \cite[Section~1.1]{AL}, we set
+\[
+ D_N=\frac12\Tr W,\qquad
+ F^c_{N,\beta}=\log\sum_{\sigma\in\{-1,1\}^N}e^{\beta\sigma^TW\sigma/2},
+\]
+and we recall that $F_{N,\beta}=\log\sum_\sigma e^{\beta H_N(\sigma)}$ is the
+logarithmic partition function of \cref{sec:intro-background}. Note that
+$\sigma^TW\sigma/2=H_N(\sigma)+D_N$, because $\sigma_i^2=1$, so that
+$F^c_{N,\beta}=F_{N,\beta}+\beta D_N$. The variable
+$D_N=(2N)^{-1/2}\sum_iz_i$ is centered Gaussian with variance $1/2$ and
+is independent of $F_{N,\beta}$.
+
+The diagonal term completes the covariance of the Hamiltonian to an
+exact function of the overlap $R(\sigma,\sigma')=N^{-1}\sigma\cdot\sigma'$.
+Indeed, writing $\tau_i=\sigma_i\sigma'_i$, we have
+\[
+ \E_{\rm ref}\bigl[H_N(\sigma)H_N(\sigma')\bigr]
+ =\frac1N\sum_{i<j}\tau_i\tau_j
+ =\frac1{2N}\biggl[\Bigl(\sum_{i=1}^N\tau_i\Bigr)^2-N\biggr]
+ =\frac N2R(\sigma,\sigma')^2-\frac12 ,
+\]
+and adding $\Var(D_N)=1/2$, we find that the completed Hamiltonian
+$\sigma^TW\sigma/2$ has covariance $NR(\sigma,\sigma')^2/2$. This is why
+the derivative of the interpolation in \cref{prop:fnd-interpolation} is
+exactly an integral of squared overlap deviations. Because $D_N$ is
+independent of $F_{N,\beta}$, the completion changes the logarithmic
+moments only by an explicit term. For $s>0$, the normalized logarithmic moment of the completed
+partition function is \cite[(1.3)]{AL}
+\[
+ \phi^c_{N,\beta}(s)
+   =\frac1{Ns}\log\E_{\rm ref}e^{sF^c_{N,\beta}}
+   =\frac1{Ns}\log\E_{\rm ref}e^{sF_{N,\beta}}+\frac{\beta^2s}{4N},
+\]
+where we used $\log\E_{\rm ref}e^{s\beta D_N}=\beta^2s^2/4$. As $s\downarrow0$, we have $\phi^c_{N,\beta}(s)\to p_{N,\beta}$, since
+$F_{N,\beta}$ has exponential moments of every order.
+
+Recall the scalar Parisi functional $\mathcal P_\beta$ of
+\eqref{eq:intro-parisi}, which we evaluate at the distribution function
+of a probability measure on $[0,1]$. For $0\le s\le1$ and
+$0\le\lambda\le\beta$, we define
+\[
+ P_\beta(s)=\min_{\mu\in\mathcal P([0,1]):\,\mu(\{0\})\ge s}
+      \mathcal P_\beta\bigl(\mu([0,\cdot\,])\bigr),
+ \qquad E_\beta(\lambda)=\beta^{-1}P_\beta(\lambda/\beta).
+\]
+The minimum is attained \cite[Section~1.1]{AL}, and $P_\beta(0)=P_\beta$.
+The function $E_\beta$ is the constrained value in the energy
+normalization of \cite[Section~7.1]{AL}, in which the order $s$ of the
+moment is replaced by the tilt $\lambda=\beta s$. Note that $E_\beta$ is nondecreasing, because the admissible class
+shrinks as $s$ grows; in particular, $E_\beta(\lambda)\ge E_\beta(0)$.
+
+The unconstrained minimizer $\mu_\beta$ is unique
+\cite{AuffingerChen2015Uniqueness}. We write
+$\alpha_\beta(q)=\mu_\beta([0,q])$ and $\gamma_\beta=\beta\alpha_\beta$.
+Since $\beta>1$, we have $\supp\mu_\beta=[0,q_\beta]$ with
+$0<q_\beta<1$, by \cite[Theorem~1.1]{Lopatto}. We recall the further
+structure of $\mu_\beta$ in \cref{sec:lz}.
+
+For $0<\lambda<\beta$ and $s=\lambda/\beta$, we define the
+\emph{fractional-moment error} by
+\begin{equation}\label{eq:fnd-error-definition}
+ e_{N,\beta}(\lambda)
+    =\frac{P_\beta(s)-\phi^c_{N,\beta}(s)}\beta
+    =E_\beta(\lambda)
+       -\frac1{N\lambda}\log\E_{\rm ref}
+          e^{\lambda(F_{N,\beta}/\beta+D_N)} .
+\end{equation}
+In the second expression, we used
+$sF^c_{N,\beta}=\lambda(F_{N,\beta}/\beta+D_N)$; the completion
+contributes $\lambda/(4N)$ to the logarithmic moment on the right.
+As $\beta$ is fixed, we also write $e_N(\lambda)=e_{N,\beta}(\lambda)$.
+From now on, we assume that $s=\lambda/\beta\le1/2$, which is the range
+of the results of \cite[Section~2]{AL}. We will see in
+\cref{cor:fnd-defect} that the error
+$e_{N,\beta}(\lambda)$ is nonnegative.
+
+\section{The interpolating functional}\label{sec:fnd-functional}
+
+For $0\le\rho\le1$, we set
+\[
+ t=1-\rho,\qquad c=\beta^2\rho,\qquad M=Nc .
+\]
+The interpolation reaches the fractional moment at $\rho=0$, and
+$\rho=1$ is the scalar end. We parametrize the interpolation by $\rho$
+because the estimates of the later sections degenerate as
+$\rho\downarrow0$. We work with the tilted law of \cref{subsec:fnd-law}
+for $0<\rho\le1$,
+where $c>0$.
+
+An \emph{admissible profile} is a deterministic probability measure
+$\mu=s\delta_0+\nu$ on $[0,1]$, where $\nu\ge0$ has mass $1-s$ and may
+charge $0$. Equivalently, $\mu$ is a deterministic probability measure
+such that $\mu(\{0\})\ge s$. We call $s\delta_0$ the prescribed root mass and
+$\nu$ the free measure of $\mu$. We write $a(q)=\mu([0,q])$ for the
+cumulative function. It is
+nondecreasing and right-continuous, with $a\ge s$ and $a(1)=1$.
+Conditional on $W$, let $U=U_{\mu,t}$ solve
+\begin{equation}\label{eq:fnd-vector-pde}
+ \partial_qU=-\frac c2\bigl(\Delta U+a(q)|\nabla U|^2\bigr),
+ \qquad
+ U(1,x;W)=\log\sum_{\sigma\in\{-1,1\}^N}
+  e^{\beta\sqrt t\,\sigma^TW\sigma/2+x\cdot\sigma}.
+\end{equation}
+This is the Parisi equation in $\R^N$; its terminal value is the logarithm
+of the completed partition function at inverse temperature $\beta\sqrt t$
+in the external field $x$. We define the interpolating functional and its
+minimum over admissible
+profiles by
+\begin{equation}\label{eq:fnd-functional}
+ \mathcal F_{t,s}(\mu)
+   =\frac1{Ns}\log\E_{\rm ref}e^{sU(0,0;W)}
+       -\frac c2\int_0^1qa(q)\dd q,
+ \qquad f_{N,s}(t)=\min_{\mu}\mathcal F_{t,s}(\mu).
+\end{equation}
+
+By \cite[Section~2.6 and Proposition~2.3]{AL}, the equation
+\eqref{eq:fnd-vector-pde} has a solution for every admissible profile,
+and $\mathcal F_{t,s}$ is continuous under weak convergence of profiles.
+For a step profile, the solution is given by the Hopf--Cole recursion that
+we recall in
+\cref{subsec:fnd-law}. For a general profile, it is the
+uniform limit of the solutions for step profiles whose cumulative
+functions converge in $L^1([0,1])$. Indeed, if $U_a$ and $U_{\tilde a}$
+are the solutions for the cumulative functions $a$ and $\tilde a$, then
+\cite[Section~2.6, (2.19)]{AL}
+\[
+ \sup_{q,x,W}\bigl|U_a(q,x;W)-U_{\tilde a}(q,x;W)\bigr|
+ \le\frac{cN}2\int_0^1|a(u)-\tilde a(u)|\dd u .
+\]
+The admissible profiles form a weakly compact set, since they are the
+image of the compact set of measures of mass $1-s$ under
+$\nu\mapsto s\delta_0+\nu$, and weak convergence of profiles implies
+$L^1$ convergence of their cumulative functions. We conclude that the
+minimum in \eqref{eq:fnd-functional} is attained.
+
+We note that minimizers are deterministic. The Gaussian expectation is
+taken inside
+the functional, which means that $\mathcal F_{t,s}(\mu)$ is a number for
+each profile. A minimizer may depend on $N$, $\rho$, and $\lambda$ but not
+on the couplings. This matters below, because the tilted law of
+\cref{subsec:fnd-law}
+is constructed from a deterministic profile, and the estimates at a
+minimizer combine that law with the variational inequality that the same
+profile satisfies. A minimizer need not be unique; at each use, we say
+which minimizer is meant.
+
+The prescribed root mass $s\delta_0$ matches the order $s$ of the
+moment. In the derivative of the interpolation, which we compute in
+\cref{prop:fnd-interpolation}, the outer logarithmic moment
+contributes a term that cancels the root mass exactly, so that only the
+free measure $\nu$ remains. In the posterior densities of
+\cref{sec:gauss}, the outer tilt cancels it in the same way.
+
+The two endpoints of the interpolation are explicit. At $t=0$, the
+terminal value in \eqref{eq:fnd-vector-pde} is $\sum_i\log(2\cosh x_i)$
+and $c=\beta^2$. Then the equation separates into $N$ copies of the
+scalar Parisi equation of \eqref{eq:intro-parisi}, and we have
+$U(q,x;W)=\sum_iu_a(q,x_i)$, where $u_a$ is the solution of that
+equation with $\alpha=a$. This shows that $U(0,0;W)=Nu_a(0,0)$ is
+deterministic and that
+$\mathcal F_{0,s}(\mu)=\mathcal P_\beta(a)$. At
+$t=1$, we have $c=0$, which implies that
+$U(0,0;W)=U(1,0;W)=F^c_{N,\beta}$ and that
+$\mathcal F_{1,s}(\mu)=\phi^c_{N,\beta}(s)$ for every profile.
+Minimizing over admissible profiles, we obtain
+\cite[Proposition~2.3]{AL}
+\begin{equation}\label{eq:fnd-endpoints}
+ f_{N,s}(0)=P_\beta(s),\qquad f_{N,s}(1)=\phi^c_{N,\beta}(s).
+\end{equation}
+For a fixed profile, the map $t\mapsto\mathcal F_{t,s}(\mu)$ is
+nonincreasing (\cref{prop:fnd-interpolation}). By
+\eqref{eq:fnd-error-definition}, the fractional-moment error is
+$(f_{N,s}(0)-f_{N,s}(1))/\beta$, which is the decrease of $f_{N,s}/\beta$
+along the interpolation. The defect of \cref{sec:fnd-defect} is four
+times the rate of this decrease.
+
+\paragraph{The energy normalization.}
+We vary profiles in the energy normalization of
+\cite[Section~7.1]{AL}. For an admissible profile $\mu$ with cumulative
+function $a$, we set
+\[
+ \gamma=\beta a,\qquad \nu_\gamma=\beta\nu,\qquad
+ F_\rho(\gamma)=\beta^{-1}\mathcal F_{1-\rho,\lambda/\beta}(\mu).
+\]
+Then $\dd\gamma$ is a measure of mass $\beta$ with
+$\dd\gamma\ge\lambda\delta_0$; we also call $\gamma$ admissible. We
+have $\min_\gamma F_\rho(\gamma)=\beta^{-1}f_{N,s}(1-\rho)$, where the
+minimum is over admissible $\gamma$. The name refers to the following
+rescaling of the spatial variable. The function
+$\widetilde U(q,y;W)=\beta^{-1}U(q,\beta y;W)$ solves
+\[
+ \partial_q\widetilde U
+ =-\frac\rho2\bigl(\Delta\widetilde U+\gamma(q)|\nabla\widetilde U|^2\bigr),
+\]
+with terminal value $\beta^{-1}$ times the logarithm of the completed
+partition function in the field $\beta y$, and we have
+\[
+ F_\rho(\gamma)=\frac1{N\lambda}\log\E_{\rm ref}
+     e^{\lambda\widetilde U(0,0;W)}
+ -\frac\rho2\int_0^1q\gamma(q)\dd q .
+\]
+This is the functional of \cite[(7.2)]{AL} with $r=\rho$, in which the
+diagonal of $W$ has been integrated out explicitly
+\cite[Section~7.1]{AL}. Note that the rescaling leaves the gradient unchanged,
+$\nabla\widetilde U(q,y;W)=\nabla U(q,\beta y;W)$, and that it multiplies
+the Hessian by $\beta$.
+
+We define the \emph{scalar trial profile} by
+$\gamma^{\rm tr}_\lambda(q)=\max\{\lambda,\gamma_\beta(q)\}$. It is
+nondecreasing and right-continuous, and it satisfies
+$\lambda\le\gamma^{\rm tr}_\lambda\le\beta$ and
+$\gamma^{\rm tr}_\lambda(1)=\beta$. In other words,
+$\gamma^{\rm tr}_\lambda/\beta$ is the cumulative function of an
+admissible profile. When $\lambda$ is
+fixed, we write $\gamma^{\rm tr}=\gamma^{\rm tr}_\lambda$. We discuss its
+cost and its use as a comparison profile in
+\cref{sec:fnd-trial}.
+
+\section{The tilted joint law and overlap observables}
+\label{subsec:fnd-law}
+
+Fix $0<\rho\le1$ and an admissible profile $\mu$. We recall the joint
+law of \cite[Section~2]{AL}, under which all later expectations are
+taken. It is built in three stages.
+\begin{enumerate}[label=(\roman*)]
+\item The Gaussian law of $W$ is tilted by the density
+$e^{sU(0,0;W)}/\E_{\rm ref}e^{sU(0,0;W)}$.
+\item Given $W$, the auxiliary field solves
+\begin{equation}\label{eq:fnd-diffusion}
+ \dd X_q=ca(q)\nabla U(q,X_q;W)\dd q+\sqrt c\dd B_q,
+ \qquad X_0=0,
+\end{equation}
+where $B$ is a standard Brownian motion in $\R^N$ under the conditional
+law given $W$.
+\item Given $W$ and the path $X$, a terminal spin
+$\sigma\in\{-1,1\}^N$ is drawn with probabilities proportional to
+$\exp\{\beta\sqrt t\,\sigma^TW\sigma/2+X_1\cdot\sigma\}$.
+\end{enumerate}
+We write $\Pp$ and $\E$ for this joint law, and
+$\calG_q=\sigma(W,X_r:0\le r\le q)$ for the information revealed up to
+level $q$; note that it does not contain the terminal spin. At fixed $N$, the
+drift in \eqref{eq:fnd-diffusion} is bounded and Lipschitz in $x$
+\cite[Section~2.6.1]{AL}, and the equation has a unique strong solution.
+The tilt in (i) changes the law of $W$, which is no longer Gaussian under
+$\Pp$, but it does not change the
+conditional law of $B$ given $W$.
+
+For a step profile, the law has a discrete description, which explains
+the construction. The Gaussian Hopf--Cole recursion in the Parisi setting
+is described in \cite[Section~3, (10)--(13)]{Guerra2003}, and the
+finite-dimensional tilted law used here is the formulation of
+\cite[Section~2.1]{AL}.
+Suppose that the profile has grid points
+$0=q_0<q_1<\cdots<q_K=1$ and that $a=a_\ell$ on $[q_\ell,q_{\ell+1})$. Then
+\eqref{eq:fnd-vector-pde} is solved by the Hopf--Cole recursion
+\[
+ U(q_\ell,x;W)=\frac1{a_\ell}\log\E_g
+ \exp\bigl\{a_\ell U\bigl(q_{\ell+1},x+\sqrt{c(q_{\ell+1}-q_\ell)}\,g;W\bigr)\bigr\},
+\]
+where $g$ is a standard Gaussian vector in $\R^N$, and we read the right
+side as $\E_gU(q_{\ell+1},x+\sqrt{c(q_{\ell+1}-q_\ell)}\,g;W)$ when
+$a_\ell=0$. Given $W$ and $X_{q_\ell}$, the increment
+$X_{q_{\ell+1}}-X_{q_\ell}$ has the law of
+$\sqrt{c(q_{\ell+1}-q_\ell)}\,g$, tilted by the density
+$\exp\{a_\ell(U(q_{\ell+1},X_{q_{\ell+1}};W)-U(q_\ell,X_{q_\ell};W))\}$,
+which integrates to one by the recursion. The outer tilt in (i) has the
+same form, with mass $s$ at level $0$. In \cref{sec:gauss}, we multiply
+these densities and use the resulting formula for the joint density.
+
+\paragraph{Observables.}
+We denote the conditional mean, the conditional covariance, and the
+spatial Hessian by
+\[
+ m_q=\E[\sigma\mid\calG_q],\qquad
+ C_q=\Cov(\sigma\mid\calG_q),\qquad
+ H_q=\nabla_x^2U(q,X_q;W).
+\]
+We will see in \cref{prop:fnd-contact} that $m_q=\nabla U(q,X_q;W)$ and
+that $a(q)C_q\preceq H_q\preceq C_q$. With the same terminal spin at every
+level, we define
+\[
+ S_q=\frac{|m_q|^2}N,\qquad
+ L_q=\frac{\sigma\cdot m_q-|m_q|^2/2}N,\qquad
+ j_q=\frac{\E[m_q^TC_qm_q]}{N^2},\qquad
+ a_q^{\rm th}=\frac{\E\Tr C_q^2}{N^2};
+\]
+we use the superscript in $a^{\rm th}_q$ to distinguish the covariance
+trace from the cumulative function $a$. For each $q$, let $\sigma^1$ and $\sigma^2$
+be conditionally independent given $\calG_q$, each with the conditional
+law of $\sigma$ given $\calG_q$, and let $R_q=R(\sigma^1,\sigma^2)$. Note
+that the self-overlap $S_q$ of the conditional mean is the conditional
+expectation of $R_q$ given $\calG_q$, and that $L_q$ has conditional
+expectation $S_q/2$ given $\calG_q$. In \cref{prop:fnd-variance}, we bound
+the variance of
+averages of $L_q$ over levels. We also have
+$0\le S_q\le1$ and $|L_q|\le3/2$.
+
+The processes $m$, $C$, and $H$ have continuous paths. Indeed, we have
+$m_q=\nabla U(q,X_q;W)$, $H_q=\nabla^2U(q,X_q;W)$, and
+$\E[\sigma\sigma^T\mid\calG_q]=\Sigma(q,X_q;W)$, where the conditional
+second moment $\Sigma$ solves a linear backward equation with drift
+$ca\nabla U$, and $\nabla U$, $\nabla^2U$, and $\Sigma$ are jointly
+continuous in $(q,x)$ \cite[Section~2.6.1]{AL}; the path $X$ is
+continuous. In particular, $S_q$ and $L_q$ are jointly measurable
+in the level and the outcome, and Fubini's theorem applies to their
+integrals against $\nu$. By bounded convergence, the functions
+$q\mapsto j_q$, $a^{\rm th}_q$, $\E S_q$, $\Var(S_q)$, and $\E|S_q-q|^3$
+are continuous on $[0,1]$, and so is $q\mapsto\E(R_q-q)^2$, because
+$\E[R_q\mid\calG_q]=S_q$ and
+$\E[R_q^2\mid\calG_q]=N^{-2}\sum_{i,j}\Sigma_{ij}(q,X_q;W)^2$.
+
+We also define the integrated quantities
+\[
+ \begin{gathered}
+ A=\int a_q^{\rm th}\,\nu(\dd q),\qquad
+ J=\int j_q\,\nu(\dd q),\\
+ V=\int\Var(S_q)\,\nu(\dd q),\qquad
+ H_3=\int\E|S_q-q|^3\,\nu(\dd q).
+ \end{gathered}
+\]
+We note that they depend on $N$, $\rho$, $\lambda$, and the profile. The trace term
+$A$ and the mean--covariance term $J$ are controlled by the conditional
+covariance. The integrated variance $V$ of the self-overlap is the main
+term of the defect, and $H_3$ is the corresponding cubic moment, which
+enters in \cref{sec:c7-closure}.
+
+\paragraph{Quantiles and contact levels.}
+The quantile function
+\begin{equation}\label{eq:fnd-quantile}
+ Q(v)=\inf\{q\in[0,1]:\nu([0,q])\ge v\},\qquad 0<v<1-s,
+\end{equation}
+pushes Lebesgue measure on $(0,1-s)$ forward to $\nu$, and
+$a(Q(v))=s+\nu([0,Q(v)])\ge s+v$, by the right continuity of
+$q\mapsto\nu([0,q])$. We use quantiles to integrate against $\nu$ in a
+variable in which the lower bound on $a$ is explicit, whether or not
+$\nu$ has a density. The image under $Q$ of Lebesgue measure on a Borel
+subset of $(0,1-s)$ is a sub-measure of $\nu$, whose density with respect
+to $\nu$ takes
+values in $[0,1]$. For an interval of values of
+$v$, this sub-measure may contain only part of an atom of $\nu$, and by
+integration over such an interval, we mean integration against
+this sub-measure.
+
+If $\mu$ minimizes $\mathcal F_{t,s}$, we call a point of $\supp\nu$ a
+\emph{contact level} of $\mu$. The contact levels are where the free
+measure sits, and \cref{prop:fnd-contact} shows that the expected self-overlap
+$\E S_q$ equals $q$ at each of them.
+
+\section{Martingale and contact identities}\label{sec:fnd-contact}
+
+In the next proposition, we collect the finite-dimensional martingale,
+first-variation, and contact identities of \cite[Proposition~2.1]{AL}.
+For the scalar Parisi functional, the stochastic-control representation
+and the martingale identities are in
+\cite[Theorem~3 and Lemma~2]{AuffingerChen2015Uniqueness}, with a dynamic
+programming treatment in \cite{JagannathTobasco2016}. The first variation
+and the optimality conditions on the support are in
+\cite[Lemma~3.2 and Proposition~1.1]{JagannathTobasco2017PhaseDiagram}
+and \cite[Theorem~2 and Proposition~1]{Chen2017Variational}.
+
+\begin{proposition}[Martingale, covariance order, and contact]
+\label{prop:fnd-contact}
+Let $0<\rho\le1$, and let $\mu=s\delta_0+\nu$ be an admissible profile.
+For every $q\in[0,1]$,
+\begin{equation}\label{eq:in-martingale}
+ m_q=\nabla U(q,X_q;W),\qquad m_0=0,\qquad
+ \dd m_q=\sqrt c\,H_q\dd B_q,
+ \qquad a(q)C_q\preceq H_q\preceq C_q ,
+\end{equation}
+and $q\mapsto\E S_q$ is continuously differentiable on $[0,1]$ with
+derivative $c\,\E\Tr H_q^2/N$. If $\nu'\ge0$ has mass $1-s$, then the
+right derivative of
+$\theta\mapsto\mathcal F_{t,s}(s\delta_0+(1-\theta)\nu+\theta\nu')$ at
+$\theta=0$ is
+\begin{equation}\label{eq:fnd-first-variation}
+ D\mathcal F_{t,s}(\mu)[\nu'-\nu]
+    =\frac c2\int_0^1G(x)\,(\nu'-\nu)(\dd x),\qquad
+ G(x)=\int_x^1(\E S_y-y)\dd y .
+\end{equation}
+If $\mu$ minimizes $\mathcal F_{t,s}$, then $\supp\nu$ is contained in
+the set of minimum points of $G$ on $[0,1]$, and
+\begin{equation}\label{eq:in-contact}
+ \supp\nu\subset[0,1),\qquad
+ \E S_q=q,\qquad \E\Tr H_q^2\le\frac Nc
+ \qquad\text{for every contact level }q .
+\end{equation}
+\end{proposition}
+
+\begin{remark}\label{rem:fnd-root}
+A contact level is a point of the support of the free measure $\nu$. At
+$q=0$, we have $\E S_0=0$ for every profile, since $m_0=0$. The bound
+on $\E\Tr H_0^2$ in \eqref{eq:in-contact} holds when $0\in\supp\nu$;
+the prescribed mass $s\delta_0$ alone does not give it, because the
+minimization does not act on that mass.
+\end{remark}
+
+\begin{proof}[Proof of \cref{prop:fnd-contact}]
+We recall the argument of \cite[Proposition~2.1 and Section~2.6]{AL}.
+The proof has four steps. We first prove the martingale identities and
+the covariance order for step profiles. We then derive the first
+variation and deduce the support property and \eqref{eq:in-contact}
+at a minimizer. Finally, we extend these statements to general profiles.
+
+\paragraph{Step 1: martingale identities for step profiles.}
+Let $\mu$ be a step profile. Then $U$ is smooth in $x$, every spatial
+derivative of fixed order is bounded uniformly in $(q,x,W)$ at fixed
+$N$, and $U$ is smooth in $q$ between consecutive grid points
+\cite[Section~2.6.1]{AL}. Differentiating \eqref{eq:fnd-vector-pde} in
+$x$ and applying It\^o's formula along \eqref{eq:fnd-diffusion} on each
+interval between grid points, we obtain \cite[(2.5)]{AL}
+\[
+ \dd\,\nabla U(q,X_q;W)=\sqrt c\,H_q\dd B_q,\qquad
+ \dd H_q=-ca(q)H_q^2\dd q+\sqrt c\,\nabla H_q\dd B_q ,
+\]
+where $\nabla H_q\dd B_q$ denotes the contraction of the third spatial
+derivative of $U$ at $(q,X_q)$ with $\dd B_q$. The stochastic integrals are martingales, since their integrands are
+bounded. At $q=1$, the
+gradient $\nabla U(1,X_1;W)$ is the Gibbs mean of the terminal spin
+given $(W,X_1)$, that is, $\E[\sigma\mid\calG_1]$. By the tower property,
+we have $\nabla U(q,X_q;W)=\E[\sigma\mid\calG_q]=m_q$ for all $q$.
+Replacing $\sigma$ by $-\sigma$ in the sum that defines $U(1,x;W)$, we
+see that $U(1,\cdot\,;W)$ is even. The equation preserves this symmetry,
+which implies
+that $U(q,\cdot\,;W)$ is even and that $m_0=\nabla U(0,0;W)=0$.
+
+For the covariance order, we first note that $C_1=H_1$, because the
+Hessian of the logarithm of a partition function is the covariance of
+its Gibbs measure. Applying the martingale isometry to $m$, and taking
+conditional expectations in the equation for $H$, we find
+\[
+ C_q=\E[H_1\mid\calG_q]+c\int_q^1\E[H_u^2\mid\calG_q]\dd u,\qquad
+ H_q=\E[H_1\mid\calG_q]+c\int_q^1a(u)\E[H_u^2\mid\calG_q]\dd u .
+\]
+Observe that every matrix in these expressions is positive
+semidefinite, and that $a(q)\le a(u)\le1$ for $u\ge q$. Subtracting, we obtain
+\[
+ C_q-H_q=c\int_q^1\bigl(1-a(u)\bigr)\E[H_u^2\mid\calG_q]\dd u\succeq0
+\]
+and
+\[
+ H_q-a(q)C_q=\bigl(1-a(q)\bigr)\E[H_1\mid\calG_q]
+ +c\int_q^1\bigl(a(u)-a(q)\bigr)\E[H_u^2\mid\calG_q]\dd u\succeq0,
+\]
+which proves $a(q)C_q\preceq H_q\preceq C_q$ \cite[(2.6)]{AL}. Finally,
+It\^o's formula gives $\dd|m_q|^2=2m_q\cdot\dd m_q+c\Tr H_q^2\dd q$.
+Taking expectations, we find that the derivative of $q\mapsto\E S_q$ is
+$c\,\E\Tr H_q^2/N$ \cite[(2.7)]{AL}, which is continuous in $q$.
+
+\paragraph{Step 2: the first variation.}
+Let $\nu'\ge0$ have mass $1-s$, and let
+$\delta a(q)=(\nu'-\nu)([0,q])$, so that the profile
+$s\delta_0+(1-\theta)\nu+\theta\nu'$ has cumulative function
+$a+\theta\,\delta a$. The derivative $\dot U$ of the solution in
+$\theta$ at $\theta=0$ solves the linearized equation
+\[
+ \partial_q\dot U+\frac c2\Delta\dot U+ca(q)\nabla U\cdot\nabla\dot U
+ =-\frac c2\,\delta a(q)|\nabla U|^2,\qquad \dot U(1,\cdot\,;W)=0 .
+\]
+Its generator is the generator of \eqref{eq:fnd-diffusion}. By the
+Feynman--Kac formula, we have
+\[
+ \dot U(0,0;W)=\frac c2\,\E\Bigl[\int_0^1\delta a(q)|m_q|^2\dd q
+ \Bigm|W\Bigr].
+\]
+When we differentiate the outer logarithmic moment in
+\eqref{eq:fnd-functional}, this identity is averaged under the tilted law
+of $W$, and the penalty
+contributes $-(c/2)\int_0^1q\,\delta a(q)\dd q$. We obtain
+\[
+ D\mathcal F_{t,s}(\mu)[\nu'-\nu]
+ =\frac c2\int_0^1(\E S_q-q)\,\delta a(q)\dd q .
+\]
+We write $\delta a(q)=\int\ind\{x\le q\}\,(\nu'-\nu)(\dd x)$ and
+exchange the order of integration, which is allowed because the
+integrand is bounded and $\nu'-\nu$ has finite total variation. This
+gives \eqref{eq:fnd-first-variation}, which is \cite[(2.8)]{AL}. We note
+that its derivation does not use minimality. In the energy
+normalization, the
+identity is stated for every admissible profile in
+\cite[Section~7.4, (7.22)]{AL}.
+
+\paragraph{Step 3: support and contact at a minimizer.}
+Let $\mu$ minimize $\mathcal F_{t,s}$, and let $\nu'\ge0$ have mass
+$1-s$. The profiles $s\delta_0+(1-\theta)\nu+\theta\nu'$ with
+$0\le\theta\le1$ are admissible, and $\theta=0$ is a minimum point of
+$\mathcal F_{t,s}$ along them. This implies that the right derivative in
+\eqref{eq:fnd-first-variation} is nonnegative. Taking
+$\nu'=(1-s)\delta_x$, we find
+\[
+ (1-s)G(x)\ge\int G\dd\nu\qquad\text{for every }x\in[0,1].
+\]
+The function $G$ is continuous on $[0,1]$. Choosing for $x$ a minimum
+point of $G$, we see that $\int(G-\min_{[0,1]}G)\dd\nu\le0$, so that
+$G=\min_{[0,1]}G$ holds $\nu$-almost everywhere. The set where
+$G>\min_{[0,1]}G$ is relatively open in $[0,1]$ and $\nu$-null, and we
+conclude that $\supp\nu$ is contained in the set of minimum points of
+$G$.
+
+By Step 1, $G$ is twice continuously differentiable, with
+\[
+ G'(q)=q-\E S_q,\qquad G''(q)=1-\frac cN\E\Tr H_q^2 .
+\]
+If $q\in\supp\nu\cap(0,1)$, then $q$ is an interior minimum point of
+$G$, and therefore $G'(q)=0$ and $G''(q)\ge0$. These are the last two
+relations in
+\eqref{eq:in-contact}. At $q=0$, we have $G'(0)=-\E S_0=0$, because
+$m_0=0$. If $0\in\supp\nu$, then $0$ is a minimum point of $G$, and
+$G''(0)\ge0$, since otherwise $G''<0$ near $0$ and $G(h)<G(0)$ for
+small $h>0$. At $q=1$, the terminal Gibbs measure gives positive
+probability to every spin configuration. Then $|m_{1,i}|<1$ for all $i$,
+and $G'(1)=1-\E S_1>0$, which implies that $G(1-h)<G(1)$ for small $h>0$
+and that $1$ is not a minimum point of $G$. This proves
+$\supp\nu\subset[0,1)$ and \eqref{eq:in-contact}, which is
+\cite[(2.9)]{AL}.
+
+\paragraph{Step 4: general profiles.}
+Let $\mu$ be an arbitrary admissible profile. Following
+\cite[Section~2.6]{AL}, we approximate $\nu$ by its pushforwards $\nu_j$
+onto finite meshes that contain $0$, $1$, and any prescribed finite set
+of levels, with mesh size tending to zero. These pushforwards are taken under the map that sends each point to
+the smallest mesh point greater than or equal to it. Let
+$\mu_j=s\delta_0+\nu_j$. Then $\mu_j\Rightarrow\mu$, the cumulative
+functions converge in $L^1([0,1])$, and they agree with $a$ at the mesh
+points. The spatial derivatives of fixed order are bounded uniformly
+over step profiles at fixed $N$. We apply the $L^1$ estimate recalled in
+\cref{sec:fnd-functional} to the solutions, and the same comparison
+argument to their differentiated equations. Using also the uniform bound on the derivatives and
+Gr\"onwall's inequality, we find that the solutions and their first and
+second spatial derivatives converge uniformly. We couple the laws for $\mu_j$ and $\mu$
+through the same matrix $W$ under its Gaussian reference law and the
+same Brownian motion $B$. We also use the same uniform variable to
+sample the terminal spin. Since the drifts are bounded and Lipschitz, Gr\"onwall's inequality
+implies that $X$, $m$, and $H$ for $\mu_j$ converge to those for $\mu$
+uniformly in $q$, in probability. The conditional second moments of the
+terminal spin, which solve linear backward equations with drift
+$ca\nabla U$, converge in the same way, and so does $C_q$. The ratios of the tilt densities for $\mu_j$ to
+the density for $\mu$ converge uniformly to one, since these ratios lie
+between $e^{-2sd_j}$ and $e^{2sd_j}$, where
+$d_j=(cN/2)\|a_j-a\|_{L^1}\to0$. Then the densities converge in $L^1$ of
+the Gaussian reference law. Since the conditional moments and spatial derivatives used here are
+bounded at fixed $N$, their convergence in probability, uniformly in the
+level, implies that they also converge in every finite $L^p$ norm
+needed below.
+Using these convergences, we pass \eqref{eq:in-martingale}, the formula for the
+derivative of $\E S_q$, its continuity in $q$, and
+\eqref{eq:fnd-first-variation} to the limit \cite[Section~2.6.2]{AL}.
+If $\mu$ is a minimizer, we apply the limiting first variation directly
+to $\mu$; the approximating step profiles need not be minimizers. Step 3
+then applies to $\mu$ without change.
+\end{proof}
+
+\section{The integrated variance bound and the overlap error}
+\label{sec:fnd-variance}
+
+At a minimizer, we use the contact identities to turn the posterior
+variance bound
+of \cite[Proposition~2.2]{AL} into bounds that depend only on the
+cumulative function $a$.
+
+\begin{proposition}[Integrated variance and trace bounds]
+\label{prop:fnd-variance}
+Let $0<\rho\le1$, and let $\mu=s\delta_0+\nu$ minimize
+$\mathcal F_{t,s}$. For every deterministic $k\in L^2(\nu)$,
+\begin{equation}\label{eq:in-Lvar}
+ \Var\left(\int k(q)L_q\,\nu(\dd q)\right)
+      \le\frac1M\int\frac{k(q)^2}{a(q)}\,\nu(\dd q),
+ \qquad A\le\frac1{Ms}.
+\end{equation}
+\end{proposition}
+
+The first bound is \cite[Proposition~2.2, (2.16)]{AL}, and the second
+is \cite[Section~2.5, (2.18)]{AL}. We briefly recall the argument. We fix
+the terminal spin and apply the
+Brascamp--Lieb inequality to the law of the independent Gaussian
+coordinates that generate $W$ and the field. For a fixed spin, this law
+is uniformly log-concave, although the
+marginal law of $W$ under $\Pp$ is not Gaussian.
+
+\begin{proof}[Proof of \cref{prop:fnd-variance}]
+We first show that, for every admissible profile and every deterministic
+$k\in L^2(\nu)$,
+\begin{equation}\label{eq:fnd-L-general}
+ \Var\left(\int k(q)L_q\,\nu(\dd q)\right)
+ \le\frac1{N^2}\int k(q)^2\,\E\Tr(H_qC_q)\,\nu(\dd q),
+\end{equation}
+which is \cite[(2.15)]{AL}. Let $\mu$ be a step profile. For
+$\varepsilon>0$, we start the field at $X_0=\sqrt\varepsilon z_0$, where
+$z_0$ is a standard Gaussian vector included in the outer tilt. We
+collect the independent standard Gaussian coordinates that generate $W$,
+$z_0$, and the field increments in one vector $Z$. With the terminal spin
+fixed, $Z$ has a density proportional to $e^{-\Phi_\sigma(Z)}$, and the
+Hessian of $\Phi_\sigma$ is
+$\mathcal Q=I+\int\mathcal A_q\,\nu(\dd q)\succeq I$, where
+$\mathcal A_q=\nabla_Z^2U(q,X_q;W)\succeq0$ \cite[(2.1)--(2.3)]{AL}. We
+derive this density for more general laws in the proof of
+\cref{lem:fnd-posterior}. We work in these Gaussian reference
+coordinates, in which, at the grid points $q_\ell$ of the profile,
+\[
+ X_{q_\ell}=\sqrt\varepsilon z_0
+   +\sum_{h=1}^{\ell}\sqrt{c(q_h-q_{h-1})}\,z_h ;
+\]
+the tilted law is obtained by reweighting these coordinates. In this
+representation, the field depends on $z_0$ only through the term
+$\sqrt\varepsilon z_0$, which gives
+$\nabla_{z_0}U(q,X_q;W)=\sqrt\varepsilon m_q$ and shows that
+the block of
+$\mathcal A_q$ for the coordinates of $z_0$ is $\varepsilon H_q$. Let $v_q$ be the vector whose $z_0$ block is
+$(\sigma-m_q)/\sqrt\varepsilon$ and whose other blocks vanish.
+Differentiating $L_q$ with the spin fixed, we find
+\[
+ \nabla_ZL_q=\frac1N\mathcal A_qv_q,\qquad
+ v_q^T\mathcal A_qv_q=(\sigma-m_q)^TH_q(\sigma-m_q).
+\]
+For $Y_k=\int kL_q\,\dd\nu$ and $b=\int k(q)\mathcal A_qv_q\,\nu(\dd q)$,
+we have $\nabla_ZY_k=b/N$. For every vector $w$, using the Cauchy--Schwarz
+inequality for the forms $\mathcal A_q$ and for the integral against
+$\nu$, together with $\int\mathcal A_q\,\dd\nu=\mathcal Q-I\preceq\mathcal Q$,
+we have
+\[
+ |w^Tb|^2\le\Bigl(\int w^T\mathcal A_qw\,\nu(\dd q)\Bigr)
+       \int k(q)^2v_q^T\mathcal A_qv_q\,\nu(\dd q)
+ \le(w^T\mathcal Qw)\int k(q)^2v_q^T\mathcal A_qv_q\,\nu(\dd q).
+\]
+The choice $w=\mathcal Q^{-1}b$ yields
+$b^T\mathcal Q^{-1}b\le\int k^2v_q^T\mathcal A_qv_q\,\dd\nu$. Then the
+Brascamp--Lieb inequality \cite{BrascampLieb1976}, in the form
+\cite[Proposition~2.2, (2.14)]{AL}, implies that the conditional variance
+of $Y_k$ given $\sigma$ is at most
+$N^{-2}\E[b^T\mathcal Q^{-1}b\mid\sigma]$. By the
+spin-gauge symmetry of \cite[Section~2.1]{AL}, the conditional law of
+$Y_k$ given $\sigma$ does not depend on $\sigma$. Using the law of total
+variance, we obtain the same bound for $\Var(Y_k)$. Conditioning on $\calG_q$,
+we have
+$\E[(\sigma-m_q)^TH_q(\sigma-m_q)\mid\calG_q]=\Tr(H_qC_q)$. We remove the
+regularization by dominated convergence as
+$\varepsilon\downarrow0$, using $|L_q|\le3/2$, $\Tr(H_qC_q)\le N^2$, and
+the Gaussian domination of the outer tilt. The approximation of Step~4 in
+the proof of \cref{prop:fnd-contact} then extends \eqref{eq:fnd-L-general} to all
+profiles, first for continuous $k$ and then by density for
+$k\in L^2(\nu)$ \cite[Section~2.6.2]{AL}.
+
+Now suppose that $\mu$ is a minimizer. Using the fact that the trace of
+the product of two positive semidefinite matrices is nonnegative,
+together with
+$H_q-a(q)C_q\succeq0$, we have
+\[
+ \Tr H_q^2=\Tr\bigl(H_q(H_q-a(q)C_q)\bigr)+a(q)\Tr(H_qC_q)
+ \ge a(q)\Tr(H_qC_q),
+\]
+and similarly
+\[
+ \Tr(H_qC_q)=\Tr\bigl((H_q-a(q)C_q)C_q\bigr)+a(q)\Tr C_q^2
+ \ge a(q)\Tr C_q^2 .
+\]
+By \eqref{eq:in-contact}, $\E\Tr H_q^2\le N/c$ at every contact level,
+and $\nu$ is carried by its support. Dividing by $a(q)\ge s>0$, we find that
+$\E\Tr(H_qC_q)\le N/(ca(q))$ and $\E\Tr C_q^2\le N/(ca(q)^2)$ for
+$\nu$-almost every $q$. Inserting the first bound into
+\eqref{eq:fnd-L-general} and using $M=Nc$, we obtain the first bound in
+\eqref{eq:in-Lvar}. For the second, the quantile function
+\eqref{eq:fnd-quantile} and $a(Q(v))\ge s+v$ give
+\[
+ A\le\frac1M\int\frac{\nu(\dd q)}{a(q)^2}
+  =\frac1M\int_0^{1-s}\frac{\dd v}{a(Q(v))^2}
+  \le\frac1M\int_0^{1-s}\frac{\dd v}{(s+v)^2}
+  =\frac1M\Bigl(\frac1s-1\Bigr)\le\frac1{Ms}. \qedhere
+\]
+\end{proof}
+
+\begin{remark}\label{rem:fnd-partial-atoms}
+Since $k$ in \eqref{eq:in-Lvar} is arbitrary, the bound applies to
+sub-measures of $\nu$, such as the image of Lebesgue measure on an
+interval of quantiles that contains only part of an atom. If $h$ is a
+Borel function with $0\le h\le1$, then applying \eqref{eq:in-Lvar} with
+$kh$ in place of $k$ and using $h^2\le h$, we obtain
+\[
+ \Var\Bigl(\int k(q)h(q)L_q\,\nu(\dd q)\Bigr)
+ \le\frac1M\int\frac{k(q)^2h(q)}{a(q)}\,\nu(\dd q).
+\]
+\end{remark}
+
+We now show that the overlap error splits into the three terms of the
+defect.
+
+\begin{lemma}[Decomposition of the overlap error]\label{lem:fnd-decomp}
+Let $0<\rho\le1$. For every admissible profile and every $q\in[0,1]$, we
+have $\Var(L_q)=j_q+\Var(S_q)/4$. If $q$ is a contact level of a
+minimizer, then
+\begin{equation}\label{eq:in-decomp}
+ \E(R_q-q)^2=a_q^{\rm th}+2j_q+\Var(S_q).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Both identities are displayed in \cite[Section~2.5]{AL} before (2.17).
+Let $\xi^1=\sigma^1-m_q$ and $\xi^2=\sigma^2-m_q$. Conditionally on
+$\calG_q$, these vectors are independent and centered, with covariance
+$C_q$, and
+\[
+ R_q=S_q+\frac1N\bigl(m_q\cdot\xi^1+m_q\cdot\xi^2+\xi^1\cdot\xi^2\bigr).
+\]
+The three terms in parentheses have conditional mean zero, they are
+pairwise orthogonal given $\calG_q$, and their conditional second moments
+are $m_q^TC_qm_q$, $m_q^TC_qm_q$, and $\Tr C_q^2$. Taking expectations, we
+find that for every admissible profile and every $q$,
+\begin{equation}\label{eq:fnd-RS}
+ \E(R_q-S_q)^2=a_q^{\rm th}+2j_q .
+\end{equation}
+Since $\E[R_q-S_q\mid\calG_q]=0$, this implies that
+\[
+ \E(R_q-q)^2=a_q^{\rm th}+2j_q+\E(S_q-q)^2
+ =a_q^{\rm th}+2j_q+\Var(S_q)+(\E S_q-q)^2 .
+\]
+At a contact level of a minimizer, $\E S_q=q$ by \eqref{eq:in-contact},
+which proves \eqref{eq:in-decomp}. Similarly,
+$L_q=S_q/2+N^{-1}(\sigma-m_q)\cdot m_q$, where the second term has
+conditional mean zero and conditional variance $N^{-2}m_q^TC_qm_q$ given
+$\calG_q$. By the law of total variance, we have $\Var(L_q)=j_q+\Var(S_q)/4$.
+\end{proof}
+
+\section{The optimized interpolation and the defect}
+\label{sec:fnd-defect}
+
+We next recall from \cite[Proposition~2.3]{AL} that the derivative of the
+interpolating functional in $t$ is an integral of squared overlap
+deviations.
+
+\begin{proposition}[Interpolation identity]\label{prop:fnd-interpolation}
+Let $N\ge1$ and $0<s\le1/2$.
+\begin{enumerate}[label=(\alph*)]
+\item For every admissible profile $\mu$, the map
+$t\mapsto\mathcal F_{t,s}(\mu)$ is Lipschitz on $[0,1]$ and continuously
+differentiable on $(0,1)$, with
+\begin{equation}\label{eq:fnd-fixed-derivative}
+ \partial_t\mathcal F_{t,s}(\mu)
+   =-\frac{\beta^2}4\int\E(R_q-q)^2\,\nu(\dd q),
+\end{equation}
+where the expectation is under the tilted law of $\mu$ at $t$. The
+integral in \eqref{eq:fnd-fixed-derivative} lies in $[0,4(1-s)]$.
+\item The function $f_{N,s}$ is Lipschitz on $[0,1]$. At every
+$t\in(0,1)$ at which $f_{N,s}$ is differentiable, every minimizer $\mu$
+of $\mathcal F_{t,s}$ satisfies
+$f_{N,s}'(t)=\partial_t\mathcal F_{t,s}(\mu)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Part (a) is \cite[Proposition~2.3 and (2.12)]{AL}. The regularity in $t$
+and the extension from step profiles to general profiles are proved in
+\cite[Section~2.6.3]{AL}. We sketch the computation for a step profile,
+which shows where the square comes from. The parameter $t$ enters
+$\mathcal F_{t,s}$ in three places: the factor $\beta\sqrt t$ of the
+matrix interaction, the coefficient $c=\beta^2(1-t)$ of the field in
+\eqref{eq:fnd-vector-pde}, and the penalty. We write $B(q)=\E R_q^2$
+and $\Gamma(q)=\E S_q$, and note that $\E R_q=\Gamma(q)$.
+
+\emph{Matrix interaction.} We write
+$\beta\sigma^TW\sigma/2=\sum_eg_ev_e(\sigma)$, where $e$ runs over the
+pairs $i<j$, with $g_e=g_{ij}$ and $v_e(\sigma)=\beta\sigma_i\sigma_j/\sqrt N$,
+and over the diagonal pairs $e=(i,i)$, with $g_e=z_i$ and
+$v_e=\beta/\sqrt{2N}$. By the computation of
+\cref{sec:fnd-completion}, we have
+$\sum_ev_e(\sigma)v_e(\sigma')=\beta^2NR(\sigma,\sigma')^2/2$. We regard
+$y_e=\sqrt t\,g_e$ as Gaussian coordinates of variance $t$. By the
+Gaussian heat identity, at fixed $c$, the derivative in $t$ of the outer
+logarithmic moment is
+\[
+ \frac1{2N}\,\E\sum_e\bigl(\partial_{y_e}^2U(0,0;W)
+   +s\bigl(\partial_{y_e}U(0,0;W)\bigr)^2\bigr).
+\]
+For a function $b(\sigma)$ of the terminal spin, we add $yb(\sigma)$ to
+the terminal exponent. Differentiating the Hopf--Cole recursion twice in
+$y$ at $y=0$, we find \cite[(2.10)]{AL}
+\[
+ \partial_yU(0,0)=\E[b(\sigma)\mid\calG_0],\qquad
+ \partial_y^2U(0,0)=\E[b(\sigma)^2\mid\calG_0]
+ -\int\E\bigl[\E[b(\sigma)\mid\calG_q]^2\bigm|\calG_0\bigr]\,\mu(\dd q).
+\]
+Applying this with $b=v_e$, summing over $e$, and using
+$\E[v_e(\sigma)\mid\calG_q]^2=\E[v_e(\sigma^1)v_e(\sigma^2)\mid\calG_q]$
+and $\mu=s\delta_0+\nu$, we find that the matrix interaction contributes
+\[
+ \frac{\beta^2}4\Bigl(1-\int B(q)\,\mu(\dd q)+sB(0)\Bigr)
+ =\frac{\beta^2}4\Bigl(1-\int B(q)\,\nu(\dd q)\Bigr)
+\]
+\cite[(2.11)]{AL}. The term $s(\partial_{y_e}U)^2$, which comes from
+the outer moment of order $s$, cancels the prescribed root mass.
+
+\emph{Field.} As in Step~2 of the proof of \cref{prop:fnd-contact}, the
+derivative of $U$ in $c$ solves the linearized equation with source
+$-(\Delta U+a|\nabla U|^2)/2$, and by the Feynman--Kac formula, we have
+\[
+ \partial_c\Bigl(\frac1{Ns}\log\E_{\rm ref}e^{sU(0,0;W)}\Bigr)
+ =\frac12\int_0^1\bigl(h(q)+a(q)\Gamma(q)\bigr)\dd q,
+ \qquad h(q)=\frac1N\E\Tr H_q .
+\]
+By the equation for $H_q$ in Step~1 of the proof of
+\cref{prop:fnd-contact} and the derivative of $\Gamma$, we have
+$h'=-a\Gamma'$. Further, $h(1)=1-\Gamma(1)$, because $H_1=C_1$ and
+$\Tr C_1=N-|m_1|^2$. Integrating by parts, and using that $h$ and $\Gamma$ are continuous
+and that $a$ is right-continuous with $a(1)=1$, we find
+\[
+ h(q)+a(q)\Gamma(q)=1-\int_{(q,1]}\Gamma(r)\,\mu(\dd r)
+ \qquad(0\le q\le1).
+\]
+The interval is open at $q$ because $a(q)$ already contains an atom of
+$\mu$ at $q$. Integrating in $q$ and using $\dd c/\dd t=-\beta^2$, we
+see that the field contributes
+\[
+ -\frac{\beta^2}2\Bigl(1-\int q\Gamma(q)\,\nu(\dd q)\Bigr);
+\]
+here we may replace $\mu$ by $\nu$ because the integrand vanishes at
+$q=0$.
+
+\emph{Penalty.} By Fubini's theorem, we have
+$2\int_0^1qa(q)\dd q=1-\int q^2\,\mu(\dd q)$. It follows that the
+penalty contributes
+\[
+ \frac{\beta^2}4\Bigl(1-\int q^2\,\nu(\dd q)\Bigr).
+\]
+
+Adding the three contributions, in which the constants cancel, we
+obtain
+\[
+ \partial_t\mathcal F_{t,s}(\mu)
+ =-\frac{\beta^2}4\int\bigl(B(q)-2q\Gamma(q)+q^2\bigr)\,\nu(\dd q),
+\]
+which is \eqref{eq:fnd-fixed-derivative}. The integral lies in
+$[0,4(1-s)]$ because $|R_q-q|\le2$ and $\nu$ has mass $1-s$.
+
+For (b), the bound in (a) implies that the functions
+$t\mapsto\mathcal F_{t,s}(\mu)$ are Lipschitz with the common constant
+$\beta^2(1-s)$. Their minimum $f_{N,s}$ is then Lipschitz as well. Let
+$t\in(0,1)$ be a point at which $f_{N,s}$ is differentiable, and let
+$\mu$ be a minimizer at $t$. For every $h$ such that $t+h\in[0,1]$, we have
+$f_{N,s}(t+h)\le\mathcal F_{t+h,s}(\mu)$ and
+$f_{N,s}(t)=\mathcal F_{t,s}(\mu)$. Dividing the difference by $h>0$
+and letting $h\downarrow0$, we find
+$f_{N,s}'(t)\le\partial_t\mathcal F_{t,s}(\mu)$; dividing by $h<0$
+gives the reverse inequality. This is \cite[(2.20)]{AL}.
+\end{proof}
+
+In particular, $t\mapsto\mathcal F_{t,s}(\mu)$ and $f_{N,s}$ are
+nonincreasing. We define the \emph{defect}
+\[
+ \calD_N(\rho)=-\frac4\beta f_{N,s}'(1-\rho)
+\]
+at every $\rho\in(0,1)$ such that $f_{N,s}$ is differentiable at
+$1-\rho$. Since $f_{N,s}$ is Lipschitz, Rademacher's theorem implies that this
+holds for almost every $\rho$, and $\calD_N$ is a measurable function
+defined almost everywhere. All pointwise statements about $\calD_N$ are
+understood at these values of $\rho$. The defect depends on $N$,
+$\beta$, $\rho$, and $\lambda$, and not on a choice of minimizer.
+
+\begin{corollary}[The defect identity]\label{cor:fnd-defect}
+Let $N\ge1$ and $0<\lambda\le\beta/2$, and let $s=\lambda/\beta$. At
+every $\rho\in(0,1)$ at which $\calD_N(\rho)$ is defined, and for every
+minimizer $\mu$ of $\mathcal F_{1-\rho,s}$,
+\begin{equation}\label{eq:in-envelope}
+ \calD_N(\rho)=\beta(A+2J+V),\qquad
+ 4e_{N,\beta}(\lambda)=\int_0^1\calD_N(\rho)\dd\rho ,
+\end{equation}
+where $A$, $J$, and $V$ are computed under the tilted law of $\mu$. In
+particular, $\calD_N\ge0$ and $e_{N,\beta}(\lambda)\ge0$.
+\end{corollary}
+
+\begin{proof}
+Let $\rho$ be as in the statement, and let $\mu$ be a minimizer at
+$t=1-\rho$. By \cref{prop:fnd-interpolation}(b) and
+\eqref{eq:fnd-fixed-derivative}, we have
+$\calD_N(\rho)=\beta\int\E(R_q-q)^2\,\nu(\dd q)$. Recall that the measure
+$\nu$ is carried by the contact levels of $\mu$,
+at which \eqref{eq:in-decomp}
+holds. Integrating \eqref{eq:in-decomp} against $\nu$, we obtain the
+first identity. For the second, since $f_{N,s}$ is Lipschitz, we have
+\[
+ \int_0^1\calD_N(\rho)\dd\rho=-\frac4\beta\int_0^1f_{N,s}'(t)\dd t
+ =\frac4\beta\bigl(f_{N,s}(0)-f_{N,s}(1)\bigr)
+ =\frac4\beta\bigl(P_\beta(s)-\phi^c_{N,\beta}(s)\bigr),
+\]
+where we used \eqref{eq:fnd-endpoints} in the last step. By
+\eqref{eq:fnd-error-definition}, the right side is
+$4e_{N,\beta}(\lambda)$; see also \cite[Proposition~2.3, (2.21)]{AL}.
+\end{proof}
+
+The individual terms $A$, $J$, and $V$ may depend on the choice of
+minimizer, but by \eqref{eq:in-envelope}, their combination $A+2J+V$
+does not. In the later sections, we bound $A$, $J$, and $V$ at an
+arbitrary minimizer; such bounds then hold for $\calD_N(\rho)$ at almost
+every $\rho$.
+
+Near $\rho=0$, we use a cruder bound. For every $N\ge1$, $0<s\le1/2$,
+$0<\rho\le1$, and every minimizer $\mu$ of $\mathcal F_{1-\rho,s}$, we
+have
+\[
+ \int\E(R_q-q)^2\,\nu(\dd q)\le C\min\{1,M^{-1/2},M^{-2/3}s^{-1/3}\}
+\]
+with a numerical constant $C$. The first two terms are
+\cite[Lemma~4.1, (4.1)]{AL}, and the third comes from the proof of
+\cite[Theorem~1.1]{AL}; see \cite[(4.2)]{AL}. Keeping the first two
+terms and using $\beta M^{-1/2}=(N\rho)^{-1/2}$, we obtain
+\begin{equation}\label{eq:fnd-moving}
+ \begin{gathered}
+ \int\E(R_q-q)^2\,\nu(\dd q)\le C\min\{1,M^{-1/2}\},\\
+ 0\le\calD_N(\rho)\le C\min\{\beta,(N\rho)^{-1/2}\}
+ \qquad(0<\rho\le1),
+ \end{gathered}
+\end{equation}
+where the second bound holds at every $\rho$ at which $\calD_N(\rho)$ is
+defined.
+
+\section{The scalar trial profile and the trial budget}
+\label{sec:fnd-trial}
+
+The scalar trial profile $\gamma^{\rm tr}_\lambda=\max\{\lambda,\gamma_\beta\}$
+raises the Parisi profile $\gamma_\beta$ to the floor $\lambda$. By
+\cite[Lemma~7.2]{AL}, $\gamma_\beta$ grows linearly near $0$, and the two
+profiles differ only on an interval of length of order $\lambda$, on
+which the first variation vanishes at $\gamma_\beta$. The cost of the
+floor is of order $\lambda^5$. A short lower plateau and its
+fifth-order variational cost also occur in the replica calculation
+of~\cite[Appendix~B, (B1)--(B3)]{ParisiRizzo2009}.
+Here $\lambda=\beta s$ specifies a mass-floor constraint; we do not
+identify it with the replica parameter in that calculation.
+The uniform bound used here is the rigorous estimate of
+\cite[Lemma~7.2]{AL}. Precisely, by
+\cite[Lemma~7.2, (7.3)]{AL}, applied with $\beta_0=\beta$, which uses
+$\beta>1$, there exist $\lambda_*>0$ and $C_*<\infty$, depending only on
+$\beta$, such that
+\[
+ \beta^{-1}\mathcal P_\beta(\gamma^{\rm tr}_\lambda/\beta)
+ \le E_\beta(0)+C_*\lambda^5
+ \qquad(0<\lambda\le\lambda_*).
+\]
+We set $L_s=\max\{1,C_*\}$ and $\lambda_0=\min\{1,\lambda_*/2,\beta/4\}$.
+Recall that $E_\beta$ is nondecreasing, and note that the profile with
+cumulative function $\gamma^{\rm tr}_\lambda/\beta$ has mass at least
+$\lambda/\beta$ at zero. We obtain
+\begin{equation}\label{eq:fnd-scalar-trial-cost}
+ 0\le E_\beta(\lambda)-E_\beta(0)
+ \le\beta^{-1}\mathcal P_\beta(\gamma_\lambda^{\rm tr}/\beta)
+                      -E_\beta(0)
+ \le L_s\lambda^5\qquad(0<\lambda\le2\lambda_0).
+\end{equation}
+The bound $\lambda_0\le\lambda_*/2$ allows us to use
+\eqref{eq:fnd-scalar-trial-cost} at $2\lambda$, and $\lambda_0\le\beta/4$
+ensures that $2\lambda/\beta\le1/2$ for $\lambda\le\lambda_0$, so that
+the results above apply with $s=2\lambda/\beta$. The bound
+$\lambda_0\le1$ is used in \cref{sec:lz,sec:b7}.
+
+\begin{lemma}[Trial budget]\label{lem:fnd-trial}
+For every $N\ge1$, $0<\rho\le1$, and $0<\lambda\le\lambda_0$,
+\begin{equation}\label{eq:fnd-trial}
+ 0\le F_\rho(\gamma_\lambda^{\rm tr})-\min_\gamma F_\rho(\gamma)
+       \le e_{N,\beta}(\lambda)+L_s\lambda^5 .
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The lower bound holds because $\gamma^{\rm tr}_\lambda$ is admissible.
+Let $\mu^{\rm tr}$ be the admissible profile with cumulative function
+$\gamma^{\rm tr}_\lambda/\beta$. By \cref{prop:fnd-interpolation}(a),
+the map $t\mapsto\mathcal F_{t,s}(\mu^{\rm tr})$ is nonincreasing, and
+$\mathcal F_{0,s}(\mu^{\rm tr})=\mathcal P_\beta(\gamma^{\rm tr}_\lambda/\beta)$
+by \cref{sec:fnd-functional}. Hence
+$F_\rho(\gamma^{\rm tr}_\lambda)\le
+\beta^{-1}\mathcal P_\beta(\gamma^{\rm tr}_\lambda/\beta)$. Recall that
+the optimized value $f_{N,s}$ is also nonincreasing. Using
+\eqref{eq:fnd-endpoints} and \eqref{eq:fnd-error-definition}, we find
+\[
+ \min_\gamma F_\rho(\gamma)=\beta^{-1}f_{N,s}(1-\rho)
+ \ge\beta^{-1}f_{N,s}(1)=\beta^{-1}\phi^c_{N,\beta}(s)
+ =E_\beta(\lambda)-e_{N,\beta}(\lambda).
+\]
+Subtracting the two bounds, we obtain
+\[
+ F_\rho(\gamma^{\rm tr}_\lambda)-\min_\gamma F_\rho(\gamma)
+ \le e_{N,\beta}(\lambda)
+ +\beta^{-1}\mathcal P_\beta(\gamma^{\rm tr}_\lambda/\beta)-E_\beta(\lambda)
+ \le e_{N,\beta}(\lambda)+L_s\lambda^5,
+\]
+where in the last step we used \eqref{eq:fnd-scalar-trial-cost} and
+$E_\beta(\lambda)\ge E_\beta(0)$. This is
+\cite[Proposition~7.7, (7.44)]{AL}.
+\end{proof}
+
+We call a number $\eta\ge0$ that bounds the left side of
+\eqref{eq:fnd-trial} a \emph{trial budget}. By \cref{lem:fnd-trial},
+$\eta=e_{N,\beta}(\lambda)+L_s\lambda^5$ is a trial budget
+simultaneously for every $\rho\in(0,1]$ and every minimizer. In
+\cref{sec:lz,sec:lz-root}, we use the trial budget to control the
+distance between a minimizer and the scalar trial profile, and in
+\cref{sec:b7}, it determines the cutoff between the two regimes of the proof.
+
+\section{Reduction of the mean bias}\label{sec:fnd-mean-bias}
+
+We now reduce the mean bias to the fractional-moment error by the
+midpoint argument of Step~1 in the proof of \cite[Theorem~7.8]{AL}. We
+define
+\[
+ \psi(\lambda)=\frac1{N\lambda}
+       \log\E_{\rm ref}e^{\lambda(F_{N,\beta}/\beta+D_N)}\quad(\lambda>0),
+ \qquad\psi(0)=\frac{p_{N,\beta}}\beta ,
+\]
+so that $\psi(\lambda)=E_\beta(\lambda)-e_{N,\beta}(\lambda)$ for
+$0<\lambda<\beta$, by \eqref{eq:fnd-error-definition}. As a function
+of the $N(N+1)/2$ independent standard Gaussian coordinates
+$(g_{ij},z_i)$, the completed free energy $F^c_{N,\beta}/\beta$ is
+convex, because it is $\beta^{-1}$ times the logarithm of a sum of
+exponentials of linear functions. Its partial derivatives are
+$N^{-1/2}\langle\sigma_i\sigma_j\rangle$ in $g_{ij}$, where
+$\langle\cdot\rangle$ is the Gibbs average of $F^c_{N,\beta}$, and
+$(2N)^{-1/2}$ in $z_i$. We find that the squared norm of its gradient is
+at most
+\[
+ \frac1N\cdot\frac{N(N-1)}2+N\cdot\frac1{2N}=\frac N2,
+\]
+and the function is $\sqrt{N/2}$-Lipschitz. By \cite[Lemma~5.2]{AL}, which is a
+special case of Chen's convexity theorem \cite[Theorem~1]{ChenConvexity},
+the function
+$\lambda\mapsto\lambda^{-1}\log\E_{\rm ref}e^{\lambda F^c_{N,\beta}/\beta}=N\psi(\lambda)$
+extends to a convex function on $[0,\infty)$ whose value at zero is
+$\E_{\rm ref}F^c_{N,\beta}/\beta=N\psi(0)$, where we used
+$\E_{\rm ref}D_N=0$. In particular, $\psi$ is convex on $[0,\infty)$.
+
+\begin{proposition}[Mean bias]\label{prop:fnd-mean-bias}
+For every $N\ge1$ and $0<\lambda\le\lambda_0$,
+\begin{equation}\label{eq:fnd-mean-bias}
+ 0\le\frac{P_\beta-p_{N,\beta}}\beta
+ \le E_\beta(0)-2E_\beta(\lambda)+E_\beta(2\lambda)
+                         +2e_{N,\beta}(\lambda)
+ \le 32L_s\lambda^5+2e_{N,\beta}(\lambda).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The lower bound is \cite[Theorem~1.1, (1.5)]{AL}; it is also Guerra's
+bound \cite{Guerra2003}. Since $\psi$ is convex on $[0,\infty)$, we have
+$\psi(\lambda)\le(\psi(0)+\psi(2\lambda))/2$, that is,
+$\psi(0)\ge2\psi(\lambda)-\psi(2\lambda)$. Recall that
+$\psi(\lambda)=E_\beta(\lambda)-e_{N,\beta}(\lambda)$. Since
+$\lambda\le\lambda_0\le\beta/4$, we have $2\lambda/\beta\le1/2$. Then
+\cref{cor:fnd-defect} applies at the tilt $2\lambda$ and implies that
+$e_{N,\beta}(2\lambda)\ge0$, that is, $\psi(2\lambda)\le E_\beta(2\lambda)$.
+Using $E_\beta(0)=P_\beta/\beta$, we obtain
+\[
+ \frac{P_\beta-p_{N,\beta}}\beta=E_\beta(0)-\psi(0)
+ \le E_\beta(0)-2E_\beta(\lambda)+2e_{N,\beta}(\lambda)+E_\beta(2\lambda),
+\]
+which is the middle inequality in \eqref{eq:fnd-mean-bias}. For the last
+inequality, we use $E_\beta(\lambda)\ge E_\beta(0)$ and
+\eqref{eq:fnd-scalar-trial-cost} at $2\lambda\le2\lambda_0$:
+\[
+ E_\beta(0)-2E_\beta(\lambda)+E_\beta(2\lambda)
+ \le E_\beta(2\lambda)-E_\beta(0)\le L_s(2\lambda)^5=32L_s\lambda^5 .
+ \qedhere
+\]
+\end{proof}
+
+In \cref{sec:b7}, we take $\lambda=N^{-7/50}$, so that
+$\lambda^5=N^{-7/10}$. \Cref{prop:fnd-mean-bias} then reduces
+\cref{thm:main} to the bound $e_{N,\beta}(N^{-7/50})\le C_\beta N^{-7/10}$
+for all sufficiently large $N$.

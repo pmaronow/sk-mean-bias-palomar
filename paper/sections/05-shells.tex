@@ -1,0 +1,622 @@
+\chapter{Self-overlap moments on quantile intervals}\label{sec:wi}
+
+In this section, we bound two moments of the self-overlap at a
+minimizing profile. The first is the integrated variance
+$V=\int\Var(S_q)\,\nu(\dd q)$, one of the three terms of the defect in
+\eqref{eq:in-envelope}. The second is the integrated cubic moment
+$H_3=\int\E|S_q-q|^3\,\nu(\dd q)$, which appears in the cavity argument
+of \cref{sec:c7}. We control both by comparing $S_q$ with averages of
+$L_p$ over windows of quantile levels on either side of $q$; the
+variances of these averages are bounded by \eqref{eq:in-Lvar}.
+
+The section contains three results. In \cref{lem:wi-two}, we prove two
+comparisons: conditionally on $\calG_q$, the self-overlap $S_q$ is at
+most twice an average of $L_p$ over later levels $p\ge q$, and it equals
+twice an average of $L_p$ over earlier levels $p\le q$ plus a
+nonnegative term. \Cref{prop:wi-vfs} bounds the integral of
+$\Var(S_{Q(v)})$ over a quantile interval in terms of its length, a
+lower bound for the cumulative mass on it, and the diameter of its image
+under $Q$. \Cref{cor:wi-cub} shows that $H_3$ is at most an arbitrarily
+small multiple $zV$ of $V$ plus an error of order
+$(Ms)^{-1}\log(2M)\log(2/z)$.
+
+We use the martingale and contact identities \eqref{eq:in-martingale}
+and \eqref{eq:in-contact} of \cref{prop:fnd-contact}, the integrated
+variance bound \eqref{eq:in-Lvar} of \cref{prop:fnd-variance}, and the
+quantile function \eqref{eq:fnd-quantile}. We use \cref{prop:wi-vfs} in
+the proof of \cref{prop:sm-small}, which bounds the defect for small
+$\rho$, and \cref{cor:wi-cub} in the proof of \cref{cor:c7-defect},
+where the cavity inequality is closed. \Cref{lem:wi-two} is used only in
+this section.
+
+We refine the quantile-window argument of \cite[Lemma~3.3]{AL}, which
+estimates integrals of $\Var(L_{Q(v)})$ over quantile intervals.
+By \cref{lem:fnd-decomp}, we have $\Var(L_q)=j_q+\Var(S_q)/4$, where
+$j_q$ is the variance of the conditionally centered part $N^{-1}(\sigma-m_q)\cdot m_q$ of $L_q$. An
+estimate for $\Var(L_q)$ must therefore also control this centered part,
+and in \cite[Lemma~3.3]{AL} it produces additional residual terms. Here
+we compare conditional expectations given $\calG_q$, in which the
+centered part vanishes. We estimate $j_q$ separately in \cref{sec:th}.
+
+\section{Quantile windows and kernels}\label{sec:wi-setup}
+
+\paragraph{Standing assumptions.}
+Throughout this section, we fix $N\ge1$, $0<\rho\le1$, and $0<s\le1/2$,
+so that $t=1-\rho\in[0,1)$ and $M=Nc>0$. We let $\mu=s\delta_0+\nu$ be a
+deterministic admissible profile, and expectations refer to its joint
+law from \cref{subsec:fnd-law}. Each statement says whether $\mu$ must
+minimize $\mathcal F_{t,s}$; a statement about a minimizer holds for
+every minimizer, with the same constants. All constants in this section
+are absolute: they do not depend on $N$, $\beta$, $\rho$, $s$, or the
+profile.
+
+Recall that $\sigma\in\{-1,1\}^N$ and $m_q=\E[\sigma\mid\calG_q]$. Then
+$|m_q|^2\le N$ and $|\sigma\cdot m_q|\le N$, and it follows that
+\[
+ 0\le S_q\le1,\qquad |L_q|\le\frac32\qquad(0\le q\le1).
+\]
+The observables $S_q$ and $L_q$ are jointly measurable in the level and
+the outcome, because the process $q\mapsto m_q$ is continuous. They are
+also bounded, and Fubini's theorem applies to their integrals against deterministic
+functions in $L^1(\nu)$.
+
+\paragraph{The variance bound.}
+The estimates of this section rest on the first bound in
+\eqref{eq:in-Lvar}, and its factor $a(q)^{-1}$ is the reason for
+working with quantiles. In the proof of \cref{prop:fnd-variance}, this
+factor comes from two facts. The first is the bound
+$N^{-2}\int k(q)^2\,\E\Tr(H_qC_q)\,\nu(\dd q)$ for the variance, which
+holds for every admissible profile \cite[Proposition~2.2, (2.15)]{AL}
+and rests on the Brascamp--Lieb inequality for the posterior law of the
+Gaussian coordinates. The second is the inequality
+$\Tr(H_qC_q)\le a(q)^{-1}\Tr H_q^2$ at contact levels, which follows
+from $H_q-a(q)C_q\succeq0$, together with $\E\Tr H_q^2\le N/c$.
+
+\paragraph{Quantiles.}
+Recall that the quantile function $Q$ of \eqref{eq:fnd-quantile} pushes
+Lebesgue measure on $(0,1-s)$ forward to $\nu$. We write
+$F(p)=\nu([0,p])$ and $F_-(p)=\nu([0,p))$, so that $a(p)=s+F(p)$. The
+infimum in \eqref{eq:fnd-quantile} is attained because $F$ is
+right-continuous, that is, $F(Q(v))\ge v$; in particular, $a(Q(v))\ge s+v$. We
+also use
+\begin{equation}\label{eq:wi-supp}
+ a(q)\ge s\quad(0\le q\le1),\qquad
+ Q(v)\in\supp\nu\quad(0<v<1-s).
+\end{equation}
+The first bound holds because $\mu\ge s\delta_0$. For the second, let
+$q_*=Q(v)$, so that $\nu([0,q_*])\ge v>0$. If $q_*=0$, then $0$ is an
+atom of $\nu$ and lies in $\supp\nu$. If $q_*>0$ and the interval
+$(q_*-r,q_*+r)$ were $\nu$-null for some $0<r<q_*$, then
+$\nu([0,q_*-r/2])=\nu([0,q_*])\ge v$, which contradicts the definition
+of $Q(v)$ as an infimum.
+
+If $\mu$ is a minimizer, then every point of $\supp\nu$ is a contact
+level. By \eqref{eq:wi-supp} and \eqref{eq:in-contact}, we then have
+$\E S_{Q(v)}=Q(v)$ for every $v\in(0,1-s)$. In that case, we define
+\[
+ \xi_v=S_{Q(v)}-Q(v)\qquad(0<v<1-s).
+\]
+Note that $|\xi_v|\le1$, $\E\xi_v=0$, and $\E\xi_v^2=\Var(S_{Q(v)})$. Using
+that $Q$ pushes Lebesgue measure forward to $\nu$, we can write
+\[
+ V=\int_0^{1-s}\E\xi_v^2\dd v,\qquad
+ H_3=\int_0^{1-s}\E|\xi_v|^3\dd v .
+\]
+The integrands are Borel functions of $v$, by the joint measurability
+noted above, Fubini's theorem, and the monotonicity of $Q$.
+
+\paragraph{Windows.}
+Let $I\subset(0,1-s)$ be an interval of length $|I|>0$. The image of
+Lebesgue measure on $I$ under $Q$ is dominated by the image of Lebesgue
+measure on $(0,1-s)$, which is $\nu$. As in \cite[Section~3]{AL}, it
+has a density $f_I$ with respect to $\nu$, with
+\[
+ 0\le f_I\le1,\qquad \int f_I\dd\nu=|I| .
+\]
+The density is explicit at an atom. If $p$ is an atom of $\nu$, with
+mass $r_p=\nu(\{p\})$, then $\{v:Q(v)=p\}$ is an interval with
+endpoints $F_-(p)$ and $F(p)$, and
+\[
+ f_I(p)=\frac{|I\cap(F_-(p),F(p))|}{r_p}.
+\]
+In particular, a window may contain only part of the quantile interval
+of an atom; the atom then receives the corresponding fraction of its
+mass. We define the normalized density $\kappa_I=f_I/|I|$. It satisfies
+\[
+ 0\le\kappa_I\le|I|^{-1},\qquad \int\kappa_I\dd\nu=1,\qquad
+ \int\varphi\,\kappa_I\dd\nu=\frac1{|I|}\int_I\varphi(Q(v))\dd v
+\]
+for every bounded Borel function $\varphi$. We say that $I$ has
+\emph{threshold} $u>0$ if $a(Q(v))\ge u$ for almost every $v\in I$. Every
+such interval has threshold $s$, by \eqref{eq:wi-supp}.
+
+\paragraph{Kernels.}
+More generally, we call a deterministic Borel function $\kappa\ge0$ on
+$[0,1]$ with $\int\kappa\dd\nu=1$ and $\int\kappa^2\dd\nu<\infty$ a
+\emph{kernel}. For a kernel $\kappa$, we define its mean level and the
+average of $L_p-p/2$, which is centered when $\mu$ is a minimizer,
+\[
+ \bar p_\kappa=\int p\,\kappa(p)\,\nu(\dd p),\qquad
+ \Lambda_\kappa=\int\kappa(p)\Bigl(L_p-\frac p2\Bigr)\nu(\dd p).
+\]
+We write $\bar p_I$ and $\Lambda_I$ when $\kappa=\kappa_I$. Then
+\[
+ \bar p_I=\frac1{|I|}\int_IQ(v)\dd v,\qquad
+ \Lambda_I=\frac1{|I|}\int_I\Bigl(L_{Q(v)}-\frac{Q(v)}2\Bigr)\dd v .
+\]
+
+\paragraph{Fixed kernels.}
+Each assertion of \cref{lem:wi-two} below concerns one level $q$ and one
+kernel $\kappa$, both deterministic. In \cref{prop:wi-vfs,cor:wi-cub},
+the level and the kernels depend on a quantile parameter $v$. We then
+apply \cref{lem:wi-two} separately for each value of $v$, and we
+integrate over $v$ only the resulting deterministic expectations. In
+this way, we never need versions of the conditional expectations that
+are chosen simultaneously for all $v$.
+
+\section{Two-sided conditional comparison}\label{sec:wi-comparison}
+
+For a later level $p\ge q$, we show by the conditional Jensen inequality
+that $S_q$ is at most $2\E[L_p\mid\calG_q]$. For an earlier level $p\le q$,
+the conditional expectation of $L_p$ given $\calG_q$ is $S_q/2$ minus the
+nonnegative quantity $|m_q-m_p|^2/(2N)$. We average these relations over
+$p$ against a kernel and obtain two one-sided comparisons between
+$S_q-q$ and the conditional expectation of $\Lambda_\kappa$ given
+$\calG_q$. At a minimizer, $\Lambda_\kappa$ is centered, and its
+variance is controlled by \eqref{eq:in-Lvar}.
+
+\begin{lemma}[Two-sided conditional comparison]\label{lem:wi-two}
+Let $\mu$ be an admissible profile, let $q\in[0,1]$, and let $\kappa$ be
+a kernel.
+\begin{enumerate}[label=\textup{(\alph*)},series=witwo]
+\item If $\kappa=0$ $\nu$-almost everywhere on $[0,q)$, then almost
+surely
+\[
+ S_q-q\le(\bar p_\kappa-q)+2\E[\Lambda_\kappa\mid\calG_q].
+\]
+\item If $\kappa=0$ $\nu$-almost everywhere on $(q,1]$, then almost
+surely
+\[
+ \begin{aligned}
+ S_q-q&=(\bar p_\kappa-q)+2\E[\Lambda_\kappa\mid\calG_q]
+ +\frac1N\int\kappa(p)|m_q-m_p|^2\,\nu(\dd p)\\
+ &\ge(\bar p_\kappa-q)+2\E[\Lambda_\kappa\mid\calG_q].
+ \end{aligned}
+\]
+\end{enumerate}
+If $\mu$ minimizes $\mathcal F_{t,s}$, then in addition the following
+hold.
+\begin{enumerate}[resume*=witwo]
+\item We have $\E\Lambda_\kappa=0$ and
+\[
+ \E\bigl[(\E[\Lambda_\kappa\mid\calG_q])^2\bigr]
+ \le\Var(\Lambda_\kappa)
+ \le\frac1M\int\frac{\kappa(p)^2}{a(p)}\,\nu(\dd p).
+\]
+\item Let $\vartheta>0$. If $\kappa$ satisfies the hypothesis of
+\textup{(a)} and $\bar p_\kappa-q\le\vartheta/2$, then
+\[
+ \E\bigl[(S_q-q)^2\ind_{\{S_q-q>\vartheta\}}\bigr]
+ \le16\Var(\Lambda_\kappa).
+\]
+If $\kappa$ satisfies the hypothesis of \textup{(b)} and
+$q-\bar p_\kappa\le\vartheta/2$, then
+\[
+ \E\bigl[(S_q-q)^2\ind_{\{S_q-q<-\vartheta\}}\bigr]
+ \le16\Var(\Lambda_\kappa).
+\]
+\item If $I\subset(0,1-s)$ is an interval of length $x>0$ with
+threshold $u$, then $\Var(\Lambda_I)\le1/(Mux)$.
+\end{enumerate}
+For every admissible profile and every interval $I\subset(0,1-s)$ of
+positive length, $\kappa_I$ satisfies the hypothesis of \textup{(a)} if
+$Q\ge q$ on $I$, and that of \textup{(b)} if $Q\le q$ on $I$.
+\end{lemma}
+
+\begin{proof}
+Parts (a) and (b) are statements about conditional expectations. We
+prove each first for a single level $p$ and then integrate against
+$\kappa(p)\,\nu(\dd p)$. Parts (c)--(e) add the contact identity and
+\eqref{eq:in-Lvar}. Let
+\[
+ \Lambda'=\int\kappa(p)L_p\,\nu(\dd p)=\Lambda_\kappa+\frac{\bar p_\kappa}2 .
+\]
+Taking the conditional expectation given $\calG_p$ in the definition of
+$L_p$, and recalling that $m_p=\E[\sigma\mid\calG_p]$ is
+$\calG_p$-measurable, we find that
+\begin{equation}\label{eq:wi-LS}
+ \E[L_p\mid\calG_p]=\tfrac12S_p\qquad(0\le p\le1).
+\end{equation}
+
+\paragraph{Part (a).}
+Let $p\ge q$. The process $m$ is a martingale by
+\eqref{eq:in-martingale}, and $m_q=\E[m_p\mid\calG_q]$. Using the conditional Jensen
+inequality for $x\mapsto|x|^2$, the tower property, and \eqref{eq:wi-LS},
+we have
+\[
+ S_q\le\E[S_p\mid\calG_q]=2\E[L_p\mid\calG_q].
+\]
+Let $\zeta\ge0$ be a bounded $\calG_q$-measurable random variable. Then
+$\E[\zeta S_q]\le2\E[\zeta L_p]$ for every $p\ge q$. We integrate this inequality against the probability measure
+$\kappa(p)\,\nu(\dd p)$, which does not charge
+$[0,q)$. By Fubini's theorem,
+which applies because $|\zeta L_p|$ is bounded, this yields
+$\E[\zeta S_q]\le2\E[\zeta\Lambda']$. As $\zeta$ is arbitrary and $S_q$
+is $\calG_q$-measurable, we conclude that
+$S_q\le2\E[\Lambda'\mid\calG_q]$ almost surely. Subtracting $q$ from
+both sides and recalling that $\Lambda'=\Lambda_\kappa+\bar p_\kappa/2$,
+we obtain (a).
+
+\paragraph{Part (b).}
+Let $p\le q$. Both $m_p$ and $m_q$ are $\calG_q$-measurable, and
+$\E[\sigma\mid\calG_q]=m_q$. Expanding $|m_q-m_p|^2$, we find
+\[
+ \E[L_p\mid\calG_q]=\frac{m_q\cdot m_p-|m_p|^2/2}N
+ =\frac{S_q}2-\frac{|m_q-m_p|^2}{2N}.
+\]
+The right side is bounded and jointly measurable in $p\in[0,q]$ and the
+outcome. Its integral against $\kappa(p)\,\nu(\dd p)$, which is
+concentrated on $[0,q]$, is $\calG_q$-measurable, because $m$ is
+continuous and adapted. Testing against bounded $\calG_q$-measurable
+variables as in (a), we find that
+\[
+ \E[\Lambda'\mid\calG_q]
+ =\frac{S_q}2-\frac1{2N}\int\kappa(p)|m_q-m_p|^2\,\nu(\dd p).
+\]
+Multiplying by two, subtracting $q$, and using
+$\Lambda'=\Lambda_\kappa+\bar p_\kappa/2$, we obtain the identity in
+(b). The inequality holds because the last term is nonnegative.
+
+\paragraph{Part (c).}
+Let $\mu$ be a minimizer. By \eqref{eq:wi-LS} and \eqref{eq:in-contact},
+we have $\E L_p=\E S_p/2=p/2$ for every $p\in\supp\nu$, and in
+particular for $\nu$-almost every $p$. Then
+$\E\Lambda_\kappa=0$ by Fubini's theorem. By the conditional Jensen
+inequality, we have
+\[
+ \E\bigl[(\E[\Lambda_\kappa\mid\calG_q])^2\bigr]
+ \le\E\Lambda_\kappa^2=\Var(\Lambda_\kappa).
+\]
+As $\Lambda_\kappa$ and $\Lambda'$ differ by a constant, the last
+bound in (c) is the first bound in \eqref{eq:in-Lvar} with $k=\kappa$.
+
+\paragraph{Part (d).}
+Let $\xi=S_q-q$ and $Y=\E[\Lambda_\kappa\mid\calG_q]$. Suppose first
+that $\kappa$ satisfies the hypothesis of (a) and
+$\bar p_\kappa-q\le\vartheta/2$. On the event $\{\xi>\vartheta\}$, part
+(a) implies that
+\[
+ 2Y\ge\xi-(\bar p_\kappa-q)\ge\xi-\frac\vartheta2>\frac\xi2>0,
+\]
+so that $\xi^2<16Y^2$. Next, suppose that $\kappa$ satisfies the
+hypothesis of (b) and $q-\bar p_\kappa\le\vartheta/2$. On the event
+$\{\xi<-\vartheta\}$, part (b) implies that
+\[
+ 2Y\le\xi+(q-\bar p_\kappa)\le\xi+\frac\vartheta2<\frac\xi2<0,
+\]
+and again $\xi^2<16Y^2$. In both cases, the expectation in (d) is at
+most $16\E Y^2$, which is at most $16\Var(\Lambda_\kappa)$ by (c).
+
+\paragraph{Part (e).}
+The bound $\kappa_I\le1/x$ implies that $\kappa_I^2\le\kappa_I/x$. The function
+$1/a$ is Borel and bounded by $1/s$, by \eqref{eq:wi-supp}. Using the
+identity for $\int\varphi\,\kappa_I\dd\nu$ with $\varphi=1/a$, we have
+\[
+ \int\frac{\kappa_I(p)^2}{a(p)}\,\nu(\dd p)
+ \le\frac1x\int\frac{\kappa_I(p)}{a(p)}\,\nu(\dd p)
+ =\frac1{x^2}\int_I\frac{\dd v}{a(Q(v))}
+ \le\frac1{ux},
+\]
+where we used the threshold in the last step. Inserting this bound into (c),
+we find that $\Var(\Lambda_I)\le1/(Mux)$. This is the bound
+\cite[Section~3, (3.6)]{AL}, because $\Lambda_I$ and
+$x^{-1}\int_IL_{Q(v)}\dd v$ differ by the constant $\bar p_I/2$.
+
+\paragraph{The hypotheses for $\kappa_I$.}
+Suppose that $Q\ge q$ on $I$. Then
+\[
+ \int\ind_{[0,q)}\kappa_I\dd\nu=\frac1{|I|}\,|\{v\in I:Q(v)<q\}|=0,
+\]
+so $\kappa_I$ satisfies the hypothesis of (a). The case $Q\le q$ is the
+same, with $(q,1]$ in place of $[0,q)$.
+\end{proof}
+
+\section{Variance on a quantile interval}\label{sec:wi-interval}
+
+We now use the comparisons of \cref{lem:wi-two} to bound the
+integral of $\Var(S_{Q(v)})$ over a quantile interval. For each variance
+threshold, we compare every interior point $v$ of the interval with the
+two windows of one common radius $r$ on either side of $v$. The random
+part of each comparison is twice a conditional expectation whose second
+moment is at most $(Mur)^{-1}$, which decreases as $r$ grows. The
+deterministic part is at most the increment of $Q$ across the window
+$(v-r,v+r)$. After we extend $Q$ by constants beyond the ends of the
+interval, the integral of this increment over $\R$ equals $2r$ times the
+diameter of the image of the interval, because $Q$ is nondecreasing; its
+integral over the interior points is at most this quantity. This bounds the measure of the
+set of points where the variance exceeds the threshold, and integrating
+over the threshold gives the result. For an interval $I\subset(0,1-s)$,
+we let
+\[
+ \ell(I)=\operatorname*{ess\,sup}_{v,w\in I}|Q(v)-Q(w)|
+\]
+denote the diameter of its image.
+
+\begin{proposition}[Variance on a quantile interval]\label{prop:wi-vfs}
+Let $\mu$ be a minimizer of $\mathcal F_{t,s}$, and let
+$I\subset(0,1-s)$ be an interval of length $h>0$ with threshold $u>0$
+and image diameter $\ell=\ell(I)$. Let $\epsilon=(Mu)^{-1}$. Then
+\begin{equation}\label{eq:wi-vfs}
+ \int_I\Var(S_{Q(v)})\dd v
+ \le128\Bigl[\min\bigl\{h,\epsilon\bigl(1+\log_+(h/\epsilon)\bigr)\bigr\}
+ +(\epsilon\ell)^{2/3}h^{1/3}\Bigr].
+\end{equation}
+The constant is absolute, and $I$ may contain part of the quantile
+interval of an atom of $\nu$.
+\end{proposition}
+
+\begin{proof}
+The proof has four steps. First, we record an identity for the
+increments of $Q$. Second, we bound $\Var(S_{Q(v)})$ at an interior
+point $v$ by comparing it with the two windows of radius $r$ next to
+$v$. Third, for each threshold $\tau\in(0,1)$, we choose $r$ depending
+on $\tau$ and bound the measure of the set where the variance exceeds
+$\tau$. Fourth, we integrate over $\tau$.
+
+\paragraph{Step 1: increments of the quantile function.}
+Discarding endpoints, which changes no integral below, we write
+$I=(\underline v,\overline v)$, with $h=\overline v-\underline v$. We set
+\[
+ \chi(v)=\E\xi_v^2=\Var(S_{Q(v)})\in[0,1]\qquad(v\in I).
+\]
+As $Q$ is nondecreasing, its essential infimum and supremum on $I$ are
+$q_-=\lim_{v\downarrow\underline v}Q(v)$ and
+$q_+=\lim_{v\uparrow\overline v}Q(v)$, and $q_+-q_-=\ell$. We extend
+the restriction of $Q$ to $I$ to a nondecreasing function $\widetilde Q$
+on $\R$ by setting $\widetilde Q=q_-$ on $(-\infty,\underline v]$ and
+$\widetilde Q=q_+$ on $[\overline v,\infty)$. Let $\dd\widetilde Q$ be
+the distributional derivative of $\widetilde Q$, a positive
+Lebesgue--Stieltjes measure of total mass $q_+-q_-=\ell$. We claim that
+\begin{equation}\label{eq:wi-variation}
+ \int_{\R}\bigl(\widetilde Q(v+r)-\widetilde Q(v-r)\bigr)\dd v
+ =2r\ell\qquad(r>0).
+\end{equation}
+Indeed, $\widetilde Q$ has at most countably many discontinuities. For
+fixed $r>0$ and $v$ outside the two translates of this countable set by
+$r$ and by $-r$, both $v-r$ and $v+r$ are continuity points, and
+$\widetilde Q(v+r)-\widetilde Q(v-r)$ is the $\dd\widetilde Q$-measure of
+$[v-r,v+r]$. By Tonelli's theorem,
+\[
+ \int_\R\dd\widetilde Q([v-r,v+r])\dd v
+ =\int_\R\int_\R\ind_{\{|x-v|\le r\}}\dd v\,\dd\widetilde Q(x)
+ =2r\ell .
+\]
+In words, each unit of mass of $\dd\widetilde Q$ is counted for the
+centers $v$ within distance $r$ of it, and these form a set of length
+$2r$. The identity uses only that $\widetilde Q$ is nondecreasing; in
+particular, it holds when $Q$ has jumps or intervals of constancy.
+
+\paragraph{Step 2: the two windows at a fixed radius.}
+Let $0<r<h/2$ and $v\in(\underline v+r,\overline v-r)$. The windows
+$I_-=(v-r,v)$ and $I_+=(v,v+r)$ lie in $I$, have length $r$, and have
+threshold $u$. We set
+\[
+ \Delta_r(v)=Q(v+r)-Q(v-r)\ge0,\qquad
+ Y_\pm=\E[\Lambda_{I_\pm}\mid\calG_{Q(v)}].
+\]
+Note that $Q\ge Q(v)$ on $I_+$ and $Q\le Q(v)$ on $I_-$, because $Q$ is
+nondecreasing. It follows from the last assertion of \cref{lem:wi-two}
+that $\kappa_{I_+}$ and $\kappa_{I_-}$ satisfy the hypotheses of
+\cref{lem:wi-two}(a) and (b), respectively, with $q=Q(v)$. Further, by
+monotonicity,
+\[
+ \begin{aligned}
+ 0&\le\bar p_{I_+}-Q(v)\le Q(v+r)-Q(v)\le\Delta_r(v),\\
+ 0&\le Q(v)-\bar p_{I_-}\le Q(v)-Q(v-r)\le\Delta_r(v).
+ \end{aligned}
+\]
+Then \cref{lem:wi-two}(a) and (b) imply that
+\[
+ \xi_v\le\Delta_r(v)+2Y_+,\qquad
+ -\xi_v\le\Delta_r(v)-2Y_- .
+\]
+On the event $\{\xi_v>0\}$, the first inequality implies that
+$\xi_v^2\le(\Delta_r(v)+2|Y_+|)^2$, and this is at most
+$2\Delta_r(v)^2+8Y_+^2$ because $(x+y)^2\le2x^2+2y^2$. On the event
+$\{\xi_v<0\}$, we have $\xi_v^2\le2\Delta_r(v)^2+8Y_-^2$ in the same way,
+by the second inequality. Since these two events
+are disjoint, we have
+\[
+ \xi_v^2\le2\Delta_r(v)^2+8Y_+^2+8Y_-^2 .
+\]
+\Cref{lem:wi-two}(c) and (e) imply that
+$\E Y_\pm^2\le\Var(\Lambda_{I_\pm})\le(Mur)^{-1}=\epsilon/r$. Taking
+expectations, we conclude that
+\begin{equation}\label{eq:wi-vpoint}
+ \chi(v)\le2\Delta_r(v)^2+\frac{16\epsilon}{r}
+ \qquad\text{for every }v\in(\underline v+r,\overline v-r).
+\end{equation}
+Note that $v$ and $r$ are fixed here. The windows and the level $Q(v)$
+are then deterministic, and \cref{lem:wi-two} applies as stated.
+
+\paragraph{Step 3: the measure of the set where the variance is large.}
+Fix $\tau\in(0,1)$ and let $r=32\epsilon/\tau$, so that
+$16\epsilon/r=\tau/2$. Suppose first that $r<h/2$. If
+$v\in(\underline v+r,\overline v-r)$ and $\chi(v)>\tau$, then
+\eqref{eq:wi-vpoint} implies that $2\Delta_r(v)^2>\tau/2$, that is,
+$\Delta_r(v)>\sqrt\tau/2$. On this interior interval, we have
+$\Delta_r(v)=\widetilde Q(v+r)-\widetilde Q(v-r)$. By Markov's
+inequality and \eqref{eq:wi-variation}, the measure of the interior
+points with $\chi(v)>\tau$ is at most
+\[
+ \frac2{\sqrt\tau}\int_\R\bigl(\widetilde Q(v+r)-\widetilde Q(v-r)\bigr)\dd v
+ =\frac{4r\ell}{\sqrt\tau}=\frac{128\epsilon\ell}{\tau^{3/2}}.
+\]
+The two boundary strips $(\underline v,\underline v+r]$ and
+$[\overline v-r,\overline v)$ have total length $2r=64\epsilon/\tau$. If
+instead $r\ge h/2$, then $h\le2r=64\epsilon/\tau$, and the same bound
+holds without any interior windows, because the whole interval has
+length at most $2r$. In both cases,
+using also the trivial bound $h$, we have
+\[
+ |\{v\in I:\chi(v)>\tau\}|
+ \le\min\Bigl\{h,\frac{64\epsilon}{\tau}
+                    +\frac{128\epsilon\ell}{\tau^{3/2}}\Bigr\}
+ \le\min\Bigl\{h,\frac{64\epsilon}{\tau}\Bigr\}
+   +\min\Bigl\{h,\frac{128\epsilon\ell}{\tau^{3/2}}\Bigr\}.
+\]
+
+\paragraph{Step 4: integration over the threshold.}
+By the layer-cake formula, and since $0\le\chi\le1$, we have
+\[
+ \int_I\chi(v)\dd v=\int_0^1|\{v\in I:\chi(v)>\tau\}|\dd\tau .
+\]
+We integrate the two terms of the last bound of Step~3 separately. For
+the first, we use $\min\{h,64y\}\le64\min\{h,y\}$ for $y\ge0$. If
+$\epsilon\ge h$, then $\epsilon/\tau\ge h$ for $\tau\le1$, and the
+integral of $\min\{h,\epsilon/\tau\}$ over $(0,1)$ equals $h$. If
+$\epsilon<h$, we split the integral at $\tau=\epsilon/h$ and obtain
+$\epsilon+\epsilon\log(h/\epsilon)$, which is at most $h$ because
+$1+\log y\le y$ for $y\ge1$. In both cases, we have
+\[
+ \int_0^1\min\Bigl\{h,\frac{64\epsilon}\tau\Bigr\}\dd\tau
+ \le64\min\bigl\{h,\epsilon\bigl(1+\log_+(h/\epsilon)\bigr)\bigr\}.
+\]
+For the second term, let $B=128\epsilon\ell$. If $\ell=0$, the term
+vanishes. Otherwise, we extend the integral to $(0,\infty)$ and split
+it at $\tau_0=(B/h)^{2/3}$, where $B\tau_0^{-3/2}=h$. This gives
+\[
+ \begin{aligned}
+ \int_0^\infty\min\{h,B\tau^{-3/2}\}\dd\tau
+ &=h\tau_0+2B\tau_0^{-1/2}=3B^{2/3}h^{1/3}\\
+ &=3\cdot128^{2/3}(\epsilon\ell)^{2/3}h^{1/3}
+ \le128(\epsilon\ell)^{2/3}h^{1/3}.
+ \end{aligned}
+\]
+In the last inequality, we used that $3\cdot128^{2/3}\le128$, which is
+equivalent to $27\le128$. Adding the two estimates, we obtain
+\eqref{eq:wi-vfs}.
+\end{proof}
+
+\section{A cubic-moment bound}\label{sec:wi-cubic}
+
+The cavity argument produces third moments of $S_q-q$. Fluctuations of
+$\xi_v$ of size at most $z$ contribute at most $zV$ to $H_3$. For
+fluctuations above a level $\vartheta$, we divide the range of levels
+into bins of width $\vartheta/4$. Within a bin, the mean level of the
+window after a point $v$ is at least $Q(v)$ and less than
+$Q(v)+\vartheta/4$, and the mean level of the window before $v$ is at
+most $Q(v)$ and greater than $Q(v)-\vartheta/4$. We use \cref{lem:wi-two}(d) to control both tails. Integrating
+the reciprocal window lengths over $v$ produces one logarithm, and
+integrating over $\vartheta$ produces the second.
+
+\begin{corollary}[Cubic self-overlap moment]\label{cor:wi-cub}
+Let $\mu$ be a minimizer of $\mathcal F_{t,s}$, and assume that $M\ge1$.
+Then for every $0<z\le1/4$,
+\begin{equation}\label{eq:wi-cub}
+ H_3\le zV+\frac{425}{Ms}\log(2M)\log\frac2z .
+\end{equation}
+The constant is absolute; atoms of $\nu$, including an atom at zero, are
+allowed.
+\end{corollary}
+
+\begin{proof}
+The proof has three steps. We first reduce $H_3$ to integrals of the
+tails of $\xi_v$, then bound these tail integrals using level bins, and
+finally integrate the tail bound.
+
+\paragraph{Step 1: reduction to tails.}
+For $|y|\le1$ and $0<z\le1/4$, we have
+\[
+ |y|\le z+\int_z^1\ind_{\{|y|>\vartheta\}}\dd\vartheta .
+\]
+Indeed, the right side is at least $z$, and if $|y|>z$, the integral
+equals $|y|-z$. Multiplying this inequality by $y^2$ gives
+\[
+ |y|^3\le zy^2+\int_z^1y^2\ind_{\{|y|>\vartheta\}}\dd\vartheta .
+\]
+We use this inequality with $y=\xi_v$, take expectations, and
+integrate over $v\in(0,1-s)$. We define
+\[
+ T(\vartheta)=\int_0^{1-s}
+ \E\bigl[\xi_v^2\ind_{\{|\xi_v|>\vartheta\}}\bigr]\dd v
+ \qquad(0<\vartheta\le1).
+\]
+Using Tonelli's theorem and the identities
+$V=\int_0^{1-s}\E\xi_v^2\dd v$ and $H_3=\int_0^{1-s}\E|\xi_v|^3\dd v$, we
+obtain
+\begin{equation}\label{eq:wi-layer}
+ H_3\le zV+\int_z^1T(\vartheta)\dd\vartheta.
+\end{equation}
+
+\paragraph{Step 2: the tail bound.}
+Fix $\vartheta\in(0,1]$. For $0\le k\le\lfloor4/\vartheta\rfloor$, let
+$\mathcal B_k=[k\vartheta/4,(k+1)\vartheta/4)$. These level bins cover
+$[0,1]$, and there are at most $4/\vartheta+1\le5/\vartheta$ of them.
+The preimages
+\[
+ I_k=\{v\in(0,1-s):Q(v)\in\mathcal B_k\}
+\]
+are intervals, because $Q$ is nondecreasing. Some of them may be empty,
+and we discard those. For the others, we write
+$\underline v_k\le\overline v_k$ for the endpoints of $I_k$ and $h_k=\overline v_k-\underline v_k\le1$ for its
+length. The intervals $I_k$ partition $(0,1-s)$, and those with
+$h_k=0$ do not contribute to $T(\vartheta)$.
+
+Fix $k$ with $h_k>0$ and $v\in(\underline v_k,\overline v_k)$. The later
+window $(v,\overline v_k)$ lies in $I_k$. For $w$ in this window, we
+have $Q(v)\le Q(w)<Q(v)+\vartheta/4$, since $Q(w)$ and $Q(v)$ lie in the
+same bin of width $\vartheta/4$. In particular, the mean level of the
+window is at least $Q(v)$ and at most $Q(v)+\vartheta/4$. Likewise, the earlier window
+$(\underline v_k,v)$ satisfies $Q\le Q(v)$, and its mean level is at
+least $Q(v)-\vartheta/4$. Both windows have threshold $s$ by
+\eqref{eq:wi-supp}. By the last assertion of \cref{lem:wi-two}, their
+normalized densities satisfy the hypotheses of (a) and (b),
+respectively, with $q=Q(v)$. Since $\vartheta/4\le\vartheta/2$,
+\cref{lem:wi-two}(d) and (e) now imply that
+\[
+ \E\bigl[\xi_v^2\ind_{\{\xi_v>\vartheta\}}\bigr]
+ \le\frac{16}{Ms(\overline v_k-v)},\qquad
+ \E\bigl[\xi_v^2\ind_{\{\xi_v<-\vartheta\}}\bigr]
+ \le\frac{16}{Ms(v-\underline v_k)} .
+\]
+
+Suppose that $h_k>1/M$. We integrate the first bound over
+$(\underline v_k,\overline v_k-1/M)$ and use $|\xi_v|\le1$ on the
+remaining strip of length $1/M$. This gives
+\[
+ \begin{aligned}
+ \int_{I_k}\E\bigl[\xi_v^2\ind_{\{\xi_v>\vartheta\}}\bigr]\dd v
+ &\le\frac{16}{Ms}\int_{\underline v_k}^{\overline v_k-1/M}
+       \frac{\dd v}{\overline v_k-v}+\frac1M
+ =\frac{16}{Ms}\log(Mh_k)+\frac1M\\
+ &\le\frac{16\log(2M)}{Ms}+\frac1M,
+ \end{aligned}
+\]
+where we used $h_k\le1$ in the last line. The lower tail satisfies the
+same bound, with the strip of length $1/M$ at the left end of $I_k$. If
+$h_k\le1/M$, then both tails together contribute at most $h_k\le1/M$,
+since the two events are disjoint and $|\xi_v|\le1$. Since $M\ge1$ and
+$s\le1/2$, we have
+\[
+ \frac2M\le\frac1{Ms}\le\frac{2\log(2M)}{Ms},
+\]
+where we used $\log2\ge1/2$ in the second inequality. Each bin therefore
+contributes at most $32\log(2M)/(Ms)+2/M\le34\log(2M)/(Ms)$ to
+$T(\vartheta)$. Summing over the at most $5/\vartheta$ bins, we conclude that
+\[
+ T(\vartheta)\le\frac5\vartheta\cdot\frac{34\log(2M)}{Ms}
+ =\frac{170\log(2M)}{Ms\,\vartheta}\qquad(0<\vartheta\le1).
+\]
+
+\paragraph{Step 3: integration.}
+The tail bound holds on the whole range $(z,1]$ of the integral in
+\eqref{eq:wi-layer}. Inserting it, we obtain
+\[
+ H_3\le zV+\frac{170\log(2M)}{Ms}\int_z^1\frac{\dd\vartheta}\vartheta
+ =zV+\frac{170\log(2M)}{Ms}\log\frac1z
+ \le zV+\frac{425\log(2M)}{Ms}\log\frac2z .
+\]
+This proves \eqref{eq:wi-cub}. In fact, we have proved the stronger
+bound with $170\log(1/z)$ in place of $425\log(2/z)$.
+\end{proof}

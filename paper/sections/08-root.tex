@@ -1,0 +1,499 @@
+\chapter{Localization of the lowest quantiles}\label{sec:lz-root}
+
+In this section, we show that the lowest quantiles of the free mass of every
+minimizer of $F_\rho$ lie close to the origin. Let $\mu=s\delta_0+\nu$ be a
+minimizing profile and $\eta$ a trial budget. By \cref{cor:lz-omega}, the
+quantile $Q(v)$ of $\nu$ at level $v$ is at most
+$C_Q(s+v+\omega(\rho,\eta))$, where
+$\omega(\rho,\eta)=\min\{1,(\eta/\rho)^{1/6}\}$ and $C_Q$ depends only on
+$\beta$. \Cref{prop:lz-quantile} is the same estimate in the energy
+normalization. In \cref{prop:sm-small}, we use \cref{cor:lz-omega} to bound the
+self-overlap variance on dyadic quantile shells for the interpolation
+parameters near $\rho=0$.
+
+We keep the standing assumptions and the notation of \cref{subsec:lz-inputs}.
+From \cref{sec:lz}, we use the convexity and the first variation of $F_\rho$
+(\cref{prop:loc-inputs}(a)), the identities \eqref{eq:loc-b}, the coercivity
+bound of \cref{lem:loc-coercive}, and the midpoint inequality
+\eqref{eq:loc-midpoint}. We also use the partial regularization of
+\cref{lem:loc-smoothing}(a), the scalar root bounds \eqref{eq:lz-gsroot}, the
+structure \eqref{eq:loc-scalar-measure} of $\mu_\beta$, and the trial budget
+\eqref{eq:loc-trialbudget}. The isolation estimate \cref{prop:loc-isolation}
+and the density bound \cref{lem:loc-lipschitz} are not used here.
+
+The main tool is a local deficit certificate (\cref{lem:lz-certificate}). It
+combines a variation that moves mass of a
+profile toward the middle of an interval with the response inequality
+\eqref{eq:loc-response}. If the variation violates its room or sign
+condition, this failure gives a lower bound on $\eta/\rho$ as well, and the
+certificate includes this bound as an alternative. In
+\cref{subsec:lz-quantile}, we follow the strategy of the proof of
+\cite[Lemma~7.6]{AL}. We regularize only the free mass below the selected
+quantile. Then we compare the result with the scalar trial profile on an
+interval where the latter has a positive density (\cref{lem:lz-rootdensity}).
+The certificate gives the dependence on $\eta/\rho$ in \eqref{eq:lz-quantile}.
+
+\section{A local deficit certificate}\label{subsec:lz-moves}
+
+In the proof of \cref{prop:loc-isolation}, we used the uniform lower bound
+\eqref{eq:loc-in-curv} on $\zeta$, which gives
+$\Delta=\rho\int\zeta\varphi\ge\rho k_\beta^2\int\varphi$. For root
+localization, we need $\Delta$ to be at least a constant multiple of the length
+of the interval on which $\varphi$ lives, without the factor $\rho$. In the
+next lemma, we achieve this by moving mass of the profile toward the middle of
+the interval. If the variation does not have enough room, or if it would
+destroy the profile gap, then one of the lower bounds in the conclusion already
+holds.
+
+\begin{lemma}[Local deficit certificate]\label{lem:lz-certificate}
+There exists $c_{\rm cert}=c_{\rm cert}(\beta)>0$ with the following property.
+Let $I\Subset(0,1)$ be an open interval of length $\ell$, let
+$\gamma_0,\gamma_1$ be admissible profiles, and let $\eta>0$ be such that
+$F_\rho(\gamma_i)\le\min F_\rho+\eta$ for $i=0,1$. Suppose that there exist
+$k>0$, $d_0,d_1\ge0$, and $A>0$ such that, on $I$, the derivative measures and
+the profile gap satisfy
+\[
+ \dd\gamma_0\le d_0\dd x,\qquad
+ k\dd x\le\dd\gamma_1\le d_1\dd x,
+ \qquad \gamma_1-\gamma_0\ge A .
+\]
+Then
+\begin{equation}\label{eq:lz-certificate}
+ \frac\eta\rho\ge c_{\rm cert}\min\left\{
+ k\ell^3,\ A\ell^2,\ A^2\ell^4,
+                  \frac{A^2\ell^2}{d_0+d_1+k}\right\}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The proof has four steps. In Step 1, we fix a bump function $\varphi$ on $I$
+and an amplitude $\tau$. If $\tau$ is too large for the variation below, then
+one of the first two alternatives in \eqref{eq:lz-certificate} holds. Otherwise, we perturb the segment from
+$\gamma_0$ to $\gamma_1$ by the derivative of the bump, which moves mass of
+the profile toward the middle of $I$ (Step 2). Since both endpoints are nearly
+minimal and $F_\rho$ is convex, the response integrated against the bump is
+at least of order $\ell$ along the perturbed segment (Step 3). Then
+\cref{lem:loc-coercive} implies a lower bound on the curvature along the
+perturbed segment. Comparing this curvature with the excesses at its
+endpoints, we obtain the last two alternatives (Step 4). Throughout, we write $F_{\min}=\min F_\rho$ and
+$I=(x_0,x_0+\ell)$.
+
+\paragraph{Step 1: The bump and the room condition.}
+Let $B(y)=16y^2(1-y)^2$ for $y\in[0,1]$, and let $\varphi(x)=B((x-x_0)/\ell)$
+for $x\in I$ and $\varphi(x)=0$ for $x\notin I$. We have
+\[
+ B'(y)=32y(1-y)(1-2y),\qquad B''(y)=32-192y+192y^2,
+\]
+and $B$ and $B'$ vanish at $0$ and $1$. A direct computation shows that
+$\int_0^1B=8/15$, $\max|B'|=16\sqrt3/9<4$, $\max|B''|=32$, and
+$\int_0^1|B'|^2=512/105$. These properties of $B$ imply that $\varphi$ is
+continuously differentiable on $\R$ with values in $[0,1]$, that $\varphi'$ is
+Lipschitz, that $\varphi$ and $\varphi'$ vanish at the endpoints of $I$, and
+that
+\begin{equation}\label{eq:lz-bump}
+ \int\varphi=\frac{8\ell}{15},\qquad \|\varphi'\|_\infty\le\frac4\ell,\qquad
+ \|\varphi''\|_\infty\le\frac{32}{\ell^2},\qquad
+ \int|\varphi'|^2=\frac{512}{105\,\ell},
+\end{equation}
+where $\varphi''$ is defined away from the endpoints of $I$. In particular,
+the distributional derivative of $\varphi'$ is the function $\varphi''$, which
+has no atoms at the endpoints of $I$, and $\int\varphi''=0$.
+
+We define $\tau=30\eta/(\rho\ell)$; the factor $30$ is chosen so that
+$8\eta/(\rho\tau)=4\ell/15$ is half of $\int\varphi$. Suppose first that the
+room condition
+\begin{equation}\label{eq:lz-room-condition}
+ \tau\le\min\Bigl\{\frac{k\ell^2}{64},\frac{A\ell}8\Bigr\}
+\end{equation}
+fails. Then
+\[
+ \frac\eta\rho=\frac{\ell\tau}{30}
+ >\min\Bigl\{\frac{k\ell^3}{1920},\frac{A\ell^2}{240}\Bigr\}
+ \ge\frac1{1920}\min\{k\ell^3,A\ell^2\},
+\]
+and \eqref{eq:lz-certificate} holds whenever $c_{\rm cert}\le1/1920$. We
+assume from now on that \eqref{eq:lz-room-condition} holds.
+
+\paragraph{Step 2: The perturbed segment.}
+For $0\le\theta\le1$, let
+\[
+ \gamma_\theta=(1-\theta)\gamma_0+\theta\gamma_1,\qquad
+ \widetilde\gamma_\theta=\gamma_\theta-\theta\tau\varphi'.
+\]
+We claim that $\gamma_\theta-u\varphi'$ is admissible for $0\le\theta\le1$ and
+$0\le u\le\theta\tau$. The function $\varphi'$ is continuous and vanishes
+outside $I$, and $\overline I\subset(0,1)$. Then $\gamma_\theta-u\varphi'$ is
+right-continuous and agrees with $\gamma_\theta$ near $0$ and near $1$. Its
+derivative measure is $\dd\gamma_\theta-u\varphi''\dd x$. Off $I$, this is
+$\dd\gamma_\theta$. On $I$, the hypotheses give $\dd\gamma_\theta\ge\theta
+k\dd x$, and by \eqref{eq:lz-bump} and \eqref{eq:lz-room-condition}, we have
+\[
+ \dd(\gamma_\theta-u\varphi')
+ \ge\Bigl(\theta k-\frac{32u}{\ell^2}\Bigr)\dd x
+ \ge\Bigl(\theta k-\frac{32\theta\tau}{\ell^2}\Bigr)\dd x
+ \ge\frac{\theta k}2\dd x .
+\]
+The signed measure $\varphi''\dd x$ has total mass zero and does not charge
+$0$. We conclude that the derivative measure of $\gamma_\theta-u\varphi'$ is
+nonnegative, has total mass $\beta$, and has the same atom at $0$ as
+$\dd\gamma_\theta$; that is, $\gamma_\theta-u\varphi'$ is admissible. We have
+$\widetilde\gamma_\theta=(1-\theta)\gamma_0+\theta(\gamma_1-\tau\varphi')$, and
+$\gamma_1-\tau\varphi'$ is admissible (this is the claim with $\theta=1$ and $u=\tau$). It
+follows that $(\widetilde\gamma_\theta)$ is a segment, with endpoints
+$\widetilde\gamma_0=\gamma_0$ and $\widetilde\gamma_1=\gamma_1-\tau\varphi'$.
+
+\paragraph{Step 3: The response integrated against the bump.}
+Fix $\theta\in(0,1]$ and define $g_\theta(u)=F_\rho(\gamma_\theta-u\varphi')$
+for $0\le u\le\theta\tau$. The profiles $\gamma_\theta-u\varphi'$,
+$0\le u\le\theta\tau$, form a segment up to a linear change of parameter, so
+$g_\theta$ is convex and continuous by \cref{prop:loc-inputs}. We compute its
+one-sided derivatives. Let $0\le u\le\theta\tau$, and write
+$\gamma'=\gamma_\theta-u\varphi'$, $G=G_{\gamma'}$, and $S=S_{\gamma'}$.
+Increasing $u$ changes the free measure of $\gamma'$ in the direction
+$-\varphi''\dd x$, and decreasing $u$ changes it in the direction
+$+\varphi''\dd x$; in both cases, the new free measure is that of an
+admissible profile on the segment. By \eqref{eq:loc-firstvariation}, the right
+derivative of $g_\theta$ at $u<\theta\tau$ and the left derivative at $u>0$
+are both equal to $-(\rho/2)\int G\varphi''\dd x$. We integrate by parts
+twice. The function $\varphi'$ vanishes at the endpoints of $I$ and
+$G'(x)=x-S(x)$, which gives $\int G\varphi''\dd x=-\int(x-S)\varphi'\dd x$. The
+function $\varphi$ also vanishes at the endpoints of $I$, and $S$ is absolutely
+continuous by \eqref{eq:loc-b}; integrating by parts once more, we find
+\[
+ -\int(x-S)\varphi'\dd x=\int\varphi\dd(x-S)=\frac{8\ell}{15}-\int\varphi\dd S .
+\]
+We obtain
+\begin{equation}\label{eq:lz-concentrating-derivative}
+ g_\theta'(u)=\frac\rho2
+          \left(\int\varphi\dd S_{\gamma_\theta-u\varphi'}-\frac{8\ell}{15}\right),
+\end{equation}
+for the right derivative at $0\le u<\theta\tau$ and for the left derivative
+at $0<u\le\theta\tau$.
+
+By the convexity of $F_\rho$ along the segment $(\gamma_\theta)$, we have
+$g_\theta(0)=F_\rho(\gamma_\theta)\le(1-\theta)F_\rho(\gamma_0)
++\theta F_\rho(\gamma_1)\le F_{\min}+\eta$, and $g_\theta(\theta\tau)\ge
+F_{\min}$. For a convex function, the left derivative at the right endpoint
+of an interval is at least the slope of the secant over the interval, which
+gives
+\[
+ g_\theta'(\theta\tau)\ge\frac{g_\theta(\theta\tau)-g_\theta(0)}{\theta\tau}
+ \ge-\frac\eta{\theta\tau}.
+\]
+Inserting \eqref{eq:lz-concentrating-derivative} at $u=\theta\tau$, where
+$\gamma_\theta-\theta\tau\varphi'=\widetilde\gamma_\theta$, we find, for
+$1/4\le\theta\le3/4$,
+\[
+ \Delta_\theta=\int\varphi\dd S_{\widetilde\gamma_\theta}
+ \ge\frac{8\ell}{15}-\frac{2\eta}{\rho\theta\tau}
+ \ge\frac{8\ell}{15}-\frac{8\eta}{\rho\tau}=\frac{4\ell}{15}.
+\]
+By \eqref{eq:loc-b}, we have $\dd S_{\widetilde\gamma_\theta}
+=\rho\zeta_{\widetilde\gamma_\theta}\dd x$. In other words,
+$\Delta_\theta=\rho\int\zeta_{\widetilde\gamma_\theta}\varphi\dd x$ is the
+quantity $\Delta$ of \cref{lem:loc-coercive} for the segment
+$(\widetilde\gamma_\theta)$ and the cutoff $\varphi$.
+
+\paragraph{Step 4: Curvature and the endpoint excesses.}
+By \eqref{eq:lz-bump} and \eqref{eq:lz-room-condition}, the direction of the
+segment $(\widetilde\gamma_\theta)$ satisfies
+\[
+ \widetilde\gamma_1-\widetilde\gamma_0=\gamma_1-\gamma_0-\tau\varphi'
+ \ge A-\frac{4\tau}\ell\ge\frac A2\qquad\text{on }I=\{\varphi>0\}.
+\]
+On $I$, the derivative measure of $\widetilde\gamma_\theta$ is at most
+$((1-\theta)d_0+\theta d_1+32\theta\tau/\ell^2)\dd x\le\bar d\dd x$, where
+\[
+ \bar d=d_0+d_1+\frac{32\tau}{\ell^2}\le d_0+d_1+\frac k2 ;
+\]
+note that $\bar d\ge d_1\ge k>0$. Let
+$\tilde f(\theta)=F_\rho(\widetilde\gamma_\theta)$. By \cref{lem:loc-coercive},
+used for the segment $(\widetilde\gamma_\theta)$ with the cutoff $\varphi$,
+$\sigma=1$, the level $A$, and $d=\bar d$, together with
+$\Delta_\theta\ge4\ell/15$ and $Y_0=512/(105\ell)$ from \eqref{eq:lz-bump}, we
+obtain, for $1/4\le\theta\le3/4$,
+\[
+ \tilde f''(\theta)\ge\frac{\rho A^2}{72}
+ \min\left\{\Bigl(\frac{4\ell}{15}\Bigr)^2\frac{105\,\ell}{512\beta},
+ \frac{4\ell}{15\bar d}\right\}
+ =\frac{\rho A^2}{72}\min\left\{\frac{7\ell^3}{480\beta},
+ \frac{4\ell}{15\bar d}\right\}.
+\]
+Because $\beta>1$, we have $4/15\ge7/(480\beta)$, which gives
+\begin{equation}\label{eq:lz-certificate-curvature}
+ \frac{\dd^2}{\dd\theta^2}F_\rho(\widetilde\gamma_\theta)
+ \ge\frac7{34560\beta}\,\rho A^2\min\Bigl\{\ell^3,\frac\ell{\bar d}\Bigr\}
+ \qquad(1/4\le\theta\le3/4).
+\end{equation}
+
+It remains to bound the excesses at the endpoints of the perturbed segment.
+At $\theta=0$, we have $\tilde f(0)=F_\rho(\gamma_0)\le F_{\min}+\eta$. At
+$\theta=1$, we have $\tilde f(1)=g_1(\tau)$, and the convexity of $g_1$ gives
+$g_1(\tau)-g_1(0)\le\tau g_1'(\tau)$, with the left derivative. By
+\eqref{eq:loc-b}, the function $S_{\widetilde\gamma_1}$ is nondecreasing with
+values in $[0,1]$, and since $0\le\varphi\le1$, we have
+$0\le\int\varphi\dd S_{\widetilde\gamma_1}\le1$. Then
+\eqref{eq:lz-concentrating-derivative} gives $g_1'(\tau)\le\rho/2$. We
+conclude that $\tilde f(1)\le F_\rho(\gamma_1)+\rho\tau/2\le F_{\min}+\eta+15\eta/\ell$.
+Using $\ell\le1$, we obtain
+\[
+ \tilde f(0)+\tilde f(1)-2F_{\min}\le2\eta+\frac{15\eta}\ell
+ \le\frac{17\eta}\ell .
+\]
+We now use the midpoint inequality \eqref{eq:loc-midpoint} for the segment
+$(\widetilde\gamma_\theta)$ with $\Theta=[1/4,3/4]$, on which the weight has
+integral $3/16$. Together with \eqref{eq:lz-certificate-curvature}, it yields
+\[
+ \frac3{16}\cdot\frac7{34560\beta}\,\rho A^2
+ \min\Bigl\{\ell^3,\frac\ell{\bar d}\Bigr\}\le\frac{17\eta}\ell,
+\]
+that is,
+\[
+ \frac\eta\rho\ge\frac7{3133440\beta}A^2\min\Bigl\{\ell^4,\frac{\ell^2}{\bar d}\Bigr\}
+ \ge\frac7{3133440\beta}\min\Bigl\{A^2\ell^4,\frac{A^2\ell^2}{d_0+d_1+k}\Bigr\},
+\]
+where we used $\bar d\le d_0+d_1+k$. Together with Step 1, this proves
+\eqref{eq:lz-certificate} with $c_{\rm cert}=7/(3133440\beta)$, which is
+smaller than $1/1920$ because $\beta>1$.
+\end{proof}
+
+\section{Root localization}\label{subsec:lz-quantile}
+
+For an admissible profile $\gamma$, we define the quantile of its free measure
+in the energy normalization by
+\[
+ Q_\gamma(v)=\inf\{q\in[0,1]:\nu_\gamma([0,q])\ge v\},
+ \qquad 0<v<\beta-\lambda .
+\]
+If a quantile of a minimizer is large compared with the prescribed mass plus
+its level, then the minimizer is small on an interval where the scalar trial
+profile has a positive density. We control the density of the partially
+regularized minimizer there, and then compare the two profiles on that
+interval using \cref{lem:lz-certificate}. We follow the strategy of the proof
+of \cite[Lemma~7.6]{AL}, which regularizes only the free mass below the
+selected quantile and compares the result with the scalar trial profile. We
+combine this strategy with \cref{lem:lz-certificate}, which gives the
+dependence on $\eta/\rho$ in \eqref{eq:lz-quantile}. The positive density of
+the trial profile near the origin comes from the next lemma.
+
+\begin{lemma}[Trial density near the root]\label{lem:lz-rootdensity}
+There exists $T_1=T_1(\beta)\in(0,T_0]$ such that
+\begin{equation}\label{eq:lz-rootdensity}
+ \dd\gamma_\beta\ge\frac{k_0}2\dd x\qquad\text{as measures on }[0,T_1].
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Recall from \eqref{eq:loc-scalar-measure} that $\mu_\beta$ has no atom in
+$[0,q_\beta)$, and that its density $\varrho_\beta$ is continuous on
+$[0,q_\beta]$. We have $\gamma_\beta(x)=\beta\int_0^x\varrho_\beta$ for
+$0\le x<q_\beta$, and $\gamma_\beta(x)/x\to\beta\varrho_\beta(0)$ as
+$x\downarrow0$. By \eqref{eq:lz-gsroot}, we have $\gamma_\beta(x)/x\ge k_0$ for
+$0<x\le T_0$, which implies that $\beta\varrho_\beta(0)\ge k_0$. By the
+continuity of $\varrho_\beta$ at $0$, there exists
+$T_1\in(0,\min\{T_0,q_\beta\})$ such that $\beta\varrho_\beta\ge k_0/2$ on
+$[0,T_1]$. The measure $\dd\gamma_\beta$ has no atom at $0$, because
+$\gamma_\beta(0)=0$, and on $[0,T_1]$ it equals $\beta\varrho_\beta\dd x$; this gives
+\eqref{eq:lz-rootdensity}. The scalar Parisi measure is unique
+\cite[Corollary~1]{AuffingerChen2015Uniqueness}, and $q_\beta$ and
+$\varrho_\beta$ depend only on $\beta$. The constants $k_0$ and $T_0$ also
+depend only on $\beta$, and we may therefore choose $T_1$ depending only on
+$\beta$.
+\end{proof}
+
+The width $T_1$ is not explicit, because the continuity of $\varrho_\beta$ at
+$0$ is a qualitative statement.
+
+\begin{proposition}[Root localization]\label{prop:lz-quantile}
+There exists $C=C(\beta)<\infty$ with the following property. Let $N\ge1$,
+$0<\rho\le1$, and $0<\lambda\le\lambda_0$, let $\gamma_*$ be a minimizer
+of $F_\rho$, and let $\eta$ be a trial budget for $\gamma_*$. Then
+\begin{equation}\label{eq:lz-quantile}
+ Q_{\gamma_*}(v)\le C\left[\lambda+v+\min\{1,(\eta/\rho)^{1/6}\}\right]
+ \qquad(0<v<\beta-\lambda).
+\end{equation}
+The constant depends on $\beta$ only through $\beta$, $k_0$, $C_0$, and
+$T_1$.
+\end{proposition}
+
+\begin{proof}
+The proof has five steps. After reducing to $0<\eta<\rho$, we replace the
+quantile by its truncation $q=\min\{Q_{\gamma_*}(v),T_1\}$ and dispose of the
+case where $q$ is small compared with $\lambda+v$ (Step 1). Otherwise, we
+regularize the free mass of $\gamma_*$ below $q$, with a width adapted to the
+moved mass (Step 2), compare the result with $\gamma^{\rm tr}$ on the middle
+interval $(q/4,3q/4)$ (Step 3), and apply \cref{lem:lz-certificate} (Step 4).
+The resulting inequality bounds $q$ either by a power of $\eta/\rho$ or in
+terms of the density of the regularized profile, which we control with the
+choice of the width and Young's inequality (Step 5).
+
+\paragraph{Step 1: Reductions.}
+Fix $v\in(0,\beta-\lambda)$, and let $\bar v=\lambda+v$. The constant $C$
+constructed below is at least one. If $\eta\ge\rho$, the claim follows from
+$Q_{\gamma_*}(v)\le1=\min\{1,(\eta/\rho)^{1/6}\}$. If $\eta=0$, every
+$\eta'\in(0,\rho)$ is also a trial budget for $\gamma_*$; we apply the
+argument below for positive budgets to $\eta'$ and let $\eta'\downarrow0$. We
+may therefore assume that $0<\eta<\rho$, and we write
+$\varepsilon=\eta/\rho\in(0,1)$.
+
+We set $q=\min\{Q_{\gamma_*}(v),T_1\}$. Then $Q_{\gamma_*}(v)\le q/T_1$:
+if $Q_{\gamma_*}(v)\le T_1$, then $q=Q_{\gamma_*}(v)$ and $T_1\le1$; otherwise
+$q=T_1$ and $Q_{\gamma_*}(v)\le1=q/T_1$. It suffices to bound $q$.
+If $q\le16\bar v/k_0$, then $Q_{\gamma_*}(v)\le16\bar v/(k_0T_1)$, which is of
+the required form. Suppose instead that
+\begin{equation}\label{eq:lz-q-large}
+ q>16\bar v/k_0 .
+\end{equation}
+
+\paragraph{Step 2: Regularization below $q$.}
+Let $m=\nu_{\gamma_*}([0,q))$. For every $x<q$, we have $x<Q_{\gamma_*}(v)$,
+and the definition of the quantile gives $\nu_{\gamma_*}([0,x])<v$. Since the
+interval $[0,q)$ is the increasing union of the intervals $[0,x]$, $x<q$,
+continuity from below implies that $m\le v$. An atom of $\nu_{\gamma_*}$ at $q$ is not counted
+in $m$: it is not moved by the regularization below, and it lies outside the
+closure of the interval of Step 3.
+
+We take
+\[
+ h=\min\{q/8,\sqrt{\varepsilon/m}\}\quad\text{if }m>0,
+ \qquad h=q/8\quad\text{if }m=0 .
+\]
+Then $h\le q/8$ and $mh^2\le\varepsilon$, and $h\le1-q$ because $q\le
+T_1\le T_0\le1/4$. Let $\bar\gamma$ be the partial regularization of
+\cref{lem:loc-smoothing}(a) with $T=q$. By that lemma, we have
+$F_\rho(\bar\gamma)-F_\rho(\gamma_*)\le\rho mh^2/12\le\eta/12$, and the
+restriction of $\dd\bar\gamma$ to $(0,q)$ has density at most $m/h$. For
+$0\le x<q$, the free mass of $\bar\gamma$ in $[0,x]$ comes from the moved
+mass. Using \eqref{eq:lz-q-large} in the last step, we find that
+\[
+ \bar\gamma(x)\le\lambda+m\le\bar v<\frac{k_0q}{16}
+ \qquad(0\le x<q).
+\]
+
+\paragraph{Step 3: The middle interval.}
+Let $I=(q/4,3q/4)$. For $x\in I$, \eqref{eq:lz-gsroot} and
+\eqref{eq:lz-q-large} give $\gamma_\beta(x)\ge k_0x>k_0q/4>4\bar v\ge\lambda$,
+which implies that $\gamma^{\rm tr}=\gamma_\beta$ on $I$. Using
+$I\subset(0,T_1]$, \cref{lem:lz-rootdensity}, and the density bound for
+$\dd\gamma^{\rm tr}$ on $(0,T_0]$ stated after \eqref{eq:lz-gsroot}, we find
+that
+\[
+ \frac{k_0}2\dd x\le\dd\gamma^{\rm tr}\le C_0\dd x\quad\text{on }I .
+\]
+By Step 2, we also have $\dd\bar\gamma\le(m/h)\dd x$ on $I$ and
+\[
+ \gamma^{\rm tr}-\bar\gamma>\frac{k_0q}4-\frac{k_0q}{16}\ge\frac{k_0q}8
+ \quad\text{on }I .
+\]
+
+\paragraph{Step 4: The certificate.}
+We apply \cref{lem:lz-certificate} with the interval
+$I=(q/4,3q/4)\Subset(0,1)$, the endpoints $\gamma_0=\bar\gamma$ and
+$\gamma_1=\gamma^{\rm tr}$, and the parameters
+\[
+ \ell=\frac q2,\qquad A=\frac{k_0q}8,\qquad k=\frac{k_0}2,
+ \qquad d_0=\frac mh,\qquad d_1=C_0 .
+\]
+Both endpoints have excess at most $\eta$ over $\min F_\rho=F_\rho(\gamma_*)$:
+for $\bar\gamma$ by Step 2, and for $\gamma^{\rm tr}$ by
+\eqref{eq:loc-trialbudget}. The four entries of the minimum in
+\eqref{eq:lz-certificate} are
+\[
+ \begin{gathered}
+ k\ell^3=\frac{k_0q^3}{16},\qquad A\ell^2=\frac{k_0q^3}{32},\qquad
+ A^2\ell^4=\frac{k_0^2q^6}{1024},\\
+ \frac{A^2\ell^2}{d_0+d_1+k}=\frac{k_0^2q^4}{256(m/h+C_0+k_0/2)}.
+ \end{gathered}
+\]
+Since $q\le1$, the first two entries are at least $k_0q^6/32$. With
+$c'=c_{\rm cert}\min\{k_0/32,k_0^2/1024\}$, we find
+\begin{equation}\label{eq:lz-balance}
+ \varepsilon\ge c'\min\Bigl\{q^6,\frac{q^4}{m/h+C_0+k_0/2}\Bigr\}.
+\end{equation}
+
+\paragraph{Step 5: Conclusion.}
+If the minimum in \eqref{eq:lz-balance} is $q^6$, then
+$q\le(\varepsilon/c')^{1/6}$. Otherwise, we have
+$q^4\le\varepsilon(m/h+C_0+k_0/2)/c'$. By the choice of $h$, we have
+\[
+ \frac mh=\max\Bigl\{\frac{8m}q,\varepsilon^{-1/2}m^{3/2}\Bigr\}
+ \le\frac{8m}q+\varepsilon^{-1/2}m^{3/2}
+\]
+if $m>0$, and $m/h=0$ if $m=0$. Using $m\le v\le\bar v$
+and \eqref{eq:lz-q-large}, we have $8m/q<k_0/2$. When the minimum is the second entry, we therefore
+obtain
+\[
+ q^4\le\frac{(C_0+k_0)\varepsilon+\varepsilon^{1/2}m^{3/2}}{c'},
+ \qquad
+ q\le(c')^{-1/4}\bigl((C_0+k_0)^{1/4}\varepsilon^{1/4}
+                           +\varepsilon^{1/8}m^{3/8}\bigr),
+\]
+where we used $(x+y)^{1/4}\le x^{1/4}+y^{1/4}$ for $x,y\ge0$. By Young's
+inequality with exponents $8/5$ and $8/3$, we have
+\[
+ \varepsilon^{1/8}m^{3/8}
+ \le\tfrac58\varepsilon^{1/5}+\tfrac38m
+ \le\varepsilon^{1/6}+m,
+\]
+where in the last inequality we used that $0<\varepsilon<1$. Together with
+$\varepsilon^{1/4}\le\varepsilon^{1/6}$ and $m\le\bar v$, this shows that
+$q\le(c')^{-1/4}((C_0+k_0)^{1/4}+1)(\bar v+\varepsilon^{1/6})$. Combining the
+three cases (Step 1, and the two cases of \eqref{eq:lz-balance}), we conclude
+that
+\[
+ q\le C_1(\bar v+\varepsilon^{1/6}),\qquad
+ C_1=\max\bigl\{16/k_0,(c')^{-1/6},(c')^{-1/4}((C_0+k_0)^{1/4}+1)\bigr\}.
+\]
+Recalling that $Q_{\gamma_*}(v)\le q/T_1$ and that
+$\varepsilon^{1/6}=\min\{1,(\eta/\rho)^{1/6}\}$ for $\eta<\rho$, we obtain
+\eqref{eq:lz-quantile} with $C=\max\{1,C_1/T_1\}$. This constant depends only
+on $\beta$ (through $c_{\rm cert}$), $k_0$, $C_0$, and $T_1$.
+\end{proof}
+
+We comment on the exponent $1/6$ in \eqref{eq:lz-quantile}. In the setting of
+the proof above, the variation in the proof of \cref{lem:lz-certificate}
+moves mass toward the middle of $I$ at a cost of at most $\rho\tau/2$, which
+is of order $\eta/q$, and the excesses at the endpoints of the perturbed
+segment are at most of order $\eta/q$. The response integrated against the
+bump is at least $4\ell/15=2q/15$. By \eqref{eq:lz-certificate-curvature}, the
+second derivative along the perturbed segment is bounded below by a multiple
+of $\rho\min\{q^5,q^3/\bar d\}$, where $\bar d$ is the density bound in the
+proof of \cref{lem:lz-certificate}. Comparing this lower bound with the excesses at the endpoints, we obtain
+$\eta/\rho\gtrsim_\beta\min\{q^6,q^4/\bar d\}$, which leads to
+\eqref{eq:lz-balance}. Its first alternative gives the exponent $1/6$. In the
+other alternative, the choice of the width $h$ controls the density $m/h$
+without losing the linear dependence of the bound on $v$.
+
+\begin{corollary}[Quantile bound in probability normalization]
+\label{cor:lz-omega}
+Let $N\ge1$, $0<\rho\le1$, and $0<\lambda\le\lambda_0$, and let
+$s=\lambda/\beta$. Let $\mu=s\delta_0+\nu$ be a minimizer of
+$\calF_{1-\rho,s}$ in \eqref{eq:fnd-functional}, so that
+$\gamma_*=\beta\mu([0,\cdot])$ minimizes $F_\rho$, and let $\eta\ge0$ be a
+trial budget for $\gamma_*$. Let
+\[
+ Q(v)=\inf\{q\in[0,1]:\nu([0,q])\ge v\}\qquad(0<v<1-s)
+\]
+be the quantile function \eqref{eq:fnd-quantile} of $\nu$, and define
+\begin{equation}\label{eq:lz-omega}
+ \omega(\rho,\eta)=\min\{1,(\eta/\rho)^{1/6}\}.
+\end{equation}
+Then, with $C_Q=\max\{1,\beta C\}$ and $C$ the constant of
+\cref{prop:lz-quantile},
+\begin{equation}\label{eq:lz-Q}
+ Q(v)\le C_Q\bigl(s+v+\omega(\rho,\eta)\bigr)
+ \qquad(0<v<1-s).
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+The free measure of $\gamma_*$ is $\nu_{\gamma_*}=\beta\nu$, and
+$\nu_{\gamma_*}([0,q])\ge\beta v$ if and only if $\nu([0,q])\ge v$. Hence
+$Q(v)=Q_{\gamma_*}(\beta v)$, and $0<\beta v<\beta-\lambda$ for
+$0<v<1-s$. By
+\cref{prop:lz-quantile} and $\lambda=\beta s$, we have
+\[
+ Q(v)\le C\bigl[\beta(s+v)+\omega(\rho,\eta)\bigr]\le\beta C\bigl(s+v+\omega(\rho,\eta)\bigr),
+\]
+where we used $\beta>1$. We obtain \eqref{eq:lz-Q}, because $\beta C\le C_Q$.
+\end{proof}

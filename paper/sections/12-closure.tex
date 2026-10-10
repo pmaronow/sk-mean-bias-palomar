@@ -1,0 +1,589 @@
+\chapter{Closing the cavity inequality}\label{sec:c7-closure}
+
+In this section, we complete the cavity argument of
+\cref{sec:c7,sec:c7-endpoint}. The main result is
+\cref{prop:c7-closure}: if the scalar response operator at a minimizing
+profile satisfies $J^{\scal}_{a,d}\preceq(1+\eps_N)I$ with
+$0\le\eps_N\le\rho/4$, then the self-overlap variance satisfies
+$(3\rho/4)V\le C_{\rm cav}[N^{-1}+A+J+H_3]$. In \cref{cor:c7-defect},
+we absorb the cubic moment $H_3$ and bound the defect $\calD_N(\rho)$ by
+$C_\beta\log^2(2+N)/(N\lambda\rho^2)$ for $1/N\le\rho\le1$, wherever
+the defect is defined and some minimizer satisfies the stability
+assumption. In \cref{sec:b7}, we use this corollary to bound the contribution of
+the stable interval in the proof of \cref{thm:main}, and we verify the
+stability assumption there with \cref{prop:lz-stability}.
+
+We rely on the following earlier results. \Cref{sec:c7}
+provides the laws of finitely many descendants with
+\cref{lem:streaming}, the comparison of nonnegative observables in
+\cref{cor:comparison}, the three-defect bound of
+\cref{lem:cav-threeproducts}, and the Taylor remainder of
+\cref{lem:remainder}. \Cref{sec:c7-endpoint} provides the integrated
+linear response of \cref{lem:linear} and the signed response estimate
+of \cref{lem:cl-response}, and \cref{lem:Jdom} states that
+$J^{\scal}_{a,d}$ is bounded and self-adjoint. We also use the contact
+identities
+\eqref{eq:in-contact}, the conditional decomposition in the proof of
+\cref{lem:fnd-decomp}, the trace bound \eqref{eq:in-Lvar}, the bound on
+$J$ in \cref{prop:th-j}, the cubic moment bound of \cref{cor:wi-cub},
+and the defect identity \eqref{eq:in-envelope}.
+
+\paragraph{Standing assumptions and notation.} We keep the setting of
+\cref{sec:c7}: $N\ge2$, $n=N-1$, $0<\rho\le1$, $t=1-\rho$,
+$c=\beta^2\rho$, and $0<s=\lambda/\beta\le1/2$. The parameters $\alpha$, $d$, and
+$b(u)$ are given by \eqref{eq:cavityparameters}. The profile
+$\mu=s\delta_0+\nu$ is deterministic, with cumulative function $a$, and
+each statement says whether $\mu$ must minimize $\mathcal F_{t,s}$ or
+satisfy $\nu(\{1\})=0$. Constants $C_\beta$ depend only on $\beta$; they
+do not depend on $N$, $\rho$, $s$, the profile, or the positions and
+masses of its atoms.
+
+We write $\E_1$, $\Var_1$, and $\Cov_1$ for expectation, variance, and
+covariance under $\Pp_u$ at $u=1$. Recall from \cref{subsec:c7-row}
+that $\Pp_1$ is the tilted law of \cref{subsec:fnd-law} for the full
+system, so that $\E_1=\E$. At $u=0$, we write $\E^-$ and $\Var^-$ for
+the rest system, as in \cref{sec:c7-endpoint}. We also recall the rest
+self-overlap $A^-_p=|M_p|^2/n$, the conditional magnetization
+$m_N(p)$ of the last spin, the descendant laws $\E_{k,q,u}$, the overlap
+defects $\Delta_{\mathsf{ab}}$ and $D_{\mathsf{ab}}$ of
+\eqref{eq:defectdefinition}, and the integrated third moment
+$\mathcal M_3(u)$ of \eqref{eq:cav-M3}. In \cref{subsec:c7-three}, we
+defined the covariance
+$\mathcal C_{pp}(u)=\Cov_u(m_N(p)^2,A^-_p)$ and its Taylor remainder
+$\mathcal R_{\rm cav}$. In \cref{subsec:c7-linear}, we defined the
+covariance $\Sigma^-$ of the rest self-overlap, the centered rest
+self-overlap $\bar A^-_p$, the error terms $T_p$ of
+\eqref{eq:cav-T1}--\eqref{eq:cav-T3}, and the quantity $\mathcal P$ of
+\eqref{eq:Ppositive}. \Cref{lem:linear} uses the rest variance
+$V^-=\int\Var^-(A^-_p)\,\nu(\dd p)$ and shows that $\mathcal P\ge0$.
+
+\paragraph{Exchangeability.} The tilted law of \cref{subsec:fnd-law} is
+invariant under a simultaneous permutation of the $N$ coordinates of
+the couplings, the auxiliary field, and the terminal spin. Indeed, let
+$\pi$ be a permutation of $\{1,\dots,N\}$, and let $W^\pi$ and $x^\pi$
+denote the matrix and the vector with permuted coordinates. The
+reference law of $W$ is invariant under $W\mapsto W^\pi$, and since the
+terminal condition in \eqref{eq:fnd-vector-pde} and the Laplacian are
+invariant, uniqueness gives $U(q,x^\pi;W^\pi)=U(q,x;W)$. The tilt, the
+drift in \eqref{eq:fnd-diffusion}, and the Gibbs law of the terminal
+spin transform accordingly. In particular, the vector $(m_1(p),\dots,m_N(p))$ of the
+conditional magnetizations $m_i(p)=\E[\sigma_i\mid\calG_p]$ is
+exchangeable. As $S_p=N^{-1}\sum_im_i(p)^2$ is a symmetric function of
+this vector, the pairs $(S_p,m_i(p)^2)$, $1\le i\le N$, all have the
+same law. For every deterministic profile and every $p\in[0,1]$, this
+implies that
+\begin{equation}\label{eq:c7-exchange}
+ \E_1m_N(p)^2=\E S_p,\qquad
+ \Cov_1\bigl(S_p,m_N(p)^2\bigr)
+ =\frac1N\sum_{i=1}^N\Cov\bigl(S_p,m_i(p)^2\bigr)
+ =\Var(S_p).
+\end{equation}
+At $u=1$, the vector $M_p$ consists of the first $n$ coordinates of
+$m_p$, and we have
+\begin{equation}\label{eq:c7-site-split}
+ NS_p=m_N(p)^2+nA^-_p .
+\end{equation}
+Exchangeability of the sites is used in the same way in the cavity
+method of \cite[Section~1.6]{TalagrandVolI2011}.
+
+\section{The mechanism of the contraction}\label{sec:c7-mechanism}
+
+Before giving the proofs, we explain how the inequality closes. In
+\cref{lem:cav-trace} below, we prove the identity
+\[
+ V=\frac{V^{\rm site}}N+\frac nN\Bigl[
+ \frac\alpha d\Tr_\nu(J^{\scal}_{a,d}\Sigma^-)
+ -\frac\alpha2\mathcal P+\alpha\int T_p\,\nu(\dd p)
+ +\mathcal R_{\rm cav}\Bigr],
+\]
+where $0\le V^{\rm site}\le1/4$. The rest variance $V^-=\Tr\Sigma^-$
+enters this identity through the trace pairing
+$\Tr_\nu(J^{\scal}_{a,d}\Sigma^-)$. The other terms in the
+bracket are either nonpositive, as $-\alpha\mathcal P/2$ is, or errors
+controlled by $A$, $J$, $H_3$, and $N^{-1}$
+(\cref{lem:cl-response,lem:remainder,lem:c7-thermal}). Under the
+stability assumption $J^{\scal}_{a,d}\preceq(1+\eps_N)I$, the first term in
+the bracket
+is at most $(\alpha/d)(1+\eps_N)V^-$.
+
+The contraction comes from the factor $\alpha/d$. We consider two
+descendants $\mathsf a,\mathsf b$ that split at the level
+$q_{\mathsf{ab}}$, and fix their rest spins
+$\tau^{\mathsf a},\tau^{\mathsf b}$. Under the reference Gaussian law,
+the fields acting on $\epsilon_{\mathsf a}$ and $\epsilon_{\mathsf b}$
+are the incident row plus the last coordinate of the auxiliary field.
+The row contributes covariance $(\alpha u/n)\,\tau^{\mathsf a}\cdot
+\tau^{\mathsf b}=\alpha uR^-_{\mathsf{ab}}$, and the last field
+contributes $b(u)q_{\mathsf{ab}}$. The total covariance is
+\[
+ b(u)q_{\mathsf{ab}}+\alpha uR^-_{\mathsf{ab}}
+ =d\,q_{\mathsf{ab}}+\alpha u\,(R^-_{\mathsf{ab}}-q_{\mathsf{ab}}).
+\]
+Only the part $\alpha u(R^-_{\mathsf{ab}}-q_{\mathsf{ab}})$ depends on
+the fluctuations of the rest overlap. Its coefficient $\alpha u$ is at
+most $\alpha$, while the coefficient of $q_{\mathsf{ab}}$ is $d$. By
+\eqref{eq:cavityparameters}, the ratio of the two satisfies
+\begin{equation}\label{eq:c7-alpha-d}
+ \frac\alpha d=\frac{\beta^2tn/N}{\beta^2(N-t)/N}
+ =t\,\frac{N-1}{N-t}\le t=1-\rho .
+\end{equation}
+The remaining part of the field has deterministic covariance; at
+$u=1$, the last field has variance coefficient $b(1)=c=\beta^2\rho$.
+Inserting this bound on the first term into the identity above, we
+find $V\le t(1+\eps_N)V^-+{}$errors.
+
+To close the inequality, we must compare $V^-$ with $V$, and the
+comparison must have coefficient exactly one. Indeed, suppose that we
+only knew $V^-\le KV+{}$errors for a constant $K>1$, which is the kind
+of bound that a comparison of the two endpoints through
+\cref{cor:comparison} gives, with $K=K_{\beta,k}$. We would then have
+$V\le tK(1+\eps_N)V+{}$errors, which bounds $V$ only if
+$tK(1+\eps_N)<1$. This fails whenever $\rho\le1-1/K$. With coefficient
+one, \cref{lem:cl-star} implies that $V^-\le V+{}$errors, and hence
+$V\le(1-\rho)(1+\eps_N)V+{}$errors. As
+$(1-\rho)(1+\rho/4)\le1-3\rho/4$, a margin of order $\rho$ remains once
+$\eps_N\le\rho/4$.
+
+The comparison with coefficient one has two parts. At the independent
+endpoint $u=0$, the rest variance is at most the second moment
+$\E^-(A^-_p-p)^2$, which is the mean of a product of two overlap defects
+on four descendants that split at $p$. The $u$-derivative of this mean
+consists of terms with three overlap defects, and
+\cref{lem:cav-threeproducts} bounds them by the third moment
+$\mathcal M_3$. At the full endpoint $u=1$, exchangeability and the
+contact identity $\E S_p=p$ show that the value of this mean is
+$\Var(S_p)$, up to an error $1/(4n^2)$. Finally, \cref{lem:c7-thermal}
+bounds $\mathcal M_3$ by $A$, $J$, $H_3$, and $N^{-3}$, and
+\cref{cor:wi-cub} bounds $H_3$ by a small multiple of $V$ plus a
+thermal term.
+
+The rest of this section carries out this plan. In
+\cref{sec:c7-coefficient-one}, we prove \cref{lem:cl-star} and the
+trace identity of \cref{lem:cav-trace}. In \cref{sec:c7-third-moment},
+we bound $\mathcal M_3$ in \cref{lem:c7-thermal}. In
+\cref{sec:c7-closing}, we prove \cref{prop:c7-closure} and
+\cref{cor:c7-defect}.
+
+\section{Comparison with coefficient one and the trace identity}
+\label{sec:c7-coefficient-one}
+
+\begin{lemma}[Four-descendant variance comparison]\label{lem:cl-star}
+Let $\mu=s\delta_0+\nu$ minimize $\mathcal F_{t,s}$. Then
+\begin{equation}\label{eq:cl-star}
+ V^-\le V+C_\beta\sup_{0\le u\le1}\mathcal M_3(u)+\frac1{4n^2}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For each level $p$, we represent $\E_u(A^-_p-p)^2$ as the mean of a
+product of two overlap defects on four descendants. The proof has two
+steps. In the first step, we compare the values of this mean at $u=0$
+and $u=1$ using \cref{lem:streaming,lem:cav-threeproducts}. In the
+second step, we evaluate it at $u=1$ using exchangeability and the
+contact identity. Only the second step uses that $\mu$ is a minimizer.
+
+\paragraph{Step 1: The interpolation.} Fix $p\in[0,1]$ and consider
+four descendants that split at $p$. Each of the pairs $(1,2)$ and
+$(3,4)$ splits at $p$, and we have $\Delta_{12}=R^-_{12}-p$ and
+$\Delta_{34}=R^-_{34}-p$. We set
+\[
+ F_p=\Delta_{12}\Delta_{34}=(R^-_{12}-p)(R^-_{34}-p).
+\]
+Given $\calG_p$, the four spins are conditionally independent, each
+with the conditional law of $\sigma$ given $\calG_p$ under $\Pp_u$. In
+particular, $\E_{4,p,u}[R^-_{12}\mid\calG_p]=|M_p|^2/n=A^-_p$, and the
+same holds for $R^-_{34}$. As the two pairs are conditionally
+independent given $\calG_p$, we have
+$\E_{4,p,u}[F_p\mid\calG_p]=(A^-_p-p)^2$. We define
+\[
+ \mathcal V_p(u)=\E_{4,p,u}F_p=\E_u(A^-_p-p)^2,\qquad
+ \mathcal V(u)=\int\mathcal V_p(u)\,\nu(\dd p).
+\]
+
+Since $|F_p|\le4$, \cref{lem:streaming} implies that
+$\mathcal V_p\in C^2([0,1])$, with $\mathcal V_p'(u)$ given by
+\eqref{eq:streaming}. The right side of \eqref{eq:streaming} is
+$\alpha/2$ times a signed combination of terms of two kinds. A term of
+the first kind is the expectation, under a tree that extends the four
+descendants, of $F_p$ times one further overlap defect and a spin factor
+$\epsilon_{\mathsf x}\epsilon_{\mathsf y}$ of modulus one. The term of
+the second kind is $s\,\mathcal V_p(u)\int\E_{2,r,u}D_{12}\,\nu(\dd r)$,
+the product of $\mathcal V_p(u)$ with an expectation over an independent
+pair of descendants. Each term contains three overlap defects, two of
+which come from $F_p$. The absolute values of the coefficients, together
+with $\nu(\dd p)$, form a mark measure of the kind considered in
+\cref{subsec:c7-three}. Using \cref{lem:cav-threeproducts}, with four
+initial leaves and one differentiation, and $\alpha\le\beta^2$, we find
+\begin{equation}\label{eq:cl-star-derivative}
+ \int|\mathcal V_p'(u)|\,\nu(\dd p)\le C_\beta\mathcal M_3(u)
+ \qquad(0\le u\le1).
+\end{equation}
+
+For each $p$, we have
+$\mathcal V_p(0)=\mathcal V_p(1)-\int_0^1\mathcal V_p'(u)\dd u$. At
+fixed $N$, the derivative $\mathcal V_p'(u)$ is bounded uniformly in $p$
+and $u$, because every term in \eqref{eq:streaming} is. We integrate
+the identity against $\nu(\dd p)$, bound
+$|\int_0^1\mathcal V_p'(u)\dd u|$ by $\int_0^1|\mathcal V_p'(u)|\dd u$,
+and exchange the integrals in $p$ and $u$ by Tonelli's theorem. Using
+\eqref{eq:cl-star-derivative}, we conclude that
+\begin{equation}\label{eq:cl-star-step1}
+ \mathcal V(0)\le\mathcal V(1)+C_\beta\sup_{0\le u\le1}\mathcal M_3(u).
+\end{equation}
+At $u=0$, the variance of $A^-_p$ under the rest law is at most its
+second moment about $p$, which gives $V^-\le\mathcal V(0)$. Note that
+this bound does not require $\E^-A^-_p=p$. We do not know whether this
+identity holds, because the profile $\mu$ need not minimize the functional of
+the rest system.
+
+\paragraph{Step 2: The full endpoint.} We write
+$f^{\rm site}_p=m_N(p)^2$. By \eqref{eq:c7-site-split}, we have
+$nA^-_p=NS_p-f^{\rm site}_p$. Let $p\in\supp\nu$. By \eqref{eq:c7-exchange}
+and the contact identity $\E S_p=p$ of \eqref{eq:in-contact}, we have
+$\E_1f^{\rm site}_p=p$, and hence $\E_1A^-_p=(Np-p)/n=p$. Using
+\eqref{eq:c7-exchange} again, we find
+\[
+\begin{aligned}
+ \Var_1(A^-_p)
+ &=\frac{N^2\Var(S_p)-2N\Cov_1(S_p,f^{\rm site}_p)
+         +\Var_1(f^{\rm site}_p)}{n^2}\\
+ &=\frac{N^2-2N}{n^2}\Var(S_p)+\frac{\Var_1(f^{\rm site}_p)}{n^2}
+ \le\Var(S_p)+\frac1{4n^2}.
+\end{aligned}
+\]
+In the last step, we used $N^2-2N=n^2-1$ and
+$\Var_1(f^{\rm site}_p)\le1/4$, which holds because
+$0\le f^{\rm site}_p\le1$. As $\E_1A^-_p=p$, the left side equals
+$\mathcal V_p(1)$. Integrating against $\nu$, which is carried by
+$\supp\nu$ and has mass at most one, we find
+$\mathcal V(1)\le V+1/(4n^2)$. Together with \eqref{eq:cl-star-step1}
+and $V^-\le\mathcal V(0)$, this proves \eqref{eq:cl-star}.
+\end{proof}
+
+The next lemma expresses $V$ itself through the cavity interpolation.
+It uses exchangeability but not the minimizing property.
+
+\begin{lemma}[Trace identity for the full variance]\label{lem:cav-trace}
+Let the profile be deterministic with $\nu(\{1\})=0$, and let
+\[
+ V^{\rm site}=\int\Var_1\bigl(m_N(p)^2\bigr)\,\nu(\dd p).
+\]
+Then $0\le V^{\rm site}\le1/4$ and
+\begin{equation}\label{eq:finaltrace}
+ V=\frac{V^{\rm site}}N+\frac nN\Bigl[
+ \frac\alpha d\Tr_\nu(J^{\scal}_{a,d}\Sigma^-)
+ -\frac\alpha2\mathcal P+\alpha\int T_p\,\nu(\dd p)
+ +\mathcal R_{\rm cav}\Bigr].
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Each variance in the definition of $V^{\rm site}$ lies in $[0,1/4]$,
+because $0\le m_N(p)^2\le1$, and $\nu([0,1])\le1$; this proves the bounds
+on $V^{\rm site}$.
+
+Fix $p\in[0,1]$. By \eqref{eq:c7-exchange} and \eqref{eq:c7-site-split},
+we have
+\begin{equation}\label{eq:c7-trace-site}
+ \Var(S_p)=\Cov_1\bigl(S_p,m_N(p)^2\bigr)
+ =\frac1N\Var_1\bigl(m_N(p)^2\bigr)+\frac nN\,\mathcal C_{pp}(1).
+\end{equation}
+At $u=0$, the law $\Pp_0$ is the product of the law of the rest system
+and the scalar law. The variable $m_N(p)$ depends only on the scalar
+component and $A^-_p$ only on the rest component; hence
+$\mathcal C_{pp}(0)=0$. Recall from \cref{subsec:c7-three} that
+$\mathcal C_{pp}\in C^2([0,1])$. By Taylor's formula with integral
+remainder, we have
+\[
+ \mathcal C_{pp}(1)=\mathcal C_{pp}'(0)
+ +\int_0^1(1-u)\,\mathcal C_{pp}''(u)\dd u .
+\]
+At fixed $N$, all terms in this identity are bounded uniformly in $p$,
+and we may integrate it against $\nu(\dd p)$. The integral of the
+remainder is $\mathcal R_{\rm cav}$ by definition. As $\nu(\{1\})=0$,
+\cref{lem:linear} applies, and \eqref{eq:lineartrace} gives the integral
+of $\mathcal C_{pp}'(0)$. Integrating \eqref{eq:c7-trace-site} against
+$\nu(\dd p)$, recalling that $V=\int\Var(S_p)\,\nu(\dd p)$, and inserting
+these two integrals, we obtain \eqref{eq:finaltrace}.
+\end{proof}
+
+\section{The third moment of the rest overlap}\label{sec:c7-third-moment}
+
+The remaining input to \cref{lem:remainder} and \cref{lem:cl-star} is
+the integrated third moment $\mathcal M_3$ of the rest overlap defect.
+We bound it by the thermal quantities $A$ and $J$ and the cubic moment
+$H_3$ of the full system.
+
+\begin{lemma}[Third moment of the rest overlap]\label{lem:c7-thermal}
+For every deterministic profile,
+\[
+ \sup_{0\le u\le1}\mathcal M_3(u)
+ \le K_{\beta,2}\bigl[64(A+J)+16H_3+32N^{-3}\bigr],
+\]
+where $K_{\beta,2}=e^{21\beta^2}$ is the constant of
+\cref{cor:comparison} for two leaves, and $A$, $J$, and $H_3$ are
+computed for the full system with the same profile.
+\end{lemma}
+
+\begin{proof}
+The proof has three steps: an exact formula for the conditional second
+moment of $R_q-S_q$ in the full system, the passage from the full
+overlap to the rest overlap at $u=1$, and the comparison along the
+interpolation.
+
+\paragraph{Step 1: The full overlap.} Fix $q\in[0,1]$, and let
+$\sigma^1,\sigma^2$ be conditionally independent given $\calG_q$, each
+with the conditional law of $\sigma$, so that
+$R_q=\sigma^1\cdot\sigma^2/N$. With $\delta^{\mathsf a}=\sigma^{\mathsf
+a}-m_q$, we have
+\[
+ R_q-S_q=\frac{\delta^1\cdot\delta^2+m_q\cdot\delta^1+m_q\cdot\delta^2}N.
+\]
+Given $\calG_q$, the vectors $\delta^1$ and $\delta^2$ are independent
+and centered, with covariance $C_q$. The three summands are pairwise
+orthogonal in conditional $L^2$; for instance,
+$\E[(\delta^1\cdot\delta^2)(m_q\cdot\delta^1)\mid\calG_q]=0$, because
+$\delta^2$ is centered and independent of $\delta^1$. We find
+\[
+ \E\bigl[(R_q-S_q)^2\bigm|\calG_q\bigr]
+ =\frac{\Tr C_q^2+2m_q^TC_qm_q}{N^2}.
+\]
+This is the conditional orthogonality in the proof of
+\cref{lem:fnd-decomp} (see also \cite[Section~2.5, before (2.17)]{AL});
+it does not use the contact identity and holds for every deterministic
+profile. Taking expectations, we have
+$\E(R_q-S_q)^2=a^{\rm th}_q+2j_q$. As $|R_q|\le1$ and $0\le S_q\le1$, we
+have $|R_q-S_q|\le2$ and hence $|R_q-S_q|^3\le2(R_q-S_q)^2$. Integrating
+against $\nu$, we conclude that
+\begin{equation}\label{eq:c7-thermal-full}
+ \int\E|R_q-S_q|^3\,\nu(\dd q)\le2(A+2J).
+\end{equation}
+
+\paragraph{Step 2: The rest overlap at $u=1$.} Since $\Pp_1$ is the full
+tilted law, two descendants that split at $q$ have, under
+$\E_{2,q,1}$, the joint law of the pair $(\sigma^1,\sigma^2)$ of
+Step~1. Their full and rest overlaps satisfy
+$NR_q=nR^-_{12}+\epsilon_1\epsilon_2$, which implies that
+\[
+ |R^-_{12}-R_q|=\frac{|R^-_{12}-\epsilon_1\epsilon_2|}N\le\frac2N .
+\]
+By the convexity of $x\mapsto|x|^3$, we have
+$|x+y|^3\le4(|x|^3+|y|^3)$. Applying this first to
+$(R^-_{12}-R_q)+(R_q-q)$ and then to $(R_q-S_q)+(S_q-q)$, we find
+\[
+ |R^-_{12}-q|^3\le32N^{-3}+16|R_q-S_q|^3+16|S_q-q|^3 .
+\]
+We take expectations and integrate against $\nu$, whose mass is at most
+one. Using \eqref{eq:c7-thermal-full} and
+$H_3=\int\E|S_q-q|^3\,\nu(\dd q)$, we obtain
+\[
+ \mathcal M_3(1)\le32N^{-3}+32A+64J+16H_3
+ \le64(A+J)+16H_3+32N^{-3}.
+\]
+
+\paragraph{Step 3: Comparison.} For each $q$, the function
+$|R^-_{12}-q|^3$ is nonnegative, bounded by $8$, and depends only on the
+spins of two leaves that split at $q$. By \cref{cor:comparison} with
+$k=2$, we have
+$\E_{2,q,u}|R^-_{12}-q|^3\le K_{\beta,2}\E_{2,q,1}|R^-_{12}-q|^3$ for
+every $u\in[0,1]$. Integrating in $q$ against $\nu$, we obtain
+$\mathcal M_3(u)\le K_{\beta,2}\mathcal M_3(1)$, and the lemma follows
+from Step~2.
+\end{proof}
+
+\section{Closing the variance inequality}\label{sec:c7-closing}
+
+We now combine the trace identity, the error bounds, and the comparison
+with coefficient one. The stability assumption below concerns the
+scalar response operator of \cref{sec:sc} with the cavity coefficient
+$d$ of \eqref{eq:cavityparameters}, acting on the scalar transport space
+$\mathcal H_\nu$ of the minimizing profile.
+
+\begin{proposition}[Self-overlap contraction]\label{prop:c7-closure}
+Let $N\ge2$, $0<\rho\le1$, and $0<s\le1/2$, and let $\mu=s\delta_0+\nu$
+minimize $\mathcal F_{t,s}$, with cumulative function $a$. Suppose that
+the scalar response with coefficient $d=\beta^2(1-t/N)$ satisfies
+\begin{equation}\label{eq:c7-stab}
+ J^{\scal}_{a,d}\preceq(1+\eps_N)I\ \text{ on }\mathcal H_\nu,
+ \qquad 0\le\eps_N\le\rho/4 .
+\end{equation}
+Then, with a constant $C_{\rm cav}$ depending only on $\beta$,
+\begin{equation}\label{eq:c7-C1}
+ \frac{3\rho}{4}\,V\le C_{\rm cav}\bigl[N^{-1}+A+J+H_3\bigr].
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The proof has three steps. We first collect the bounds on the error
+terms in \eqref{eq:finaltrace} and on $V^-$. We then bound the trace
+pairing using \eqref{eq:c7-stab}. Finally, we insert the comparison
+\eqref{eq:cl-star} into \eqref{eq:finaltrace} and absorb the resulting
+multiple of $V$.
+
+\paragraph{Step 1: The errors.} As $\mu$ is a minimizer,
+\eqref{eq:in-contact} implies that $\supp\nu\subset[0,1)$. Hence
+$\nu(\{1\})=0$, and \cref{lem:linear,lem:cl-response,lem:cav-trace}
+apply. Let
+\[
+ \mathfrak e=H_3+A+J+N^{-3}.
+\]
+We claim that
+\begin{equation}\label{eq:c7-errors}
+ \alpha\Bigl|\int T_p\,\nu(\dd p)\Bigr|\le C_\beta\bigl[A+J+N^{-2}\bigr],
+ \qquad
+ |\mathcal R_{\rm cav}|\le C_\beta\mathfrak e,
+ \qquad
+ V^-\le V+C_\beta\mathfrak e+\frac1{4n^2}.
+\end{equation}
+The first bound is \eqref{eq:cl-response-final}, with
+$C_\beta=192\beta^2K_{\beta,3}$. For the second, by \cref{lem:remainder}, we have
+$|\mathcal R_{\rm cav}|\le C_\beta\sup_w\mathcal M_3(w)$, and
+\cref{lem:c7-thermal} bounds this supremum by $64K_{\beta,2}\mathfrak e$.
+For the third, we insert the same bound on $\mathcal M_3$ into
+\eqref{eq:cl-star}.
+
+\paragraph{Step 2: The trace pairing.} Let $\bar A^-$ be the random
+function $p\mapsto\bar A^-_p$. By \cref{lem:linear}, the trace pairing is
+$\Tr_\nu(J^{\scal}_{a,d}\Sigma^-)=\E^-\langle\bar A^-,J^{\scal}_{a,d}\bar
+A^-\rangle_{L^2(\nu)}$. The function $\bar A^-$ lies in
+$\mathcal H_\nu$ for every realization, since $\bar A^-_0=0$ by
+\eqref{eq:c7-root-overlap} and $\nu(\{1\})=0$. By Fubini's theorem, we
+also have
+$\E^-\|\bar A^-\|^2_{L^2(\nu)}=\int\Var^-(A^-_p)\,\nu(\dd p)=V^-$. By \cref{lem:Jdom}, $J^{\scal}_{a,d}$ is a
+bounded self-adjoint operator on $\mathcal H_\nu$, and
+\eqref{eq:c7-stab} states that
+$\langle v,J^{\scal}_{a,d}v\rangle_{L^2(\nu)}\le(1+\eps_N)\|v\|^2_{L^2(\nu)}$
+for every $v\in\mathcal H_\nu$. Taking $v=\bar A^-$ and averaging over
+the rest system, we obtain
+\[
+ \Tr_\nu(J^{\scal}_{a,d}\Sigma^-)\le(1+\eps_N)V^-.
+\]
+Equivalently, we may test \eqref{eq:c7-stab} on the eigenvectors of
+$\Sigma^-$ with nonzero eigenvalues, which lie in $\mathcal H_\nu$. We multiply the last display
+by $\alpha/d$, which lies in $[0,t]$ by \eqref{eq:c7-alpha-d}. Using
+$(1+\eps_N)V^-\ge0$, we find
+\begin{equation}\label{eq:c7-trace-bound}
+ \frac\alpha d\Tr_\nu(J^{\scal}_{a,d}\Sigma^-)\le t(1+\eps_N)V^-,
+\end{equation}
+whatever the sign of the trace.
+
+\paragraph{Step 3: Absorption.} The term $-\alpha\mathcal P/2$ in
+\eqref{eq:finaltrace} is nonpositive, because $\mathcal P\ge0$ by
+\cref{lem:linear}. By \eqref{eq:c7-errors} and
+\eqref{eq:c7-trace-bound}, the bracket in \eqref{eq:finaltrace} is at
+most
+\[
+ t(1+\eps_N)V^-+C_\beta\bigl[A+J+N^{-2}+\mathfrak e\bigr],
+\]
+and this upper bound is nonnegative. As $0<n/N\le1$, the product of the
+bracket with $n/N$ is also at most this upper bound. Using $V^{\rm site}\le1/4$ in \eqref{eq:finaltrace},
+we have
+\[
+ V\le\frac1{4N}+t(1+\eps_N)V^-+C_\beta\bigl[A+J+N^{-2}+\mathfrak e\bigr].
+\]
+The stability assumption \eqref{eq:c7-stab} implies that
+\[
+ t(1+\eps_N)\le(1-\rho)\Bigl(1+\frac\rho4\Bigr)
+ =1-\frac{3\rho}4-\frac{\rho^2}4\le1-\frac{3\rho}4\le1 .
+\]
+Inserting the bound on $V^-$ from \eqref{eq:c7-errors}, using
+$t(1+\eps_N)V\le(1-3\rho/4)V$, and bounding $t(1+\eps_N)$ by one in the
+error terms, we obtain
+\[
+ V\le\Bigl(1-\frac{3\rho}4\Bigr)V+\frac1{4N}+\frac1{4n^2}
+ +C_\beta\bigl[A+J+N^{-2}+\mathfrak e\bigr].
+\]
+We move $(1-3\rho/4)V$ to the left side and note that each of
+$(4n^2)^{-1}$, $N^{-2}$, and $N^{-3}$ is at most $N^{-1}$; for the first,
+we used $n\ge N/2$. This proves \eqref{eq:c7-C1}, with a constant $C_{\rm cav}$
+depending only on $\beta$.
+\end{proof}
+
+By \cref{cor:wi-cub}, $H_3$ is at most an arbitrarily small multiple of
+$V$ plus a thermal term. Absorbing this multiple in \eqref{eq:c7-C1}, we
+obtain the bound on the defect that we use in \cref{sec:b7}.
+
+\begin{corollary}[Defect on the stable interval]\label{cor:c7-defect}
+Let $N\ge2$, $1/N\le\rho\le1$, and $0<s=\lambda/\beta\le1/2$.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item Every minimizer $\mu=s\delta_0+\nu$ of $\mathcal F_{t,s}$ at these
+parameters that satisfies \eqref{eq:c7-stab} for some $\eps_N$, with $a$
+its cumulative function, obeys
+\begin{equation}\label{eq:c7-defect}
+ \beta(A+2J+V)\le C_\beta\frac{\log^2(2+N)}{N\lambda\rho^2},
+\end{equation}
+where $A$, $J$, and $V$ are computed at $\mu$, and $C_\beta$ depends only
+on $\beta$.
+\item If the defect $\calD_N(\rho)$ is defined at $\rho$ by
+\eqref{eq:in-envelope} and some minimizer at $\rho$ satisfies
+\eqref{eq:c7-stab}, then $\calD_N(\rho)$ satisfies the bound
+\eqref{eq:c7-defect}.
+\item If $1/N\le\rho_0\le1$ and, for every $\rho\in[\rho_0,1]$, every
+minimizer at $\rho$ satisfies \eqref{eq:c7-stab}, then
+\begin{equation}\label{eq:c7-integrated}
+ \int_{\rho_0}^1\calD_N(\rho)\dd\rho
+ \le C_\beta\frac{\log^2(2+N)}{N\lambda\rho_0}.
+\end{equation}
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+We first prove (a). Fix $C_{\rm cav}$ from \eqref{eq:c7-C1}, and let
+$\kappa_\beta=\min\{1/4,(4C_{\rm cav})^{-1}\}$. As $\beta>1$ and
+$\rho\ge1/N$, the parameter $M=Nc=\beta^2N\rho$ satisfies
+$1<\beta^2\le M\le\beta^2N$, and $\kappa_\beta\rho\in(0,1/4]$. Hence the
+hypotheses of \cref{cor:wi-cub} hold with $z=\kappa_\beta\rho$, and
+\eqref{eq:wi-cub} gives
+\[
+ H_3\le\kappa_\beta\rho V
+   +\frac{425\log(2M)}{Ms}\log\frac2{\kappa_\beta\rho}.
+\]
+We insert this bound into \eqref{eq:c7-C1}. The resulting term
+$C_{\rm cav}\kappa_\beta\rho V$ is at most $\rho V/4$, and moving it to
+the left side leaves $(\rho/2)V$ there. We find
+\[
+ \rho V\le2C_{\rm cav}\Bigl[N^{-1}+A+J
+   +\frac{425\log(2M)}{Ms}\log\frac2{\kappa_\beta\rho}\Bigr].
+\]
+By \eqref{eq:in-Lvar} and \eqref{eq:th-J}, we have $A\le(Ms)^{-1}$ and
+$J\le341(1+\log_+M)^2/(Ms)$. As $1\le M\le\beta^2N$ and $\rho\ge1/N$, we
+also have
+\[
+ \log(2M)\le\log(2\beta^2)+\log N,\qquad
+ 1+\log_+M\le1+\log\beta^2+\log N,
+\]
+and $\log(2/(\kappa_\beta\rho))\le\log(2/\kappa_\beta)+\log N$. Each of
+these three quantities is at most $C_\beta\log(2+N)$, because
+$\log(2+N)\ge\log4>1$. Recalling that
+$Ms=\beta^2N\rho\cdot\lambda/\beta=\beta N\rho\lambda$, we find
+\[
+ \beta V\le\frac{C_\beta}{N\rho}
+   +\frac{C_\beta\log^2(2+N)}{N\lambda\rho^2},\qquad
+ \beta(A+2J)\le\frac{C_\beta\log^2(2+N)}{N\lambda\rho}.
+\]
+Finally, $\rho\le1$, $\lambda=\beta s\le\beta/2$, and $\log(2+N)\ge1$
+give
+\[
+ \frac1{N\rho}=\frac{\lambda\rho}{N\lambda\rho^2}
+ \le\frac\beta2\cdot\frac{\log^2(2+N)}{N\lambda\rho^2},
+ \qquad
+ \frac{\log^2(2+N)}{N\lambda\rho}\le\frac{\log^2(2+N)}{N\lambda\rho^2},
+\]
+which proves \eqref{eq:c7-defect}.
+
+For (b), recall from \eqref{eq:in-envelope} that, at every $\rho$ where
+$\calD_N(\rho)$ is defined, $\calD_N(\rho)=\beta(A+2J+V)$ for every
+minimizer at $\rho$. We evaluate the right side at a minimizer that
+satisfies \eqref{eq:c7-stab}, and (a) gives the bound for
+$\calD_N(\rho)$.
+
+For (c), recall from \cref{sec:fnd} that $\calD_N$ is a nonnegative
+measurable function defined at almost every level, and that a minimizer
+exists at every $\rho$. Under the hypothesis of (c), part (b) applies at
+almost every $\rho\in[\rho_0,1]$, and gives
+$\calD_N(\rho)\le C_\beta\log^2(2+N)/(N\lambda\rho^2)$ there. This bound
+holds at almost every level whichever minimizer is used, so no
+measurable choice of minimizers is needed to integrate it. As
+$\int_{\rho_0}^1\rho^{-2}\dd\rho=\rho_0^{-1}-1\le\rho_0^{-1}$,
+integrating yields \eqref{eq:c7-integrated}.
+\end{proof}

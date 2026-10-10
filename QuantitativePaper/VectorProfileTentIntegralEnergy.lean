@@ -1,0 +1,68 @@
+module
+public import QuantitativePaper.VectorProfileTentEnergyFields
+public import QuantitativePaper.ResponseCellIntegralCauchySchwarz
+public import QuantitativePaper.VectorProfileSecondVariationEnergy
+
+@[expose] public section
+
+/-! Actual finite-cell integral response energy bound. All endpoint
+integrability and pointwise matrix inequalities are proved model inputs. -/
+noncomputable section
+open Set MeasureTheory
+open scoped Topology BigOperators
+namespace QuantitativePaper
+open SpinGlass.Targets FourPapersCommon QuantitativeFollowup
+set_option maxHeartbeats 3200000
+set_option maxSynthPendingDepth 128
+set_option synthInstance.maxHeartbeats 300000
+variable {n k : ℕ}
+
+theorem vectorProfileTentCell_pointwise_energy_bound (hn : 0<n)
+    (s₀ s₁ : RSBScheme k) (β t outer θ : ℝ) (hβ : 0<β) (ht : t<1)
+    (hθ : θ∈Ioo (0:ℝ) 1) (ell : ℝ) (i : ℕ) (hi : i≤k+1)
+    (q : ℝ) (hq : q∈Ioo (s₀.q i) (s₀.q (i+1))) :
+    let e:=vectorProfileCellExpectation (n:=n) s₀ s₁ β t outer θ ht.le ⟨hθ.1.le,hθ.2.le⟩
+      (vectorProfileFieldSecondVariationSource s₀ s₁ β t i) q.toNNReal/(1-t)
+    let p:=vectorProfileTentCellPairing (n:=n) s₀ s₁ β t outer θ ht.le ⟨hθ.1.le,hθ.2.le⟩ ell i q
+    let x:=vectorProfileTentCellXiEnergy (n:=n) s₀ s₁ β t outer θ ht.le ⟨hθ.1.le,hθ.2.le⟩ ell i q
+    0≤e ∧ 0≤x ∧ p^2≤e*x := by
+  have hq0 : 0≤q:=(s₀.q_nonneg (by omega)).trans hq.1.le
+  have hqn : (q.toNNReal:ℝ)∈Ioo (s₀.q i) (s₀.q (i+1)):=by
+    simpa only [Real.coe_toNNReal _ hq0] using hq
+  have hpos:=vectorProfile_expected_Xi_energy_nonneg hn s₀ s₁ β t outer θ hβ ht i hi hθ
+    q.toNNReal hqn (responseTent ell q) (responseTentSlope ell q)
+  have hcs:=vectorProfile_expected_Xi_cauchy_schwarz hn s₀ s₁ β t outer θ hβ ht i hi hθ
+    q.toNNReal hqn (responseTent ell q) (responseTentSlope ell q)
+  refine ⟨div_nonneg ?_ (by linarith),?_,?_⟩
+  · exact integral_nonneg (fun sample=>mul_nonneg (by linarith : 0≤1-t)
+      (responseMatrixFrobeniusSquare_nonneg _))
+  · simpa only [vectorProfileTentCellXiEnergy,Real.coe_toNNReal _ hq0] using hpos
+  · simpa only [vectorProfileTentCellXiEnergy,vectorProfileTentCellPairing,Real.coe_toNNReal _ hq0] using hcs
+
+theorem vectorProfile_tent_integral_energy_bound (hn : 0<n)
+    (s₀ s₁ : RSBScheme k) (β t outer θ : ℝ) (hβ : 0<β) (ht : t<1)
+    (hθ : θ∈Ioo (0:ℝ) 1) (ell : ℝ) :
+    (∑i∈Finset.range (k+2),∫q in (s₀.q i)..(s₀.q (i+1)),
+      vectorProfileTentCellPairing (n:=n) s₀ s₁ β t outer θ ht.le ⟨hθ.1.le,hθ.2.le⟩ ell i q)^2≤
+      (vectorProfileSecondVariationTotalEnergy (n:=n) s₀ s₁ β t outer θ ht.le ⟨hθ.1.le,hθ.2.le⟩/(1-t))*
+      (∑i∈Finset.range (k+2),∫q in (s₀.q i)..(s₀.q (i+1)),
+        vectorProfileTentCellXiEnergy (n:=n) s₀ s₁ β t outer θ ht.le ⟨hθ.1.le,hθ.2.le⟩ ell i q) := by
+  let e:=fun (i : ℕ) (q : ℝ)=>vectorProfileCellExpectation (n:=n) s₀ s₁ β t outer θ ht.le
+    ⟨hθ.1.le,hθ.2.le⟩ (vectorProfileFieldSecondVariationSource s₀ s₁ β t i) q.toNNReal/(1-t)
+  have he (i : ℕ) (hi : i<k+2) : IntervalIntegrable (e i) volume (s₀.q i) (s₀.q (i+1)):=by
+    have hab:=s₀.q_mono i (by omega)
+    exact ((intervalIntegrable_iff_integrableOn_Ioc_of_le hab).mpr
+      (vectorProfile_second_variation_closed_source hn s₀ s₁ β t outer θ hβ ht i (by omega) hθ).1).div_const (1-t)
+  have hh:=response_cell_integral_cauchy_schwarz (k+2) s₀.q e
+    (vectorProfileTentCellPairing (n:=n) s₀ s₁ β t outer θ ht.le ⟨hθ.1.le,hθ.2.le⟩ ell)
+    (vectorProfileTentCellXiEnergy (n:=n) s₀ s₁ β t outer θ ht.le ⟨hθ.1.le,hθ.2.le⟩ ell)
+    (fun i hi=>s₀.q_mono i (by omega)) he
+    (fun i hi=>intervalIntegrable_vectorProfileTentCellPairing hn s₀ s₁ β t outer θ hβ ht hθ ell i (by omega))
+    (fun i hi=>intervalIntegrable_vectorProfileTentCellXiEnergy hn s₀ s₁ β t outer θ hβ ht hθ ell i (by omega))
+    (fun i hi q hq=>vectorProfileTentCell_pointwise_energy_bound hn s₀ s₁ β t outer θ hβ ht hθ ell i (by omega) q hq)
+  unfold e at hh
+  simp_rw [intervalIntegral.integral_div] at hh
+  rw [←Finset.sum_div] at hh
+  exact hh
+
+end QuantitativePaper

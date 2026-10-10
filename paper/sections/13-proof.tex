@@ -1,0 +1,504 @@
+\chapter{Proof of the main theorem}\label{sec:b7}
+
+In this section, we prove \cref{thm:main}. By \eqref{eq:in-envelope},
+four times the fractional-moment error $e_{N,\beta}(\lambda)$ is the
+integral of the defect $\calD_N(\rho)$ over $\rho\in(0,1]$. We split
+this integral at a cutoff $\rho_0$. Above the cutoff, we verify the
+stability assumption of the cavity argument with
+\cref{prop:lz-stability} and bound the defect with
+\cref{cor:c7-defect}. Below the cutoff, we bound the defect in \cref{prop:sm-small}, using the
+quantile-shell estimate of \cref{prop:wi-vfs} and the root localization
+of \cref{cor:lz-omega}. The cutoff is $\rho_0=\min\{1,K\eta^{1/7}\}$,
+where $K$ depends only on $\beta$ and
+$\eta=e_{N,\beta}(\lambda)+L_s\lambda^5$ is the trial budget. This budget
+contains the unknown error, and the two estimates combine
+into an implicit inequality for $e_{N,\beta}(\lambda)$. In
+\cref{subsec:b7-general}, we choose the tilt $\lambda=N^{-7/50}$,
+normalize this inequality by $N^{-7/10}$, and close it. Then
+\cref{prop:fnd-mean-bias} converts the bound on
+$e_{N,\beta}(N^{-7/50})$ into the bound on the mean bias. In
+\cref{rem:b7-exponents}, we explain how the exponent $7/10$ arises.
+
+We use results from \cref{sec:fnd} (the defect identity
+\eqref{eq:in-envelope}, the bound \eqref{eq:fnd-moving}, the
+trial budget of \cref{lem:fnd-trial}, the trace bound \eqref{eq:in-Lvar},
+the decomposition of \cref{lem:fnd-decomp}, and the reduction of the
+mean bias in \cref{prop:fnd-mean-bias}), from \cref{sec:wi,sec:th}
+(\cref{prop:wi-vfs,prop:th-j}), from \cref{sec:lz-root}
+(\cref{cor:lz-omega}), from \cref{sec:sc} (\cref{prop:lz-stability}), and
+from \cref{sec:c7-closure} (\cref{cor:c7-defect}). Before the proof of
+\cref{thm:main}, we list these inputs with the parameters at which they
+are used.
+
+\paragraph{Standing assumptions and notation.} Throughout this section,
+$\beta>1$ is fixed, and $C_\beta$ denotes a constant depending only on
+$\beta$ whose value may change from line to line. The constants
+$\lambda_0\le\min\{1,\beta/4\}$ and $L_s\ge1$ are those of
+\cref{sec:fnd}; in particular, \eqref{eq:fnd-scalar-trial-cost} holds
+for $0<\lambda\le2\lambda_0$. Recall that $c=\beta^2\rho$, $M=Nc$,
+$s=\lambda/\beta$, and $\mu=s\delta_0+\nu$, and that
+$\log_+x=\log(\max\{1,x\})$ for $x\ge0$. As in \cref{sec:fnd}, a
+\emph{trial budget at $\rho$} is a number $\eta\ge0$ that bounds the left
+side of \eqref{eq:fnd-trial}. Since every minimizer $\gamma_*$ of
+$F_\rho$ attains $\min_\gamma F_\rho(\gamma)$, such an $\eta$ is a trial
+budget for every minimizer at $\rho$ in the sense of
+\eqref{eq:loc-trialbudget}.
+
+\section{The interval near \texorpdfstring{$\rho=0$}{rho = 0}}
+\label{subsec:b7-small}
+
+We estimate the three terms of $\calD_N(\rho)=\beta(A+2J+V)$ separately.
+By the trace bound \eqref{eq:in-Lvar} and
+\eqref{eq:th-J}, we have at every minimizer
+\begin{equation}\label{eq:sm-AJ}
+ A\le\frac1{Ms},\qquad
+ J\le\frac{341(1+\log_+M)^2}{Ms}.
+\end{equation}
+To estimate the self-overlap variance $V$, we combine
+\cref{prop:wi-vfs} on dyadic quantile shells with the root localization
+of \cref{cor:lz-omega}. This follows Steps~2--5 of the proof of
+\cite[Proposition~7.7]{AL}, with \cref{prop:wi-vfs} in place of
+\cite[Lemma~3.3]{AL} and \cref{cor:lz-omega} in place of
+\cite[Lemma~7.6]{AL}.
+
+\begin{proposition}[The interval near $\rho=0$]\label{prop:sm-small}
+Let $N\ge2$, $0<\lambda\le\lambda_0$, and $0<\rho\le1$, and let $\eta>0$
+be a trial budget at $\rho$, that is, a bound for the left side of
+\eqref{eq:fnd-trial}. Let
+$\omega(\rho,\eta)=\min\{1,(\eta/\rho)^{1/6}\}$ be as in
+\eqref{eq:lz-omega}. Then every minimizing profile $\mu$ at these
+parameters satisfies
+\begin{align}
+ \beta(A+2J+V)
+ &\le C_\beta\left[
+ \frac{\log^2(2+N)}{N\rho\lambda}
+ +(N\rho)^{-2/3}
+ +(N\rho)^{-2/3}\lambda^{-1/3}\omega(\rho,\eta)^{2/3}
+ \right],\label{eq:sm-pointwise}\\
+ \beta(A+2J+V)&\le C_\beta(N\rho)^{-1/2},
+ \label{eq:sm-moving}
+\end{align}
+where $A$, $J$, and $V$ are computed at $\mu$. In particular, the same
+bounds hold for $\calD_N(\rho)$ whenever $\calD_N(\rho)$ is defined. If
+$0<\rho_0\le1$ and $\eta$ is a trial budget at every $\rho\in(0,\rho_0]$,
+then
+\begin{equation}\label{eq:sm-integrated}
+ \int_0^{\rho_0}\calD_N(\rho)\dd\rho
+ \le C_\beta\left[
+ N^{-1}+\frac{\log^3(2+N)}{N\lambda}
+ +N^{-2/3}\rho_0^{1/3}
+ +N^{-2/3}\lambda^{-1/3}\eta^{1/9}\rho_0^{2/9}
+ \right].
+\end{equation}
+The constants depend only on $\beta$; in particular, they do not depend
+on $N$, $\rho$, $\lambda$, $\eta$, the minimizer, or the positions and
+masses of the atoms of $\nu$.
+\end{proposition}
+
+\begin{proof}
+The proof has five steps. We partition the quantile variable into dyadic
+shells and bound the diameter of the image of each shell by the root
+localization. We then apply \cref{prop:wi-vfs} on each shell and sum
+over the shells to bound $V$. Finally, we deduce the pointwise bounds
+and integrate them in $\rho$.
+
+\paragraph{Step 1: Shells and localization.} Fix a minimizing profile
+$\mu=s\delta_0+\nu$, and let $Q$ be the quantile function of $\nu$ from
+\eqref{eq:fnd-quantile}. Recall that $Q$ pushes Lebesgue measure on
+$(0,1-s)$ forward to $\nu$ and that $a(Q(v))\ge s+v$ for
+$0<v<1-s$. In particular,
+\begin{equation}\label{eq:sm-V-quantile}
+ V=\int\Var(S_q)\,\nu(\dd q)=\int_0^{1-s}\Var(S_{Q(v)})\dd v .
+\end{equation}
+For the dyadic levels $u=2^js<1$, $j\ge0$, of which there are finitely
+many, we consider the shells
+\[
+ I_u=\{v\in(0,1-s):u\le s+v<2u\},\qquad h_u=|I_u|.
+\]
+(Here $u$ denotes a level; it is unrelated to the parameter of the
+cavity interpolation in \cref{sec:c7}.) For each $v\in(0,1-s)$, we have
+$s<s+v<1$, and there exists exactly one $j\ge0$ such that
+$2^js\le s+v<2^{j+1}s$; for this $j$, we have $u=2^js<1$. Hence the
+shells partition $(0,1-s)$. Each $I_u$ is an interval of positive length
+$h_u\le u$, and $a(Q(v))\ge s+v\ge u$ for $v\in I_u$. In other words,
+$I_u$ has threshold $u$ in the sense of \cref{sec:wi-setup}. A shell may contain only
+part of the quantile interval of an atom of $\nu$, which
+\cref{prop:wi-vfs} allows.
+
+We write $\omega=\omega(\rho,\eta)$, and we let
+$\ell(I_u)=\operatorname*{ess\,sup}_{v,w\in I_u}|Q(v)-Q(w)|$ be the
+diameter of the image of $I_u$, as in \cref{sec:wi-interval}. Since
+$\mu$ is a minimizer, $0<\lambda\le\lambda_0$, and $\eta$ is a trial
+budget for $\gamma_*=\beta\mu([0,\cdot\,])$, \cref{cor:lz-omega} implies
+that $0\le Q(v)\le C_Q(s+v+\omega)$ for $0<v<1-s$, with $C_Q$ depending
+only on $\beta$. For $v\in I_u$, we have $s+v<2u$. As $Q\ge0$, this
+gives
+\[
+ \ell(I_u)\le C_Q(2u+\omega)\le2C_Q(u+\omega).
+\]
+
+\paragraph{Step 2: The variance on one shell.} We use \cref{prop:wi-vfs}
+on $I_u$, with threshold $u$, length $h_u$, diameter $\ell(I_u)$, and
+$\epsilon_u=(Mu)^{-1}$. The first term in \eqref{eq:wi-vfs} is at most
+$\epsilon_u(1+\log_+(h_u/\epsilon_u))\le(Mu)^{-1}(1+\log_+(Mu^2))$,
+because $h_u/\epsilon_u=Muh_u\le Mu^2$. For the second term, we use
+$h_u\le u$ and $(u+\omega)^{2/3}\le u^{2/3}+\omega^{2/3}$ and find
+\[
+\begin{aligned}
+ (\epsilon_u\ell(I_u))^{2/3}h_u^{1/3}
+ &\le(2C_Q)^{2/3}(Mu)^{-2/3}(u+\omega)^{2/3}u^{1/3}\\
+ &\le(2C_Q)^{2/3}M^{-2/3}
+       \bigl(u^{1/3}+u^{-1/3}\omega^{2/3}\bigr).
+\end{aligned}
+\]
+We conclude that
+\begin{equation}\label{eq:sm-shell}
+ \int_{I_u}\Var(S_{Q(v)})\dd v
+ \le C_\beta\left[
+ \frac{1+\log_+(Mu^2)}{Mu}
+ +M^{-2/3}\bigl(u^{1/3}+u^{-1/3}\omega^{2/3}\bigr)
+ \right].
+\end{equation}
+The term $u^{-1/3}\omega^{2/3}$ accounts for the range of levels that
+the localization permits beyond the shell's own mass.
+
+\paragraph{Step 3: Summation over the shells.} For $u=2^js$, we have
+$\log_+(Mu^2)\le\log_+(Ms^2)+2j\log2$. Using
+$\sum_{j\ge0}2^{-j}=\sum_{j\ge0}j2^{-j}=2$, we see that the first terms
+of \eqref{eq:sm-shell} sum to at most
+\[
+ \frac{2(1+\log_+(Ms^2))+4\log2}{Ms}
+ \le\frac{5(1+\log_+(Ms^2))}{Ms},
+\]
+where we used $4\log2<3$. Let $c_3=(1-2^{-1/3})^{-1}$. Summing downward
+from the largest level, which is less than one, we have
+$\sum_{u<1}u^{1/3}\le c_3$, and summing upward from $s$, we have
+$\sum_{u<1}u^{-1/3}\le c_3s^{-1/3}$. As the shells partition
+$(0,1-s)$, summing \eqref{eq:sm-shell} and using
+\eqref{eq:sm-V-quantile} yields
+\begin{equation}\label{eq:sm-V}
+ V\le C_\beta\left[
+ \frac{1+\log_+(Ms^2)}{Ms}
+ +M^{-2/3}\bigl(1+s^{-1/3}\omega^{2/3}\bigr)
+ \right].
+\end{equation}
+
+\paragraph{Step 4: The pointwise bounds.} We insert \eqref{eq:sm-AJ} and
+\eqref{eq:sm-V} into $\beta(A+2J+V)$ and use
+\[
+ Ms=\beta N\rho\lambda,\qquad
+ \beta M^{-2/3}=\beta^{-1/3}(N\rho)^{-2/3},\qquad
+ \beta M^{-2/3}s^{-1/3}=(N\rho)^{-2/3}\lambda^{-1/3}.
+\]
+As $M\le\beta^2N$ and $Ms^2=N\rho\lambda^2\le N$, both $1+\log_+M$ and
+$1+\log_+(Ms^2)$ are at most $C_\beta\log(2+N)$. Using also
+$\log(2+N)\ge1$, we find that $\beta A$, $2\beta J$, and $\beta$ times the
+first term of \eqref{eq:sm-V} are at most
+$C_\beta\log^2(2+N)/(N\rho\lambda)$, while the other two terms of
+\eqref{eq:sm-V} give the last two terms of \eqref{eq:sm-pointwise}. This
+proves \eqref{eq:sm-pointwise}. No lower bound on $M$ is needed here.
+
+For \eqref{eq:sm-moving}, recall the first bound in
+\eqref{eq:fnd-moving}: at every minimizer,
+$\int\E(R_q-q)^2\,\nu(\dd q)\le C\min\{1,M^{-1/2}\}$ with a numerical
+constant $C$. The measure $\nu$ is carried by the contact levels, where
+\eqref{eq:in-decomp} gives $\E(R_q-q)^2=a^{\rm th}_q+2j_q+\Var(S_q)$.
+Integrating against $\nu$, we find
+$\beta(A+2J+V)=\beta\int\E(R_q-q)^2\,\nu(\dd q)\le C\beta M^{-1/2}
+=C(N\rho)^{-1/2}$, which is \eqref{eq:sm-moving}.
+
+At every $\rho$ at which $\calD_N(\rho)$ is defined, a minimizer
+exists, and $\calD_N(\rho)=\beta(A+2J+V)$ for every minimizer at $\rho$
+by \eqref{eq:in-envelope}. This implies that the two bounds also hold
+for $\calD_N(\rho)$.
+
+\paragraph{Step 5: Integration.} Suppose that $\eta$ is a trial budget
+at every $\rho\in(0,\rho_0]$. By Step~4, the bounds \eqref{eq:sm-pointwise}
+and \eqref{eq:sm-moving} hold for $\calD_N(\rho)$ at almost every
+$\rho\in(0,\rho_0]$. As they hold for every minimizer, no measurable
+choice of minimizers is needed to integrate them. We first use
+\eqref{eq:sm-moving}, whose singularity at $\rho=0$ is integrable:
+\[
+ \int_0^{\min\{\rho_0,1/N\}}\calD_N(\rho)\dd\rho
+ \le C_\beta N^{-1/2}\int_0^{1/N}\rho^{-1/2}\dd\rho
+ =2C_\beta N^{-1}.
+\]
+If $\rho_0\le1/N$, this proves \eqref{eq:sm-integrated}. If
+$\rho_0>1/N$, we integrate \eqref{eq:sm-pointwise} over $[1/N,\rho_0]$.
+The first term contributes at most
+\[
+ \frac{\log^2(2+N)}{N\lambda}\int_{1/N}^{\rho_0}\frac{\dd\rho}\rho
+ =\frac{\log^2(2+N)\log(N\rho_0)}{N\lambda}
+ \le\frac{\log^3(2+N)}{N\lambda},
+\]
+and the second at most
+$N^{-2/3}\int_0^{\rho_0}\rho^{-2/3}\dd\rho=3N^{-2/3}\rho_0^{1/3}$. For the
+third term, we use
+$\omega(\rho,\eta)^{2/3}=\min\{1,(\eta/\rho)^{1/9}\}\le(\eta/\rho)^{1/9}$,
+which holds for all $\rho>0$. With this bound, the third term
+contributes at most
+\[
+ N^{-2/3}\lambda^{-1/3}\eta^{1/9}
+       \int_0^{\rho_0}\rho^{-2/3-1/9}\dd\rho
+ =\frac92N^{-2/3}\lambda^{-1/3}\eta^{1/9}\rho_0^{2/9}.
+\]
+Adding the contributions, we obtain \eqref{eq:sm-integrated}. The
+constants in Steps~1--5 depend only on $\beta$, through $C_Q$, through
+the absolute constants of \cref{prop:wi-vfs}, \cref{prop:th-j}, and
+\eqref{eq:fnd-moving}, and through powers of $\beta$.
+\end{proof}
+
+\section{Closure at the critical tilt}
+\label{subsec:b7-general}\label{subsec:b7-main}
+
+We now fix the tilt. We take $\lambda=N^{-7/50}$, so that the scalar
+cost $\lambda^5$ in the trial budget equals $N^{-7/10}$. The cutoff
+$\rho_0$ is defined through the trial budget, which contains the
+unknown error $e_{N,\beta}(\lambda)$, and we do not assume any
+preliminary bound on this error. After division by $N^{-7/10}$, the
+terms that depend on the budget become sublinear powers of the single
+variable $x=\eta/N^{-7/10}$, and the resulting inequality bounds $x$.
+We follow the closure in the proof of \cite[Proposition~7.7]{AL}:
+there, the trial budget \cite[(7.44)]{AL} also contains the unknown
+error, and the resulting inequality \cite[(7.52)]{AL} is closed in
+Step~6 because the error enters only through sublinear powers. Here the
+cutoff produces the leading term $N^{-2/3}\eta^{1/21}$.
+
+\paragraph{The inputs.} The proof of \cref{thm:main} uses the following
+results, at the parameters listed. In each case, the hypotheses are
+verified in the step indicated.
+
+\begin{center}
+\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.2\textwidth}
+ >{\raggedright\arraybackslash}p{0.4\textwidth}
+ >{\raggedright\arraybackslash}p{0.32\textwidth}@{}}
+\toprule
+Result & Conclusion used & Parameters in the proof\\
+\midrule
+\Cref{lem:fnd-trial} &
+$\eta=e+L_s\lambda^5$ is a trial budget at every $\rho\in(0,1]$ &
+$N\ge N_1$, $\lambda=N^{-7/50}\le\lambda_0$ (Step~1)\\
+\eqref{eq:in-envelope} &
+$4e=\int_0^1\calD_N(\rho)\dd\rho$, and $\calD_N(\rho)=\beta(A+2J+V)$ at
+every minimizer, for almost every $\rho$ &
+$s=\lambda/\beta\le1/4$ (Steps~1 and~4)\\
+\Cref{prop:lz-stability} &
+$J^{\scal}_{a,d}\preceq(1+\eps_N)I$ with
+$\eps_N\le C_{\rm st}[\rho^{-3/4}\eta^{1/4}+\lambda^2+N^{-1}]$, at every
+minimizer &
+$N\ge2$, $\rho\in[\rho_0,1]$, trial budget $\eta$ (Step~3)\\
+\Cref{cor:c7-defect}(c) &
+$\int_{\rho_0}^1\calD_N\le C_\beta\log^2(2+N)/(N\lambda\rho_0)$ &
+$1/N\le\rho_0\le1$, $s\le1/2$, stability on $[\rho_0,1]$ (Step~3)\\
+\Cref{prop:sm-small} &
+the integrated bound \eqref{eq:sm-integrated} &
+$0<\rho_0\le1$, trial budget $\eta>0$ on $(0,\rho_0]$ (Step~4)\\
+\Cref{prop:fnd-mean-bias} &
+$(P_\beta-p_{N,\beta})/\beta\le32L_s\lambda^5+2e$ &
+$N\ge N_1$, $0<\lambda\le\lambda_0$ (Step~6)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{proof}[Proof of \cref{thm:main}]
+The proof has six steps. We fix the parameters and the common trial
+budget, define the cutoff, bound the integral of the defect above and
+below the cutoff, close the resulting inequality after normalization,
+and convert the bound on the fractional-moment error into the bound on
+the mean bias.
+
+\paragraph{Step 1: Parameters and the trial budget.} Let
+$N_1=\max\{2,\lceil\lambda_0^{-50/7}\rceil\}$, which depends only on
+$\beta$. For every integer $N\ge N_1$, we have $N^{-7/50}\le\lambda_0$,
+and we set
+\begin{equation}\label{eq:b7-parameters}
+ \lambda=N^{-7/50},\qquad r=N^{-7/10}=\lambda^5,\qquad
+ e=e_{N,\beta}(\lambda),\qquad \eta=e+L_sr.
+\end{equation}
+Then $0<\lambda\le\lambda_0\le\min\{1,\beta/4\}$ and
+$s=\lambda/\beta\le1/4$. By \cref{lem:fnd-trial}, $\eta$ is a trial
+budget at every $\rho\in(0,1]$. The number $e$ is finite. Indeed, the
+constrained value $E_\beta(\lambda)$ is finite, and
+$F^c_{N,\beta}/\beta$ is a Lipschitz function of finitely many Gaussian
+variables (\cref{sec:fnd}), which has finite exponential moments of
+every order; these moments enter \eqref{eq:fnd-error-definition}. As
+$e\ge0$ by \eqref{eq:in-envelope} and $L_s\ge1$, we have
+\begin{equation}\label{eq:b7-eta-lower}
+ \infty>\eta\ge L_s\lambda^5\ge\lambda^5>0.
+\end{equation}
+
+\paragraph{Step 2: The cutoff.} Let $C_{\rm st}\ge1$ be the constant of
+\cref{prop:lz-stability}. We define
+\begin{equation}\label{eq:b7-cutoff}
+ K=12C_{\rm st},\qquad \rho_0=\min\{1,K\eta^{1/7}\}.
+\end{equation}
+In both cases $\rho_0<1$ and $\rho_0=1$, we have
+\[
+ \rho_0\le K\eta^{1/7},\qquad
+ \rho_0\ge\min\{1,K\lambda^{5/7}\}\ge\lambda^{5/7}=N^{-1/10}\ge N^{-1},
+\]
+where we used \eqref{eq:b7-eta-lower}, $K\ge1$, and $\lambda\le1$.
+
+\paragraph{Step 3: The stable interval.} Suppose first that $\rho_0<1$,
+and let
+$\rho\in[\rho_0,1]$. Then $\rho\ge K\eta^{1/7}\ge K\lambda^{5/7}$. Since
+$N^{-1}\le\lambda\le1$, this implies
+\[
+ \lambda^2\le\lambda^{5/7}\le\frac\rho K,\qquad
+ N^{-1}\le\lambda^{5/7}\le\frac\rho K,\qquad
+ \rho^{-3/4}\eta^{1/4}\le\frac\rho{K^{7/4}}\le\frac\rho K,
+\]
+where the last bound follows from $\rho^{7/4}\ge K^{7/4}\eta^{1/4}$ and
+$K\ge1$. Let $\mu$ be any minimizer at $\rho$, with cumulative function
+$a$. The hypotheses of \cref{prop:lz-stability} hold: $N\ge2$,
+$0<\rho\le1$, $0<\lambda\le\lambda_0$, and $\eta$ is a trial budget for
+$\mu$. Applying the proposition with $d=\beta^2(1-t/N)$, the cavity
+coefficient of \eqref{eq:cavityparameters}, we have
+\[
+ J^{\scal}_{a,d}\preceq(1+\eps_N)I\ \text{ on }\mathcal H_\nu,\qquad
+ 0\le\eps_N\le C_{\rm st}\bigl[\rho^{-3/4}\eta^{1/4}+\lambda^2+N^{-1}\bigr]
+ \le\frac{3C_{\rm st}\rho}K=\frac\rho4,
+\]
+where $\eps_N\ge0$ is the number defined in \cref{prop:lz-stability}.
+This is the stability condition \eqref{eq:c7-stab}, at every minimizer
+and every $\rho\in[\rho_0,1]$. As $N\ge2$, $1/N\le\rho_0\le1$, and
+$s\le1/2$, \cref{cor:c7-defect}(c) applies. Using
+$\rho_0=K\eta^{1/7}\ge\lambda^{5/7}$ and
+$\lambda^{12/7}=N^{-6/25}$, we obtain
+\begin{equation}\label{eq:b7-closure}
+ \int_{\rho_0}^1\calD_N(\rho)\dd\rho
+ \le C_\beta\frac{\log^2(2+N)}{N\lambda\rho_0}
+ \le C_\beta\frac{\log^2(2+N)}{N\lambda^{12/7}}
+ =C_\beta N^{-19/25}\log^2(2+N).
+\end{equation}
+When $\rho_0=1$, the integral is zero, so \eqref{eq:b7-closure} holds in
+both cases.
+
+\paragraph{Step 4: The interval near zero.} The hypotheses of
+\cref{prop:sm-small} hold on $(0,\rho_0]$: we have $N\ge2$,
+$0<\lambda\le\lambda_0$, and $0<\rho_0\le1$. By Step~1 and
+\eqref{eq:b7-eta-lower}, $\eta>0$ is a trial budget at every
+$\rho\in(0,\rho_0]$. By Step~2, we have $\rho_0\le K\eta^{1/7}$ in both
+cases $\rho_0<1$ and $\rho_0=1$, which implies that
+\[
+ \rho_0^{1/3}\le K^{1/3}\eta^{1/21},\qquad
+ \eta^{1/9}\rho_0^{2/9}\le K^{2/9}\eta^{1/9+2/63}=K^{2/9}\eta^{1/7}.
+\]
+We insert these bounds into \eqref{eq:sm-integrated}, add
+\eqref{eq:b7-closure}, and use $4e=\int_0^1\calD_N(\rho)\dd\rho$ from
+\eqref{eq:in-envelope}. This gives
+\[
+\begin{aligned}
+ e\le C_\beta\Bigl[
+ &N^{-1}+N^{-43/50}\log^3(2+N)+N^{-19/25}\log^2(2+N)\\
+ &+N^{-2/3}\eta^{1/21}+N^{-2/3}\lambda^{-1/3}\eta^{1/7}\Bigr],
+\end{aligned}
+\]
+where we used $N^{-1}\lambda^{-1}=N^{-43/50}$. As $1>43/50>19/25$ and
+$\log(2+N)\ge1$, the first three terms are at most
+$3N^{-19/25}\log^3(2+N)$. We conclude that
+\begin{equation}\label{eq:b7-normalized-input}
+ e\le C_\beta\left[
+ N^{-19/25}\log^3(2+N)+N^{-2/3}\eta^{1/21}
+                     +N^{-2/3}\lambda^{-1/3}\eta^{1/7}\right].
+\end{equation}
+
+\paragraph{Step 5: Normalization and closure.} Let
+\[
+ x=\frac\eta r=\frac er+L_s ,
+\]
+which is finite by \eqref{eq:b7-eta-lower} and satisfies $x\ge L_s\ge1$.
+Then $\eta=rx$, and the terms of the bound for $e$ in Step~4 have the
+following sizes after division by $r=N^{-7/10}$.
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Term & Origin & Size after division by $r$\\
+\midrule
+$N^{-1}$ & $\rho\le1/N$, by \eqref{eq:sm-moving} & $N^{-3/10}$\\
+$N^{-43/50}\log^3(2+N)$ & first term of \eqref{eq:sm-pointwise} &
+$N^{-4/25}\log^3(2+N)$\\
+$N^{-19/25}\log^2(2+N)$ & stable interval, \eqref{eq:b7-closure} &
+$N^{-3/50}\log^2(2+N)$\\
+$N^{-2/3}\eta^{1/21}$ & second term of \eqref{eq:sm-pointwise} & $x^{1/21}$\\
+$N^{-2/3}\lambda^{-1/3}\eta^{1/7}$ & third term of \eqref{eq:sm-pointwise} & $N^{-1/50}x^{1/7}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The entries in the last column are exact. For the two terms that depend
+on the budget, we have
+\[
+ N^{-2/3}\eta^{1/21}=N^{-2/3}r^{1/21}x^{1/21}
+ =N^{-2/3-1/30}x^{1/21}=rx^{1/21}
+\]
+and
+\[
+ N^{-2/3}\lambda^{-1/3}\eta^{1/7}
+ =N^{-2/3+7/150-1/10}x^{1/7}=N^{-18/25}x^{1/7}=rN^{-1/50}x^{1/7},
+\]
+since $2/3+1/30=7/10$ and $18/25=7/10+1/50$. For the first term of
+\eqref{eq:b7-normalized-input}, we have $N^{-19/25}/r=N^{-3/50}$.
+Dividing \eqref{eq:b7-normalized-input} by $r$ and adding $L_s$ to both
+sides, we find
+\begin{equation}\label{eq:b7-normalized}
+ x\le L_s+C_\beta\left[
+ N^{-3/50}\log^3(2+N)+x^{1/21}+N^{-1/50}x^{1/7}\right]
+ \le C_\beta x^{1/7}.
+\end{equation}
+In the last inequality, we used that
+$\sup_{N\ge2}N^{-3/50}\log^3(2+N)$ is finite, because $\log(2+N)$ grows
+more slowly than any power of $N$. We also used $N^{-1/50}\le1$ and
+the bounds $1\le x^{1/7}$ and $x^{1/21}\le x^{1/7}$, which hold because
+$x\ge1$.
+Dividing \eqref{eq:b7-normalized} by $x^{1/7}>0$, we find
+$x^{6/7}\le C_\beta$, that is, $x\le C_\beta^{7/6}$. Then
+\[
+ e\le\eta=rx\le C_\beta N^{-7/10}.
+\]
+This argument uses no preliminary bound on $e$ and no smallness of
+$\eta$; it uses only that $x$ is finite.
+
+\paragraph{Step 6: The mean bias.} By \cref{prop:fnd-mean-bias}, which
+applies since $0<\lambda\le\lambda_0$, and by Step~5, we have
+\[
+ 0\le\frac{P_\beta-p_{N,\beta}}\beta
+ \le32L_s\lambda^5+2e
+ \le(32L_s+2C_\beta)N^{-7/10}.
+\]
+Multiplying by $\beta$, we obtain
+$P_\beta-p_{N,\beta}\le C_\beta N^{-7/10}$ for every $N\ge N_1$. For the
+finitely many integers $2\le N<N_1$, the mean bias $P_\beta-p_{N,\beta}$
+is finite. The number
+\[
+ C^{\rm small}_\beta=\max_{2\le N<N_1}N^{7/10}(P_\beta-p_{N,\beta}),
+\]
+with the maximum interpreted as zero when $N_1=2$, is therefore finite
+and depends only on $\beta$. Replacing $C_\beta$ by $\max\{C_\beta,C^{\rm small}_\beta\}$, we
+obtain the bound of \cref{thm:main} for every $N\ge2$. This completes the
+proof.
+\end{proof}
+
+\begin{remark}\label{rem:b7-exponents}
+The leading term in \eqref{eq:b7-normalized-input} is
+$N^{-2/3}\eta^{1/21}$. The exponent $1/21$ is the product of the exponent
+$1/3$ of $\rho_0$ in the integrated shell estimate
+\eqref{eq:sm-integrated} and the exponent $1/7$ of $\eta$ in the cutoff
+\eqref{eq:b7-cutoff}, which comes from the stability threshold
+$\rho^{-3/4}\eta^{1/4}\lesssim\rho$. If $\eta$ is of order $N^{-a}$,
+the leading term is of the same order when $a=2/3+a/21$, that is,
+$20a/21=2/3$ and $a=7/10$. The scalar cost $\lambda^5$ in the trial
+budget is then of the same order when $\lambda=N^{-7/50}$. For this
+choice, the localization correction has the extra factor $N^{-1/50}$
+after normalization, and the stable interval and the two elementary
+terms in \eqref{eq:sm-integrated} contribute at most
+$N^{-3/50}\log^3(2+N)$, as the table in Step~5 shows. The bound
+\eqref{eq:b7-closure} on the stable interval has only a squared
+logarithm; the third logarithm comes from integrating the first term of
+\eqref{eq:sm-pointwise} over $[1/N,\rho_0]$. These contributions have
+strict polynomial slack, and the leading term carries no logarithm.
+After the closure, $L_sN^{-7/10}\le\eta\le C_\beta N^{-7/10}$, so that
+for all sufficiently large $N$ the cutoff satisfies $\rho_0<1$ and is
+comparable to $N^{-1/10}$.
+\end{remark}

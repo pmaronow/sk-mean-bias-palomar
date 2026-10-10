@@ -1,0 +1,1389 @@
+\chapter{The cavity interpolation and its tree laws}\label{sec:c7}
+
+This section and the next two prove \cref{prop:c7-closure}. Suppose that
+at a minimizing profile, the scalar response operator $J^{\scal}_{a,d}$
+of \cref{sec:scalar-stability} satisfies
+$J^{\scal}_{a,d}\preceq(1+\eps_N)I$ with $\eps_N\le\rho/4$. The
+proposition states that the self-overlap variance
+$V=\int\Var(S_q)\,\nu(\dd q)$ then obeys
+$(3\rho/4)V\le C_{\rm cav}[N^{-1}+A+J+H_3]$, where $C_{\rm cav}$ depends
+only on $\beta$. In \cref{cor:c7-defect}, we deduce from it the bound on
+the defect $\calD_N(\rho)$ that is used in \cref{sec:b7}.
+
+The argument is a cavity interpolation on one site. We single out the
+last spin and move the variance of its couplings to the other $n=N-1$
+spins into its auxiliary field. At the end of the interpolation, the last
+spin is independent of the others. By exchangeability, $V$ equals $n/N$
+times the integrated covariance between the squared conditional
+magnetization of the last spin and the self-overlap of the remaining
+spins, up to an error of order $N^{-1}$. This covariance vanishes at the
+independent endpoint, and its value for the full system is its derivative
+there plus a Taylor remainder. In
+\cref{sec:c7-endpoint}, we show that this derivative is a multiple of the
+scalar response operator applied to the covariance of the self-overlap of
+the remaining spins, plus a nonpositive term and explicit errors
+(\cref{lem:linear}). We also bound the errors by $A$ and $J$ there
+(\cref{lem:cl-response}). In \cref{sec:c7-closure}, we compare the
+variance of this self-overlap at the independent endpoint with $V$, with
+coefficient one (\cref{lem:cl-star}). We then express $V$ through the
+expansion (\cref{lem:cav-trace}), bound the cubic moment that controls
+the remainder by $A$, $J$, and $H_3$ (\cref{lem:c7-thermal}), and close the
+resulting inequality.
+
+In this section, we set up the interpolation and the calculus that the
+next two sections use. In \cref{subsec:c7-row}, we define the cavity law
+$\Pp_u$, $0\le u\le1$, identify its two endpoints, and record a variance
+bound \eqref{eq:cl-BL} for the remaining spins. In \cref{subsec:c7-tree},
+we represent products of conditional expectations by laws of finitely
+many descendants on marked trees. We show that the solution of the Parisi
+equation depends smoothly on the incident row and on the variance of the
+last field (\cref{lem:tree-regularity}). We compute the density of the
+tree laws (\cref{lem:tree-density}) and the responses
+\eqref{eq:nodeTheta} and \eqref{eq:nodeb} to these two parameters
+(\cref{lem:tree-responses}). From them, we derive an exact formula for the
+derivative of a tree moment in $u$ (\cref{lem:streaming}) and a
+comparison of tree moments at different values of $u$
+(\cref{cor:comparison}). In \cref{subsec:c7-three}, we bound integrated
+products of three overlap defects by a cubic moment $\mathcal M_3(u)$
+(\cref{lem:cav-threeproducts}), and deduce a bound on the Taylor
+remainder (\cref{lem:remainder}).
+
+We use the generalized law of \cref{sec:gauss}, with its variance bound
+(\cref{lem:fnd-posterior}) and its heat identity
+(\cref{lem:fnd-path-heat}). We also use the scalar law \eqref{eq:sc-pde}
+with \cref{lem:cl-scalar}, and the differentiation and approximation
+arguments of \cite[Sections~2.1, 2.3, and~2.6]{AL}. The results of this
+section are used as follows. The identity \eqref{eq:nodeTheta} and the
+density \eqref{eq:treedensity} with one leaf enter the proof of
+\cref{lem:linear}. The bound \eqref{eq:cl-BL} and \cref{cor:comparison}
+enter the proofs of \cref{lem:cl-response,lem:c7-thermal}. The bound of
+\cref{lem:cav-threeproducts} enters the proof of \cref{lem:cl-star}, and
+\cref{lem:remainder} enters the proofs of \cref{lem:cav-trace} and
+\cref{prop:c7-closure}.
+
+The cavity method originates in the physics literature
+\cite{MezardParisiVirasoro1986,MezardParisiVirasoro1987}. We use its rigorous form on
+one site, the framework of differentiation, comparison, and contraction in
+\cite[Section~1.6]{TalagrandVolI2011} (see Lemmas~1.6.3--1.6.4 and
+Propositions~1.6.5--1.6.6 there). An expansion on one site for
+hierarchical Gaussian laws appears in \cite[Lemma~2.2]{OpenAILimitingLaw}.
+There, a site is chosen by exchangeability and deleted, and its Gaussian
+kernels are interpolated to those of an independent scalar model on one
+site. The linear cavity kernel is half of a connected correlation of four
+spins of the removed site \cite[(A8)]{OpenAILimitingLaw}, and a linear
+equation with this kernel is inverted under a gap condition on the scalar
+response in \cite[Proposition~5.1]{OpenAILimitingLaw}. The tree laws of
+\cref{subsec:c7-tree} and their calculus are adapted from
+\cite[Section~2]{OpenAIFluctuationScale}; we give the precise references
+there.
+
+\paragraph{Standing assumptions.}
+Throughout \cref{part:cavity}, we fix $N\ge2$ and write $n=N-1$. We also
+fix $0<\rho\le1$, $t=1-\rho$, $c=\beta^2\rho$, and
+$0<s=\lambda/\beta\le1/2$. In this section, the profile
+$\mu=s\delta_0+\nu$ is deterministic and otherwise arbitrary. The measure
+$\nu$ may have atoms anywhere in $[0,1]$, including $0$ and $1$. No result
+of this section uses a minimizing property. This matters because at the
+independent endpoint, the remaining $n$ spins form a system whose law is
+built from the profile of the full system, and this profile need not
+minimize any functional of the $n$-spin system. Constants $C$ are absolute, and
+constants $C_\beta$ depend only on $\beta$. Neither depends on $N$,
+$\rho$, $s$, the profile, or the positions and masses of its atoms. Note
+that the interpolation parameter $u$ is not the solution $u$ of
+\eqref{eq:sc-pde}; in this part of the paper, we write $U^0$ for the
+latter.
+
+\section{Removing the incident row}\label{subsec:c7-row}
+
+We write $\sigma=(\tau,\epsilon)\in\{-1,1\}^n\times\{-1,1\}$, so that
+$\epsilon=\sigma_N$ is the last spin. The couplings $g_{iN}$, $i\le n$,
+between $\epsilon$ and $\tau$ form the \emph{incident row}. Let
+$u\in[0,1]$ be the interpolation parameter; $t$ stays fixed. We set
+\begin{equation}\label{eq:cavityparameters}
+ \alpha=\beta^2t\,\frac nN,\qquad
+ d=c+\alpha=\beta^2\Bigl(1-\frac tN\Bigr),\qquad
+ b(u)=d-\alpha u,\qquad 0\le u\le1.
+\end{equation}
+The second identity holds because
+$c+\alpha=\beta^2(\rho+t-t/N)=\beta^2(1-t/N)$. Since $0\le t<1$ and
+$N\ge2$, we have $d\in[\beta^2/2,\beta^2]$. Further, $b(u)\ge b(1)=c>0$
+for every $u$. For $x\in\R^n$ and $y\in\R$, let
+\begin{gather*}
+ \mathcal E(\sigma;x,y)=\mathcal E^-(\tau)
+ +\sqrt{\frac{\alpha u}{n}}\;\epsilon\sum_{i=1}^ng_{iN}\tau_i
+ +x\cdot\tau+y\epsilon,
+ \\
+ \mathcal E^-(\tau)=\frac{\beta\sqrt t}{\sqrt N}
+       \sum_{1\le i<j\le n}g_{ij}\tau_i\tau_j,
+\end{gather*}
+where the couplings are independent standard Gaussian variables under the
+reference law. Let $U(q,x,y)$ solve
+\begin{equation}\label{eq:cavityPDE}
+ \begin{gathered}
+ \partial_q U=-\frac12\Bigl\{
+ c\bigl(\Delta_xU+a(q)|\nabla_xU|^2\bigr)
+ +b(u)\bigl(\partial_{yy}U+a(q)(\partial_yU)^2\bigr)\Bigr\},
+ \\ U(1,x,y)=\log\sum_\sigma e^{\mathcal E(\sigma;x,y)}.
+ \end{gathered}
+\end{equation}
+At $u=1$, each coupling of the row has the variance $\alpha/n=\beta^2t/N$
+of the full system, and the last field has the variance coefficient
+$b(1)=c$ of the full system. As $u$ decreases to $0$, the variance
+$\alpha u/n$ of each coupling in the row is removed, and the coefficient
+of the last field increases to $b(0)=d=c+\alpha$.
+
+The completion of \cref{sec:fnd} adds to the terminal exponent the
+Gaussian term $G=\beta\sqrt t\sum_{i\le N}z_i/\sqrt{2N}$, which does not
+depend on the spins. It changes $U$ into $U+G$ and multiplies the tilt
+below by $e^{sG}$. Since $G$ is independent of the couplings $g_{ij}$,
+this factor becomes, after normalization, an independent tilt of the
+variables $z_i$, and these variables do not enter the field or the
+spins. We omit it.
+
+We construct the law $\Pp_u$, with expectation $\E_u$, as follows. We
+tilt the reference law of the couplings by $e^{sU(0,0,0)}/Z_s(u)$,
+where $Z_s(u)=\E_{\rm ref}e^{sU(0,0,0)}$. Given the couplings, the field
+path $(X_q,Y_q)\in\R^n\times\R$ solves
+\[
+ \begin{aligned}
+ \dd X_q&=c\,a(q)\nabla_xU(q,X_q,Y_q)\dd q+\sqrt c\,\dd B_q,
+ &X_0&=0,\\
+ \dd Y_q&=b(u)\,a(q)\partial_yU(q,X_q,Y_q)\dd q+\sqrt{b(u)}\,\dd B'_q,
+ &Y_0&=0,
+ \end{aligned}
+\]
+where $(B,B')$ is a standard Brownian motion in $\R^{n+1}$. The diffusion
+matrix is $\operatorname{diag}(cI_n,b(u))$, and the drift is $a(q)$
+times this matrix applied to $\nabla U(q,X_q,Y_q)$. Given the path,
+we draw $\sigma$ with probabilities proportional to
+$e^{\mathcal E(\sigma;X_1,Y_1)}$. Let $\calG_q$ be the $\sigma$-field
+generated by the couplings and the path up to level $q$.
+
+\paragraph{The two endpoints.}
+At $u=1$, the law $\Pp_1$ is the tilted law of \cref{subsec:fnd-law} for
+the full system, with the completion omitted as above. At $u=0$, the row
+is absent, and the terminal value separates as
+$U(1,x,y)=U^-(1,x)+\log(2\cosh y)$, where
+$U^-(1,x)=\log\sum_\tau e^{\mathcal E^-(\tau)+x\cdot\tau}$. Let $U^-$ be
+the solution for the $n$-spin system with Hamiltonian $\mathcal E^-$,
+field coefficient $c$, and profile $\mu$, and let $U^0$ solve
+\eqref{eq:sc-pde} with coefficient $d$ and profile $\mu$. We claim that
+$U=U^-+U^0$ at $u=0$. For a step profile, each Hopf--Cole step of
+\eqref{eq:cavityPDE} factors, because the increments of $x$ and of $y$
+are independent and $b(0)=d$. Applying the estimate \cite[(2.19)]{AL} to
+each of the three equations, we extend the identity to every profile
+through the approximation of \cite[Section~2.6]{AL}. The outer normalizer
+factors as $Z_s(0)=e^{sU^0(0,0)}\E_{\rm ref}e^{sU^-(0,0)}$, and the
+deterministic factor $e^{sU^0(0,0)}$ cancels from the tilt. The drift of
+$X$ involves only $\nabla_xU^-$, and that of $Y$ only $\partial_yU^0$.
+The two Brownian motions are independent, and the terminal Gibbs
+probability is the product of
+$e^{\mathcal E^-(\tau)+X_1\cdot\tau-U^-(1,X_1)}$ and
+$e^{\epsilon Y_1}/(2\cosh Y_1)$. We conclude that $\Pp_0$ is the product
+of the tilted law of the $n$-spin system, with expectation $\E^-$, and
+the scalar law of \cref{sec:scalar-stability} with coefficient $d$ and
+profile $\mu$, with expectation $\E^0$. Since $d\in[\beta^2/2,\beta^2]$,
+we may use the scalar quantities $m_p$, $h_p$, $f_p=m_p^2$, $\bar f_p=f_p-\E^0f_p$,
+$g_r^\ell$, and $\Gamma(p)=\Gamma_{a,d}(p)=\E^0m_p^2$ of
+\cref{sec:scalar-stability} for this scalar law, together
+with the bounds of \cref{lem:cl-scalar}.
+
+\paragraph{The remaining spins.}
+For the first $n$ spins, we define
+\[
+ M_q=\E_u[\tau\mid\calG_q],\qquad A_q^-=\frac{|M_q|^2}{n},\qquad
+ C_q^-=\Cov_u(\tau\mid\calG_q),\qquad
+ H_q^-=\nabla_x^2U(q,X_q,Y_q).
+\]
+We let $m_N(q)=\E_u[\epsilon\mid\calG_q]$ be the conditional
+magnetization of the last spin, and we set
+\begin{equation}\label{eq:cav-rest-errors}
+ a_q^-(u)=\frac{\E_u\Tr\bigl((C_q^-)^2\bigr)}{n^2},\qquad
+ j_q^-(u)=\frac{\E_u[M_q^TC_q^-M_q]}{n^2}.
+\end{equation}
+The \emph{rest self-overlap} $A_q^-$ is a random variable. It should not
+be confused with the trace term $A$ of the full system.
+
+We note that $\Pp_u$ is a generalized law in the sense of \cref{sec:gauss}.
+It has $N$ coordinates, the diffusion matrix
+$\Lambda=\operatorname{diag}(cI_n,b(u))$, and independent Gaussian
+couplings with deterministic coefficients: $\beta\sqrt{t/N}$ for the
+pairs $i<j\le n$, $(\alpha u/n)^{1/2}$ for the pairs $(i,N)$, and $0$ on
+the diagonal. The matrix $\Lambda$ is positive definite because $c>0$
+and $b(u)\ge c$. The coefficient $(\alpha u/n)^{1/2}$ vanishes at $u=0$,
+which the generalized law allows. We use \cref{lem:fnd-posterior} for this
+law, with the first $n$ coordinates selected. It implies that
+$M_q=\nabla_xU(q,X_q,Y_q)$ and $m_N(q)=\partial_yU(q,X_q,Y_q)$. Since
+principal submatrices preserve the order $a(q)C_q\preceq H_q\preceq C_q$,
+it also implies that $a(q)C_q^-\preceq H_q^-\preceq C_q^-$, and in
+particular that $0\preceq H_q^-\preceq C_q^-$. Taking $k=\psi$ in the two
+inequalities in \eqref{eq:fnd-posterior}, we find that for every
+$u\in[0,1]$ and every deterministic $\psi\in L^2(\nu)$,
+\begin{equation}\label{eq:cl-BL}
+ \Var_u\Bigl(\int\psi(q)A_q^-\,\nu(\dd q)\Bigr)
+ \le4\int\psi(q)^2j_q^-(u)\,\nu(\dd q).
+\end{equation}
+
+\section{Laws of finitely many descendants}\label{subsec:c7-tree}
+
+Derivatives in $u$ produce products of conditional expectations at
+several levels. We represent them by additional terminal spins, called
+leaves, under a joint law in which deleting a leaf does not change the
+law of the others. The hierarchical background of such laws is Ruelle's
+probability cascades \cite{Ruelle1987}; see
+\cite[Chapter~2]{Panchenko2013Book}. An earlier hierarchical Gaussian
+change of measure appears in
+\cite[Theorem~4.3, (4.25)--(4.26)]{BolthausenSznitman1998}. Normalized
+finite replica trees of the present kind were developed in
+\cite[Section~2]{OpenAIFluctuationScale}, together with the
+differentiation of their moments by attaching new leaves and the
+resulting Taylor and comparison bounds. They are also used in
+\cite[Sections~2.1--2.3]{OpenAILimitingLaw}. In
+\cite{OpenAIFluctuationScale}, the covariance differentiation formula is
+Proposition~2.5, the attachment rules and their uniform variation bounds
+are Lemma~2.6, the bounds on the levels at which new pairs split are
+Lemma~2.8, and the Taylor and comparison bounds are Lemma~2.9. We derive
+below the versions that we need for the cavity law, with its root tilt
+and an arbitrary profile, including its atoms.
+
+\subsection{Marked trees}
+
+\begin{definition}[Marked trees and tree laws]\label{def:tree-marked}
+A \emph{marked tree} $\mathcal T$ with $k\ge1$ leaves is a finite rooted
+tree whose vertices $v$ carry deterministic levels $q_v\in[0,1]$, with
+the following properties. The root has level $0$, and levels increase
+strictly along every edge. Every vertex at a level in $(0,1)$ has at
+least two outgoing edges. The vertices at level $1$ have no outgoing
+edges; we call them terminal points. Finally, $k$ labeled leaves
+$\mathsf a=1,\ldots,k$ are attached to the terminal points, and every
+terminal point carries at least one leaf.
+
+Given $u\in[0,1]$, the \emph{tree law} $\Pp_{\mathcal T,u}$, with
+expectation $\E_{\mathcal T,u}$, is constructed as follows. The couplings
+are drawn once from their tilted law under $\Pp_u$. Given the couplings,
+the field starts at the origin at the root and follows the diffusion of
+\cref{subsec:c7-row} along each edge. At each vertex, it continues along
+the outgoing edges in conditionally independent ways. Given the couplings
+and the field, the leaves carry conditionally independent spins
+$\sigma^{\mathsf a}=(\tau^{\mathsf a},\epsilon_{\mathsf a})$. The spin
+$\sigma^{\mathsf a}$ is drawn with probabilities proportional to
+$e^{\mathcal E(\sigma;X^{\mathsf a}_1,Y^{\mathsf a}_1)}$, where
+$(X^{\mathsf a}_1,Y^{\mathsf a}_1)$ is the field at the terminal point of
+$\mathsf a$. We write $\E_{k,q,u}$ for the tree law of $k$ leaves that
+all split at the level $q$.
+\end{definition}
+
+The field is defined at every point $v$ of $\mathcal T$, that is, at every
+vertex and at every point of an edge. We write $(X_v,Y_v)$ for it and
+$q_v$ for the level of $v$. Two points on different branches at the same
+level are different points, with different fields. If $k\ge2$ and
+$0<q<1$, the tree of $k$ leaves that split at $q$ has one edge from the
+root to a vertex at level $q$, followed by $k$ edges to $k$ terminal
+points. If $k\ge2$ and $q=0$, the root has $k$ outgoing edges, and if
+$k\ge2$ and $q=1$, the $k$ leaves share one terminal point. For $k=1$,
+the tree is the single path from level $0$ to level $1$, independently of
+$q$. After deleting leaves, we remove the branches that carry no
+remaining leaf and suppress the interior vertices with one outgoing edge.
+
+Given the couplings and the field at a vertex, the continuations along
+different outgoing edges are conditionally independent, and their laws are
+normalized. Integrating out a leaf yields the tree law of the
+remaining leaves. We call this the \emph{deletion property}. In
+particular, every leaf has law $\Pp_u$. We represent products of conditional
+expectations given $\calG_q$ by leaves that split at $q$.
+For leaves $\mathsf a\ne\mathsf b$, let $q_{\mathsf{ab}}$ be the level of
+their last common ancestor, so that $q_{\mathsf{ab}}=1$ if they share a
+terminal point. We define their \emph{rest overlap}, their \emph{overlap
+defect}, and the product of the overlap defect with their last spins by
+\begin{equation}\label{eq:defectdefinition}
+ R^-_{\mathsf{ab}}=\frac{\tau^{\mathsf a}\cdot\tau^{\mathsf b}}{n},\qquad
+ \Delta_{\mathsf{ab}}=R^-_{\mathsf{ab}}-q_{\mathsf{ab}},\qquad
+ D_{\mathsf{ab}}=\epsilon_{\mathsf a}\epsilon_{\mathsf b}
+                          \Delta_{\mathsf{ab}}.
+\end{equation}
+Since $|R^-_{\mathsf{ab}}|\le1$, we have
+$|D_{\mathsf{ab}}|=|\Delta_{\mathsf{ab}}|\le2$. For instance, the four
+spins of $\E_{4,p,u}$ are conditionally independent given $\calG_p$, each
+with the conditional law of $\sigma$ given $\calG_p$. Therefore
+$\E_u[m_N(p)^2A_p^-]=\E_{4,p,u}[\epsilon_1\epsilon_2R^-_{34}]$.
+
+\subsection{Regularity in the row and in the last-field variance}
+
+To differentiate tree moments, we temporarily replace the row by a
+deterministic coupling $\epsilon\sum_i\theta_i\tau_i$ with
+$\theta\in\R^n$, and the coefficient $b(u)$ by a number $b>0$. We write
+$\Lambda_b=\operatorname{diag}(cI_n,b)$. We keep the other couplings $g_{ij}$,
+$i<j\le n$, fixed. Under $\Pp_u$ and under the tree laws,
+conditionally on the couplings, the field and the spins have the law of
+this fixed system with $\theta=(\alpha u/n)^{1/2}(g_{1N},\ldots,g_{nN})$
+and $b=b(u)$.
+
+\begin{lemma}[Regularity in the parameters]\label{lem:tree-regularity}
+Let $\mu$ be a deterministic profile, and let $U=U(q,x,y)$ solve
+\eqref{eq:cavityPDE} with the row replaced by
+$\epsilon\sum_i\theta_i\tau_i$ and $b(u)$ replaced by $b>0$. Then $U$ has
+derivatives of every order in $(\theta,x,y)$. Each derivative of positive
+order is bounded by a constant depending only on $N$ and its order. This
+bound is uniform in the couplings, $\theta$, $b$, $(q,x,y)$, and the
+profile, and each first derivative is bounded by one in absolute value.
+The function $U$ and all these derivatives are jointly continuous in
+$(b,q,\theta,x,y)\in(0,\infty)\times[0,1]\times\R^n\times\R^n\times\R$.
+Finally, writing $\nabla$ for the gradient in $(x,y)$, we have for
+$0\le r\le h\le1$ that
+\begin{equation}\label{eq:tree-integrated-pde}
+ U(r,x,y)-U(h,x,y)=\frac12\int_r^h\bigl[\Tr(\Lambda_b\nabla^2U)
+   +a(q)\,\nabla U^T\Lambda_b\nabla U\bigr](q,x,y)\dd q.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The proof has three steps. We first prove the bounds for step profiles,
+using the density of the future of the field. We then pass to arbitrary
+profiles with the approximation of \cite[Section~2.6]{AL}, and finally
+we prove the continuity in $q$ and $b$.
+
+\paragraph{Step 1: step profiles.}
+Let $\mu$ be a step profile. The coefficients of \eqref{eq:cavityPDE} do
+not depend on $(x,y)$. Translating the starting point of the field by
+$(x',y')$ has the same effect as adding
+$x'\cdot\tau+y'\epsilon$ to the terminal exponent. It follows that every
+derivative in $(\theta,x,y)$ is a derivative at $z=0$ with respect to
+parameters $z_j$ of the terminal exponent
+\[
+ \mathcal E_z(\sigma;x,y)=\mathcal E(\sigma;x,y)+\sum_jz_j\eta_j(\sigma),
+\]
+where the features $\eta_j$ range over $\tau_i\epsilon$, $\tau_i$
+($i\le n$), and $\epsilon$. Note that $|\eta_j|\le1$. Let $U_z$ be the
+corresponding solution. We fix a level $q$, refine the grid of the profile
+so that it contains $q$, and fix the field $(x,y)$ at level $q$. On a
+grid interval $[q_\ell,q_{\ell+1})$ with $a=a_\ell>0$, the Hopf--Cole form
+of the equation is $e^{a_\ell U_z(q_\ell)}=\E e^{a_\ell U_z(q_{\ell+1})}$,
+where the expectation is over a Gaussian increment of covariance
+$(q_{\ell+1}-q_\ell)\Lambda_b$. The transition of the diffusion is this
+Gaussian transition tilted by $e^{a_\ell(U_z(q_{\ell+1})-U_z(q_\ell))}$.
+If $a_\ell=0$, it is the Gaussian transition. We multiply these factors
+and the Gibbs probability $e^{\mathcal E_z(\sigma)-U_z(1)}$, as in
+\cite[Section~2.1, (2.1)]{AL}. The coefficient of $U_z$ at a grid point
+$q_\ell>q$ is $a_{\ell-1}-a_\ell=-\nu(\{q_\ell\})$, and at level $1$ it is
+$a(1-)-1=-\nu(\{1\})$. We find that given the field at level $q$, the
+future increments of the field and the spin have the density
+\begin{equation}\label{eq:tree-future-density}
+ L_z=\exp\Bigl\{\mathcal E_z(\sigma;Z_1)-a(q)U_z(q,Z_q)
+     -\int_{(q,1]}U_z(r,Z_r)\,\nu(\dd r)\Bigr\}
+\end{equation}
+with respect to driftless Gaussian increments of covariance $\Lambda_b$
+and counting measure on $\sigma$. Here $Z_r$ is the field at level $r$.
+
+We write $\E_z$ for the expectation under this density and
+$\ell_z=\log L_z$. On a grid interval with $a_\ell>0$, we differentiate
+$e^{a_\ell U_z(q_\ell)}=\E e^{a_\ell U_z(q_{\ell+1})}$. This shows that
+$\partial_{z_j}U_z(q_\ell)$ is the expectation of
+$\partial_{z_j}U_z(q_{\ell+1})$ under the transition of the diffusion,
+and the same holds if $a_\ell=0$. At level $1$, $\partial_{z_j}U_z(1)$ is
+the Gibbs mean of $\eta_j$. Iterating, we obtain
+\begin{equation}\label{eq:tree-first-derivative}
+ \partial_{z_j}U_z(q)=\E_z\eta_j,\qquad\text{so that}\qquad
+ |\partial_{z_j}U_z|\le1 .
+\end{equation}
+Since $a(q)+\nu((q,1])=1$, this implies that $|\partial_{z_j}\ell_z|\le2$.
+Further, if all derivatives of $U_z$ of some order $m'\ge2$ are bounded
+by $C_{m'}$, then all derivatives of $\ell_z$ of order $m'$ are bounded
+by $C_{m'}$. Since the reference law in \eqref{eq:tree-future-density} does not
+depend on $z$, we may differentiate \eqref{eq:tree-first-derivative}
+under the expectation. For directions $j,j_1,\ldots,j_m$, we have
+\[
+ \partial_{z_{j_1}}\cdots\partial_{z_{j_m}}\partial_{z_j}U_z(q)
+ =\E_z\Bigl[\eta_j\sum_\pi\prod_{B\in\pi}\partial_B\ell_z\Bigr],
+\]
+where $\pi$ runs over the partitions of $\{1,\ldots,m\}$ and $\partial_B$
+is the derivative in the directions $j_i$, $i\in B$. By induction on $m$,
+we find that every derivative of order $m+1$ in the coordinates $z_j$ is
+bounded by a constant depending only on $m$. There are $2n+1$
+coordinates, and this proves the bounds of the lemma for step profiles.
+
+\paragraph{Step 2: arbitrary profiles.}
+As in \cite[Section~2.6.2]{AL}, we approximate $\mu$ by step profiles
+$\mu_m=s\delta_0+\nu_m$ that converge weakly to $\mu$ and whose
+cumulative functions $a_m$ converge to $a$ in $L^1(0,1)$. Let $U_m$ be
+the corresponding solutions. Following the proof of \cite[(2.19)]{AL}, with $cI_N$
+replaced by $\Lambda_b$ and with the first derivatives bounded by one,
+we obtain
+\[
+ \sup|U_m-U|\le\frac{\Tr\Lambda_b}2\,\|a_m-a\|_{L^1(0,1)},
+\]
+where the supremum is over $q,x,y$, the couplings, and $\theta$. For a
+function $f$ of one real variable and every $h>0$, we have
+$\|f'\|_\infty\le2\|f\|_\infty/h+(h/2)\|f''\|_\infty$. Using this
+inequality in one direction at a time for $U_m-U_{m'}$ and then for its
+derivatives, together with the bounds of Step 1, we find that every derivative of $U_m$ in
+$(\theta,x,y)$ converges uniformly. This implies that $U$ has
+derivatives of every order in $(\theta,x,y)$, that they are the uniform
+limits of those of $U_m$, and that they satisfy the same bounds. Each $U_m$
+satisfies \eqref{eq:tree-integrated-pde} with $a_m$ in place of $a$. As
+$a_m\to a$ in $L^1$, the identity passes to the limit.
+
+\paragraph{Step 3: continuity.}
+For a step profile, the derivatives of $U$ in $(\theta,x,y)$ satisfy, on
+each grid interval, the equations obtained by differentiating
+\eqref{eq:cavityPDE}. By Step 1, their right sides are bounded by
+constants depending only on $N$, $c$, $b$, and the order. More precisely,
+for every multi-index $\kappa$ in $(\theta,x,y)$, including $\kappa=0$,
+differentiation and the product rule give
+\[
+ \sup\bigl|\partial_qD^\kappa U_m\bigr|\le C_{N,|\kappa|}\,(nc+b)
+\]
+on each grid interval, where $C_{N,|\kappa|}$ depends only on $N$ and
+$|\kappa|$. The derivatives are continuous across the grid points, so the
+same Lipschitz bound in $q$ holds on $[0,1]$, independently of the step
+approximation, and it passes to the limit. We also find that
+$U$ and its derivatives in $(\theta,x,y)$ are Lipschitz in $q$,
+with constants depending only on $N$, the order, and $nc+b$. For the continuity in
+$b$, let $U_b$ and $U_{b'}$ be the solutions for $b,b'>0$ and the same
+profile. The difference $U_b-U_{b'}$ vanishes at $q=1$, because both solutions
+have the same terminal value. Subtracting their equations, we see that it
+satisfies a linear backward equation with diffusion matrix
+$\Lambda_{b'}$, a bounded drift, and the source term
+$\frac12(b-b')\bigl[\partial_{yy}U_b+a(\partial_yU_b)^2\bigr]$. By Step 1,
+we have $|\partial_{yy}U_b|\le2$ and $|\partial_yU_b|\le1$. The backward
+representation then gives $\sup|U_b-U_{b'}|\le\frac32|b-b'|$, first for
+step profiles and then, by Step 2, for $\mu$. Using the interpolation
+inequality of Step 2 again, we find that every derivative in
+$(\theta,x,y)$ is continuous in $b$, uniformly in the other variables.
+These derivatives are also Lipschitz in $(\theta,x,y)$ and in $q$, so
+they are jointly continuous.
+\end{proof}
+
+\subsection{The density of a tree law}
+
+Let $\mathcal T$ be a marked tree. For a vertex $v$, let $l_v$ be the
+number of its outgoing edges if $q_v<1$, and the number of leaves at $v$
+if $v$ is a terminal point. We define the measure $\omega$ on the points
+of $\mathcal T$ as follows. On the interior of an edge whose endpoints
+have levels $r<h$, it is the copy of the restriction of $\nu$ to $(r,h)$.
+A vertex $v$ carries the atom
+\[
+ \omega_v=\omega(\{v\})=\nu(\{q_v\})+(l_v-1)\,a(q_v).
+\]
+For example, the root carries $\nu(\{0\})+(l-1)a(0)$ if it has $l$
+outgoing edges, and a terminal point with $l$ leaves carries
+$\nu(\{1\})+l-1$. Below, the notation $\sum_v\omega_vF(v)$ means
+$\int F\dd\omega$; for an atomic profile, it is an ordinary sum. The
+\emph{driftless Gaussian field} on $\mathcal T$ starts at the origin at
+the root and has independent increments along the edges. On each edge,
+its increments have covariance $\Lambda$ times the length of the level
+interval.
+
+\begin{lemma}[Density of a tree law]\label{lem:tree-density}
+Let $\mu$ be a deterministic profile, $u\in[0,1]$, and $\mathcal T$ a
+marked tree with $k$ leaves. Consider the product of the original
+Gaussian law of the couplings, the driftless Gaussian field on
+$\mathcal T$, and counting measure on the spins. With respect to this
+reference measure, the joint law of the couplings, the field on
+$\mathcal T$, and the spins of the leaves under $\Pp_{\mathcal T,u}$ has
+density $Z_s(u)^{-1}\mathscr D_{\mathcal T}$, where
+\begin{equation}\label{eq:treedensity}
+ \mathscr D_{\mathcal T}=\exp\Bigl\{
+       \sum_{\mathsf a=1}^k\mathcal E(\sigma^{\mathsf a};
+                  X^{\mathsf a}_1,Y^{\mathsf a}_1)
+       -\int_{\mathcal T}U(q_v,X_v,Y_v)\,\omega(\dd v)\Bigr\},
+ \qquad \omega\ge0,\qquad \omega(\mathcal T)=k-s.
+\end{equation}
+For fixed couplings, the conditional density of the field and the spins
+is $e^{-sU(0,0,0)}\mathscr D_{\mathcal T}$.
+\end{lemma}
+
+\begin{proof}
+The proof has three steps: we compute the likelihood of one edge, collect
+the coefficients of $U$ at the vertices, and compute the mass of
+$\omega$. We fix the couplings. By \cref{lem:tree-regularity}, the first
+derivatives of $U$ in $(x,y)$ are bounded by one. The drift
+$a(q)\Lambda\nabla U$ is bounded, with
+$a(q)^2|\Lambda^{1/2}\nabla U|^2\le nc+b(u)$, and Novikov's condition
+holds.
+
+\paragraph{Step 1: one edge.}
+Let $Z$ be the driftless field on an edge with levels $r<h$, so that
+$\dd Z_q=\Lambda^{1/2}\dd B_q$. By Girsanov's formula, the law of the
+diffusion on this edge, started from $Z_r$, has density
+\[
+ \exp\Bigl\{\int_r^ha(q)\nabla U(q,Z_q)\cdot\dd Z_q
+   -\frac12\int_r^ha(q)^2|\Lambda^{1/2}\nabla U(q,Z_q)|^2\dd q\Bigr\}
+\]
+with respect to the law of $Z$. By \cref{lem:tree-regularity}, $U$ is
+smooth in $(x,y)$ with bounded derivatives and satisfies
+\eqref{eq:tree-integrated-pde}, whose integrand is bounded; in
+particular, $U$ is Lipschitz in $q$. We may therefore apply Itô's formula
+(for instance after smoothing $U$ in $q$), and by
+\eqref{eq:tree-integrated-pde}, we have
+\[
+ \dd U(q,Z_q)=\nabla U(q,Z_q)\cdot\dd Z_q
+       -\frac{a(q)}2|\Lambda^{1/2}\nabla U(q,Z_q)|^2\dd q.
+\]
+In the last identity, we used that the time derivative of $U$ is given by
+\eqref{eq:cavityPDE} for almost every $q$. We conclude that the exponent of the density is
+$\int_r^ha(q)\dd U(q,Z_q)$. The process $U_q=U(q,Z_q)$ is continuous,
+and $a$ is right-continuous with Stieltjes measure $\nu$ on $(r,h]$. We
+integrate by parts. The countably many jumps of $a$ do not affect the
+integral against $U_q$, and we obtain
+$\int_r^ha\dd U_q=a(h)U_h-a(r)U_r-\int_{(r,h]}U_q\,\nu(\dd q)$. As
+$a(h)-\nu(\{h\})=a(h-)$, the edge likelihood is
+\begin{equation}\label{eq:cav-edge-likelihood}
+ \exp\Bigl\{a(h-)U(h,X_h,Y_h)-a(r)U(r,X_r,Y_r)
+                    -\int_{(r,h)}U(q,X_q,Y_q)\,\nu(\dd q)\Bigr\},
+\end{equation}
+where we wrote the field as $(X,Y)$. We write the values at the endpoints
+separately, so that this formula also covers atoms of $\nu$ at $r$ and
+$h$.
+
+\paragraph{Step 2: the vertices.}
+We multiply the root tilt $e^{sU(0,0,0)}/Z_s(u)$, the edge likelihoods
+\eqref{eq:cav-edge-likelihood}, and the Gibbs probabilities
+$e^{\mathcal E(\sigma^{\mathsf a};X^{\mathsf a}_1,Y^{\mathsf a}_1)
+-U(1,X^{\mathsf a}_1,Y^{\mathsf a}_1)}$ of the leaves. The open edges
+contribute $-\int U\dd\nu$ along each edge. At a vertex $v$ with
+$0<q_v<1$, the incoming edge contributes $a(q_v-)U(v)$, and the $l_v$
+outgoing edges contribute $-l_va(q_v)U(v)$. The coefficient of $U(v)$ is
+\[
+ a(q_v-)-l_va(q_v)=-\bigl[\nu(\{q_v\})+(l_v-1)a(q_v)\bigr]=-\omega_v .
+\]
+At the root, the tilt and the $l$ outgoing edges give
+$s-la(0)=-[\nu(\{0\})+(l-1)a(0)]$, since $a(0)=s+\nu(\{0\})$. At a
+terminal point with $l$ leaves, the incoming edge and the $l$ Gibbs
+probabilities give $a(1-)-l=-[\nu(\{1\})+l-1]$, since $a(1)=1$. All these
+coefficients are nonpositive, which shows that $\omega\ge0$, and the
+product is $Z_s(u)^{-1}\mathscr D_{\mathcal T}$ with
+$\mathscr D_{\mathcal T}$ as in \eqref{eq:treedensity}. The edge
+likelihoods and the Gibbs probabilities are normalized. Integrating
+$\mathscr D_{\mathcal T}$ over the driftless field and the spins thus
+gives $e^{sU(0,0,0)}$, and this proves the claim about fixed couplings.
+Averaging over the original law of the couplings, we obtain $Z_s(u)$; in
+particular, the normalizer is $Z_s(u)$ for every tree.
+
+\paragraph{Step 3: the mass.}
+For a single leaf, $\omega$ is a copy of $\nu$ on the path from the root
+to the terminal point, and $\omega(\mathcal T)=\nu([0,1])=1-s$. Every
+marked tree is obtained from a single path by successively attaching
+$l-1\ge1$ new continuations at a point at some level $q$, each running to
+level $1$. Such a step adds $l-1$ leaves. It adds $(l-1)a(q)$ to the
+weight of the point, which is or becomes a vertex, and $(l-1)\nu((q,1])$
+on the new continuations. Since $a(q)+\nu((q,1])=1$, the mass of $\omega$
+increases by $l-1$, and $\omega(\mathcal T)=1-s+(k-1)=k-s$.
+\end{proof}
+
+We also see from the density \eqref{eq:treedensity} that an \emph{extended}
+tree, obtained by attaching new leaves to $\mathcal T$, carries the
+weights of its own shape, and that by deletion it induces
+$\Pp_{\mathcal T,u}$ on the original leaves. The same proof applies when
+the row is a deterministic coupling $\epsilon\sum_i\theta_i\tau_i$ and
+$b(u)$ is replaced by a number $b>0$, as in \cref{lem:tree-regularity}.
+We then take the density with respect to the Gaussian law of the
+couplings $g_{ij}$, $i<j\le n$, and the normalizer is the expectation of
+$e^{sU(0,0,0)}$ over these couplings.
+
+\subsection{Responses to the row and to the last-field variance}
+
+Let the field $(X,Y)$ and the spin $\sigma$ have the law of the fixed
+system of \cref{lem:tree-regularity}, and let $\calG_q$ be generated by
+the field up to level $q$. We set
+\[
+ \pi_i(q)=\E[\tau_i\epsilon\mid\calG_q],\qquad
+ m_N(q)=\E[\epsilon\mid\calG_q],
+\]
+and we evaluate the derivatives of $U$ at $(q,X_q,Y_q)$, writing for
+instance $\partial_{\theta_i}U(q)$.
+
+\begin{lemma}[Parameter responses]\label{lem:tree-responses}
+Let $\mu$ be a deterministic profile, and let $U$, $\pi_i$, and $m_N$ be
+as above, for fixed couplings, $\theta\in\R^n$, and $b>0$. Then for every
+$q\in[0,1]$ and $i\le n$,
+\begin{equation}\label{eq:nodeTheta}
+ \partial_{\theta_i}U(q)=\pi_i(q),\qquad
+ \partial_{\theta_i}^2U(q)
+ =1-a(q)\pi_i(q)^2-\int_{(q,1]}\E[\pi_i(r)^2\mid\calG_q]\,\nu(\dd r),
+\end{equation}
+\begin{equation}\label{eq:tree-node-y}
+ \partial_yU(q)=m_N(q),\qquad
+ \partial_{yy}U(q)
+ =1-a(q)m_N(q)^2-\int_{(q,1]}\E[m_N(r)^2\mid\calG_q]\,\nu(\dd r).
+\end{equation}
+Further, the derivative of $U$ in $b$ exists and, for each fixed $q$, is
+jointly continuous in $(b,\theta,x,y)$. It satisfies
+\begin{equation}\label{eq:nodeb}
+ \partial_bU(q)=\frac12\Bigl[(1-q)-\int_{(q,1]}(r-q)
+                   \E[m_N(r)^2\mid\calG_q]\,\nu(\dd r)\Bigr].
+\end{equation}
+In particular, $0\le\partial_bU(q)\le(1-q)/2$.
+\end{lemma}
+
+For a single row, \eqref{eq:nodeTheta} and \eqref{eq:tree-node-y} are
+the conditional form of \cite[(2.10)]{AL}. The identity \eqref{eq:nodeb}
+is the conditional, one-coordinate form of the field-variance computation
+following \cite[(2.11)]{AL}. Under $\Pp_u$ and the tree laws, the
+identities hold with $\calG_q$ generated by the couplings and the field,
+with $\theta=(\alpha u/n)^{1/2}(g_{1N},\ldots,g_{nN})$ and $b=b(u)$.
+
+\begin{proof}
+The proof has four steps. We prove \eqref{eq:nodeTheta} and
+\eqref{eq:tree-node-y} for step profiles with the density
+\eqref{eq:tree-future-density}, and we pass to arbitrary profiles with
+the exact density of \cref{lem:tree-density}. We then treat the
+derivative in $b$ in the same two stages.
+
+\paragraph{Step 1: step profiles.}
+Let $\mu$ be a step profile, and let $\eta$ be one of the features
+$\tau_i\epsilon$ and $\epsilon$, with parameter $z$. By
+\eqref{eq:tree-first-derivative}, we have
+$\partial_zU(r)=\E[\eta\mid\calG_r]$ for every $r$, and we write
+$\varpi(r)$ for this conditional expectation. Differentiating
+\eqref{eq:tree-first-derivative} once more under the density
+\eqref{eq:tree-future-density}, we find
+\[
+ \partial_z^2U(q)=\E\bigl[\eta\,\partial_z\ell_z\bigm|\calG_q\bigr]
+ =\E[\eta^2\mid\calG_q]-a(q)\varpi(q)^2
+   -\int_{(q,1]}\E\bigl[\eta\,\partial_zU(r)\bigm|\calG_q\bigr]\nu(\dd r).
+\]
+For $r\ge q$, by the tower property, we have
+$\E[\eta\,\partial_zU(r)\mid\calG_q]=\E[\varpi(r)\E[\eta\mid\calG_r]\mid\calG_q]
+=\E[\varpi(r)^2\mid\calG_q]$. Since $\eta^2=1$, this proves
+\eqref{eq:nodeTheta} for $\eta=\tau_i\epsilon$ and
+\eqref{eq:tree-node-y} for $\eta=\epsilon$. Note that $\mu([0,q])=a(q)$
+and $\mu=\nu$ on $(q,1]$. We record the result in the form
+\begin{equation}\label{eq:tree-atom-safe}
+ \partial_z^2U(q)=1-\int_{[0,1]}\E\bigl[\varpi(q\vee r)^2\bigm|\calG_q\bigr]
+   \,\mu(\dd r).
+\end{equation}
+
+\paragraph{Step 2: arbitrary profiles.}
+Let $\mu_m\Rightarrow\mu$ be the step profiles of the proof of
+\cref{lem:tree-regularity}. Applying the proof of \cref{lem:tree-density} to
+the single edge from $q$ to $1$ followed by the Gibbs probability, we see
+that \eqref{eq:tree-future-density} with
+$z=0$ is the density of the future given the field at $q$ for every
+profile. Its exponent equals
+$\mathcal E(\sigma;Z_1)-\int_{[0,1]}U(q\vee r,Z_{q\vee r})\,\mu(\dd r)$,
+and the integrand is continuous in $r$. The reference law does not depend
+on the profile, $U_m\to U$ uniformly, and $\mu_m\Rightarrow\mu$. Then
+the densities for $\mu_m$ converge pointwise to the density for $\mu$.
+Writing $L_m$ for the density for $\mu_m$, we have
+\[
+ \log L_m=\mathcal E(\sigma;Z_1)-U_m(1,Z_1)
+   +\int_{[0,1]}\bigl[U_m(1,Z_1)-U_m(q\vee r,Z_{q\vee r})\bigr]\,
+   \mu_m(\dd r),
+\]
+since $\mu_m([0,1])=1$. The first term is nonpositive, because
+$U_m(1,\cdot)$ is the logarithm of a sum that contains
+$e^{\mathcal E(\sigma;\cdot)}$. Using this, the bounds on the first derivatives in
+\cref{lem:tree-regularity}, and the Lipschitz bound in $q$ from Step~3 of
+its proof, we find
+\[
+ \log L_m\le C_N\Bigl(nc+b+\sup_{q\le r\le1}|Z_r|\Bigr),
+\]
+where $C_N$ depends only on $N$. The same bound holds for the density for
+$\mu$, and the densities have a common Gaussian integrable envelope. They
+therefore converge in $L^1$ of the reference law, and expectations of
+bounded functions converge. The left side of \eqref{eq:tree-first-derivative} converges by
+\cref{lem:tree-regularity}, so $\partial_zU(r)=\E[\eta\mid\calG_r]$ also
+for $\mu$. Next, we consider the integrand
+$r\mapsto\E[\varpi(q\vee r)^2\mid\calG_q]$ in \eqref{eq:tree-atom-safe}.
+Its value for $\mu_m$ differs from its value for $\mu$ by at most the
+$L^1$ distance of the two densities plus twice the supremum of the
+difference of the first derivatives. It therefore converges uniformly
+in $r$.
+The limit is continuous in $r$, because the first derivatives are
+jointly continuous by \cref{lem:tree-regularity}. Together with the weak
+convergence of $\mu_m$, this proves \eqref{eq:tree-atom-safe}, and hence
+\eqref{eq:nodeTheta} and \eqref{eq:tree-node-y}, for $\mu$. In these
+identities, an atom of $\nu$ at $q$ is counted in $a(q)$, and an atom at
+$1$ is counted in the integral.
+
+\paragraph{Step 3: the derivative in $b$ for step profiles.}
+Let $\mu$ be a step profile and $q_\ell\le q<q_{\ell+1}$, with $a=a_\ell$
+on $[q_\ell,q_{\ell+1})$. Suppose first that $a_\ell>0$, and let
+$\phi=e^{a_\ell U}$. On this interval, $\phi$ solves the backward heat
+equation $\partial_q\phi+\frac12\Tr(\Lambda_b\nabla^2\phi)=0$. In particular,
+$\phi(q)$ is the Gaussian average of $\phi(q_{\ell+1})$ over an increment
+of covariance $(q_{\ell+1}-q)\Lambda_b$. We differentiate in $b$, using
+the Gaussian heat identity in the last coordinate, and divide by
+$a_\ell\phi(q)$. We obtain
+\[
+ \partial_bU(q)=\E\bigl[\partial_bU(q_{\ell+1})\bigm|\calG_q\bigr]
+  +\frac{q_{\ell+1}-q}2\,
+  \E\bigl[(\partial_{yy}U+a_\ell(\partial_yU)^2)(q_{\ell+1})\bigm|\calG_q\bigr].
+\]
+The function
+$\partial_{yy}\phi=a_\ell(\partial_{yy}U+a_\ell(\partial_yU)^2)\phi$ also
+solves the backward heat equation. Further, the transition of the field
+from $q$ to $r\le q_{\ell+1}$ is the Gaussian transition tilted by
+$\phi(r)/\phi(q)$. It follows that
+$\E[(\partial_{yy}U+a_\ell(\partial_yU)^2)(r)\mid\calG_q]$ does not
+depend on $r\in[q,q_{\ell+1}]$, and that the last term equals
+$\frac12\int_q^{q_{\ell+1}}\E[(\partial_{yy}U+a(\partial_yU)^2)(r)\mid\calG_q]\dd r$.
+The case $a_\ell=0$ is the same with $\phi=U$. Iterating over the grid
+intervals and using $\partial_bU(1)=0$, we find
+\begin{equation}\label{eq:tree-b-response}
+ \partial_bU(q)=\frac12\int_q^1
+   \E\bigl[\partial_{yy}U(r)+a(r)\,m_N(r)^2\bigm|\calG_q\bigr]\dd r,
+\end{equation}
+where we used that $\partial_yU(r)=m_N(r)$.
+
+\paragraph{Step 4: the derivative in $b$ for arbitrary profiles.}
+By \eqref{eq:tree-node-y}, the integrand in \eqref{eq:tree-b-response}
+lies in $[0,1]$. Let $R(b)$ be the right side of
+\eqref{eq:tree-b-response} for $\mu$. For the step profiles $\mu_m$, the
+right side of \eqref{eq:tree-b-response} converges to $R(b)$ at each
+fixed $b$. Indeed, the densities converge as in Step 2, the derivatives
+converge uniformly, and $a_m\to a$ in $L^1(0,1)$. These expressions are
+bounded by $1/2$. By dominated convergence in the identity
+$U_m(b_2)-U_m(b_1)=\int_{b_1}^{b_2}\partial_bU_m\dd b$, we obtain
+$U(b_2)-U(b_1)=\int_{b_1}^{b_2}R(b)\dd b$. We write the last-field
+increments of the reference law as $\sqrt b$ times a fixed Brownian
+motion. Using \cref{lem:tree-regularity} and dominated convergence, we then see
+that, for each fixed $q$, $R$ is jointly continuous in
+$(b,\theta,x,y)$. It follows that
+$\partial_bU$ exists, equals $R$, and satisfies
+\eqref{eq:tree-b-response} for $\mu$. Inserting \eqref{eq:tree-node-y}
+at level $r$ and using the tower property, we have
+\[
+ \partial_bU(q)=\frac12\int_q^1\Bigl(1-\int_{(r,1]}
+   \E[m_N(\ell)^2\mid\calG_q]\,\nu(\dd\ell)\Bigr)\dd r .
+\]
+By Fubini's theorem, we have $\int_q^1\dd r\int_{(r,1]}F(\ell)\,\nu(\dd\ell)
+=\int_{(q,1]}(\ell-q)F(\ell)\,\nu(\dd\ell)$ for bounded $F\ge0$, and
+\eqref{eq:nodeb} follows. Finally, the integral in \eqref{eq:nodeb} lies
+between $0$ and $(1-q)\nu((q,1])\le1-q$, which gives
+$0\le\partial_bU(q)\le(1-q)/2$.
+\end{proof}
+
+\subsection{Differentiation in the interpolation parameter}
+
+For a point $v$ of $\mathcal T$, we write $\hat v$ and $\check v$ for new
+leaves whose paths leave the path through $v$ at the level $q_v$. If $v$
+is an interior point of an edge, the extended tree has a new vertex at
+$v$. If $v$ is a vertex, the new edge starts at $v$, and if $v$ is a
+terminal point, the new leaf is attached there. Distinct new leaves are
+conditionally independent, also when they are attached at the same
+point. For $r>q_v$, we write $\hat r$ and $\check r$ for two new leaves
+that follow a common new branch from $v$ to the level $r$ and split
+there. Given the couplings and the field of $\mathcal T$, a new branch
+from $v$ is a continuation of the diffusion from the field at $v$, and it
+is independent of everything else. Let $F$ be a bounded function of the
+spins of $\mathcal T$, and let $G,G'$ be bounded functions of one spin.
+Then
+\begin{equation}\label{eq:tree-replacement}
+ \begin{aligned}
+ \E\bigl[F\,G(\sigma^{\hat v})\bigr]
+ &=\E_{\mathcal T,u}\bigl[F\,\E[G(\sigma)\mid\calG_{q_v}](v)\bigr],\\
+ \E\bigl[F\,G(\sigma^{\hat r})G'(\sigma^{\check r})\bigr]
+ &=\E_{\mathcal T,u}\Bigl[F\,\E\bigl[\E[G(\sigma)\mid\calG_r]\,
+   \E[G'(\sigma)\mid\calG_r]\bigm|\calG_{q_v}\bigr](v)\Bigr].
+ \end{aligned}
+\end{equation}
+Here the left sides are taken under the extended trees. A conditional
+expectation under $\Pp_u$ given $\calG_{q_v}$ is a function of the
+couplings and of the field at level $q_v$, and $(v)$ means that it is
+evaluated at the couplings and at the field at $v$. In the same way, two
+new leaves $\hat v$ and $\check w$ attached at $v$ and $w$ represent the
+product of the two conditional expectations, evaluated at $v$ and at $w$.
+
+Let $\varphi_{\mathsf{ab}}$ be a quantity attached to each pair of
+distinct leaves of an extended tree. For a bounded function $F$ of the
+spins of $\mathcal T$, we define the five-pattern sum
+\[
+ \begin{aligned}
+ \mathfrak S_\varphi(F)={}&
+ \sum_{\mathsf a\ne\mathsf b}\E(F\epsilon_{\mathsf a}\epsilon_{\mathsf b}
+   \varphi_{\mathsf{ab}})
+ -2\sum_{\mathsf a,v}\omega_v\E(F\epsilon_{\mathsf a}\epsilon_{\hat v}
+   \varphi_{\mathsf a\hat v})
+ +\sum_{v,w}\omega_v\omega_w\E(F\epsilon_{\hat v}\epsilon_{\check w}
+   \varphi_{\hat v\check w})\\
+ &+\sum_v\omega_va(q_v)\E(F\epsilon_{\hat v}\epsilon_{\check v}
+   \varphi_{\hat v\check v})
+ +\sum_v\omega_v\int_{(q_v,1]}\E(F\epsilon_{\hat r}\epsilon_{\check r}
+   \varphi_{\hat r\check r})\,\nu(\dd r).
+ \end{aligned}
+\]
+The sums run over leaves $\mathsf a,\mathsf b$ of $\mathcal T$ and points
+$v,w$ of $\mathcal T$, and the weights $\omega$ are those of
+$\mathcal T$. We take each expectation under the extended tree that
+contains the leaves involved. We use this sum with
+$\varphi_{\mathsf{ab}}=R^-_{\mathsf{ab}}$, with
+$\varphi_{\mathsf{ab}}=q_{\mathsf{ab}}$, and with
+$\varphi_{\mathsf{ab}}=\Delta_{\mathsf{ab}}$. Then
+$\mathfrak S_\Delta=\mathfrak S_{R^-}-\mathfrak S_q$, and
+$\epsilon_{\mathsf a}\epsilon_{\mathsf b}\Delta_{\mathsf{ab}}=D_{\mathsf{ab}}$.
+The following table lists the five patterns. Its last column gives the
+level $q_{\mathsf{ab}}$ of the pair.
+\begin{center}
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+pair of leaves & new leaves & coefficient & level of the pair\\
+\midrule
+two leaves $\mathsf a\ne\mathsf b$ of $\mathcal T$ & none & $1$
+  & $q_{\mathsf{ab}}$\\
+a leaf $\mathsf a$ and a leaf attached at $v$ & $\hat v$
+  & $-2\,\omega_v$ & $q_{\mathsf a\hat v}$\\
+leaves attached at $v$ and at $w$ & $\hat v,\check w$
+  & $\omega_v\omega_w$ & $q_{\hat v\check w}$\\
+two leaves attached at $v$ & $\hat v,\check v$ & $a(q_v)\,\omega_v$
+  & $q_v$\\
+two leaves splitting at $r>q_v$ & $\hat r,\check r$
+  & $\omega_v\,\nu(\dd r)$ & $r$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{lemma}[Differentiation under the tree law]\label{lem:streaming}
+Let $\mu$ be a deterministic profile, $\mathcal T$ a marked tree with $k$
+leaves, and $F$ a bounded function of the spins of its leaves. Then
+$u\mapsto\E_{\mathcal T,u}F$ belongs to $C^2([0,1])$, with one-sided
+derivatives at the endpoints, and
+\begin{align}
+ \frac{\dd}{\dd u}\E_{\mathcal T,u}F=\frac\alpha2\bigg[&
+ \sum_{\mathsf a\ne\mathsf b}\E(FD_{\mathsf{ab}})
+ -2\sum_{\mathsf a,v}\omega_v\E(FD_{\mathsf a\hat v})
+ +\sum_{v,w}\omega_v\omega_w\E(FD_{\hat v\check w})\nonumber\\
+ &+\sum_v\omega_va(q_v)\E(FD_{\hat v\check v})
+ +\sum_v\omega_v\int_{(q_v,1]}\E(FD_{\hat r\check r})\,\nu(\dd r)
+ \nonumber\\
+ &+s\,\E_{\mathcal T,u}F\int\E_{2,r,u}D_{12}\,\nu(\dd r)\bigg].
+ \label{eq:streaming}
+\end{align}
+The sums run over leaves $\mathsf a,\mathsf b$ and points $v,w$ of
+$\mathcal T$, with the weighted sums interpreted as integrals against
+$\omega$ as above. The first five expectations are taken under extended
+trees, and the last term is a product of expectations over independent
+copies. The absolute coefficients in the bracket sum to at most
+$4k^2+2k+1$. The second derivative is obtained by applying the same
+formula to each tree moment on its right side, and the product rule to
+independent products of moments.
+\end{lemma}
+
+In the notation above, \eqref{eq:streaming} reads
+$\frac{\dd}{\dd u}\E_{\mathcal T,u}F=\frac\alpha2[\mathfrak S_\Delta(F)
++s\,\E_{\mathcal T,u}F\int\E_{2,r,u}D_{12}\,\nu(\dd r)]$.
+
+\begin{proof}
+If $\alpha=0$, the law does not depend on $u$, and both sides vanish. Let
+$\alpha>0$. The proof has five steps. We check
+that \cref{lem:fnd-path-heat} applies, and we compute the contributions
+of the row and of the last field to the derivative of the unnormalized
+moment. We then compute the derivative of the normalizer. Finally, we
+bound the coefficients and prove the $C^2$ regularity.
+
+\paragraph{Step 1: the heat identity.}
+By \cref{lem:tree-density}, we have
+$\E_{\mathcal T,u}F=Z_s(u)^{-1}\E_{\rm ref}[F\mathscr D_{\mathcal T}]$,
+where $\E_{\rm ref}$ denotes integration against the reference measure of
+that lemma. We write the row as $\theta=(\alpha u/n)^{1/2}(g_{iN})_{i\le n}$,
+and we use \cref{lem:fnd-path-heat} on $I=[0,1]$ with the following
+data. The finite coordinates are the entries of $\theta$, with variances
+$\alpha u/n$. The field paths are the $n+1$ coordinates of the driftless
+field on the edges of $\mathcal T$. For an edge $e$ with endpoint levels
+$r_e<h_e$, we use the local coordinate $v\in[0,1]$, and the clocks are
+\[
+ T_{e,i,u}(v)=c\,(h_e-r_e)\,v\quad(i\le n),\qquad
+ T_{e,N,u}(v)=b(u)\,(h_e-r_e)\,v .
+\]
+The couplings $g_{ij}$, $i<j\le n$, do not depend on $u$, and the spins
+are the counting variable. The row, the Brownian motions of the
+different edges and components, and the couplings $g_{ij}$ are mutually
+independent. We take $\ell=\log\mathscr D_{\mathcal T}$ and
+$\Phi=F$. The elements of the space $\mathcal C$ of
+\cref{lem:fnd-path-heat} need not agree at the common
+endpoints of edges. To define $\ell$ on the whole space, we evaluate the field at each nonroot vertex at the
+endpoint of its incoming edge. At the root, we choose a fixed outgoing
+edge $e_0$ and evaluate the field at the initial point of $e_0$; its
+coordinates vanish on every path of the driftless field. This agrees with
+\eqref{eq:treedensity} on the paths of the driftless field. The
+derivative measures below, including the atom of $\omega$ at the root,
+are those of this extension. We check the hypotheses \textup{(A1)}--\textup{(A4)} of
+\cref{lem:fnd-path-heat}.
+\begin{itemize}
+\item \textup{(A1)}: the variances $\alpha u/n$ are positive for $u>0$.
+The clocks are affine in $u$, and they are strictly increasing in $v$,
+because $c>0$, $b(u)\ge c$, and every edge has positive length.
+\item \textup{(A2)}: the covariance of the last component at two field
+points $v,w$ is $b(u)h(v,w)$, where $h(v,w)$ is the level of the last
+common point of the paths from the root to $v$ and to $w$. For the other
+components, it is $c\,h(v,w)$. Hence $K$ is affine in $u$, with
+$\dot K=(\alpha/n)I_n$ on the row block, $\dot K=-\alpha h$ on the
+last-field block, and $\dot K=0$ elsewhere. These kernels are
+continuous.
+\item \textup{(A3)}: $\Phi=F$ is bounded and $\dot\Phi=0$. The explicit
+derivative of $\ell$ comes from $b(u)$ in $U$, so that
+$\dot\ell=-b'(u)\sum_v\omega_v\partial_bU(v)=\alpha\sum_v\omega_v
+\partial_bU(v)$. The levels $q_v$ and the finite measure $\omega$ are
+fixed. Using the fixed-level continuity and uniform bound of
+\cref{lem:tree-responses}, together with dominated convergence against $\omega$, we see
+that $\dot\ell$ is continuous in $(u,G)$; it is bounded by $\alpha k/2$.
+If we treat each rest coupling $g_{ij}$ as an additional source parameter
+with bounded feature $\beta\sqrt{t/N}\,\tau_i\tau_j$ in Step~1 of the proof of
+\cref{lem:tree-regularity}, we obtain joint continuity of $U$ and its spatial
+derivatives also in the rest couplings. The fixed-level response formula
+of \cref{lem:tree-responses} then gives joint continuity of $\partial_bU$
+in those couplings by dominated convergence, using the uniform bound of
+that lemma.
+Thus $\ell$ and $\dot\ell$ are jointly continuous in $(u,G,g)$, as required
+by \textup{(A3)}.
+The first derivatives of $U$ in
+the row and in the field are bounded by one. Its derivative in $g_{ij}$,
+$i<j\le n$, is the conditional mean of $\beta\sqrt{t/N}\,\tau_i\tau_j$,
+by the argument of Step~1 of the proof of \cref{lem:tree-regularity}.
+Integrating \eqref{eq:cavityPDE} in $q$ and using that the first spatial
+derivatives of $U$ are bounded by one and the second by two (Step~1 of that
+proof), we have $|U(q,0,0)|\le N\log2+\frac32(nc+b(u))$
+when all couplings, the row, and the field vanish.
+Since $\mathcal E$ is linear in the couplings, the row, and the field, we
+conclude that $|\ell|\le C(1+|g|+|\theta|+\|G^{\rm path}\|_\infty)$, where
+$C$ depends only on $N$, $k$, and $\beta$. Here $g$ collects the couplings
+$g_{ij}$, $i<j\le n$.
+\item \textup{(A4)}: the score of $\ell$ consists of the atoms
+$\tau_i^{\mathsf a}\epsilon_{\mathsf a}$ (row), $\tau^{\mathsf a}$ and
+$\epsilon_{\mathsf a}$ (field at the terminal point of $\mathsf a$), and
+of $-\nabla U(v)\,\omega(\dd v)$, where $\nabla$ is the gradient in the
+row and the field. Since $\mathcal E$ is linear in these variables, the
+Hessian of $\ell$ is $-\nabla^2U(v)\,\omega(\dd v)$, placed at the pairs
+of indices of the point $v$. It has a row--row block
+$-\partial_{\theta_i\theta_j}U(v)\,\omega(\dd v)$, mixed row--field
+blocks such as $-\partial_{\theta_iy}U(v)\,\omega(\dd v)$ and
+$-\partial_{\theta_ix_j}U(v)\,\omega(\dd v)$ with their transposes, and
+field--field blocks such as $-\partial_{yy}U(v)\,\omega(\dd v)$, placed at
+the diagonal pairs of index points of $v$. By
+\cref{lem:tree-regularity}, these derivatives of $U$ are bounded and
+jointly continuous in $(b,q,\theta,x,y)$. As the points $(q_v,X_v,Y_v)$
+stay in a compact set when $G$ varies in a bounded set, the measures are
+continuous in total variation in $(u,G)$. Their total variations are
+at most $C_Nk$. The measures for $\Phi$ vanish.
+\end{itemize}
+The constants in these hypotheses depend on $N$ and $k$. We use them
+only to justify the differentiation, and the identity below has
+coefficients that do not depend on $N$. Since $\Phi=F$ depends neither on
+the Gaussian coordinates nor on $u$, \eqref{eq:fnd-path-heat} and
+\eqref{eq:fnd-path-normalizer} imply that
+\begin{equation}\label{eq:tree-quotient}
+ \frac{\dd}{\dd u}\E_{\mathcal T,u}F
+ =\frac{\partial_u\E_{\rm ref}[F\mathscr D_{\mathcal T}]}{Z_s(u)}
+ -\E_{\mathcal T,u}F\,\frac{\dd}{\dd u}\log Z_s(u),
+\end{equation}
+where the derivative of the unnormalized moment is
+\[
+ \frac{\partial_u\E_{\rm ref}[F\mathscr D_{\mathcal T}]}{Z_s(u)}
+ =\E_{\mathcal T,u}\Bigl[F\Bigl(\dot\ell+\frac\alpha{2n}\sum_{i=1}^n
+   \bigl((\partial_{\theta_i}\ell)^2+\partial_{\theta_i}^2\ell\bigr)
+   -\frac\alpha2\bigl\langle h,S_y\otimes S_y+M_{yy}\bigr\rangle\Bigr)\Bigr].
+\]
+Here $S_y$ and $M_{yy}$ are the score and Hessian measures of $\ell$ in
+the last-field coordinates.
+
+\paragraph{Step 2: the row.}
+By \eqref{eq:treedensity} and \eqref{eq:nodeTheta}, we have
+\[
+ \partial_{\theta_i}\ell=\sum_{\mathsf a}\tau_i^{\mathsf a}\epsilon_{\mathsf a}
+   -\sum_v\omega_v\pi_i(v),
+ \qquad
+ \partial_{\theta_i}^2\ell=-\sum_v\omega_v\partial_{\theta_i}^2U(v),
+\]
+where $\pi_i(v)$ and $\partial_{\theta_i}^2U(v)$ are evaluated at the
+couplings and at the field at $v$. We expand the square and insert
+\eqref{eq:nodeTheta}. The diagonal terms
+$(\tau_i^{\mathsf a}\epsilon_{\mathsf a})^2=1$ contribute $k$, and the
+constant $1$ in \eqref{eq:nodeTheta} contributes $-\omega(\mathcal T)$.
+By \cref{lem:tree-density}, these constants add up to $s$. The other
+terms of $(\partial_{\theta_i}\ell)^2+\partial_{\theta_i}^2\ell$ are
+\[
+ \begin{aligned}
+ &\sum_{\mathsf a\ne\mathsf b}\tau_i^{\mathsf a}\epsilon_{\mathsf a}
+   \tau_i^{\mathsf b}\epsilon_{\mathsf b}
+ -2\sum_{\mathsf a,v}\omega_v\tau_i^{\mathsf a}\epsilon_{\mathsf a}\pi_i(v)
+ +\sum_{v,w}\omega_v\omega_w\pi_i(v)\pi_i(w)\\
+ &\quad+\sum_v\omega_va(q_v)\pi_i(v)^2
+ +\sum_v\omega_v\int_{(q_v,1]}\E[\pi_i(r)^2\mid\calG_{q_v}](v)\,\nu(\dd r).
+ \end{aligned}
+\]
+By \eqref{eq:tree-replacement}, inside $\E_{\mathcal T,u}[F\,\cdot\,]$
+we may replace $\pi_i(v)$ by $\tau_i^{\hat v}\epsilon_{\hat v}$, and
+$\pi_i(v)\pi_i(w)$ by the product for $\hat v$ and $\check w$. We may
+also replace $\pi_i(v)^2$ by the product for $\hat v$ and $\check v$, and
+$\E[\pi_i(r)^2\mid\calG_{q_v}](v)$ by the product for $\hat r$ and
+$\check r$. Averaging over $i$ then replaces
+$\tau_i^{\mathsf a}\tau_i^{\mathsf b}$ by $R^-_{\mathsf{ab}}$. We obtain
+\begin{equation}\label{eq:tree-row-part}
+ \frac\alpha{2n}\sum_{i=1}^n\E_{\mathcal T,u}\bigl[F\bigl(
+   (\partial_{\theta_i}\ell)^2+\partial_{\theta_i}^2\ell\bigr)\bigr]
+ =\frac\alpha2\bigl[s\,\E_{\mathcal T,u}F+\mathfrak S_{R^-}(F)\bigr].
+\end{equation}
+
+\paragraph{Step 3: the last field.}
+By \eqref{eq:treedensity} and \eqref{eq:tree-node-y}, the score and
+Hessian measures of $\ell$ in the last-field coordinates are
+\[
+ S_y=\sum_{\mathsf a}\epsilon_{\mathsf a}\delta_{\mathsf a}
+                      -m_N(v)\,\omega(\dd v),\qquad
+ M_{yy}=-\operatorname{diag}_{\#}
+                  \bigl(\partial_{yy}U(v)\,\omega(\dd v)\bigr),
+\]
+where $\delta_{\mathsf a}$ is the unit mass at the terminal point of
+$\mathsf a$. Here $\operatorname{diag}_{\#}$ is the image of a measure
+under $v\mapsto(v,v)$, so that atoms of $\omega$ stay at exact diagonal
+pairs. Let a leaf stand for its terminal point. Then the kernel $h$
+satisfies $h(\mathsf a,\mathsf a)=1$,
+$h(\mathsf a,\mathsf b)=q_{\mathsf{ab}}$,
+$h(\mathsf a,v)=q_{\mathsf a\hat v}$, $h(v,w)=q_{\hat v\check w}$, and
+$h(v,v)=q_v$. Expanding $\langle h,S_y\otimes S_y\rangle$ as in Step 2
+and replacing $m_N(v)$ by $\epsilon_{\hat v}$ with
+\eqref{eq:tree-replacement}, we find
+\[
+ \begin{aligned}
+ -\frac\alpha2\E_{\mathcal T,u}\bigl[F\langle h,S_y\otimes S_y\rangle\bigr]
+ =-\frac\alpha2\Bigl[&k\,\E_{\mathcal T,u}F
+ +\sum_{\mathsf a\ne\mathsf b}q_{\mathsf{ab}}
+   \E(F\epsilon_{\mathsf a}\epsilon_{\mathsf b})\\
+ &-2\sum_{\mathsf a,v}\omega_vq_{\mathsf a\hat v}
+   \E(F\epsilon_{\mathsf a}\epsilon_{\hat v})
+ +\sum_{v,w}\omega_v\omega_wq_{\hat v\check w}
+   \E(F\epsilon_{\hat v}\epsilon_{\check w})\Bigr].
+ \end{aligned}
+\]
+The bracket consists of the constant $k\,\E_{\mathcal T,u}F$ and the
+first three patterns of $\mathfrak S_q(F)$. The Hessian measure
+contributes
+$-\frac\alpha2\langle h,M_{yy}\rangle=\frac\alpha2\sum_v\omega_vq_v
+\partial_{yy}U(v)$, and we recall that
+$\dot\ell=\alpha\sum_v\omega_v\partial_bU(v)$. Together, these two terms
+give $\frac\alpha2\sum_v\omega_v[q_v\partial_{yy}U(v)+2\partial_bU(v)]$.
+By \eqref{eq:tree-node-y} and \eqref{eq:nodeb}, we have
+\[
+ q_v\partial_{yy}U(v)+2\partial_bU(v)
+ =1-q_va(q_v)m_N(v)^2
+   -\int_{(q_v,1]}r\,\E[m_N(r)^2\mid\calG_{q_v}](v)\,\nu(\dd r).
+\]
+In the integral, we combined $q_v\int_{(q_v,1]}$ from
+\eqref{eq:tree-node-y} with $\int_{(q_v,1]}(r-q_v)$ from \eqref{eq:nodeb}.
+After the replacements \eqref{eq:tree-replacement}, the constant gives
+$\frac\alpha2\omega(\mathcal T)\E_{\mathcal T,u}F
+=\frac\alpha2(k-s)\E_{\mathcal T,u}F$. The other two terms are the last
+two patterns of $-\frac\alpha2\mathfrak S_q(F)$, with the levels
+$q_{\hat v\check v}=q_v$ and $q_{\hat r\check r}=r$. Altogether, the last
+field and the explicit derivative contribute
+$\frac\alpha2[-k+(k-s)]\E_{\mathcal T,u}F-\frac\alpha2\mathfrak S_q(F)$.
+Adding \eqref{eq:tree-row-part}, we see that the constants $\alpha s/2$,
+$-\alpha k/2$, and $\alpha(k-s)/2$ cancel, and since
+$\mathfrak S_{R^-}-\mathfrak S_q=\mathfrak S_\Delta$, we conclude that
+\begin{equation}\label{eq:tree-unnormalized}
+ \frac{\partial_u\E_{\rm ref}[F\mathscr D_{\mathcal T}]}{Z_s(u)}
+ =\frac\alpha2\,\mathfrak S_\Delta(F).
+\end{equation}
+In words, the row inserts a rest overlap, the last field inserts the
+level of the corresponding pair, and their difference is an overlap
+defect.
+
+\paragraph{Step 4: the normalizer.}
+We compute the derivative of $Z_s(u)=\E_{\rm ref}e^{sU(0,0,0)}$ with
+\eqref{eq:fnd-path-normalizer}; now the only active coordinates are those of the
+row. The row contributes
+$\frac{\alpha s}{2n}\sum_i\E_u[\partial_{\theta_i}^2U(0)
++s(\partial_{\theta_i}U(0))^2]$. As $a(0)-s=\nu(\{0\})$, we obtain from
+\eqref{eq:nodeTheta} that
+\[
+ \partial_{\theta_i}^2U(0)+s\bigl(\partial_{\theta_i}U(0)\bigr)^2
+ =1-\int_{[0,1]}\E[\pi_i(r)^2\mid\calG_0]\,\nu(\dd r).
+\]
+Here, as in \cite[(2.11)]{AL}, the term $s(\partial_{\theta_i}U)^2$
+removes the prescribed root mass $s$, and a possible atom $\nu(\{0\})$
+remains in the integral. Since
+$\E_u\E[\pi_i(r)^2\mid\calG_0]=\E_{2,r,u}[\tau_i^1\epsilon_1\tau_i^2\epsilon_2]$,
+the row contributes
+$\frac{\alpha s}2[1-\int\E_{2,r,u}[\epsilon_1\epsilon_2R^-_{12}]\,
+\nu(\dd r)]$. The coefficient $b(u)$ contributes
+$sb'(u)\E_u\partial_bU(0)=-\alpha s\E_u\partial_bU(0)$. By
+\eqref{eq:nodeb}, this equals
+$-\frac{\alpha s}2[1-\int r\,\E_{2,r,u}[\epsilon_1\epsilon_2]\,\nu(\dd r)]$.
+Adding the two contributions, we find
+\begin{equation}\label{eq:normalizerderivative}
+ \frac\dd{\dd u}\log Z_s(u)
+ =-\frac{\alpha s}{2}\int\E_{2,r,u}D_{12}\,\nu(\dd r).
+\end{equation}
+Inserting \eqref{eq:tree-unnormalized} and
+\eqref{eq:normalizerderivative} into \eqref{eq:tree-quotient}, we obtain
+\eqref{eq:streaming}. In its last term, $\E_{2,r,u}$ is the expectation
+under an independent copy of the complete tree law, including its
+couplings.
+
+\paragraph{Step 5: coefficients and regularity.}
+Recall that $\omega(\mathcal T)=k-s\le k$, $a\le1$, and $\nu([0,1])\le1$. The
+absolute coefficients of the six terms in \eqref{eq:streaming} are
+at most $k(k-1)$, $2k^2$, $k^2$, $k$, $k$, and $1$. Their sum is
+$4k^2+k+1\le4k^2+2k+1$.
+
+We now show that each extended-tree moment on the right side of
+\eqref{eq:streaming} is continuous in $u$. We write the row as
+$(\alpha u/n)^{1/2}g$, and the last-field coordinates as $\sqrt{b(u)}$
+times a fixed Brownian field on the tree. By \cref{lem:tree-regularity},
+the density is then continuous in $u$ for fixed Gaussian variables. Its
+linear growth gives a Gaussian envelope that is uniform in $u$. By
+dominated convergence, the moments and their normalizers are continuous.
+The weights and the measures $\omega$ and $\nu$ over which the right side
+is integrated do not depend on $u$, and the integrands are bounded by
+$2\|F\|_\infty$. Bounded convergence then shows that the right side is
+continuous. The derivative exists at every $u\in[0,1]$, one-sided at the
+endpoints, so $u\mapsto\E_{\mathcal T,u}F$ is $C^1$.
+Next, we apply \eqref{eq:streaming} to each bounded spin observable $FD$
+on the extended trees; these observables do not depend on $u$. The
+numbers of leaves grow by at most two, and the coefficients are bounded
+in terms of $k$. Each of these moments therefore has a derivative bounded
+by $C_k\alpha\|F\|_\infty$, uniformly in the points $v,w$ and the level
+$r$. This lets us differentiate under the integrals against $\omega$ and
+$\nu$ by dominated convergence, and we use the product rule for the last
+term. The resulting right side is continuous by the same argument. This
+proves the $C^2$ regularity and the rule for the second derivative.
+\end{proof}
+
+\begin{corollary}[Comparison of nonnegative observables]\label{cor:comparison}
+For every deterministic profile, every marked tree $\mathcal T$ with $k$
+leaves, and every nonnegative bounded function $F$ of the spins of its
+leaves,
+\begin{equation}\label{eq:comparison}
+ \E_{\mathcal T,u}F\le K_{\beta,k}\E_{\mathcal T,v}F
+ \quad(0\le u,v\le1),
+ \qquad K_{\beta,k}=\exp\bigl(\beta^2(4k^2+2k+1)\bigr).
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Since $|D_{\mathsf{ab}}|\le2$ and $F\ge0$, each expectation in
+\eqref{eq:streaming} is at most twice the expectation of $F$ under the
+corresponding extended tree. By deletion, the latter equals
+$\E_{\mathcal T,u}F$, and the same bound holds for the product in the
+last term. Using \cref{lem:streaming} and $\alpha\le\beta^2$, we find
+\[
+ \bigl|\partial_u\E_{\mathcal T,u}F\bigr|
+ \le\beta^2(4k^2+2k+1)\,\E_{\mathcal T,u}F,\qquad0\le u\le1 .
+\]
+By Gronwall's inequality on the interval between $u$ and $v$, we obtain
+$\E_{\mathcal T,u}F\le e^{\beta^2(4k^2+2k+1)|u-v|}\E_{\mathcal T,v}F$.
+In particular, \eqref{eq:comparison} holds, also in the case
+$\E_{\mathcal T,v}F=0$, in which the moment vanishes for all $u$. The
+comparisons in \cite[Lemmas~2.9 and~4.3]{OpenAIFluctuationScale} are
+proved by the same differential inequality. The classical analog
+on one site is \cite[Lemma~1.6.4]{TalagrandVolI2011}.
+\end{proof}
+
+\section{Products of three overlap defects}\label{subsec:c7-three}
+
+In the Taylor remainder of the cavity covariance, and in the variance
+comparison of \cref{lem:cl-star}, we differentiate tree moments of
+observables that already contain overlap defects. Each differentiation
+adds one more defect. We show that integrated moments of products of
+three defects are controlled by the integrated third absolute moment
+\begin{equation}\label{eq:cav-M3}
+ \mathcal M_3(u)=\int\E_{2,q,u}|R^-_{12}-q|^3\,\nu(\dd q)
+\end{equation}
+of the overlap defect of two descendants. In \cref{lem:c7-thermal},
+we bound $\mathcal M_3$ by $A$, $J$, and $H_3$.
+
+\paragraph{Terms and marks.}
+Fix integers $k_0\ge1$ and $j\ge0$. For each $p\in[0,1]$, let
+$\mathcal T_p$ be the tree of $k_0$ leaves that split at $p$, and let
+$F_p$ be a bounded function of their spins, jointly measurable in $p$ and
+the spins. We consider the integrated tree moment
+$\int\nu(\dd p)\E_{\mathcal T_p,u}F_p$. We also consider the terms
+produced from it by $j$ applications of \eqref{eq:streaming}, with the
+product rule for products of moments over independent trees. Each
+application multiplies by $\alpha/2$ and replaces a moment by the six
+terms of \eqref{eq:streaming}. Each term produced after $j$ applications
+is therefore $(\alpha/2)^j$ times an integral against a signed measure on
+finitely many \emph{marks}, which are the following variables. The marks
+are $p$, the points $v$ and $w$ at which the differentiations attached
+leaves, the levels $r$ at which new branches split, and the split levels
+$r$ of the independent trees produced by the last term of
+\eqref{eq:streaming}. The integrand is a product of expectations over
+independent trees, whose shapes are determined by the marks. The signed
+measure collects the coefficients $1$, $-2\omega_v$, $\omega_v\omega_w$,
+$a(q_v)\omega_v$, $\omega_v\nu(\dd r)$, and $s\,\nu(\dd r)$ of the
+attachments, and the multiplicities of the product rule. We let
+$\mathfrak m$ be its total variation. The factor $(\alpha/2)^j$ is not
+part of $\mathfrak m$. The level of a mark is $p$, $q_v$, $q_w$, or $r$.
+
+\begin{lemma}[Three-defect bound]\label{lem:cav-threeproducts}
+For every deterministic profile, every such term containing three
+defects $\Delta_1,\Delta_2,\Delta_3$, of pairs of leaves in the same or
+in independent trees, satisfies
+\begin{equation}\label{eq:threeproducts}
+ \int\E\bigl|\Delta_1\Delta_2\Delta_3\bigr|\,\dd\mathfrak m
+ \le C\mathcal M_3(u).
+\end{equation}
+Here $\E$ is the expectation under the product of the tree laws of the
+term, and $C$ depends only on the numbers of leaves and of
+differentiations.
+\end{lemma}
+
+The bounds on the marks in Step 1 of the proof are a counterpart, for an
+arbitrary profile, of the bounds on split levels in
+\cite[Lemma~2.8]{OpenAIFluctuationScale}.
+
+\begin{proof}
+The proof has three steps. We show that the level of every mark has a
+marginal under $\mathfrak m$ dominated by a multiple of $\nu$, and that
+the level of every pair of leaves is the level of a mark. We then use
+Hölder's inequality.
+
+\paragraph{Step 1: marginals of the marks.}
+Each differentiation adds at most two leaves to one tree, or creates an
+independent tree with two leaves. After $i$ differentiations, every tree
+of a term has at most $K_i=k_0+2i$ leaves, and a product has at
+most $k_0+i$ factors. Let $\mathfrak m_i$ be the measure $\mathfrak m$ of
+a term after $i\le j$ differentiations. We show by induction on $i$ that
+$\mathfrak m_i$ has total mass at most $C_i$, and that the level of each
+of its marks has a marginal at most $C_i\nu$. Here $C_i$ depends only on
+$k_0$ and $i$. For $i=0$, the only mark is $p$, and
+$\mathfrak m_0=\nu(\dd p)$.
+
+For the induction step, let $K=K_i$. We first bound the image of the
+weights $\omega$ of a tree with at most $K$ leaves under the level map
+$v\mapsto q_v$. At most $K$ points of the tree lie at any given level.
+The copies of $\nu$ on the edges and the parts $\nu(\{q_v\})$ of the
+vertex weights contribute at most $K\nu$. The parts
+$(l_v-1)a(q_v)\le l_v-1$ contribute at most
+$\sum_v(l_v-1)\delta_{q_v}$, where $v$ runs over the vertices with
+$l_v\ge2$, and $\sum_v(l_v-1)\le K$. Note that every such $q_v$ is the
+level of an earlier mark. We now consider one more differentiation. By
+\cref{lem:streaming}, it multiplies $\mathfrak m_i$ by a kernel of total
+mass at most $(k_0+i)(4K^2+2K+1)$; here $k_0+i$ bounds the
+number of factors to which the product rule applies. The total mass and
+the marginals of the old marks thus grow by at most the factor
+$(k_0+i)(4K^2+2K+1)$. A new
+point $v$ or $w$ chosen according to $\omega$ has a level whose
+conditional law is at most $K[\nu+\sum_{r'}\delta_{r'}]$, where $r'$ runs
+over the levels of the old marks. A new level $r$ chosen according to
+$\nu(\dd r)$ on $(q_v,1]$, or according to $s\,\nu(\dd r)$, has
+conditional law at most $\nu$. Factors $a(q_v)\le1$ and the restriction
+$r>q_v$ only decrease these measures. For every Borel set $B$, the
+marginal of the level $r_{\rm new}$ of a new mark therefore satisfies
+\[
+ \mathfrak m_{i+1}(r_{\rm new}\in B)
+ \le C\Bigl[\mathfrak m_i(1)\,\nu(B)+\sum_{r'}\mathfrak m_i(r'\in B)\Bigr]
+ \le C_{i+1}\,\nu(B),
+\]
+where $C$ depends only on $k_0$ and $i$. This completes the induction.
+
+\paragraph{Step 2: levels of pairs.}
+In a tree of such a term, every vertex with at least two outgoing edges or
+leaves lies at the level of a mark. This level is the original split
+level $p$, a level $q_v$ at which leaves were attached, a level $r$ at
+which a new branch split, or the split level of an independent tree. For
+two leaves $\mathsf a,\mathsf b$ of one tree, $q_{\mathsf{ab}}$ is the
+level of such a vertex. In particular,
+$\chi(q_{\mathsf{ab}})\le\sum_{r'}\chi(r')$ for every $\chi\ge0$, where
+$r'$ runs over the levels of the marks. By Step 1, this implies that
+\[
+ \int\chi(q_{\mathsf{ab}})\,\dd\mathfrak m\le C\int\chi\,\dd\nu .
+\]
+
+\paragraph{Step 3: Hölder's inequality.}
+As in \cite[Remark~2.4]{OpenAIFluctuationScale}, we apply Hölder's
+inequality unconditionally under the positive tree laws, and we bound each
+factor after deleting all leaves except one pair. On the product of the
+probability space of the term and the mark space with $\mathfrak m$, we
+have
+\[
+ \int\E|\Delta_1\Delta_2\Delta_3|\,\dd\mathfrak m
+ \le\prod_{i=1}^3\Bigl(\int\E|\Delta_i|^3\,\dd\mathfrak m\Bigr)^{1/3}.
+\]
+If we delete all leaves except the two leaves of $\Delta_i$, two
+descendants remain, splitting at their common level $q_i$. By deletion, we
+have $\E|\Delta_i|^3=\E_{2,q_i,u}|R^-_{12}-q_i|^3$; for a product over
+independent trees, the other trees integrate to one. We use Step 2 with
+$\chi(q)=\E_{2,q,u}|R^-_{12}-q|^3$, and we find that each factor is at
+most $(C\mathcal M_3(u))^{1/3}$. This proves \eqref{eq:threeproducts}.
+\end{proof}
+
+The same proof applies to products of finitely many independent initial
+tree moments whose leaves split at $p$, integrated against $\nu(\dd p)$.
+The constant then depends on the total number of their initial leaves and on the
+number of differentiations. Indeed, the initial mark measure is still
+$\nu(\dd p)$, the number of factors to which the product rule applies
+is at most the total number of initial leaves plus the number of differentiations,
+and Steps~2 and~3 are unchanged.
+
+\paragraph{The cavity covariance.}
+In particular, \cref{lem:cav-threeproducts} applies to the covariance
+between the squared conditional magnetization of the last spin and the
+rest self-overlap, and to its Taylor remainder,
+\[
+ \mathcal C_{pp}(u)=\Cov_u\bigl(m_N(p)^2,A_p^-\bigr),\qquad
+ \mathcal R_{\rm cav}=\int\nu(\dd p)\int_0^1(1-u)
+                              \mathcal C_{pp}''(u)\dd u .
+\]
+Representing conditional expectations by leaves, we can write
+$\mathcal C_{pp}=\Psi_p-\Psi^\epsilon_p\Psi^\tau_p$, where
+\[
+ \Psi_p(u)=\E_{4,p,u}[\epsilon_1\epsilon_2(R^-_{34}-p)],\qquad
+ \Psi^\epsilon_p(u)=\E_{2,p,u}\epsilon_1\epsilon_2,\qquad
+ \Psi^\tau_p(u)=\E_{2,p,u}(R^-_{12}-p).
+\]
+Indeed, by conditional independence given $\calG_p$, we have
+$\Psi_p=\E_u[m_N(p)^2(A_p^--p)]$, $\Psi^\epsilon_p=\E_um_N(p)^2$, and
+$\Psi^\tau_p=\E_u(A_p^--p)$. The constant $p$ does not change the
+covariance. Note that the observables in these tree moments, including the center
+$p$, do not depend on $u$. They are bounded by $2$, and the
+trees have at most four leaves. By \cref{lem:streaming}, each of the
+three moments belongs to $C^2([0,1])$, with first and second
+derivatives bounded by $C\alpha$ and $C\alpha^2$. Then
+$\mathcal C_{pp}\in C^2([0,1])$ for every deterministic profile, and
+$|\mathcal C_{pp}''|$ is bounded by a constant depending only on
+$\beta$, uniformly in $p$. In particular, $\mathcal R_{\rm cav}$ is well
+defined, and by Taylor's formula with integral remainder, we have
+\[
+ \mathcal R_{\rm cav}=\int\bigl[\mathcal C_{pp}(1)-\mathcal C_{pp}(0)
+   -\mathcal C_{pp}'(0)\bigr]\,\nu(\dd p).
+\]
+
+\begin{lemma}[Taylor remainder]\label{lem:remainder}
+For every deterministic profile and every $u\in[0,1]$,
+\begin{equation}\label{eq:C2derivative}
+ \int|\mathcal C_{pp}''(u)|\,\nu(\dd p)\le C_\beta\mathcal M_3(u),
+ \qquad
+ |\mathcal R_{\rm cav}|\le C_\beta\sup_{0\le w\le1}\mathcal M_3(w).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+We have
+\[
+ \mathcal C_{pp}''=\Psi_p''-(\Psi^\epsilon_p)''\Psi^\tau_p
+ -2(\Psi^\epsilon_p)'(\Psi^\tau_p)'-\Psi^\epsilon_p(\Psi^\tau_p)''.
+\]
+Each application of \eqref{eq:streaming} adds a factor
+$\alpha/2\le\beta^2/2$ and one overlap defect, either inside a factor $D$
+or in the independent tree of its last term. The spin factors have
+absolute value one. The moments $\Psi_p$ and $\Psi^\tau_p$ contain one
+defect, and $\Psi^\epsilon_p$ contains none. We count the defects before
+differentiation and those added by the two differentiations.
+\begin{center}
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+term & defects before & added & total\\
+\midrule
+$\Psi_p''$ & $1$ & $2$ & $3$\\
+$(\Psi^\epsilon_p)''\Psi^\tau_p$ & $0+1$ & $2+0$ & $3$\\
+$(\Psi^\epsilon_p)'(\Psi^\tau_p)'$ & $0+1$ & $1+1$ & $3$\\
+$\Psi^\epsilon_p(\Psi^\tau_p)''$ & $0+1$ & $0+2$ & $3$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Products of moments, and the last term of \eqref{eq:streaming}, are
+products over independent trees. Every term of $\mathcal C_{pp}''$ is
+therefore $(\alpha/2)^2$ times a term of the kind treated in
+\cref{lem:cav-threeproducts}, or in its extension to products of
+independent initial moments stated after its proof, with at most four
+initial leaves and $j=2$. It is multiplied by a bounded multiplicity and
+by factors of absolute value at most one. Integrating $p$ against $\nu$
+and using \cref{lem:cav-threeproducts} and this extension, we obtain the first bound in
+\eqref{eq:C2derivative} with $C_\beta=C\beta^4$. We integrate it against
+$(1-u)\dd u$ and use Tonelli's theorem. This gives
+$|\mathcal R_{\rm cav}|\le C\beta^4\int_0^1(1-u)\mathcal M_3(u)\dd u
+\le C\beta^4\sup_w\mathcal M_3(w)$, which is the second bound.
+\end{proof}

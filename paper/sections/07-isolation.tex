@@ -1,0 +1,1057 @@
+\chapter{Isolation of the minimizing profile}\label{sec:lz}
+
+In this section and the next, we study an arbitrary minimizer $\gamma_*$ of
+the finite-dimensional functional $F_\rho$ in the energy normalization of
+\cref{sec:fnd}. We compare $\gamma_*$ with the scalar trial profile
+$\gamma^{\rm tr}_\lambda=\max\{\lambda,\gamma_\beta\}$. We state all estimates
+in terms of a trial budget $\eta$, that is, a bound on the excess
+$F_\rho(\gamma^{\rm tr}_\lambda)-F_\rho(\gamma_*)$. The main result of this
+section is \cref{prop:loc-isolation}, which bounds the $L^1$ distance between
+$\gamma_*$ and $\gamma^{\rm tr}_\lambda$ by
+$C\min\{1,\rho^{-3/4}\eta^{1/4}\}$ for every minimizer and every trial budget,
+with a constant $C$ depending only on $\beta$. In \cref{prop:lz-stability}, we use this bound to prove the
+stability of the scalar response operator at the minimizing profile.
+\Cref{sec:lz-root} uses the tools of this section to localize the lowest
+quantiles of the free mass of $\gamma_*$.
+
+We use the energy normalization, the tilted joint law, and the martingale
+identities of \cref{sec:fnd}, in particular \cref{prop:fnd-contact}, and
+the trial budget of \cref{lem:fnd-trial}. From \cite{AL}, we import the convexity
+of $F_\rho$ along segments of profiles, its first variation, the
+response inequality for the second variation, and an averaged curvature bound
+(\cref{prop:loc-inputs}); the regularization of \cite[Lemma~7.5]{AL}
+(\cref{lem:loc-smoothing}(a)); and the linear growth of the scalar Parisi
+profile near the origin \eqref{eq:lz-gsroot}. From \cite{Lopatto}, we use the
+structure of the scalar Parisi measure \eqref{eq:loc-scalar-measure}. To prove
+\cref{prop:loc-isolation}, we first smooth the minimizer
+(\cref{lem:loc-smoothing}(b)) and then join it to the trial profile by a
+segment. With cutoffs of one sign, built from one-sided averages of the superlevel
+sets of the difference of the two profiles, we turn the response inequality into
+lower bounds on the second derivative of $F_\rho$ along the segment
+(\cref{lem:loc-coercive}). The midpoint inequality \eqref{eq:loc-midpoint} then
+compares these lower bounds with the trial budget.
+
+\Cref{prop:loc-inputs}, \cref{lem:loc-smoothing}(a), \cref{lem:loc-coercive},
+the midpoint inequality \eqref{eq:loc-midpoint}, and the facts
+\eqref{eq:lz-gsroot}, \eqref{eq:loc-scalar-measure}, and
+\eqref{eq:loc-trialbudget} are used again in \cref{sec:lz-root}.
+\Cref{sec:sc} uses \eqref{eq:lz-gsroot}, \eqref{eq:loc-scalar-measure},
+\eqref{eq:loc-trialbudget}, and \cref{prop:loc-isolation}.
+
+\section{Energy normalization and variational facts}
+\label{subsec:lz-inputs}
+
+Throughout this section and \cref{sec:lz-root}, we fix $1<\beta<\infty$,
+$N\ge1$, $0<\rho\le1$, $t=1-\rho$, and $0<\lambda\le\lambda_0$, where
+$\lambda_0\le\min\{1,\beta/4\}$ is the constant fixed with
+\eqref{eq:fnd-scalar-trial-cost}, and $s=\lambda/\beta$. Unless
+stated otherwise, constants depend only on $\beta$. In particular, they do
+not depend on $N$, $\rho$, $\lambda$, the profile, or the positions and
+masses of its atoms.
+
+\paragraph{Admissible profiles and segments.}
+We use the energy normalization of \cref{sec:fnd}. An \emph{admissible
+profile} is a function $\gamma=\beta a$, where $a(q)=\mu([0,q])$ is the
+cumulative function of an admissible profile $\mu=s\delta_0+\nu$ of
+\cref{sec:fnd}. The function $\gamma$ is right-continuous and
+nondecreasing with $\gamma(1)=\beta$. With the convention $\gamma(0-)=0$, its
+derivative measure $\dd\gamma$ has total mass $\beta$ and satisfies
+$\dd\gamma\ge\lambda\delta_0$. We call
+\[
+ \nu_\gamma=\dd\gamma-\lambda\delta_0=\beta\nu
+\]
+the \emph{free measure} of $\gamma$. It has mass $\beta-\lambda$ and may
+charge $0$. The admissible profiles form a convex set. We write $\min F_\rho$
+for the minimum of $F_\rho$ over this set, which is attained
+(\cref{sec:fnd}). An admissible profile $\gamma_*$ is a \emph{minimizer} if
+$F_\rho(\gamma_*)=\min F_\rho$. A \emph{segment} is a family
+$\gamma_\theta=(1-\theta)\gamma_0+\theta\gamma_1$, $0\le\theta\le1$, with
+admissible endpoints $\gamma_0,\gamma_1$. Along a segment, the free measure
+$\nu_{\gamma_\theta}=(1-\theta)\nu_{\gamma_0}+\theta\nu_{\gamma_1}$ is affine
+in $\theta$.
+
+\paragraph{Self-overlap, trace, and curvature.}
+For an admissible profile $\gamma$, we write $\E_\gamma$ for expectation under
+the joint law of \cref{subsec:fnd-law} with profile $a=\gamma/\beta$. We
+define
+\[
+ S_\gamma(q)=\E_\gamma S_q,\qquad
+ b_\gamma(q)=\frac\beta N\E_\gamma\Tr H_q,\qquad
+ \zeta_\gamma(q)=\frac{\beta^2}N\E_\gamma\Tr H_q^2 .
+\]
+By \cref{prop:fnd-contact}, we have $m_0=0$, $\dd m_q=\sqrt c\,H_q\dd B_q$,
+and $a(q)C_q\preceq H_q\preceq C_q$, and the function $q\mapsto\E_\gamma S_q$
+is continuously differentiable with derivative $(c/N)\E_\gamma\Tr H_q^2$.
+Recalling that $c=\beta^2\rho$, we see that this derivative is
+$\rho\zeta_\gamma(q)$. The coordinates of $m_q$ lie in $[-1,1]$, which gives
+$0\le S_q\le1$ and $\Tr C_q=\sum_i(1-m_{q,i}^2)\le N$. Further,
+$0\preceq H_q\preceq C_q$ implies that $0\le\Tr H_q\le\Tr C_q$. We obtain
+\begin{equation}\label{eq:loc-b}
+ S_\gamma(0)=0,\qquad 0\le S_\gamma\le1,\qquad
+ S_\gamma'=\rho\zeta_\gamma\ge0,\qquad
+ 0\le b_\gamma\le\beta .
+\end{equation}
+Note that $S_\gamma(q)=\rho\int_0^q\zeta_\gamma(r)\dd r$, and that $S_\gamma$ is
+nondecreasing. We also note that $0\preceq H_q\preceq C_q$ implies that
+$\Tr H_q^2\le\Tr C_q^2\le(\Tr C_q)^2\le N^2$, and hence that
+$0\le\zeta_\gamma\le\beta^2N$. At fixed $N$, the functions $S_\gamma$,
+$b_\gamma$, and $\zeta_\gamma$ are bounded.
+
+\paragraph{The rescaled functional of \cite{AL}.}
+The variational facts we need are proved in
+\cite[Sections~7.1 and~7.4 and Appendix~A]{AL} for the rescaled form of
+$F_\rho$ recalled in \cref{sec:fnd}, and we now check this identification in
+detail. Let $\gamma$ be admissible, let $U=U_{\mu,t}$ be the solution of
+\eqref{eq:fnd-vector-pde} with $a=\gamma/\beta$, and let
+$\widetilde U(q,y;W)=\beta^{-1}U(q,\beta y;W)$ be the rescaled solution of
+\cref{sec:fnd}; when we need to indicate the profile, we write
+$\widetilde U_\gamma$. Recall from \cref{sec:fnd} that $\widetilde U$ solves
+$\partial_q\widetilde U=-(\rho/2)(\Delta_y\widetilde U
++\gamma(q)|\nabla_y\widetilde U|^2)$, that
+$\nabla_y\widetilde U(q,y;W)=\nabla_xU(q,\beta y;W)$ and
+$\nabla_y^2\widetilde U(q,y;W)=\beta\nabla_x^2U(q,\beta y;W)$, and that
+$F_\rho(\gamma)$ equals
+$(N\lambda)^{-1}\log\E_{\rm ref}e^{\lambda\widetilde U(0,0;W)}
+-(\rho/2)\int_0^1q\gamma(q)\dd q$. By \eqref{eq:fnd-vector-pde}, the terminal
+value of $\widetilde U$ is
+\[
+ \widetilde U(1,y;W)=\frac1\beta\log\sum_{\sigma\in\{-1,1\}^N}
+ \exp\Bigl\{\beta\Bigl(\sqrt t\,\frac{\sigma^TW\sigma}2+y\cdot\sigma\Bigr)\Bigr\}.
+\]
+Let $W^{\rm off}$ be the matrix $W$ with its diagonal set to zero. For
+$\sigma\in\{-1,1\}^N$, we have $\sigma^TW\sigma/2=\sigma^TW^{\rm off}\sigma/2+D_N$,
+where $D_N=\Tr W/2$. Since the equation for $\widetilde U$ is invariant under the addition of
+constants, we find that
+$\widetilde U(q,y;W)=\sqrt t\,D_N+\widetilde U^{\rm off}(q,y)$, where
+$\widetilde U^{\rm off}$ is the solution of the same equation with $W^{\rm
+off}$ in place of $W$ in the terminal value. This function is the solution $u$
+of \cite[(7.2)]{AL} with $r=\rho$ and coupling matrix $\sqrt t\,W^{\rm off}$.
+The variable $D_N$ is centered Gaussian with variance $1/2$ and independent of
+$W^{\rm off}$, so that
+$(N\lambda)^{-1}\log\E_{\rm ref}e^{\lambda\sqrt t D_N}=\lambda t/(4N)$.
+Inserting this into the representation of $F_\rho$ recalled above, we find
+\[
+ F_\rho(\gamma)=\frac1{N\lambda}\log\E_{\rm ref}e^{\lambda\widetilde U^{\rm off}(0,0)}
+ -\frac\rho2\int_0^1q\gamma(q)\dd q+\frac{\lambda t}{4N}.
+\]
+This is exactly the functional $F^c_t(\gamma)$ of \cite[(7.2)]{AL}, which is
+written $F_r$ in \cite[Section~7.4]{AL}; the term $\lambda t/(4N)$ is part of
+that functional and does not depend on $\gamma$.
+
+The joint laws also agree. The tilt $e^{sU(0,0;W)}=e^{\lambda\sqrt t
+D_N}e^{\lambda\widetilde U^{\rm off}(0,0)}$ of \cref{subsec:fnd-law}
+factorizes, and $D_N$ enters neither the field equation
+\eqref{eq:fnd-diffusion}, whose drift involves $\nabla_xU$, nor the
+conditional law of the terminal spin given $W$ and the field. Under the tilted
+law, the couplings $\sqrt t\,W^{\rm off}$ have the law $Q_\gamma$ of
+\cite[Appendix~A]{AL}, and the rescaled field $X_q/\beta$ solves
+\[
+ \dd(X_q/\beta)=\rho\gamma(q)\nabla_y\widetilde U(q,X_q/\beta;W)\dd q
+ +\sqrt\rho\dd B_q,\qquad X_0/\beta=0,
+\]
+which is the field equation of \cite[Section~7.1]{AL}. Under this law, the
+magnetization $m_q=\nabla_xU(q,X_q;W)=\nabla_y\widetilde U(q,X_q/\beta;W)$ is
+unchanged, while the Hessian in the rescaled variable is
+$\nabla_y^2\widetilde U(q,X_q/\beta;W)=\beta H_q$. We conclude that $S_\gamma$,
+$b_\gamma$, and $\zeta_\gamma$ are the functions $S$, $b$, and $\zeta$ of
+\cite[Sections~7.1 and~7.4]{AL}, and that $b_\gamma$ and $\zeta_\gamma$ are the
+functions of the same names in \cite[Appendix~A]{AL}. We use the results
+proved there in the following form.
+
+\begin{proposition}[Variational and response facts]
+\label{prop:loc-inputs}
+Let $\gamma$ be admissible and define
+$G_\gamma(x)=\int_x^1(S_\gamma(q)-q)\dd q$ for $0\le x\le1$.
+\begin{enumerate}
+\item[(a)] Let $\nu'\ge0$ be a measure on $[0,1]$ of mass $\beta-\lambda$.
+Then $F_\rho$ is convex along the segment from $\gamma$ to the profile with
+free measure $\nu'$, and its one-sided derivative at $\gamma$ is
+\begin{equation}\label{eq:loc-firstvariation}
+ D_+F_\rho(\gamma)[\nu'-\nu_\gamma]
+ =\frac\rho2\int G_\gamma\,\dd(\nu'-\nu_\gamma).
+\end{equation}
+The function $G_\gamma$ is continuously differentiable with
+$G_\gamma'(x)=x-S_\gamma(x)$. In particular, $G_\gamma'(0)=0$, and
+$x\mapsto G_\gamma'(x)-x$ is nonincreasing.
+\item[(b)] Let $(\gamma_\theta)$ be a segment, $\psi=\gamma_1-\gamma_0$, and
+$f(\theta)=F_\rho(\gamma_\theta)$. Then $f$ is convex and continuous on
+$[0,1]$ and twice differentiable on $(0,1)$. Fix $\theta\in(0,1)$ and write
+$b_\theta=b_{\gamma_\theta}$ and $\zeta_\theta=\zeta_{\gamma_\theta}$. For every
+compactly supported Lipschitz function $\varphi$ on $(0,1)$, let
+\[
+ Y=\int_0^1 b_\theta|\varphi'|^2\dd q,\qquad
+ Z=\rho\int_{(0,1)}\varphi^2\zeta_\theta\dd\gamma_\theta .
+\]
+Then
+\begin{equation}\label{eq:loc-response}
+ \rho\left|\int_0^1\psi\zeta_\theta\varphi\dd q\right|
+ \le\Bigl(\frac{f''(\theta)}\rho\Bigr)^{1/2}
+ \bigl[Y^{1/2}+2(Y+Z)^{1/2}\bigr].
+\end{equation}
+\item[(c)] There exists $k_\beta>0$, depending only on $\beta$, such that
+\begin{equation}\label{eq:loc-in-curv}
+ \zeta_\gamma(q)\ge k_\beta^2\qquad(0\le q<1).
+\end{equation}
+\end{enumerate}
+\end{proposition}
+
+The integral $Z$ is a Stieltjes integral over the open interval $(0,1)$. It
+includes the atoms of $\dd\gamma_\theta$ in $(0,1)$ and excludes the
+prescribed atom at $0$.
+
+\begin{proof}
+We prove the three parts in order. By the discussion preceding the
+proposition, $F_\rho$ is exactly the functional $F_r$ of \cite[Section~7.4]{AL}
+with $r=\rho$, and $S_\gamma,b_\gamma,
+\zeta_\gamma$ are the response functions used there.
+
+\emph{Part (a).} The segment from $\gamma$ to the profile with free measure
+$\nu'$ replaces $\nu_\gamma$ by $(1-\theta)\nu_\gamma+\theta\nu'$. The
+convexity of $F_r$ along every such segment and the first variation
+\eqref{eq:loc-firstvariation} are stated in \cite[Section~7.4, (7.22)]{AL},
+with $G_\gamma$ the function defined there. The identity
+\eqref{eq:loc-firstvariation} is also \eqref{eq:fnd-first-variation} divided
+by $\beta$: the free measures satisfy $\nu_\gamma=\beta\nu$, which gives
+$\beta^{-1}(c/2)\int G\,\dd(\nu'/\beta-\nu)=(\rho/2)\int
+G\,\dd(\nu'-\nu_\gamma)$, and the function $G$ of
+\eqref{eq:fnd-first-variation} is $G_\gamma$. By \eqref{eq:loc-b},
+$S_\gamma$ is continuous, nondecreasing, and vanishes at $0$. By the
+definition of $G_\gamma$, we then have $G_\gamma'(x)=x-S_\gamma(x)$, which is
+continuous. We also have $G_\gamma'(0)=0$, and $G_\gamma'(x)-x=-S_\gamma(x)$ is
+nonincreasing. This
+proves (a); see also \cite[(7.23)]{AL}.
+
+\emph{Part (b).} Applying (a) with $\gamma=\gamma_0$ and $\nu'=\nu_{\gamma_1}$, we see
+that $f$ is convex. The profile-continuity estimate
+of \cite[Section~7.4]{AL} states that
+\[
+ \sup_{q,y}|\widetilde U^{\rm off}_\gamma(q,y)-\widetilde U^{\rm off}_{\gamma'}(q,y)|
+ \le\frac{3\rho N}2\|\gamma-\gamma'\|_{L^1(0,1)}
+\]
+for admissible $\gamma,\gamma'$ and every value of the couplings. Inserting
+this bound into the representation of $F_\rho$ above, we find
+\[
+ |F_\rho(\gamma)-F_\rho(\gamma')|\le2\rho\|\gamma-\gamma'\|_{L^1(0,1)},
+\]
+where the outer logarithmic moment contributes $3\rho/2$ and the penalty
+contributes $\rho/2$. Then $f$ is Lipschitz on $[0,1]$, because
+$\|\gamma_\theta-\gamma_{\theta'}\|_{L^1}=|\theta-\theta'|\,\|\gamma_1-\gamma_0\|_{L^1}$.
+
+We now apply \cite[Proposition~A.1 and Lemma~A.2]{AL} with $r=\rho$, the
+endpoints $\gamma_0,\gamma_1$, and $v=\psi$. Their hypotheses hold: $N$ is
+finite, $0\le t<1$, the endpoints are profiles of \cite[Appendix~A]{AL}
+($\lambda\le\gamma_i\le\beta$ on $[0,1)$, $\gamma_i(0-)=0$, and
+$\gamma_i(1)=\beta$) with the same outer tilt $\lambda$, and
+\cite[Proposition~A.1]{AL} allows their additional masses at $0$ to differ.
+By \cite[Proposition~A.1, (A.1)]{AL}, $f$ is twice differentiable, and
+$f''(\theta)$ is the sum of $\rho\int_0^1e_\theta(q)\dd q$ and a nonnegative
+variance term, where $e_\theta\ge0$ is the function defined there. In
+particular,
+\[
+ \int_0^1e_\theta(q)\dd q\le\frac{f''(\theta)}\rho .
+\]
+The pairing estimate \cite[(A.2)]{AL}, applied to $\varphi$ and to $-\varphi$,
+and the Fisher estimate \cite[(A.3)]{AL} give a nonnegative function
+$\mathcal J_\theta$, also defined in \cite[Proposition~A.1]{AL}, such that
+\[
+ \rho\left|\int_0^1\psi\zeta_\theta\varphi\dd q\right|
+ \le\Bigl(\int_0^1e_\theta\Bigr)^{1/2}
+ \Bigl[Y^{1/2}+2\Bigl(\int_0^1\mathcal J_\theta\varphi^2\Bigr)^{1/2}\Bigr],
+ \qquad
+ \int_0^1\mathcal J_\theta\varphi^2\le Y+Z .
+\]
+Combining the last three displays, we obtain \eqref{eq:loc-response}.
+
+\emph{Part (c).} We use \cite[Lemma~A.3, (A.5)]{AL} with the level in
+(A.5) equal to $\beta$; the hypothesis $\beta\ge1$ of that lemma holds. As
+$\max\{1,\beta\}=\beta$, the lemma states that $\gamma(q)\le\beta$ and $q<1$ imply
+$\E_\gamma[\beta H_q]\succeq k_\beta I$, where
+\[
+ k_\beta=\frac{e^{-16c'\beta-2\beta^2}}{2(1+c')},\qquad c'=\sqrt{\pi/2} .
+\]
+Every admissible profile satisfies $\gamma\le\beta$. By Jensen's inequality,
+applied to the convex function $H\mapsto\Tr H^2$, we have
+$\zeta_\gamma(q)=N^{-1}\E_\gamma\Tr(\beta H_q)^2\ge
+N^{-1}\Tr(\E_\gamma\beta H_q)^2\ge k_\beta^2$, which is
+\eqref{eq:loc-in-curv}.
+
+In \cite{AL}, these results are first proved for step profiles, and then
+extended to all admissible profiles by approximation at fixed $N$ and $\beta$
+\cite[Section~7.4 and Appendix~A.3]{AL}. This includes profiles with atoms,
+and the Stieltjes integral in $Z$ includes the atoms of $\dd\gamma_\theta$ in
+$(0,1)$.
+\end{proof}
+
+\begin{remark}[Atoms and the Stieltjes term]\label{rem:loc-stieltjes}
+The term $Z$ is where atoms of the profile enter \eqref{eq:loc-response}. In
+the proof of \cite[Lemma~A.2]{AL}, the Fisher estimate (A.3) follows from the
+identity of measures $\dd\mathscr P=2\mathcal J_\theta\dd q
+-\rho\zeta_\theta\dd\gamma_\theta$ on $(0,1)$ \cite[(A.19)]{AL}, where
+$\mathscr P(q)=N^{-1}\E_\theta\Tr\dot h$ and $\dot h$ is the derivative in
+$q$, at fixed magnetization, of the Hessian of $\widetilde U_{\gamma_\theta}$ written as
+a function of the magnetization. At an atom of $\dd\gamma_\theta$ at $q$, the
+function $\mathscr P$ jumps by $-\rho\zeta_\theta(q)\,\dd\gamma_\theta(\{q\})$.
+In \cref{prop:loc-isolation,lem:lz-certificate}, we choose the cutoffs so that
+$\dd\gamma_\theta$ has a bounded density on the set where they are positive.
+\end{remark}
+
+\subsection{The scalar reference profile}
+Let $\mu_\beta$ be the scalar Parisi measure, $\alpha_\beta=\mu_\beta([0,\cdot])$,
+and $\gamma_\beta=\beta\alpha_\beta$, as in \cref{sec:fnd}, and let
+$\gamma^{\rm tr}=\max\{\lambda,\gamma_\beta\}$ be the scalar trial profile; we
+omit the subscript $\lambda$ of \cref{sec:fnd}. The function $\gamma_\beta$ is
+the unconstrained minimizer of the rescaled scalar Parisi functional
+$\gamma\mapsto\beta^{-1}\mathcal P_\beta(\gamma/\beta)$ of
+\cite[Section~7.1]{AL}. By \cite[Lemma~7.2]{AL}, applied with $\beta_0=\beta$,
+there exist constants $T_*,k_0>0$ and $C_0<\infty$, depending only on $\beta$,
+such that $\gamma_\beta(0)=0$, $\gamma_\beta$ is absolutely continuous on
+$[0,T_*]$, and
+\[
+ k_0q\le\gamma_\beta(q)\le C_0q,\qquad
+ 0\le\gamma_\beta'(q)\le C_0\qquad(0\le q\le T_*),
+\]
+the second bound for almost every $q$. We set $T_0=\min\{T_*,1/4,2/C_0\}$.
+On $[0,T_0]$, we have $\gamma_\beta\le C_0T_0\le2$, and since $\lambda\le1$,
+also $\gamma^{\rm tr}\le2$. The maximum of the constant $\lambda$ and the
+nondecreasing absolutely continuous function $\gamma_\beta$ is absolutely
+continuous on $[0,T_0]$, with derivative
+$\gamma_\beta'\ind_{\{\gamma_\beta>\lambda\}}\in[0,C_0]$ almost everywhere. We
+obtain
+\begin{equation}\label{eq:lz-gsroot}
+ \gamma_\beta(0)=0,\qquad k_0q\le\gamma_\beta(q),\qquad
+ \gamma^{\rm tr}(q)\le2\qquad(0\le q\le T_0),
+\end{equation}
+and the restriction of $\dd\gamma^{\rm tr}$ to $(0,T_0]$ has density at most
+$C_0$. At $0$, the measure $\dd\gamma^{\rm tr}$ has the prescribed atom of
+mass $\gamma^{\rm tr}(0)=\lambda$.
+
+By \cite[Theorem~1.1, (1.4) and (1.5)]{Lopatto}, there exist
+$q_\beta\in(0,1)$, $c_\beta\in(0,1)$, and a nonnegative function
+$\varrho_\beta\in C^\infty([0,q_\beta])$ such that
+\begin{equation}\label{eq:loc-scalar-measure}
+ \mu_\beta(\dd q)=\varrho_\beta(q)\ind_{[0,q_\beta)}(q)\dd q
+                  +c_\beta\delta_{q_\beta}(\dd q),\qquad
+ \supp\mu_\beta=[0,q_\beta].
+\end{equation}
+Here, as in \cite{Lopatto}, $\varrho_\beta\in C^\infty([0,q_\beta])$ means
+that $\varrho_\beta$ is smooth on $(0,q_\beta)$ and that each of its
+derivatives extends continuously to $[0,q_\beta]$. The only atom of
+$\mu_\beta$ is at $q_\beta$, and $\alpha_\beta=1$ and $\gamma_\beta=\beta$ on
+$[q_\beta,1]$. (The Parisi functional \cite[(1.3)]{Lopatto} is written with the
+terminal value $\log\cosh x$ and the additional constant $\log2$; it equals the
+functional in \eqref{eq:intro-parisi}, and $\mu_\beta$ is its minimizer.)
+
+\subsection{Trial budgets}
+For a minimizer $\gamma_*$ of $F_\rho$, a \emph{trial budget} is a number
+$\eta\ge0$ such that
+\begin{equation}\label{eq:loc-trialbudget}
+ F_\rho(\gamma^{\rm tr})-F_\rho(\gamma_*)\le\eta .
+\end{equation}
+Since $F_\rho(\gamma_*)=\min F_\rho$, this is the notion of trial budget of
+\cref{sec:fnd}, measured in energy units. By \eqref{eq:fnd-trial},
+$\eta=e_{N,\beta}(\lambda)+L_s\lambda^5$ is a trial budget for every
+minimizer at every $\rho\in(0,1]$. The estimates of this section and the next
+hold for every trial budget.
+
+\section{Smoothing and coercivity}
+
+A minimizer may have atoms, and the response inequality
+\eqref{eq:loc-response} involves the derivative measure $\dd\gamma_\theta$ on
+the set where the cutoff is positive. We therefore first spread the free mass,
+at a cost that is quadratic in the smoothing width (\cref{lem:loc-smoothing}).
+Part (a) of the next lemma is \cite[Lemma~7.5]{AL}, and part (b) extends the
+reflection argument of that lemma to the upper endpoint $1$. We then show
+that a difference of one sign between the endpoints of a segment forces
+curvature along the segment (\cref{lem:loc-coercive}).
+
+\begin{lemma}[Reflected regularization]\label{lem:loc-smoothing}
+Let $\gamma$ be admissible and $h>0$.
+\begin{enumerate}
+\item[(a)] Let $0<T<1$, $h\le1-T$, and $m=\nu_\gamma([0,T))$. Let
+$\bar\gamma$ be the profile with $\dd\bar\gamma=\lambda\delta_0+\bar\nu$, where
+$\bar\nu$ is obtained from $\nu_\gamma$ by replacing each unit of mass at a
+point $q<T$ by the image of the uniform distribution on $[q-h,q+h]$ under
+$x\mapsto|x|$. Then $\bar\gamma$ is
+admissible, $\bar\gamma(0)=\lambda$, the restriction of $\dd\bar\gamma$ to
+$(0,T)$ has density at most $m/h$, and
+$F_\rho(\bar\gamma)-F_\rho(\gamma)\le\rho mh^2/12$.
+\item[(b)] Let $h\le1/2$, and let $\pi(x)=|x|$ for $x\le1$ and $\pi(x)=2-x$
+for $x>1$. Let $\gamma^h$ be the profile with
+$\dd\gamma^h=\lambda\delta_0+\nu^h$, where $\nu^h$ is obtained from $\nu_\gamma$
+by replacing each unit of mass at a point $q\in[0,1]$ by the image of the
+uniform distribution on $[q-h,q+h]$ under $\pi$. Then $\gamma^h$ is admissible, $\gamma^h(0)=\lambda$, its
+free measure has density at most $\beta/h$ on $[0,1]$, and
+\[
+ \|\gamma^h-\gamma\|_{L^1(0,1)}\le\beta h,\qquad
+ F_\rho(\gamma^h)-F_\rho(\gamma)\le\frac{\rho\beta h^2}{12} .
+\]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Part (a) is \cite[Lemma~7.5]{AL}, including the cost bound
+\cite[(7.24)]{AL}; by \cref{subsec:lz-inputs}, the functional $F_r$ of that
+lemma is exactly $F_\rho$ with $r=\rho$. Its proof is the
+argument for (b) below, with the following changes. Only the free mass on
+$[0,T)$ is moved, and the reflection is $x\mapsto|x|$. The condition
+$h\le1-T$ ensures that the moved mass stays in $[0,T+h)\subset[0,1]$. The semiconcavity bound
+is then needed only on $[-h,T+h]\subset[-1,1]$, where the reflection at $1$
+plays no role. The cost bound becomes $(\rho/2)\cdot m\cdot(h^2/6)=\rho
+mh^2/12$, and the moved mass
+has density at most $m/h$ on $(0,T)$, while the mass on $[T,1]$ does not
+charge $(0,T)$.
+
+For (b), we first verify the properties of $\gamma^h$, then the displacement
+bound, and finally the cost bound. For $q\in[0,1]$, let $\kappa_q$ be the
+image of the uniform distribution on $[q-h,q+h]$ under $\pi$. The free
+measure of $\gamma^h$ is then $\nu^h=\int\kappa_q\,\nu_\gamma(\dd q)$. The map
+$\pi$ sends $[-h,1+h]$ into $[0,1]$ and is piecewise affine with slopes
+$\pm1$. For $x\in(0,1)$, the points of $[q-h,q+h]$ that $\pi$ sends to $x$ are
+among $x$, $-x$, and $2-x$. We find that $\kappa_q$ has the density
+\[
+ \frac1{2h}\bigl(\ind_{\{|x-q|\le h\}}+\ind_{\{x+q\le h\}}
+ +\ind_{\{x+q\ge2-h\}}\bigr),\qquad x\in(0,1).
+\]
+Since $h\le1/2<2-h$, the last two indicators cannot both equal one, and this
+density is at most $1/h$. Thus $\kappa_q$ is a probability measure on $[0,1]$
+without atoms. Integrating over $\nu_\gamma$, we see that $\nu^h$ is a measure
+on $[0,1]$ of mass $\beta-\lambda$, without atoms, with density at most
+$(\beta-\lambda)/h\le\beta/h$. The measure $\dd\gamma^h=\lambda\delta_0+\nu^h$
+has mass $\beta$, we have $\gamma^h(0)=\lambda$, and $\gamma^h$ is
+admissible.
+
+For the displacement bound, let $\Pi$ be the measure on $[0,1]^2$ defined by
+\[
+ \int F\dd\Pi=\int_{[0,1]}\frac1{2h}\int_{-h}^hF\bigl(q,\pi(q+z)\bigr)\dd z\,
+ \nu_\gamma(\dd q)
+\]
+for bounded Borel functions $F$. Its marginals are $\nu_\gamma$ and $\nu^h$.
+The map $\pi$ is $1$-Lipschitz and $\pi(q)=q$ for $q\in[0,1]$. It follows
+that $|\pi(q+z)-q|\le|z|\le h$, and $\Pi$ is supported on pairs $(q,r)$ with
+$|r-q|\le h$. The prescribed atoms of $\dd\gamma$ and $\dd\gamma^h$ coincide,
+and for $x\in[0,1]$ we have
+\[
+ \gamma^h(x)-\gamma(x)=\int\bigl(\ind_{\{r\le x\}}-\ind_{\{q\le x\}}\bigr)
+ \Pi(\dd q,\dd r).
+\]
+For $q,r\in[0,1]$, we have $\int_0^1|\ind_{\{r\le x\}}-\ind_{\{q\le x\}}|\dd
+x=|r-q|$. By Tonelli's theorem, we conclude that
+\[
+ \|\gamma^h-\gamma\|_{L^1(0,1)}\le\int|r-q|\,\Pi(\dd q,\dd r)
+ \le(\beta-\lambda)h\le\beta h .
+\]
+
+To bound the cost, let $G=G_{\gamma^h}$ and $S=S_{\gamma^h}$, and define
+$H(z)=G(\pi(z))-z^2/2$ for $z\in[-h,1+h]$. By \cref{prop:loc-inputs}(a), $G$
+is continuously differentiable on $[0,1]$ with $G'(x)=x-S(x)$. Using
+$\pi(z)=-z$ for $z<0$ and $\pi(z)=2-z$ for $z>1$, we find that $H$ is
+continuous and continuously differentiable away from $0$ and $1$, with
+\[
+ H'(z)=
+ \begin{cases}
+ S(-z),&-h<z<0,\\
+ -S(z),&0<z<1,\\
+ S(2-z)-2,&1<z<1+h.
+ \end{cases}
+\]
+Each piece is nonincreasing, because $S$ is nondecreasing by
+\eqref{eq:loc-b}. The one-sided derivatives at $0$ agree, because $S(0)=0$. At
+$1$, the derivative jumps from $-S(1)$ to $S(1)-2\le-S(1)$, where we used that
+$S(1)\le1$. We see that $H'$ is nonincreasing, and $H$ is concave on
+$[-h,1+h]$. For
+$q\in[0,1]$, the number $G'(q)-q$ is a supergradient of $H$ at $q$; at $q=1$,
+we take the left derivative $G'(1)-1=-S(1)$. By the concavity of $H$, we have
+$H(q+z)\le H(q)+(G'(q)-q)z$, that is,
+\[
+ G\bigl(\pi(q+z)\bigr)\le G(q)+G'(q)z+\frac{z^2}2
+ \qquad(q\in[0,1],\ |z|\le h).
+\]
+We average over $z$ in $[-h,h]$. Using that the average of $z$ is $0$ and
+that the average of $z^2$ is $h^2/3$, we obtain
+\begin{equation}\label{eq:loc-semiconcave}
+ \int G\dd\kappa_q-G(q)\le\frac{h^2}6\qquad(q\in[0,1]).
+\end{equation}
+By \cref{prop:loc-inputs}(a), $F_\rho$ is convex along the segment from
+$\gamma^h$ to $\gamma$, which implies that $F_\rho(\gamma)\ge
+F_\rho(\gamma^h)+D_+F_\rho(\gamma^h)[\nu_\gamma-\nu^h]$. Using
+\eqref{eq:loc-firstvariation} at $\gamma^h$ and \eqref{eq:loc-semiconcave}, we
+conclude that
+\[
+ F_\rho(\gamma^h)-F_\rho(\gamma)
+ \le\frac\rho2\int G\,\dd(\nu^h-\nu_\gamma)
+ =\frac\rho2\int\Bigl[\int G\dd\kappa_q-G(q)\Bigr]\nu_\gamma(\dd q)
+ \le\frac{\rho(\beta-\lambda)h^2}{12}. \qedhere
+\]
+\end{proof}
+
+\paragraph{The midpoint inequality.}
+We compare the second derivative along a segment with the values at its
+endpoints. Let $f$ be convex and continuous on $[0,1]$ and twice
+differentiable on $(0,1)$. Then $f'$ is nondecreasing on $(0,1)$, and $f$ is
+absolutely continuous on $[0,1]$: on each interval $[\epsilon,1-\epsilon]$ it
+is Lipschitz, and since $f'$ is monotone and $f$ is continuous at $0$ and $1$,
+the monotone convergence theorem shows that $f(y)-f(x)=\int_x^yf'$ for all
+$0\le x<y\le1$. Further, a nondecreasing function $g$ on $(0,1)$ satisfies
+$g(y)-g(x)\ge\int_x^yg'$ for $0<x<y<1$, by Lebesgue's theorem on the
+differentiation of monotone functions; we apply this with $g=f'$, whose
+derivative $f''\ge0$ exists everywhere on $(0,1)$. We have
+\[
+ f(0)+f(1)-2f(\tfrac12)
+ =\int_0^{1/2}\bigl(f'(x+\tfrac12)-f'(x)\bigr)\dd x
+ \ge\int_0^{1/2}\!\!\int_x^{x+1/2}f''(\theta)\dd\theta\dd x .
+\]
+For fixed $\theta\in(0,1)$, the set of $x\in(0,1/2)$ with $x<\theta<x+1/2$
+has length $\min\{1/2,\theta\}-\max\{0,\theta-1/2\}=\min\{\theta,1-\theta\}$.
+By Tonelli's theorem, the right side equals
+$\int_0^1\min\{\theta,1-\theta\}f''(\theta)\dd\theta$, and since $f''\ge0$,
+we may restrict this integral to any Borel subset of $(0,1)$.
+
+Now let $\gamma_*$ be a minimizer, let $(\gamma_\theta)$ be a segment, and let
+$f(\theta)=F_\rho(\gamma_\theta)$. By \cref{prop:loc-inputs}(b), $f$ has the
+properties just used. The midpoint $\gamma_{1/2}$ is admissible, which implies that
+$f(1/2)\ge F_\rho(\gamma_*)$. Inserting this into the previous inequality, we
+obtain
+\begin{equation}\label{eq:loc-midpoint}
+ \int_\Theta\min\{\theta,1-\theta\}f''(\theta)\dd\theta
+ \le F_\rho(\gamma_0)+F_\rho(\gamma_1)-2F_\rho(\gamma_*)
+ \qquad(\Theta\subset(0,1)\ \text{Borel}).
+\end{equation}
+The weight $\min\{\theta,1-\theta\}$ has integral $1/4$ over $(0,1)$ and
+integral $2\int_{1/4}^{1/2}\theta\dd\theta=3/16$ over $[1/4,3/4]$.
+
+\begin{lemma}[Coercivity from a difference of one sign]
+\label{lem:loc-coercive}
+Let $(\gamma_\theta)$ be a segment, $\psi=\gamma_1-\gamma_0$, and
+$f(\theta)=F_\rho(\gamma_\theta)$, and fix $\theta\in(0,1)$. Let
+$\varphi:[0,1]\to[0,1]$ be Lipschitz, with $\varphi(0)=\varphi(1)=0$, and not
+identically zero, and let
+\[
+ \Delta=\rho\int_0^1\zeta_\theta\varphi\dd q,\qquad
+ Y_0=\int_0^1|\varphi'|^2\dd q .
+\]
+Suppose that there exist $A>0$, $d\ge0$, and $\sigma\in\{-1,1\}$ such that
+$\sigma\psi\ge A/2$ wherever $\varphi>0$, and
+\begin{equation}\label{eq:loc-weighted-density}
+ \rho\int_{(0,1)}\varphi^2\zeta_\theta\dd\gamma_\theta\le d\Delta.
+\end{equation}
+The last condition holds if the restriction of $\dd\gamma_\theta$ to the set
+$\{\varphi>0\}$ has density at most $d$. Then
+\begin{equation}\label{eq:loc-coercive}
+ f''(\theta)\ge\rho\,\frac{A^2}{72}
+ \min\left\{\frac{\Delta^2}{\beta Y_0},\ \frac\Delta d\right\},
+\end{equation}
+where $\Delta/0=+\infty$ if $\Delta>0$, and the right side is $0$ if
+$\Delta=0$.
+\end{lemma}
+
+For fixed $Y_0$ and $d$, both entries of the minimum in
+\eqref{eq:loc-coercive} are nondecreasing in $\Delta$, so we may insert any
+lower bound for $\Delta$ into the right side.
+
+\begin{proof}
+We first check the sufficient condition for
+\eqref{eq:loc-weighted-density}. If $\dd\gamma_\theta\le d\dd q$ on the open
+set $\{\varphi>0\}$, then, since $0\le\varphi\le1$ and $\zeta_\theta\ge0$, we
+have $\rho\int_{(0,1)}\varphi^2\zeta_\theta\dd\gamma_\theta\le
+d\rho\int_0^1\varphi^2\zeta_\theta\dd q\le d\Delta$.
+
+Next, we extend \eqref{eq:loc-response} to $\varphi$, which need not have
+compact support in $(0,1)$. For $0<\epsilon<1/4$, let $\chi_\epsilon$ be the
+piecewise linear function that vanishes within distance $\epsilon$ of
+$\{0,1\}$, equals one at distance at least $2\epsilon$, and is linear in
+between; note that $|\chi_\epsilon'|\le1/\epsilon$. Let $\ell_\varphi$ be the
+Lipschitz constant of $\varphi$ and $\varphi_\epsilon=\chi_\epsilon\varphi$.
+Then $\varphi_\epsilon$ is Lipschitz with compact support in $(0,1)$. Since
+$\varphi(0)=\varphi(1)=0$, we have
+$|\varphi(q)|\le\ell_\varphi\min\{q,1-q\}$, which is at most
+$2\ell_\varphi\epsilon$ on the two strips where $\chi_\epsilon\ne1$; these
+strips have total length $4\epsilon$. Then $\|\varphi_\epsilon-\varphi\|_\infty\le
+2\ell_\varphi\epsilon$, and since
+$\varphi_\epsilon'-\varphi'=\chi_\epsilon'\varphi+(\chi_\epsilon-1)\varphi'$
+vanishes outside the strips and is bounded by $3\ell_\varphi$ on them, we also
+have $\|\varphi_\epsilon'-\varphi'\|_{L^2}^2\le36\ell_\varphi^2\epsilon$. At
+fixed $N$ and $\theta$, the functions $\psi$, $b_\theta$, and $\zeta_\theta$
+are bounded by $\beta$, $\beta$, and $\beta^2N$, respectively: the first
+because both profiles take values in $[\lambda,\beta]$, the second by
+\eqref{eq:loc-b}, and the third because $0\preceq H_q\preceq C_q$ and
+$\Tr C_q\le N$. Further,
+$\dd\gamma_\theta$ is a finite measure. Using the uniform convergence of
+$\varphi_\epsilon$ and the $L^2$ convergence of $\varphi_\epsilon'$, we find
+that the left side of \eqref{eq:loc-response} and $Y$ converge, as
+$\epsilon\to0$, to their values for $\varphi$. The term $Z$ converges as well, because
+$\varphi_\epsilon^2\to\varphi^2$ uniformly and the Stieltjes integral is taken
+against a finite measure; this includes the atoms of $\dd\gamma_\theta$.
+Passing to the limit, we see that \eqref{eq:loc-response} holds for
+$\varphi$.
+
+If $\Delta=0$, the claim follows from the convexity of $f$. Otherwise, we have
+$Y_0>0$, because $\varphi$ vanishes at $0$ and is not identically zero. In the
+notation of \cref{prop:loc-inputs}(b), we have $Y\le\beta Y_0$ by
+\eqref{eq:loc-b} and $Z\le d\Delta$ by \eqref{eq:loc-weighted-density}.
+As $\zeta_\theta$ and $\varphi$ are nonnegative, the sign condition implies
+that
+$\sigma\rho\int_0^1\psi\zeta_\theta\varphi\dd q\ge A\Delta/2$. Inserting this
+bound into \eqref{eq:loc-response}, we find
+\[
+ \frac A2\Delta\le\Bigl(\frac{f''(\theta)}\rho\Bigr)^{1/2}
+ \bigl[Y^{1/2}+2(Y+Z)^{1/2}\bigr]
+ \le3\Bigl(\frac{f''(\theta)}\rho\Bigr)^{1/2}(Y+Z)^{1/2}.
+\]
+The left side is positive, which implies that $Y+Z>0$ and
+$f''(\theta)\ge\rho A^2\Delta^2/(36(Y+Z))$. Finally, we have
+$Y+Z\le\beta Y_0+d\Delta\le2\max\{\beta Y_0,d\Delta\}$, which gives
+\eqref{eq:loc-coercive}.
+\end{proof}
+
+\section{A density bound for the scalar measure}
+
+By \eqref{eq:loc-scalar-measure}, the density $\varrho_\beta$ of $\mu_\beta$
+on $[0,q_\beta)$ extends continuously to $[0,q_\beta]$, and in particular it
+is bounded. The isolation argument uses this bound in the form of
+\cref{lem:loc-lipschitz}. We include a direct derivation of the lemma from the
+identity
+that expresses $\alpha_\beta$ on the support in terms of spatial derivatives
+of the Parisi solution. The same identity underlies the proof of
+\cite[Theorem~2(ii)]{AuffingerChen2015Properties}. For the SK model, this
+identity is \cite[Lemma~6.2, (6.1)]{Lopatto}, and the smoothness of the
+resulting quotient up to $q_\beta$ is \cite[Lemma~6.3]{Lopatto}. In the physics
+literature, Crisanti and Rizzo gave the corresponding identities in their
+variables \cite[Eqs.~(22)--(23)]{CrisantiRizzo2002}.
+
+\begin{lemma}[Density bound]\label{lem:loc-lipschitz}
+There exists $L_\beta<\infty$ such that
+\begin{equation}\label{eq:loc-lipschitz}
+ \alpha_\beta(y)-\alpha_\beta(x)\le L_\beta(y-x)
+ \qquad(0\le x<y<q_\beta).
+\end{equation}
+With $L=\max\{1,\beta L_\beta\}$, the trial profile satisfies
+$\gamma^{\rm tr}(0)=\lambda$, $\gamma^{\rm tr}=\beta$ on $[q_\beta,1]$, and
+$|\gamma^{\rm tr}(x)-\gamma^{\rm tr}(y)|\le L|x-y|$ for $x,y\in[0,q_\beta)$. In
+particular, the restriction of $\dd\gamma^{\rm tr}$ to
+$(0,1]\setminus\{q_\beta\}$ is absolutely continuous, with density at most $L$
+on $(0,q_\beta)$ and $0$ on $(q_\beta,1]$.
+\end{lemma}
+
+The bound \eqref{eq:loc-lipschitz} is stated for $y<q_\beta$ because of the
+atom of $\mu_\beta$ at $q_\beta$. The continuous function $\bar\alpha$ in the
+proof below equals $\alpha_\beta$ on $[0,q_\beta)$. At $q_\beta$, it equals
+the left limit $\mu_\beta([0,q_\beta))=1-c_\beta$, while
+$\alpha_\beta(q_\beta)=1$.
+
+\begin{proof}
+We write $\alpha_\beta$ as a quotient of two moments along the scalar
+diffusion, show that the two moments are Lipschitz and that the denominator is
+bounded below, and then deduce the consequences for $\gamma^{\rm tr}$.
+
+Let $u$ be the solution of the scalar Parisi equation in \eqref{eq:intro-parisi}
+with $\alpha=\alpha_\beta$. The solution in \cite{Lopatto} has the terminal
+value $\log\cosh x$ instead of $\log(2\cosh x)$; since the equation is
+invariant under the addition of constants, the two solutions differ by
+$\log2$, and their spatial derivatives coincide. Let $w$ be a standard
+one-dimensional Brownian motion, and let $\xi$ solve
+\[
+ \dd\xi_r=\beta^2\alpha_\beta(r)u_x(r,\xi_r)\dd r+\beta\dd w_r,
+ \qquad\xi_0=0,
+\]
+which is the optimal diffusion \cite[(2.4)]{Lopatto}. We write
+$\hat C_r=u_{xx}(r,\xi_r)$, $\hat D_r=u_{xxx}(r,\xi_r)$, and
+$\hat A_r=u_{xxxx}(r,\xi_r)$, and define
+\[
+ \Gamma(r)=\E u_x(r,\xi_r)^2,\qquad \Lambda(r)=\E\hat D_r^2,\qquad
+ \Xi(r)=\E\hat C_r^3 \qquad(0\le r\le1).
+\]
+We use three facts from \cite[Section~2]{Lopatto}.
+\begin{enumerate}
+\item[(i)] \cite[Proposition~2.1]{Lopatto}, which combines
+\cite[Propositions~1, 2, and~5]{AuffingerChen2015Properties}: every spatial
+derivative of $u$ of positive order is bounded on $[0,1]\times\R$ by a
+constant depending only on $\beta$ and the order, $|u_x|\le1$, and
+$0<u_{xx}\le1$.
+\item[(ii)] \cite[Lemma~2.6, (2.19)]{Lopatto}: $\Gamma(r)=r$ for every
+$r\in\supp\mu_\beta=[0,q_\beta]$.
+\item[(iii)] \cite[Lemma~2.5, (2.13) and (2.14)]{Lopatto}: the function
+$\Gamma$ is continuously differentiable with $\Gamma'=\beta^2\E\hat C^2$, and
+\[
+ \Gamma'(y)-\Gamma'(x)=\beta^4\int_x^y
+ \bigl(\Lambda(r)-2\alpha_\beta(r)\Xi(r)\bigr)\dd r
+ \qquad(0\le x<y\le1).
+\]
+Further, by the same lemma, every polynomial moment of the spatial derivatives
+along $\xi$ is continuous on $[0,1]$ and satisfies the integrated identity
+\cite[(2.16)]{Lopatto}, with the polynomials of \cite[(2.18)]{Lopatto}.
+\end{enumerate}
+Let $K=\max_{j=3,4}\sup_{[0,1]\times\R}|\partial_x^ju|$, which is finite and
+depends only on $\beta$ by (i).
+
+We begin with the moments $\Lambda$ and $\Xi$. For finitely supported
+measures, the equations \cite[(2.17)]{Lopatto} with $j=2,3$ read
+$\dd\hat C_r=-\beta^2\alpha_\beta\hat C_r^2\dd r+\beta\hat D_r\dd w_r$ and
+$\dd\hat D_r=-3\beta^2\alpha_\beta\hat C_r\hat D_r\dd r+\beta\hat A_r\dd w_r$,
+and It\^o's formula yields
+\[
+ \begin{aligned}
+ \dd(\hat D_r^2)&=\beta^2\bigl(\hat A_r^2-6\alpha_\beta\hat C_r\hat D_r^2\bigr)\dd r
+ +2\beta\hat D_r\hat A_r\dd w_r,\\
+ \dd(\hat C_r^3)&=3\beta^2\bigl(\hat C_r\hat D_r^2-\alpha_\beta\hat C_r^4\bigr)\dd r
+ +3\beta\hat C_r^2\hat D_r\dd w_r .
+ \end{aligned}
+\]
+The stochastic integrals are martingales, since their integrands are bounded
+by (i). For the measure $\mu_\beta$, which has an atom, the identities we need
+are the cases $f=u_{xxx}^2$ and $f=u_{xx}^3$ of \cite[(2.16)]{Lopatto}, whose
+polynomials $f_0,f_1$ from \cite[(2.18)]{Lopatto} are the drifts just
+computed:
+\[
+ \begin{aligned}
+ \Lambda(y)-\Lambda(x)&=\beta^2\int_x^y
+ \E\bigl[\hat A_r^2-6\alpha_\beta(r)\hat C_r\hat D_r^2\bigr]\dd r,\\
+ \Xi(y)-\Xi(x)&=3\beta^2\int_x^y
+ \E\bigl[\hat C_r\hat D_r^2-\alpha_\beta(r)\hat C_r^4\bigr]\dd r,
+ \end{aligned}
+ \qquad(0\le x<y\le1).
+\]
+Since $0\le\alpha_\beta\le1$, $0<\hat C\le1$, and $|\hat D|,|\hat A|\le K$, the
+integrands are bounded by $7K^2$ and $K^2+1$, respectively. We find that
+$\Lambda$ and $\Xi$ are Lipschitz on $[0,1]$, with constants $7\beta^2K^2$ and
+$3\beta^2(K^2+1)$, and $0\le\Lambda\le K^2$. The function $\Xi$ is continuous
+by (iii) and positive, since $\hat C_r>0$ by (i). We define
+\[
+ \Xi_0=\min_{0\le r\le1}\Xi(r)>0,
+\]
+which depends only on $\beta$, because $\mu_\beta$ does. (As in the proof of
+\cite[Lemma~6.2]{Lopatto}, positivity of $\Xi$ comes from $u_{xx}>0$.)
+
+The quotient $\bar\alpha=\Lambda/(2\Xi)$ is Lipschitz on $[0,1]$. Indeed, let
+\[
+ L_\beta=\frac{7\beta^2K^2}{2\Xi_0}+\frac{3\beta^2K^2(K^2+1)}{2\Xi_0^2}.
+\]
+For $x,y\in[0,1]$, using the Lipschitz bounds for $\Lambda$ and $\Xi$
+together with $\Lambda\le K^2$ and $\Xi\ge\Xi_0$, we obtain
+\[
+ |\bar\alpha(y)-\bar\alpha(x)|
+ \le\frac{|\Lambda(y)-\Lambda(x)|}{2\Xi(y)}
+ +\Lambda(x)\frac{|\Xi(x)-\Xi(y)|}{2\Xi(x)\Xi(y)}
+ \le L_\beta|y-x| .
+\]
+
+Next, we identify $\alpha_\beta$ with $\bar\alpha$ on $[0,q_\beta)$. By (ii),
+we have $\Gamma(r)=r$ on $[0,q_\beta]$, and since $\Gamma$ is continuously
+differentiable, $\Gamma'=1$ on $(0,q_\beta)$. Then (iii) implies that
+$\int_x^y(\Lambda-2\alpha_\beta\Xi)\dd r=0$ for $0<x<y<q_\beta$. The integrand
+is bounded, and by Lebesgue's differentiation theorem, we have
+$\Lambda-2\alpha_\beta\Xi=0$, that is, $\alpha_\beta=\bar\alpha$, almost
+everywhere on $(0,q_\beta)$. Let $r\in[0,q_\beta)$, and choose points
+$r_n\downarrow r$ in $(r,q_\beta)$ at which $\alpha_\beta(r_n)=\bar\alpha(r_n)$.
+As $n\to\infty$, the left side tends to $\alpha_\beta(r)$ by the right
+continuity of $\alpha_\beta$, and the right side tends to $\bar\alpha(r)$ by
+continuity. We conclude that $\alpha_\beta=\bar\alpha$ on $[0,q_\beta)$, and
+\eqref{eq:loc-lipschitz} follows from the Lipschitz bound for $\bar\alpha$.
+
+For the consequences, we have $\gamma^{\rm tr}(0)=\max\{\lambda,0\}=\lambda$ by
+\eqref{eq:lz-gsroot}, and $\gamma^{\rm tr}=\max\{\lambda,\beta\}=\beta$ on
+$[q_\beta,1]$ by \eqref{eq:loc-scalar-measure}. On $[0,q_\beta)$, the function
+$\gamma_\beta=\beta\alpha_\beta$ is $\beta L_\beta$-Lipschitz, and so is its
+maximum with the constant $\lambda$; since $L\ge\beta L_\beta$, this gives the
+Lipschitz bound for $\gamma^{\rm tr}$. A nondecreasing Lipschitz function has
+an absolutely continuous derivative measure, with density bounded by its
+Lipschitz constant. This yields the density bound on $(0,q_\beta)$, and on
+$(q_\beta,1]$ the profile $\gamma^{\rm tr}$ is constant.
+\end{proof}
+
+\section{Distance from the scalar trial profile}
+
+We now compare a minimizer with $\gamma^{\rm tr}$ in $L^1(0,1)$. After the
+regularization of \cref{lem:loc-smoothing}(b), the derivative measures along
+the segment to $\gamma^{\rm tr}$ have bounded density in $(0,1)$ away from the
+atom of $\gamma^{\rm tr}$ at $q_\beta$. We construct cutoffs of one sign from
+one-sided averages of superlevel sets, and their masses and Dirichlet energies
+lead to a single estimate for the size of every superlevel set of the
+difference of the two profiles.
+
+\begin{proposition}[Isolation against the trial]\label{prop:loc-isolation}
+There exists $C=C(\beta)<\infty$ such that, for all $N\ge1$, $0<\rho\le1$,
+$0<\lambda\le\lambda_0$, every minimizer $\gamma_*$ of $F_\rho$, and every
+trial budget $\eta$ for $\gamma_*$,
+\begin{equation}\label{eq:loc-isolation}
+ \|\gamma_*-\gamma^{\rm tr}\|_{L^1(0,1)}\le C\min\{1,\rho^{-3/4}\eta^{1/4}\}.
+\end{equation}
+The constant depends on $\beta$ only through $\beta$, $k_\beta$, and the
+constant $L$ of \cref{lem:loc-lipschitz}.
+\end{proposition}
+
+\begin{proof}
+The proof has seven steps. We first fix a smoothing width $h$ and replace
+$\gamma_*$ by its regularization $\gamma_*^h$ of \cref{lem:loc-smoothing}(b),
+whose free measure has no atoms and which costs at most $\rho\beta h^2/12$. Along the segment
+from $\gamma_*^h$ to $\gamma^{\rm tr}$, the difference
+$\psi=\gamma^{\rm tr}-\gamma_*^h$ increases at rate at most $L$ below
+$q_\beta$, and it is nonnegative and nonincreasing above $q_\beta$. For each
+level $A>0$, we construct cutoffs of one sign from one-sided averages of the
+superlevel sets of $\psi$ below $q_\beta$, and we use triangular cutoffs on the
+two intervals next to $q_\beta$; none of them is positive at the atom
+$q_\beta$ of $\gamma^{\rm tr}$. \Cref{lem:loc-coercive} bounds the size of
+each superlevel set in terms of $f''(\theta)$, and the layer-cake formula
+turns these bounds into a lower bound for $f''(\theta)$ in terms of the $L^1$
+distance. Finally, we choose $h$ proportional to $\rho$ times the square of
+this distance and compare with the midpoint inequality and the trial budget.
+
+\paragraph{Step 1: Setup and constraints on $h$.}
+Let $D=\|\gamma_*-\gamma^{\rm tr}\|_{L^1(0,1)}$. If $D=0$, there is nothing to
+prove, so we assume from now on that $D>0$. Both profiles take values in
+$[\lambda,\beta]$, which implies that $D\le\beta$. With $L\ge1$ as in
+\cref{lem:loc-lipschitz}, we fix a width $h$ such that
+\begin{equation}\label{eq:loc-h-constraints}
+ 0<h\le\tfrac12,\qquad h\le\frac{D}{2\beta},\qquad h\le\frac\beta L.
+\end{equation}
+The final choice, in Step 7, will be a small multiple of $\rho D^2$.
+
+\paragraph{Step 2: The regularized segment.}
+Let $\gamma_*^h$ be the regularization of $\gamma_*$ given by
+\cref{lem:loc-smoothing}(b), and define
+\[
+ \gamma_\theta=(1-\theta)\gamma_*^h+\theta\gamma^{\rm tr},\qquad
+ \psi=\gamma^{\rm tr}-\gamma_*^h,\qquad f(\theta)=F_\rho(\gamma_\theta)
+ \qquad(0\le\theta\le1).
+\]
+The regularization is defined because $h\le1/2$. Recall that the trial
+profile is admissible (\cref{sec:fnd}), so that $(\gamma_\theta)$ is a
+segment. By
+\cref{lem:loc-smoothing}(b) and the constraint $h\le D/(2\beta)$, we have
+\[
+ \bar D=\|\psi\|_{L^1(0,1)}\ge D-\|\gamma_*^h-\gamma_*\|_{L^1(0,1)}
+ \ge D-\beta h\ge\frac D2 .
+\]
+For $\theta\in(0,1)$, the measure $\dd\gamma_\theta$ is
+$(1-\theta)\dd\gamma_*^h+\theta\dd\gamma^{\rm tr}$. On
+$(0,1)\setminus\{q_\beta\}$, the measure $\dd\gamma_*^h$ has density at most
+$\beta/h$ by \cref{lem:loc-smoothing}(b), and $\dd\gamma^{\rm tr}$ has density
+at most $L$ by \cref{lem:loc-lipschitz}. By \eqref{eq:loc-h-constraints}, we
+have $L\le\beta/h$, and the restriction of $\dd\gamma_\theta$ to
+$(0,1)\setminus\{q_\beta\}$ has density at most $\beta/h+L\le2\beta/h$. The
+only atom of $\dd\gamma_\theta$ in $(0,1)$ is the atom of $\dd\gamma^{\rm tr}$
+at $q_\beta$. Further, $\zeta_\theta\ge k_\beta^2$ by \eqref{eq:loc-in-curv}.
+
+\paragraph{Step 3: One-sided bounds on $\psi$.}
+By \cref{lem:loc-smoothing}(b) and \cref{lem:loc-lipschitz}, we have
+$\gamma_*^h(0)=\gamma^{\rm tr}(0)=\lambda$. For $0\le z<x<q_\beta$, we have
+$\gamma^{\rm tr}(x)-\gamma^{\rm tr}(z)\le L(x-z)$ by \cref{lem:loc-lipschitz},
+and $\gamma_*^h(x)-\gamma_*^h(z)\ge0$, because $\gamma_*^h$ is nondecreasing. We
+obtain
+\begin{equation}\label{eq:loc-onesided}
+ \psi(0)=0,\qquad
+ \psi(x)-\psi(z)\le L(x-z),\qquad
+ \psi(x)\le Lx\qquad(0\le z<x<q_\beta).
+\end{equation}
+On $[q_\beta,1]$, we have $\psi=\beta-\gamma_*^h$, which is continuous (the
+free measure of $\gamma_*^h$ has no atoms), nonnegative, and nonincreasing.
+Everywhere on $[0,1]$, both profiles take values in $[\lambda,\beta]$, so
+$|\psi|\le\beta$.
+
+\paragraph{Step 4: Cutoffs for the superlevel sets.}
+We fix $\theta\in(0,1)$. For $A>0$, we set $r=A/(4L)$ and define the sets
+\[
+ \begin{aligned}
+ U_A&=\{x\in(0,q_\beta):\psi(x)>A\},\\
+ V_A^i&=\{x\in(0,q_\beta-r):\psi(x)<-A\},\\
+ V_A^b&=\{x\in[\max\{0,q_\beta-r\},q_\beta):\psi(x)<-A\},\\
+ W_A&=\{x\in[q_\beta,1]:\psi(x)>A\},
+ \end{aligned}
+\]
+where an interval of nonpositive length is empty. These four sets are
+disjoint, and since $\psi(0)=0$ and $\psi\ge0$ on $[q_\beta,1]$, their union is
+$\{x\in[0,1]:|\psi(x)|>A\}$. In this step, we treat $U_A$ and $V_A^i$; Step 5
+treats $V_A^b$ and $W_A$.
+
+For a Borel set $E\subset(0,1)$, we extend its indicator by zero to $\R$ and
+define
+\[
+ \mathcal A_+\ind_E(x)=\frac1r\int_0^r\ind_E(x+u)\dd u,
+ \qquad
+ \mathcal A_-\ind_E(x)=\frac1r\int_0^r\ind_E(x-u)\dd u
+ \qquad(x\in\R).
+\]
+With $\Phi_E(x)=|E\cap(-\infty,x]|$, we have
+$\mathcal A_+\ind_E(x)=(\Phi_E(x+r)-\Phi_E(x))/r$ and
+$\mathcal A_-\ind_E(x)=(\Phi_E(x)-\Phi_E(x-r))/r$. The function $\Phi_E$ is
+$1$-Lipschitz, and by Lebesgue's differentiation theorem, its derivative is
+$\ind_E$ almost everywhere. It follows that $\mathcal A_\pm\ind_E$ is
+Lipschitz, with derivative $(\ind_E(x+r)-\ind_E(x))/r$, respectively
+$(\ind_E(x)-\ind_E(x-r))/r$, for almost every $x$. Using Fubini's theorem for the integral and
+$|(E-r)\triangle E|\le2|E|$ for the energy, we obtain
+\begin{equation}\label{eq:loc-averaging}
+ 0\le\mathcal A_\pm\ind_E\le1,\qquad \int_\R\mathcal A_\pm\ind_E=|E|,\qquad
+ \int_\R|\partial_x\mathcal A_\pm\ind_E|^2\le\frac{2|E|}{r^2}.
+\end{equation}
+
+For $E=U_A$, we take $\varphi=\mathcal A_+\ind_E$. If $\varphi(x)>0$, then
+there exists $y\in U_A$ with $x\le y\le x+r$. By \eqref{eq:loc-onesided}, we
+have $A<\psi(y)\le Ly$, so that $y>A/L=4r$ and $x\ge y-r>3r>0$; also
+$x\le y<q_\beta$. Then \eqref{eq:loc-onesided} implies that
+$\psi(x)\ge\psi(y)-L(y-x)>A-Lr=3A/4$. We have shown that
+$\{\varphi>0\}\subset(0,q_\beta)$ and that $\psi>3A/4$ on this set.
+
+For $E=V_A^i$, we take $\varphi=\mathcal A_-\ind_E$. If $\varphi(x)>0$, then
+there exists $y\in V_A^i$ with $y\le x\le y+r$, and $y+r<q_\beta$ by the
+definition of $V_A^i$. Then $0<x<q_\beta$, and \eqref{eq:loc-onesided} implies
+that $\psi(x)\le\psi(y)+L(x-y)<-A+Lr=-3A/4$. Again, we have
+$\{\varphi>0\}\subset(0,q_\beta)$, and $\psi<-3A/4$ on this set.
+
+In both cases, $\varphi$ is a Lipschitz function on $[0,1]$ with values in
+$[0,1]$, and it vanishes at $0$ and on $[q_\beta,1]$. By
+\eqref{eq:loc-averaging}, its integral over $[0,1]$ is $|E|$ and its energy
+over $[0,1]$ is at most $2|E|/r^2$. The set $\{\varphi>0\}$
+does not contain $q_\beta$, and by Step 2, the restriction of
+$\dd\gamma_\theta$ to this set has density at most $d=2\beta/h$. If $|E|>0$,
+then $\varphi$ is not identically zero, and \cref{lem:loc-coercive} applies
+with $\sigma=1$ for $U_A$ and $\sigma=-1$ for $V_A^i$. Its quantities satisfy
+\[
+ \Delta=\rho\int_0^1\zeta_\theta\varphi\dd q\ge\rho k_\beta^2|E|,\qquad
+ Y_0\le\frac{2|E|}{r^2},\qquad d=\frac{2\beta}h,
+\]
+by \eqref{eq:loc-in-curv} and \eqref{eq:loc-averaging}. Inserting these bounds
+into \eqref{eq:loc-coercive} and using $r=A/(4L)$, we obtain
+\begin{equation}\label{eq:loc-cutoff-interior}
+ f''(\theta)\ge\frac{\rho^2A^2|E|}{72}
+ \min\left\{\frac{\rho k_\beta^4A^2}{32\beta L^2},
+ \frac{k_\beta^2h}{2\beta}\right\}
+ \qquad(E=U_A,V_A^i).
+\end{equation}
+When $|E|=0$, the right side is zero, and the bound holds by convexity.
+
+\paragraph{Step 5: The boundary sets.}
+The set $V_A^b$ lies within distance $r$ of $q_\beta$, where an average of
+$\ind_{V_A^b}$ over a window of length $r$ could be positive at $q_\beta$. We
+use a single triangular cutoff instead. For an interval $(x_0,x_0+z)$ with
+$z>0$, let
+\[
+ T_{x_0,z}(x)=\Bigl(1-\frac{4|x-x_0-z/2|}{z}\Bigr)_+ .
+\]
+This function takes values in $[0,1]$, is positive exactly on the middle half
+$(x_0+z/4,x_0+3z/4)$, and satisfies
+\[
+ \int_\R T_{x_0,z}=\frac z4,\qquad\int_\R|T_{x_0,z}'|^2=\frac8z .
+\]
+
+Suppose that $V_A^b$ is nonempty, and let $x_A=\inf V_A^b$ and
+$l=q_\beta-x_A$. Note that $0<l\le r$ and $|V_A^b|\le l$. For every
+$z\in(x_A,q_\beta)$, there exists $x\in V_A^b$ with $x<z$, and
+\eqref{eq:loc-onesided} implies that $\psi(z)\le\psi(x)+L(z-x)<-A+Lr=-3A/4$.
+We take $\varphi=T_{x_A,l}$. Its positivity set is the middle half of
+$(x_A,q_\beta)$, whose closure lies in $(0,q_\beta)$; on this set, $\psi<-3A/4$
+and $\dd\gamma_\theta$ has density at most $2\beta/h$. \Cref{lem:loc-coercive},
+applied with $\sigma=-1$, $\Delta\ge\rho k_\beta^2l/4$, $Y_0=8/l$, and
+$d=2\beta/h$, yields
+\begin{equation}\label{eq:loc-cutoff-boundary}
+ f''(\theta)\ge\frac{\rho^2A^2l}{72}
+ \min\left\{\frac{\rho k_\beta^4l^2}{128\beta},
+                    \frac{k_\beta^2h}{8\beta}\right\}.
+\end{equation}
+Indeed, $\Delta^2/(\beta Y_0)\ge\rho^2k_\beta^4l^3/(128\beta)$ and
+$\Delta/d\ge\rho k_\beta^2lh/(8\beta)$.
+
+By Step 3, the function $\psi$ is continuous, nonnegative, and nonincreasing on
+$[q_\beta,1]$. Hence $W_A$ is an interval $[q_\beta,q_\beta+w)$ of length
+$w\le1$.
+If $w>0$, we take $\varphi=T_{q_\beta,w}$, whose positivity set has closure in
+$(q_\beta,1)$. On this set, $\psi>A$, the measure $\dd\gamma^{\rm tr}$ vanishes,
+and $\dd\gamma_\theta$ has density at most $2\beta/h$. The same computation,
+with $\sigma=1$, gives \eqref{eq:loc-cutoff-boundary} with $w$ in place of
+$l$. If $w=0$, there is nothing to prove.
+
+\paragraph{Step 6: Layer-cake integration.}
+Let
+\[
+ c_1=\frac1{72}\min\left\{\frac{k_\beta^4}{32\beta L^2},
+                         \frac{k_\beta^4}{128\beta},
+                         \frac{k_\beta^2}{8\beta}\right\},\qquad
+ K=\frac{f''(\theta)}{c_1\rho^2}.
+\]
+Since $\min\{ax,by\}\ge\min\{a,b\}\min\{x,y\}$ for nonnegative numbers,
+\eqref{eq:loc-cutoff-interior} and \eqref{eq:loc-cutoff-boundary} imply that
+\[
+ A^2|E|\min\{\rho A^2,h\}\le K\quad(E=U_A,V_A^i),\qquad
+ A^2z\min\{\rho z^2,h\}\le K\quad(z=l,w).
+\]
+For $E=U_A$ or $E=V_A^i$, one of $|E|\le K/(\rho A^4)$ and $|E|\le K/(hA^2)$
+holds, and $|E|\le1$. In either case, we have
+\[
+ |E|\le\min\{1,K/(\rho A^4)\}+\min\{1,K/(hA^2)\}.
+\]
+For the boundary interval, one of $l\le(K/(\rho A^2))^{1/3}$ and
+$l\le K/(hA^2)$ holds. Combining these alternatives with $|V_A^b|\le l\le
+r=A/(4L)$, we obtain
+\[
+ |V_A^b|\le\Bigl(\frac K{\rho A^2}\Bigr)^{1/3}
+ +\min\Bigl\{\frac A{4L},\frac K{hA^2}\Bigr\}.
+\]
+The same reasoning with $w\le1$ yields
+\[
+ |W_A|\le\Bigl(\frac K{\rho A^2}\Bigr)^{1/3}+\min\Bigl\{1,\frac K{hA^2}\Bigr\}.
+\]
+All four sets are empty for $A\ge\beta$, since $|\psi|\le\beta$. We use the
+elementary integrals
+\[
+ \int_0^\infty\min\Bigl\{1,\frac x{A^4}\Bigr\}\dd A=\frac43x^{1/4},\qquad
+ \int_0^\infty\min\Bigl\{1,\frac x{A^2}\Bigr\}\dd A=2x^{1/2},
+\]
+\[
+ \int_0^\infty\min\Bigl\{\frac A{4L},\frac x{A^2}\Bigr\}\dd A=C_Lx^{2/3},\qquad
+ \int_0^\beta\Bigl(\frac x{A^2}\Bigr)^{1/3}\dd A=3\beta^{1/3}x^{1/3},
+\]
+where $C_L=3/(2(4L)^{1/3})$ and $x\ge0$. The case $x=0$ is immediate. For
+$x>0$, the first three follow by splitting
+at the point where the two entries of the minimum agree; for the third, this
+point is $A_0=(4Lx)^{1/3}$, and the integral is
+$A_0^2/(8L)+x/A_0=3x/(2A_0)$. By the layer-cake formula, we have
+$\bar D=\int_0^\beta|\{|\psi|>A\}|\dd A$. Integrating the bounds on the four
+sets over $0<A<\beta$, we find
+\begin{equation}\label{eq:loc-weaknorm}
+ \bar D\le\frac83\Bigl(\frac K\rho\Bigr)^{1/4}+6\Bigl(\frac Kh\Bigr)^{1/2}
+ +6\beta^{1/3}\Bigl(\frac K\rho\Bigr)^{1/3}+C_L\Bigl(\frac Kh\Bigr)^{2/3}.
+\end{equation}
+Let $C_w=\max\{6\beta^{1/3},C_L\}$. Each coefficient in
+\eqref{eq:loc-weaknorm} is at most $C_w$, because $\beta>1$.
+
+We now show that $K\ge c_2\min\{\rho D^4,hD^2\}$, where
+$c_2=\min\{(8C_w)^{-4},\beta^{-4}\}$. Suppose first that $K\le\rho$ and $K\le
+h$. Then $(K/\rho)^{1/3}\le(K/\rho)^{1/4}$ and $(K/h)^{2/3}\le(K/h)^{1/2}$,
+and \eqref{eq:loc-weaknorm} gives
+$\bar D\le2C_w[(K/\rho)^{1/4}+(K/h)^{1/2}]$. Using $\bar D\ge D/2$, we see that one
+of the two terms in the bracket is at least $D/(8C_w)$. This implies that
+$K\ge\rho D^4/(8C_w)^4$ or $K\ge hD^2/(8C_w)^2$, and since $8C_w\ge1$, in both cases
+$K\ge(8C_w)^{-4}\min\{\rho D^4,hD^2\}$. If $K>\rho$, then $D\le\beta$ gives
+$\min\{\rho D^4,hD^2\}\le\rho\beta^4<\beta^4K$. If $K>h$, then
+$\min\{\rho D^4,hD^2\}\le h\beta^2<\beta^4K$, since $\beta>1$. This proves the
+claim in all cases. Since $\theta\in(0,1)$ was arbitrary, we have proved that
+\begin{equation}\label{eq:loc-E2-second}
+ f''(\theta)\ge c_3\rho^2\min\{\rho D^4,hD^2\}
+ \quad(0<\theta<1),\qquad c_3=c_1c_2 .
+\end{equation}
+
+\paragraph{Step 7: Choice of $h$ and conclusion.}
+We now take $h=c_4\rho D^2$, where
+\[
+ c_4=\min\Bigl\{1,\frac1{2\beta^2},\frac1{\beta L},\frac{3c_3}{2\beta}\Bigr\}.
+\]
+Since $D\le\beta$ and $\rho\le1$, we have $h\le c_4\beta^2\le1/2$,
+$h\le c_4\beta D\le D/(2\beta)$, and $h\le c_4\beta^2\le\beta/L$. These are the
+constraints \eqref{eq:loc-h-constraints}. Because $c_4\le1$, the minimum in
+\eqref{eq:loc-E2-second} equals $c_4\rho D^4$, and \eqref{eq:loc-E2-second}
+gives $f''\ge c_3c_4\rho^3D^4$ on $(0,1)$. We use the midpoint inequality
+\eqref{eq:loc-midpoint} with $\Theta=(0,1)$, where the weight has integral
+$1/4$. Together with the regularization cost of \cref{lem:loc-smoothing}(b)
+and the trial budget \eqref{eq:loc-trialbudget}, it yields
+\[
+ \frac{c_3c_4}{4}\rho^3D^4
+ \le F_\rho(\gamma_*^h)+F_\rho(\gamma^{\rm tr})-2F_\rho(\gamma_*)
+ \le\frac{\rho\beta h^2}{12}+\eta
+ \le\frac{c_3c_4}{8}\rho^3D^4+\eta .
+\]
+In the last inequality, we used that $\rho\beta h^2/12=(\beta
+c_4^2/12)\rho^3D^4$ and $c_4\le3c_3/(2\beta)$. We conclude that
+$\eta\ge(c_3c_4/8)\rho^3D^4$, that is,
+$D\le(8/(c_3c_4))^{1/4}\rho^{-3/4}\eta^{1/4}$. Together with $D\le\beta$, this
+implies \eqref{eq:loc-isolation} with
+$C=\max\{\beta,(8/(c_3c_4))^{1/4}\}$. The constants $c_1,c_2,c_3,c_4$ depend
+only on $\beta$, $k_\beta$, and $L$.
+\end{proof}

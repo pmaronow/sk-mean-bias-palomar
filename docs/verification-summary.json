@@ -1,0 +1,427 @@
+{
+  "schema_version": 1,
+  "local_verification_passed": true,
+  "checked_source_commit": "5ab785fd570b46186b017d099a2c1b8c02576ed0",
+  "checked_source_clean": true,
+  "checked_public_tree_sha256": "f8b2ae2f29e3806fb07344eee41bdabe5b9e8644d6dc0cf019d87e36017e1151",
+  "mathematical_compiler_source_digest": "43b228bd6a895c3237a95c6c4ab4c1e0b865628318c0dcb20dc6f25672b903c0",
+  "pipeline_script_sha256": "a8667f4664c0642c3a27697d7dfed530af47fbf66578977f30b7314882cc94e4",
+  "checks": {
+    "metadata": {
+      "status": "passed",
+      "exit_code": 0
+    },
+    "repository": {
+      "status": "passed",
+      "exit_code": 0
+    },
+    "statement_preservation": {
+      "status": "passed",
+      "exit_code": 0
+    },
+    "local_build_closure": {
+      "status": "passed"
+    },
+    "lean_build": {
+      "status": "passed",
+      "exit_code": 0
+    },
+    "source_artifacts": {
+      "status": "passed"
+    },
+    "numbered_claims": {
+      "status": "passed",
+      "exit_code": 0
+    },
+    "selected_proofs": {
+      "status": "passed",
+      "exit_code": 0
+    },
+    "comparator": {
+      "status": "passed",
+      "exit_code": 0
+    }
+  },
+  "lean_build": {
+    "targets": [
+      "HexagonUpperBound",
+      "Challenge",
+      "Solution"
+    ],
+    "local_source_files": 4634,
+    "complete_local_import_closure": true,
+    "exit_code": 0,
+    "matching_cache_reuse_permitted": true
+  },
+  "source_requirements": {
+    "lean_source_files": 4634,
+    "source_bytes": 44774110,
+    "max_lean_lines": 6364,
+    "challenge_lines": 120,
+    "challenge_bytes": 5091,
+    "intentional_challenge_sorries": 6
+  },
+  "statement_preservation": {
+    "mapped_files": 4631,
+    "declaration_counts": {
+      "theorem": 22780,
+      "def": 5758,
+      "abbrev": 200,
+      "instance": 343,
+      "inductive": 24,
+      "structure": 102,
+      "lemma": 2360,
+      "class": 2
+    },
+    "original_source_digest": "194d77610a426767778833888c4f2f90fa9a16ae1c63697bbf34e43aca6708b4",
+    "prepared_source_digest": "7467b6446a96609c9ea40d7f6e0ba8c50e61457b450fbc38a70186d3d6762487",
+    "theorem_proof_body_changes": 8,
+    "source_comparison_only": true
+  },
+  "numbered_audit": {
+    "inventory": {
+      "numbered_results": 50,
+      "numbered_definitions": 3,
+      "numbered_remarks": 5
+    },
+    "exact_target_count": 210,
+    "loaded_theorem_lemma_bodies": 185,
+    "compiled_import_artifact_count": 47760,
+    "compiled_import_artifact_digest": "d3c6015c25e7d841c5182273808507d48959dda2c042ab08b2aa3d5cefc23ae5",
+    "detailed_type_records": "Separate verification evidence, generated outside the source repository by scripts/check_numbered_claims.py.",
+    "mathematical_equivalence_automatically_proved": false,
+    "printed_type_hash_meaning": "SHA256 of the compiler pretty-printed target display, with proof-term arguments suppressed by pp.proofs=false; not a serialized kernel expression."
+  },
+  "selected_proof_audit": {
+    "anchor_count": 14,
+    "all_proof_bodies_loaded": true,
+    "allowed_transitive_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "axioms": {
+      "SKMeanBias.thermodynamic_limit": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "SKMeanBias.main_mean_bias": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "SKMeanBias.free_energy_density_correction": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "SKMeanBias.log_partition_mean_correction": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "SKMeanBias.strictly_better_than_two_thirds": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "SKMeanBias.mean_bias_little_o_two_thirds": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "SKMeanBias.pressure_eq_original": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "SKMeanBias.parisiLimit_eq_variational": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "SKMeanBias.finiteBias_eq_original": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "HexagonPaper.main_mean_bias_upper": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "HexagonPaper.main_mean_bias": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "QuantitativeFollowup.improved_native_bias": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "QuantitativeFollowup.followup_actual_four_term_budget": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Paper.physicalParisiFormula": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "selected_interface_theorems": [
+      "SKMeanBias.thermodynamic_limit",
+      "SKMeanBias.main_mean_bias",
+      "SKMeanBias.free_energy_density_correction",
+      "SKMeanBias.log_partition_mean_correction",
+      "SKMeanBias.strictly_better_than_two_thirds",
+      "SKMeanBias.mean_bias_little_o_two_thirds"
+    ],
+    "value_and_definition_bridges": [
+      "SKMeanBias.pressure_eq_original",
+      "SKMeanBias.parisiLimit_eq_variational",
+      "SKMeanBias.finiteBias_eq_original"
+    ],
+    "supporting_theorems": [
+      "HexagonPaper.main_mean_bias_upper",
+      "HexagonPaper.main_mean_bias",
+      "QuantitativeFollowup.improved_native_bias",
+      "QuantitativeFollowup.followup_actual_four_term_budget",
+      "Paper.physicalParisiFormula"
+    ],
+    "compiled_import_artifact_count": 47772,
+    "compiled_import_artifact_digest": "cb59c1da8d769621833b94207ef8414a61fee52ca47fb96c843266791a4b3962"
+  },
+  "comparator": {
+    "theorem_names": [
+      "SKMeanBias.thermodynamic_limit",
+      "SKMeanBias.main_mean_bias",
+      "SKMeanBias.free_energy_density_correction",
+      "SKMeanBias.log_partition_mean_correction",
+      "SKMeanBias.strictly_better_than_two_thirds",
+      "SKMeanBias.mean_bias_little_o_two_thirds"
+    ],
+    "definition_names": [],
+    "exit_code": 0,
+    "kernels": {
+      "nanoda": true,
+      "con-ron": true,
+      "Lean default": true
+    },
+    "external_kernel_arguments": {
+      "nanoda_bin": [],
+      "con-ron": [
+        "--jobs=2"
+      ]
+    },
+    "configuration_sha256": "c0133e919162ae9efb7b5af72d289326dc12ca7d2dac9ad7be906ac7cc89f86c",
+    "executed_protected_configuration_sha256": "17497d72ef6a4b526b6f97b142d321c16ac23e1003a591194046187314161ee7",
+    "binary_sha256": {
+      "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+      "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+      "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+      "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+      "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8",
+      "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef"
+    }
+  },
+  "pins": {
+    "lean_toolchain": "leanprover/lean4:v4.35.0-rc2",
+    "lean_release_commit": "11acb17ec6b07a8f9e9173e6845197929540936b",
+    "mathlib_commit": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+    "palomar_submission_commit": "d4e41c1d5b0d114c4859e6e5831dc6d3ad1d0d44",
+    "palomar_policy_commit": "96b034cc31a72a63d4f4041911dce337a85c9a04",
+    "palomar_template_commit": "2891de4c48955af824969a263d31b25e7a9a1406",
+    "metadata_schema_commit": "99c678e569c7c4c0772db297c5ddd5e4c9b6322e"
+  },
+  "detailed_source_manifest": "Separate verification evidence; full source SHA maps remain outside the source repository.",
+  "private_import_runtime": {
+    "linux_vm_max_map_count": 262144,
+    "linux_vm_max_map_count_minimum": 262144,
+    "platform": "linux",
+    "status": "passed"
+  },
+  "limitations": [
+    "Local checks do not execute Palomar protected canonical Challenge intake or editorial review.",
+    "No human mathematical review is established by authorship, responsibility, or these checks.",
+    "Exact compiled types and axioms do not mechanically establish equivalence to TeX or English; read mathematical-scope.md.",
+    "Independent kernel replay covers the selected interface; the broader numbered-target audit is a separate type/body/axiom check.",
+    "Verification concerns exact external checked source commits. Release source-comparison and preparation checks are separate from the historical compiler, axiom and independent-kernel results; the full pipeline was not rerun for this release."
+  ],
+  "citation_revision": {
+    "manuscript_source_commit": "5ba5b89be8c76bfe9738b080a74154be5288ef42",
+    "supplied_published_originals": 14,
+    "numbered_statement_quotes_unchanged": 58,
+    "proof_input_projection_sha256": "ac25c06acead3b46c011f76146186deb6da7cbc4e6acbbc18dd7f7b2ff632f9a",
+    "proof_input_projection_files": 4651,
+    "definition": "All tracked Lean and TOML files; lean-toolchain, lake-manifest.json, comparator.json, requirements-verification.txt; every scripts/ and provenance/ file. Manuscript sources and numbered source locations are excluded from this proof-input projection.",
+    "historical_full_pipeline_not_rerun": true,
+    "scope": "Historical all-nine checks remain bound to checked_source_commit above. Subsequent manuscript and bibliographic validation receipts are separate delivery evidence.",
+    "manuscript_source_url": "https://github.com/pmaronow/temp-sk-repo/commit/5ba5b89be8c76bfe9738b080a74154be5288ef42"
+  },
+  "manuscript_revision": {
+    "manuscript_source_commit": "84169de735e6ca504cb3697ba17f4b2ea775c85e",
+    "review": "Automated Codex comparison of all 13 manuscript chapters and exact Lean targets; no introduced mathematical error identified. Existing scope and coverage qualifications remain unchanged.",
+    "proof_input_projection_sha256": "ac25c06acead3b46c011f76146186deb6da7cbc4e6acbbc18dd7f7b2ff632f9a",
+    "proof_input_projection_files": 4651,
+    "lean_sources_unchanged": 4634,
+    "numbered_entries": 58,
+    "changed_exact_quotations": 25,
+    "refreshed_source_locations": 58,
+    "lean_bindings_and_coverage_notes_unchanged": true,
+    "mathematical_compiler_source_digest": "151f0420ccfadcc00b2037705fab33fbeee802ee09d0715f5038a68a2b368263",
+    "checks": {
+      "metadata": "passed",
+      "repository": "passed",
+      "proof_input_preservation": "passed",
+      "manuscript_build": "passed",
+      "lean_build": "passed",
+      "numbered_claims": "passed"
+    },
+    "lean_build": {
+      "source_commit": "84169de735e6ca504cb3697ba17f4b2ea775c85e",
+      "source_dirty": false,
+      "passed": true,
+      "exit_code": 0,
+      "build_targets": [
+        "HexagonUpperBound",
+        "Challenge",
+        "Solution"
+      ],
+      "cache_policy": "Lake may reuse matching compiled artifacts; not a cold-build claim",
+      "log_sha256": "1f0b725009d832866c27df28285b876594f551f728d1aacf5a134307bf5b6f1a"
+    },
+    "numbered_audit": {
+      "exact_target_count": 210,
+      "loaded_theorem_lemma_bodies": 185,
+      "printed_target_hashes_match_historical_audit": true,
+      "all_transitive_axioms_standard": true,
+      "compiled_artifacts_unchanged_during_audit": true,
+      "ledger_sha256": "7d07907a5b508e8fe5255dadb4540adf4f8f715308c82c4bab982bdd079cdb79",
+      "source_revision_sha256": "5ab60d3a8e35776400fa15beefef84054e3cdd3aefd19b5e2bb1a832a4cf2eaf",
+      "compiled_artifact_sha256": "d3c6015c25e7d841c5182273808507d48959dda2c042ab08b2aa3d5cefc23ae5",
+      "mathematical_equivalence_automatically_proved": false,
+      "independent_kernel_checked_by_this_script": false
+    },
+    "manuscript": {
+      "pages": 206,
+      "tex_files": 18,
+      "bib_files": 1,
+      "cited_entries": 86,
+      "unresolved_citations_or_references": false,
+      "compiler_warnings": false,
+      "pdf_sha256": "5d0009feb0b5fc140762ab9ec20f3f8ebaa5042654234334557881a70de87d8f",
+      "source_sha256": {
+        "abstract.tex": "32c965a7c04f22649acbc4e82875cbe9cf5742c27940cc566cc433b573488b06",
+        "macros.tex": "5e4c8a6c714397cf2161012173fc55f4b76f6a70b6aeaf0490124a236a96fcdf",
+        "main.tex": "dca366a827d56f1c1b0822fca4bd18183bfd5417555fbab5bb5463407e8eadee",
+        "refs.bib": "5c6cb1dce49fe38b77c94a7b239fb46dc08ac6b7803e1a925b82dda9f85d29cb",
+        "sections/01-intro.tex": "7679598ebb7b89ed8f09c930b0a526cac120cf4f12229ddf756f2026a463e69d",
+        "sections/02-overview.tex": "bddaf9223b616637b65840fef63b6ec7d9a839671e512be60c8a99723b9c28ce",
+        "sections/03-interpolation.tex": "cb9d2249ce83397583a7e38ed6ca8c515a0a90139e7606431feb12fbc4976db2",
+        "sections/04-gaussian.tex": "66fc15d74986ab44d32134b4340d9068b0819b80235b1ae04ba0bb2837ff998e",
+        "sections/05-shells.tex": "171f0f38b0cac28e7d8bb8bd3e64c1d29ac0012200f313a4531a02f0ebb8b0e7",
+        "sections/06-meancov.tex": "071c8af4a8bce70600f99fe309fcac9a9672c75929072cf4264d58a862e82a13",
+        "sections/07-isolation.tex": "6ccd90534b311a5e21c747ad8d2b2450ab4e15e848562ec60b7df1a670a3f2e5",
+        "sections/08-root.tex": "10f1c09ea1e30985892ba8a77965295ae0ef3c6af1847bd9420db75cce4cdf30",
+        "sections/09-scalar.tex": "79a781d9229bb1cacfad2bc67fe08994b13efc19adc60538e4c005d6a831fdef",
+        "sections/10-cavity.tex": "edafdc34f236d05ea9af536796b0a76d2fc69639cb78caad92e9768b0020aefc",
+        "sections/11-endpoint.tex": "e3bbddbf009aa5bba84b3896a1c4e323aa6d745e10370b0f0ee0c5af2e2e6125",
+        "sections/12-closure.tex": "178ce8b61e22f7556f383e1d1aafef1a9b16125339c7adae5449173087c14c65",
+        "sections/13-proof.tex": "3f7c9f7659d9edc7b589d0a873b1837b98a3ccb7e2efa51009a5e0ae44bb3fc5",
+        "shared/trilogy-style.tex": "098b738415780d11d4d77e3eaa19aca8475ff05609199c3cc0ca913950c8d86e",
+        "shortheads.tex": "b64cc83784250e697778e6398061cf29a2ced20d69a86997b959dbe1417e5801"
+      },
+      "abstract_unchanged": true,
+      "authors_unchanged": true,
+      "removed_citation_keys": [
+        "Lean4",
+        "Mathlib2020"
+      ]
+    },
+    "comparator_and_selected_proof_audit_rerun": false,
+    "historical_independent_kernel_source_commit": "5ab785fd570b46186b017d099a2c1b8c02576ed0",
+    "scope": "Fresh source build and numbered-target/body/axiom audit concern this manuscript source commit. The separate selected-proof audit and Comparator independent-kernel acceptance remain bound to the historical checked commit and unchanged proof-input bytes. This is not a cold build, a mechanical TeX-to-Lean equivalence proof, human mathematical review, or submission approval.",
+    "manuscript_source_url": "https://github.com/pmaronow/temp-sk-repo/commit/84169de735e6ca504cb3697ba17f4b2ea775c85e",
+    "historical_independent_kernel_source_url": "https://github.com/pmaronow/temp-sk-repo/commit/5ab785fd570b46186b017d099a2c1b8c02576ed0"
+  },
+  "verification_scope": "Top-level passes and kernel results concern the named external checked_source_commit, not a fresh verification of the single-commit release.",
+  "checked_source_url": "https://github.com/pmaronow/temp-sk-repo/commit/5ab785fd570b46186b017d099a2c1b8c02576ed0",
+  "release_preparation": {
+    "repository_url": "https://github.com/pmaronow/sk-mean-bias-palomar",
+    "history": "Single initial source commit. Earlier preparation and checked commits remain external provenance and are not ancestors of this release.",
+    "base_source_commit": "13598f760e19227d0680bac616320fd495f5c4bb",
+    "base_source_url": "https://github.com/pmaronow/temp-sk-repo/commit/13598f760e19227d0680bac616320fd495f5c4bb",
+    "checks": {
+      "metadata": "passed",
+      "original_statement_preservation": "passed",
+      "numbered_ledger_preparation": "passed",
+      "manuscript_build": "passed",
+      "noncomment_source_preservation": "passed",
+      "repository": "passed"
+    },
+    "metadata_sha256": "e11500c9097830aede278d48b5a98fba04cb5046ff71784a292b4ffbc22de02c",
+    "prepared_semantic_digest": "7467b6446a96609c9ea40d7f6e0ba8c50e61457b450fbc38a70186d3d6762487",
+    "numbered_ledger": {
+      "entries": 58,
+      "exact_quotations_lean_bindings_and_coverage_notes_unchanged": true,
+      "refreshed_paper_source_locations": 25,
+      "source_sha256": "80b13e7e157ac21618817cb8191196b84a75e33a650c4b6cb6562553565a671f",
+      "anchors": 205,
+      "auxiliary_targets": 5,
+      "prepare_only": true,
+      "kernel_compile_performed": false,
+      "source_revision_sha256": "894f5acb77e850d27d3dafed4d5e321866cecadf925d5c73885860fc6a17ef40",
+      "compiler_validation": "not_run",
+      "kernel_axiom_audit_performed": false,
+      "proof_bodies_loaded": false
+    },
+    "manuscript": {
+      "pages": 206,
+      "tex_files": 18,
+      "bib_files": 1,
+      "cited_entries": 86,
+      "compiler_warnings_or_errors": false,
+      "pdf_text_matches_previous_manuscript": true
+    },
+    "full_lean_verification_pipeline_rerun": false,
+    "comparator_independent_kernels_rerun": false,
+    "human_mathematical_review_claimed": false,
+    "hexagon_or_palomar_submission_or_registration_performed": false,
+    "scope": "Source preparation checks are separate from the historical Lean build, target/body/axiom audits and independent kernel checks. Comment removal changes raw Lean source hashes while preserving noncomment source text. Numbered-ledger preparation validates exact quotations and structural bindings; it does not compile Lean targets.",
+    "source_comparison": {
+      "lean_source_files": 4634,
+      "all_lean_noncomment_text_unchanged": true,
+      "all_lean_physical_line_counts_unchanged": true,
+      "lean_comment_edits": 33,
+      "lean_comment_edited_files": 23,
+      "lean_noncomment_projection_sha256": "b8a174e0339ef26c7dee20582ae15e5caa6634e51110b9ddb22937cf0866ef70",
+      "current_raw_lean_projection_sha256": "d32d4c8aa15c76a3a4a66ac635b14b66f942ca57d46b94834ebc24b2656eefa7",
+      "paper_removed_standalone_comment_lines": 120,
+      "paper_comment_edited_files": 8,
+      "paper_noncomment_bytes_unchanged": true,
+      "historical_raw_proof_input_digest_identifies_release": false
+    },
+    "repository": {
+      "lean_source_files": 4634,
+      "max_lean_lines": 6364,
+      "challenge_lines": 120,
+      "challenge_bytes": 5091,
+      "intentional_challenge_sorries": 6,
+      "canonical_mathlib_manifest_matched": true,
+      "materialized_dependencies_clean": true,
+      "canonical_challenge_import_source_files": 4708
+    },
+    "original_statement_preservation": {
+      "source_snapshot_unchanged_during_check": true,
+      "signature_changes": 0,
+      "definition_changes": 0,
+      "context_changes": 0,
+      "errors": 0
+    },
+    "selected_proof_audit_rerun": false
+  }
+}

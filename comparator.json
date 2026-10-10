@@ -1,0 +1,14 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "SKMeanBias.thermodynamic_limit",
+    "SKMeanBias.main_mean_bias",
+    "SKMeanBias.free_energy_density_correction",
+    "SKMeanBias.log_partition_mean_correction",
+    "SKMeanBias.strictly_better_than_two_thirds",
+    "SKMeanBias.mean_bias_little_o_two_thirds"
+  ],
+  "definition_names": [],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
+}

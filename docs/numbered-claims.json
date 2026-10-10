@@ -1,0 +1,3474 @@
+{
+  "schema_version": 1,
+  "title": "An $N^{-7/10}$ Bound for the Finite-Size Bias of the Sherrington--Kirkpatrick Free Energy",
+  "authors": [
+    "P. M. Aronow",
+    "Patrick Lopatto"
+  ],
+  "source_root": "paper",
+  "review_note": "Automated Codex source-level comparison. These bindings and scope qualifications are not human mathematical review, proof certificates, or evidence of a successful current build. Run the checker and consult current verification evidence. Compiled aliases alone do not establish equivalence to the paper.",
+  "numbered_results": [
+    {
+      "id": "current:theorem:1.1",
+      "type": "theorem",
+      "number": "1.1",
+      "labels": [
+        "thm:main"
+      ],
+      "title_tex": "",
+      "source": {
+        "file": "sections/01-intro.tex",
+        "start_line": 101,
+        "end_line": 107,
+        "source_character_range": [
+          4990,
+          5166
+        ],
+        "quote": "\\begin{theorem}\\label{thm:main}\nFor every $\\beta>1$ there is a constant $C_\\beta<\\infty$ such that\n\\[\n P_\\beta-p_{N,\\beta}\\le C_\\beta N^{-7/10}\n \\qquad(N\\ge2).\n\\]\n\\end{theorem}",
+        "quote_sha256": "e7194aca4b104b254994529c035e62b9322e99c4cd650c04585f3d232f10fac9"
+      },
+      "lean_declarations": [
+        "HexagonPaper.main_mean_bias_upper"
+      ],
+      "declaration_locations": {
+        "HexagonPaper.main_mean_bias_upper": [
+          {
+            "name": "HexagonPaper.main_mean_bias_upper",
+            "kind": "theorem",
+            "file": "HexagonPaper/MainUpperOnly.lean",
+            "line": 14
+          }
+        ]
+      },
+      "coverage_note": "Exact one-sided actual SK mean-bias target, beta>1 and all integer N>=2. Main wrapper projects a stronger nonnegative bound. Its proof reuses the vendored native four-term-budget theorem rather than depending on every current-exposition bridge. No variance asymptotic, positive Laplace window, trial-gap estimate or stability conclusion is an extra premise.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:proposition:3.1",
+      "type": "proposition",
+      "number": "3.1",
+      "labels": [
+        "prop:fnd-contact",
+        "eq:in-martingale",
+        "eq:fnd-first-variation",
+        "eq:in-contact"
+      ],
+      "title_tex": "Martingale, covariance order and contact",
+      "source": {
+        "file": "sections/03-interpolation.tex",
+        "start_line": 430,
+        "end_line": 456,
+        "source_character_range": [
+          20901,
+          21977
+        ],
+        "quote": "\\begin{proposition}[Martingale, covariance order, and contact]\n\\label{prop:fnd-contact}\nLet $0<\\rho\\le1$, and let $\\mu=s\\delta_0+\\nu$ be an admissible profile.\nFor every $q\\in[0,1]$,\n\\begin{equation}\\label{eq:in-martingale}\n m_q=\\nabla U(q,X_q;W),\\qquad m_0=0,\\qquad\n \\dd m_q=\\sqrt c\\,H_q\\dd B_q,\n \\qquad a(q)C_q\\preceq H_q\\preceq C_q ,\n\\end{equation}\nand $q\\mapsto\\E S_q$ is continuously differentiable on $[0,1]$ with\nderivative $c\\,\\E\\Tr H_q^2/N$. If $\\nu'\\ge0$ has mass $1-s$, then the\nright derivative of\n$\\theta\\mapsto\\mathcal F_{t,s}(s\\delta_0+(1-\\theta)\\nu+\\theta\\nu')$ at\n$\\theta=0$ is\n\\begin{equation}\\label{eq:fnd-first-variation}\n D\\mathcal F_{t,s}(\\mu)[\\nu'-\\nu]\n    =\\frac c2\\int_0^1G(x)\\,(\\nu'-\\nu)(\\dd x),\\qquad\n G(x)=\\int_x^1(\\E S_y-y)\\dd y .\n\\end{equation}\nIf $\\mu$ minimizes $\\mathcal F_{t,s}$, then $\\supp\\nu$ is contained in\nthe set of minimum points of $G$ on $[0,1]$, and\n\\begin{equation}\\label{eq:in-contact}\n \\supp\\nu\\subset[0,1),\\qquad\n \\E S_q=q,\\qquad \\E\\Tr H_q^2\\le\\frac Nc\n \\qquad\\text{for every contact level }q .\n\\end{equation}\n\\end{proposition}",
+        "quote_sha256": "b298a560fafed9864387e9860d31380681aa983fc6abc5a077e57b2e19a107af"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.foundation_martingale_contact"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.foundation_martingale_contact": [
+          {
+            "name": "QuantitativeFollowup.foundation_martingale_contact",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FoundationMartingaleContact.lean",
+            "line": 84
+          }
+        ]
+      },
+      "coverage_note": "Actual model theorem discharges FoundationMartingaleContactTarget: conditional mean, gradient/initial zero, martingale, stochastic left-sum L2/in-measure limits, covariance order, C1 overlap and first variation. Contact conclusions require genuine minimization. Stochastic differential notation is implemented through left-sum convergence; probability identities are a.e. at each fixed deterministic level.",
+      "coverage_category": "proved_statement",
+      "target_definitions": {
+        "QuantitativeFollowup.FoundationMartingaleContactTarget": {
+          "name": "QuantitativeFollowup.FoundationMartingaleContactTarget",
+          "kind": "structure",
+          "file": "QuantitativeFollowup/FoundationMartingaleContact.lean",
+          "line": 22
+        }
+      }
+    },
+    {
+      "id": "current:proposition:3.3",
+      "type": "proposition",
+      "number": "3.3",
+      "labels": [
+        "prop:fnd-variance",
+        "eq:in-Lvar"
+      ],
+      "title_tex": "Integrated variance and trace bounds",
+      "source": {
+        "file": "sections/03-interpolation.tex",
+        "start_line": 629,
+        "end_line": 638,
+        "source_character_range": [
+          30658,
+          31045
+        ],
+        "quote": "\\begin{proposition}[Integrated variance and trace bounds]\n\\label{prop:fnd-variance}\nLet $0<\\rho\\le1$, and let $\\mu=s\\delta_0+\\nu$ minimize\n$\\mathcal F_{t,s}$. For every deterministic $k\\in L^2(\\nu)$,\n\\begin{equation}\\label{eq:in-Lvar}\n \\Var\\left(\\int k(q)L_q\\,\\nu(\\dd q)\\right)\n      \\le\\frac1M\\int\\frac{k(q)^2}{a(q)}\\,\\nu(\\dd q),\n \\qquad A\\le\\frac1{Ms}.\n\\end{equation}\n\\end{proposition}",
+        "quote_sha256": "89ba8861cddc15a10dbb3ada4bc9d03f84602bb74ec65adf50b952aaeb899217"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.foundation_integrated_variance"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.foundation_integrated_variance": [
+          {
+            "name": "QuantitativeFollowup.foundation_integrated_variance",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FoundationIntegratedVariance.lean",
+            "line": 17
+          }
+        ]
+      },
+      "coverage_note": "Actual minimizing model; signed L2 kernels, free measure including atoms, exact 1/M variance and 1/(Ms) trace normalization. No variance conclusion is a premise.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:lemma:3.5",
+      "type": "lemma",
+      "number": "3.5",
+      "labels": [
+        "lem:fnd-decomp",
+        "eq:in-decomp"
+      ],
+      "title_tex": "Decomposition of the overlap error",
+      "source": {
+        "file": "sections/03-interpolation.tex",
+        "start_line": 754,
+        "end_line": 761,
+        "source_character_range": [
+          36261,
+          36592
+        ],
+        "quote": "\\begin{lemma}[Decomposition of the overlap error]\\label{lem:fnd-decomp}\nLet $0<\\rho\\le1$. For every admissible profile and every $q\\in[0,1]$, we\nhave $\\Var(L_q)=j_q+\\Var(S_q)/4$. If $q$ is a contact level of a\nminimizer, then\n\\begin{equation}\\label{eq:in-decomp}\n \\E(R_q-q)^2=a_q^{\\rm th}+2j_q+\\Var(S_q).\n\\end{equation}\n\\end{lemma}",
+        "quote_sha256": "10fed97ed6f45fd854b14b7a5e1e7c7be0fdcd88f8fbc13909948a483576bebe"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.foundation_overlap_decomposition"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.foundation_overlap_decomposition": [
+          {
+            "name": "QuantitativeFollowup.foundation_overlap_decomposition",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FoundationDecomposition.lean",
+            "line": 27
+          }
+        ]
+      },
+      "coverage_note": "Actual profile variance identity and contact decomposition, with literal thermal+2j+Var(S). Contact requires minimization/support and the paper's matching outer tilt, not an assumed decomposition.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:proposition:3.6",
+      "type": "proposition",
+      "number": "3.6",
+      "labels": [
+        "prop:fnd-interpolation",
+        "eq:fnd-fixed-derivative"
+      ],
+      "title_tex": "Interpolation identity",
+      "source": {
+        "file": "sections/03-interpolation.tex",
+        "start_line": 797,
+        "end_line": 814,
+        "source_character_range": [
+          37988,
+          38805
+        ],
+        "quote": "\\begin{proposition}[Interpolation identity]\\label{prop:fnd-interpolation}\nLet $N\\ge1$ and $0<s\\le1/2$.\n\\begin{enumerate}[label=(\\alph*)]\n\\item For every admissible profile $\\mu$, the map\n$t\\mapsto\\mathcal F_{t,s}(\\mu)$ is Lipschitz on $[0,1]$ and continuously\ndifferentiable on $(0,1)$, with\n\\begin{equation}\\label{eq:fnd-fixed-derivative}\n \\partial_t\\mathcal F_{t,s}(\\mu)\n   =-\\frac{\\beta^2}4\\int\\E(R_q-q)^2\\,\\nu(\\dd q),\n\\end{equation}\nwhere the expectation is under the tilted law of $\\mu$ at $t$. The\nintegral in \\eqref{eq:fnd-fixed-derivative} lies in $[0,4(1-s)]$.\n\\item The function $f_{N,s}$ is Lipschitz on $[0,1]$. At every\n$t\\in(0,1)$ at which $f_{N,s}$ is differentiable, every minimizer $\\mu$\nof $\\mathcal F_{t,s}$ satisfies\n$f_{N,s}'(t)=\\partial_t\\mathcal F_{t,s}(\\mu)$.\n\\end{enumerate}\n\\end{proposition}",
+        "quote_sha256": "a570e8c0510b5f401410cc588dfce783935c8e71eb8d7cefd6048635c7f77835"
+      },
+      "lean_declarations": [
+        "QuantitativePaper.interpolation_envelope"
+      ],
+      "declaration_locations": {
+        "QuantitativePaper.interpolation_envelope": [
+          {
+            "name": "QuantitativePaper.interpolation_envelope",
+            "kind": "theorem",
+            "file": "QuantitativePaper/InterpolationEnvelope.lean",
+            "line": 16
+          }
+        ]
+      },
+      "coverage_note": "Actual fixed-profile and optimized interpolation envelope: derivative, Lipschitz bounds, endpoints, attained minimizers and integral. Optimized derivative assertion is at differentiability points; all minimizers are quantified there.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:corollary:3.7",
+      "type": "corollary",
+      "number": "3.7",
+      "labels": [
+        "cor:fnd-defect",
+        "eq:in-envelope"
+      ],
+      "title_tex": "The defect identity",
+      "source": {
+        "file": "sections/03-interpolation.tex",
+        "start_line": 924,
+        "end_line": 934,
+        "source_character_range": [
+          43644,
+          44178
+        ],
+        "quote": "\\begin{corollary}[The defect identity]\\label{cor:fnd-defect}\nLet $N\\ge1$ and $0<\\lambda\\le\\beta/2$, and let $s=\\lambda/\\beta$. At\nevery $\\rho\\in(0,1)$ at which $\\calD_N(\\rho)$ is defined, and for every\nminimizer $\\mu$ of $\\mathcal F_{1-\\rho,s}$,\n\\begin{equation}\\label{eq:in-envelope}\n \\calD_N(\\rho)=\\beta(A+2J+V),\\qquad\n 4e_{N,\\beta}(\\lambda)=\\int_0^1\\calD_N(\\rho)\\dd\\rho ,\n\\end{equation}\nwhere $A$, $J$, and $V$ are computed under the tilted law of $\\mu$. In\nparticular, $\\calD_N\\ge0$ and $e_{N,\\beta}(\\lambda)\\ge0$.\n\\end{corollary}",
+        "quote_sha256": "bd56186d7f81960725a78de394e0b6e668891accef6c9482e1d304e99d8fd08e"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.smallIntervalDefect_printed_derivative",
+        "QuantitativeFollowup.smallIntervalDefect_printed_decomposition",
+        "QuantitativeFollowup.smallIntervalDefect_printed_envelope",
+        "QuantitativePaper.optimizedVectorInterpolationDefect_bounds",
+        "QuantitativePaper.constrainedParisiValue_sub_completedFractionalPressure_nonneg"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.smallIntervalDefect_printed_derivative": [
+          {
+            "name": "QuantitativeFollowup.smallIntervalDefect_printed_derivative",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/SupportingPrintedOptimizedEnvelope.lean",
+            "line": 15
+          }
+        ],
+        "QuantitativeFollowup.smallIntervalDefect_printed_decomposition": [
+          {
+            "name": "QuantitativeFollowup.smallIntervalDefect_printed_decomposition",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/SupportingPrintedOptimizedEnvelope.lean",
+            "line": 23
+          }
+        ],
+        "QuantitativeFollowup.smallIntervalDefect_printed_envelope": [
+          {
+            "name": "QuantitativeFollowup.smallIntervalDefect_printed_envelope",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/SupportingPrintedOptimizedEnvelope.lean",
+            "line": 42
+          }
+        ],
+        "QuantitativePaper.optimizedVectorInterpolationDefect_bounds": [
+          {
+            "name": "QuantitativePaper.optimizedVectorInterpolationDefect_bounds",
+            "kind": "theorem",
+            "file": "QuantitativePaper/VectorInterpolationMonotonicity.lean",
+            "line": 53
+          }
+        ],
+        "QuantitativePaper.constrainedParisiValue_sub_completedFractionalPressure_nonneg": [
+          {
+            "name": "QuantitativePaper.constrainedParisiValue_sub_completedFractionalPressure_nonneg",
+            "kind": "theorem",
+            "file": "QuantitativePaper/VectorInterpolationMonotonicity.lean",
+            "line": 72
+          }
+        ]
+      },
+      "coverage_note": "Bundle: derivative normalization is an algebraic identity; actual-model decomposition needs minimization and differentiability. Envelope and pressure comparison discharge nonnegativity. Defect's total-derivative representative away from differentiability points does not add a pointwise theorem; integral conclusions are a.e.",
+      "coverage_category": "proved_bundle"
+    },
+    {
+      "id": "current:lemma:3.8",
+      "type": "lemma",
+      "number": "3.8",
+      "labels": [
+        "lem:fnd-trial",
+        "eq:fnd-trial"
+      ],
+      "title_tex": "Trial budget",
+      "source": {
+        "file": "sections/03-interpolation.tex",
+        "start_line": 1020,
+        "end_line": 1026,
+        "source_character_range": [
+          48002,
+          48288
+        ],
+        "quote": "\\begin{lemma}[Trial budget]\\label{lem:fnd-trial}\nFor every $N\\ge1$, $0<\\rho\\le1$, and $0<\\lambda\\le\\lambda_0$,\n\\begin{equation}\\label{eq:fnd-trial}\n 0\\le F_\\rho(\\gamma_\\lambda^{\\rm tr})-\\min_\\gamma F_\\rho(\\gamma)\n       \\le e_{N,\\beta}(\\lambda)+L_s\\lambda^5 .\n\\end{equation}\n\\end{lemma}",
+        "quote_sha256": "5801b0202bb65308b85207c4a9868524d3c015ac990792328dbdc2838371f379"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.foundation_trial_budget_complete"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.foundation_trial_budget_complete": [
+          {
+            "name": "QuantitativeFollowup.foundation_trial_budget_complete",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FoundationTrialBudget.lean",
+            "line": 13
+          }
+        ]
+      },
+      "coverage_note": "Actual clipped-trial theorem with beta>1 and existential beta-only L>=1 and 0<lambda0<=min(1,beta/4). Scalar Parisi minimization is genuine model input and its existence is a dependency; the trial gap is proved. Shared named L_s/lambda0 is obtained by selecting/combining beta-only constants.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:proposition:3.9",
+      "type": "proposition",
+      "number": "3.9",
+      "labels": [
+        "prop:fnd-mean-bias",
+        "eq:fnd-mean-bias"
+      ],
+      "title_tex": "Mean bias",
+      "source": {
+        "file": "sections/03-interpolation.tex",
+        "start_line": 1095,
+        "end_line": 1103,
+        "source_character_range": [
+          51438,
+          51795
+        ],
+        "quote": "\\begin{proposition}[Mean bias]\\label{prop:fnd-mean-bias}\nFor every $N\\ge1$ and $0<\\lambda\\le\\lambda_0$,\n\\begin{equation}\\label{eq:fnd-mean-bias}\n 0\\le\\frac{P_\\beta-p_{N,\\beta}}\\beta\n \\le E_\\beta(0)-2E_\\beta(\\lambda)+E_\\beta(2\\lambda)\n                         +2e_{N,\\beta}(\\lambda)\n \\le 32L_s\\lambda^5+2e_{N,\\beta}(\\lambda).\n\\end{equation}\n\\end{proposition}",
+        "quote_sha256": "cb93661f82c20b1069ca6b013c0b565d11b2e27f98035870c58e96e88509a2de"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.foundation_mean_bias"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.foundation_mean_bias": [
+          {
+            "name": "QuantitativeFollowup.foundation_mean_bias",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FoundationMeanBias.lean",
+            "line": 32
+          }
+        ]
+      },
+      "coverage_note": "Actual mean-bias midpoint chain in energy units, with beta>1, existential beta-only L/lambda0, exact 32 L lambda^5+2e, and no assumed bias bound. The paper's bias is beta times energyMeanDeficit.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:lemma:4.2",
+      "type": "lemma",
+      "number": "4.2",
+      "labels": [
+        "lem:fnd-posterior",
+        "eq:fnd-posterior"
+      ],
+      "title_tex": "Averaged self-overlap under an arbitrary profile",
+      "source": {
+        "file": "sections/04-gaussian.tex",
+        "start_line": 109,
+        "end_line": 130,
+        "source_character_range": [
+          5802,
+          6794
+        ],
+        "quote": "\\begin{lemma}[Averaged self-overlap under an arbitrary profile]\n\\label{lem:fnd-posterior}\nLet $\\mu=s\\delta_0+\\nu$ be an admissible profile, and consider either\nits joint law from \\cref{subsec:fnd-law}, for some $0<\\rho\\le1$, or a\ngeneralized law; a generalized law also allows $s=0$ and an arbitrary\nprobability measure $\\mu=\\nu$. Then\n$m_q=\\nabla U(q,X_q)=\\E[\\sigma\\mid\\calG_q]$, $m_0=0$, and\n$a(q)C_q\\preceq H_q\\preceq C_q$ for every $q\\in[0,1]$. Fix a set of\n$n\\ge1$ coordinates, let $m_q^-$ be the restriction of $m_q$ to these\ncoordinates, and let $H_q^{--}$ and $C_q^{--}$ be the corresponding\nprincipal submatrices of $H_q$ and $C_q$. For every deterministic\n$k\\in L^2(\\nu)$,\n\\begin{equation}\\label{eq:fnd-posterior}\n \\begin{aligned}\n \\Var\\left(\\int k(q)\\frac{|m_q^-|^2}{n}\\,\\nu(\\dd q)\\right)\n &\\le\\frac4{n^2}\\int k(q)^2\n       \\E[(m_q^-)^TH_q^{--}m_q^-]\\,\\nu(\\dd q)\\\\\n &\\le\\frac4{n^2}\\int k(q)^2\n       \\E[(m_q^-)^TC_q^{--}m_q^-]\\,\\nu(\\dd q).\n \\end{aligned}\n\\end{equation}\n\\end{lemma}",
+        "quote_sha256": "a5856c0db8a8277bea852d1ae6ee6c42b44844a0c365defb98654cf6d1b4b1f2"
+      },
+      "lean_declarations": [
+        "HexagonPaper.posterior_self_overlap_both_models",
+        "HexagonPaper.posterior_self_overlap_zero"
+      ],
+      "declaration_locations": {
+        "HexagonPaper.posterior_self_overlap_both_models": [
+          {
+            "name": "HexagonPaper.posterior_self_overlap_both_models",
+            "kind": "theorem",
+            "file": "HexagonPaper/Posterior.lean",
+            "line": 17
+          }
+        ],
+        "HexagonPaper.posterior_self_overlap_zero": [
+          {
+            "name": "HexagonPaper.posterior_self_overlap_zero",
+            "kind": "theorem",
+            "file": "HexagonPaper/Posterior.lean",
+            "line": 27
+          }
+        ]
+      },
+      "coverage_note": "Posterior target structures are discharged for the native vector and anisotropic models; the s=0 theorem includes arbitrary deterministic profiles. All coordinate-subset normalizations are actual cardinalities, and weighted variance/order bounds are proved.",
+      "coverage_category": "proved_bundle",
+      "target_definitions": {
+        "QuantitativeFollowup.StandardSKPosteriorTarget": {
+          "name": "QuantitativeFollowup.StandardSKPosteriorTarget",
+          "kind": "structure",
+          "file": "QuantitativeFollowup/StandardSKPosteriorLemma.lean",
+          "line": 21
+        },
+        "QuantitativeFollowup.AnisotropicPosteriorTarget": {
+          "name": "QuantitativeFollowup.AnisotropicPosteriorTarget",
+          "kind": "structure",
+          "file": "QuantitativeFollowup/AnisotropicPosteriorLemma.lean",
+          "line": 28
+        }
+      }
+    },
+    {
+      "id": "current:lemma:4.3",
+      "type": "lemma",
+      "number": "4.3",
+      "labels": [
+        "lem:fnd-path-heat",
+        "eq:fnd-path-heat",
+        "eq:fnd-path-normalizer"
+      ],
+      "title_tex": "Normalized Gaussian path heat identity",
+      "source": {
+        "file": "sections/04-gaussian.tex",
+        "start_line": 467,
+        "end_line": 531,
+        "source_character_range": [
+          23589,
+          26490
+        ],
+        "quote": "\\begin{lemma}[Normalized Gaussian path heat identity]\n\\label{lem:fnd-path-heat}\nIn the setting above, assume the following.\n\\begin{enumerate}[label=\\textup{(A\\arabic*)}]\n\\item \\emph{Variances and clocks.} Each $v_k$ and each $T_{e,j,z}(v)$ is\ncontinuous in $z\\in I$, jointly with $v$ for the clocks, and\ncontinuously differentiable in $z\\in I^\\circ$. For $z\\in I^\\circ$, each\nnonconstant $v_k$ is positive and each clock is strictly increasing in\n$v$. Coordinates with $v_k\\equiv0$ are omitted.\n\\item \\emph{Covariance.} The covariance $K_z(i,i')$ is differentiable in\n$z\\in I^\\circ$, and the maps $(z,i,i')\\mapsto K_z(i,i')$ and\n$(z,i,i')\\mapsto\\dot K_z(i,i')$ are jointly continuous on\n$I\\times\\mathcal I^2$, where $\\dot K_z$ at the endpoints of $I$ denotes\nthe continuous extension.\n\\item \\emph{Functionals.} For each $\\sigma$, the functions\n$\\ell_z(G,\\omega,\\sigma)$, $\\Phi_z(G,\\omega,\\sigma)$,\n$\\dot\\ell_z(G,\\omega,\\sigma)$, and $\\dot\\Phi_z(G,\\omega,\\sigma)$ are jointly\ncontinuous in $(z,G,\\omega)\\in I\\times\\mathcal C\\times\\R^{n_1}$,\nwhere $n_1$ is the number of auxiliary Gaussian coordinates, with\n$\\dot\\ell_z$ and $\\dot\\Phi_z$ extended continuously to the endpoints of $I$.\nThe functions $\\Phi_z$, $\\dot\\Phi_z$, and\n$\\dot\\ell_z$ are bounded uniformly in all variables, and there exists\n$C<\\infty$ such that\n\\[\n |\\ell_z(G)|\\le C\\bigl(1+|\\omega|+|G^{\\rm fin}|+\\|G^{\\rm path}\\|_\\infty\\bigr).\n\\]\n\\item \\emph{Derivative measures.} For fixed $(z,\\omega,\\sigma)$, the maps\n$G\\mapsto\\ell_z(G)$ and $G\\mapsto\\Phi_z(G)$ are twice continuously\ndifferentiable on $\\mathcal C$, and their derivatives are represented by\nfinite signed measures\n\\[\n S=D\\ell_z,\\qquad M=D^2\\ell_z,\\qquad\n P=D\\Phi_z,\\qquad Q=D^2\\Phi_z\n\\]\non $\\mathcal I$ and $\\mathcal I^2$, in the sense that, for example,\n\\[\n D\\ell_z(G)[h]=\\int h\\dd S,\\qquad\n D^2\\ell_z(G)[h,h']=\\iint h(i)h'(i')\\,M(\\dd i,\\dd i')\n \\qquad(h,h'\\in\\mathcal C).\n\\]\nFor fixed $(\\omega,\\sigma)$, the four measures depend continuously on\n$(z,G)$ in the total-variation norm, and their total variations are\nbounded uniformly in all variables.\n\\end{enumerate}\nLet $Z_z=\\E_{\\rm ref}e^{\\ell_z(G_z)}$, where $\\E_{\\rm ref}$ includes the\nsum over $\\sigma$, and let\n$\\E_z\\Phi=Z_z^{-1}\\E_{\\rm ref}\\bigl[e^{\\ell_z(G_z)}\\Phi\\bigr]$. Then, for\nevery $z\\in I$,\n\\begin{align}\n \\frac\\dd{\\dd z}\\E_z\\Phi_z={}&\n \\E_z\\dot\\Phi_z+\\Cov_z(\\Phi_z,\\dot\\ell_z)\\nonumber\\\\\n &+\\frac12\\E_z\\Bigl\\langle\\dot K_z,\n Q+S\\otimes P+P\\otimes S\n +(\\Phi_z-\\E_z\\Phi_z)(M+S\\otimes S)\\Bigr\\rangle,\n \\label{eq:fnd-path-heat}\n\\end{align}\nwhere the functionals and measures are evaluated at $G_z$. The\nderivative is one-sided at the endpoints of $I$, including endpoints at\nwhich a finite-coordinate variance vanishes. The same differentiation\ngives\n\\begin{equation}\\label{eq:fnd-path-normalizer}\n \\frac\\dd{\\dd z}\\log Z_z\n =\\E_z\\dot\\ell_z+\\frac12\\E_z\\langle\\dot K_z,M+S\\otimes S\\rangle.\n\\end{equation}\n\\end{lemma}",
+        "quote_sha256": "2dcfb35cd8b60227ca9981ee8c25480da8893f492001562250010ebe1efb4b49"
+      },
+      "lean_declarations": [
+        "HexagonPaper.lem_fnd_path_heat",
+        "HexagonPaper.lem_fnd_path_heat_finite_tree",
+        "HexagonPaper.lem_fnd_path_heat_variances_and_tree",
+        "HexagonPaper.lem_fnd_path_heat_arbitrary_real_clocks",
+        "HexagonPaper.pathHeatSource_actual_covariance_derivative",
+        "HexagonPaper.hasDerivAt_covariance_pathHeatNativeClockField",
+        "HexagonPaper.hasLaw_pathHeatFiniteTreeFiniteVector",
+        "HexagonPaper.pathHeatTreeMixedKernel_realClock_restored",
+        "HexagonPaper.pathHeatTreeMixedKernel_realClock_covariance_restored",
+        "HexagonPaper.pathHeatFiniteTreeDotKernel_finite_finite",
+        "HexagonPaper.pathHeatFiniteTreeDotKernel_finite_tree",
+        "HexagonPaper.pathHeatFiniteTreeDotKernel_tree_tree",
+        "HexagonPaper.lem_fnd_path_heat_continuous_physical_dotkernel"
+      ],
+      "declaration_locations": {
+        "HexagonPaper.lem_fnd_path_heat": [
+          {
+            "name": "HexagonPaper.lem_fnd_path_heat",
+            "kind": "theorem",
+            "file": "HexagonPaper/PathHeatSourceLemma.lean",
+            "line": 99
+          }
+        ],
+        "HexagonPaper.lem_fnd_path_heat_finite_tree": [
+          {
+            "name": "HexagonPaper.lem_fnd_path_heat_finite_tree",
+            "kind": "theorem",
+            "file": "HexagonPaper/PathHeatFiniteTreeLemma.lean",
+            "line": 28
+          }
+        ],
+        "HexagonPaper.lem_fnd_path_heat_variances_and_tree": [
+          {
+            "name": "HexagonPaper.lem_fnd_path_heat_variances_and_tree",
+            "kind": "theorem",
+            "file": "HexagonPaper/PathHeatFiniteTreeFactoryLemma.lean",
+            "line": 29
+          }
+        ],
+        "HexagonPaper.lem_fnd_path_heat_arbitrary_real_clocks": [
+          {
+            "name": "HexagonPaper.lem_fnd_path_heat_arbitrary_real_clocks",
+            "kind": "theorem",
+            "file": "HexagonPaper/PathHeatFiniteTreeRealClockLemma.lean",
+            "line": 29
+          }
+        ],
+        "HexagonPaper.pathHeatSource_actual_covariance_derivative": [
+          {
+            "name": "HexagonPaper.pathHeatSource_actual_covariance_derivative",
+            "kind": "theorem",
+            "file": "HexagonPaper/PathHeatSourceLemma.lean",
+            "line": 34
+          }
+        ],
+        "HexagonPaper.hasDerivAt_covariance_pathHeatNativeClockField": [
+          {
+            "name": "HexagonPaper.hasDerivAt_covariance_pathHeatNativeClockField",
+            "kind": "theorem",
+            "file": "HexagonPaper/PathHeatNativeFieldCovariance.lean",
+            "line": 51
+          }
+        ],
+        "HexagonPaper.hasLaw_pathHeatFiniteTreeFiniteVector": [
+          {
+            "name": "HexagonPaper.hasLaw_pathHeatFiniteTreeFiniteVector",
+            "kind": "theorem",
+            "file": "HexagonPaper/PathHeatFiniteTreeModelLaw.lean",
+            "line": 47
+          }
+        ],
+        "HexagonPaper.pathHeatTreeMixedKernel_realClock_restored": [
+          {
+            "name": "HexagonPaper.pathHeatTreeMixedKernel_realClock_restored",
+            "kind": "theorem",
+            "file": "HexagonPaper/PathHeatFiniteTreeModelRealClockCovariance.lean",
+            "line": 23
+          }
+        ],
+        "HexagonPaper.pathHeatTreeMixedKernel_realClock_covariance_restored": [
+          {
+            "name": "HexagonPaper.pathHeatTreeMixedKernel_realClock_covariance_restored",
+            "kind": "theorem",
+            "file": "HexagonPaper/PathHeatFiniteTreeModelRealClockCovariance.lean",
+            "line": 36
+          }
+        ],
+        "HexagonPaper.pathHeatFiniteTreeDotKernel_finite_finite": [
+          {
+            "name": "HexagonPaper.pathHeatFiniteTreeDotKernel_finite_finite",
+            "kind": "theorem",
+            "file": "HexagonPaper/PathHeatFiniteTreeModelCovariance.lean",
+            "line": 63
+          }
+        ],
+        "HexagonPaper.pathHeatFiniteTreeDotKernel_finite_tree": [
+          {
+            "name": "HexagonPaper.pathHeatFiniteTreeDotKernel_finite_tree",
+            "kind": "theorem",
+            "file": "HexagonPaper/PathHeatFiniteTreeModelCovariance.lean",
+            "line": 77
+          }
+        ],
+        "HexagonPaper.pathHeatFiniteTreeDotKernel_tree_tree": [
+          {
+            "name": "HexagonPaper.pathHeatFiniteTreeDotKernel_tree_tree",
+            "kind": "theorem",
+            "file": "HexagonPaper/PathHeatFiniteTreeModelCovariance.lean",
+            "line": 86
+          }
+        ],
+        "HexagonPaper.lem_fnd_path_heat_continuous_physical_dotkernel": [
+          {
+            "name": "HexagonPaper.lem_fnd_path_heat_continuous_physical_dotkernel",
+            "kind": "theorem",
+            "file": "HexagonPaper/PathHeatSourceDotKernelLemma.lean",
+            "line": 30
+          }
+        ]
+      },
+      "coverage_note": "Analytic heat theorem with explicit differentiability, total-variation jet continuity/bounds and Gaussian representation hypotheses. Supporting finite/tree covariance identities and real-clock restoration are bridges, not separate proofs of the whole lemma. Physical dot-kernel adapter needs strict-ancestor/own-increment encoding (W_jj=0, delta_j nonzero, root derivative zero). These representation facts remain caller-side hypotheses. No instantiated scalar/cavity likelihood is asserted solely from the heat infrastructure.",
+      "coverage_category": "analytic_heat_infrastructure"
+    },
+    {
+      "id": "current:lemma:5.1",
+      "type": "lemma",
+      "number": "5.1",
+      "labels": [
+        "lem:wi-two"
+      ],
+      "title_tex": "Two-sided conditional comparison",
+      "source": {
+        "file": "sections/05-shells.tex",
+        "start_line": 168,
+        "end_line": 214,
+        "source_character_range": [
+          8277,
+          9920
+        ],
+        "quote": "\\begin{lemma}[Two-sided conditional comparison]\\label{lem:wi-two}\nLet $\\mu$ be an admissible profile, let $q\\in[0,1]$, and let $\\kappa$ be\na kernel.\n\\begin{enumerate}[label=\\textup{(\\alph*)},series=witwo]\n\\item If $\\kappa=0$ $\\nu$-almost everywhere on $[0,q)$, then almost\nsurely\n\\[\n S_q-q\\le(\\bar p_\\kappa-q)+2\\E[\\Lambda_\\kappa\\mid\\calG_q].\n\\]\n\\item If $\\kappa=0$ $\\nu$-almost everywhere on $(q,1]$, then almost\nsurely\n\\[\n \\begin{aligned}\n S_q-q&=(\\bar p_\\kappa-q)+2\\E[\\Lambda_\\kappa\\mid\\calG_q]\n +\\frac1N\\int\\kappa(p)|m_q-m_p|^2\\,\\nu(\\dd p)\\\\\n &\\ge(\\bar p_\\kappa-q)+2\\E[\\Lambda_\\kappa\\mid\\calG_q].\n \\end{aligned}\n\\]\n\\end{enumerate}\nIf $\\mu$ minimizes $\\mathcal F_{t,s}$, then in addition the following\nhold.\n\\begin{enumerate}[resume*=witwo]\n\\item We have $\\E\\Lambda_\\kappa=0$ and\n\\[\n \\E\\bigl[(\\E[\\Lambda_\\kappa\\mid\\calG_q])^2\\bigr]\n \\le\\Var(\\Lambda_\\kappa)\n \\le\\frac1M\\int\\frac{\\kappa(p)^2}{a(p)}\\,\\nu(\\dd p).\n\\]\n\\item Let $\\vartheta>0$. If $\\kappa$ satisfies the hypothesis of\n\\textup{(a)} and $\\bar p_\\kappa-q\\le\\vartheta/2$, then\n\\[\n \\E\\bigl[(S_q-q)^2\\ind_{\\{S_q-q>\\vartheta\\}}\\bigr]\n \\le16\\Var(\\Lambda_\\kappa).\n\\]\nIf $\\kappa$ satisfies the hypothesis of \\textup{(b)} and\n$q-\\bar p_\\kappa\\le\\vartheta/2$, then\n\\[\n \\E\\bigl[(S_q-q)^2\\ind_{\\{S_q-q<-\\vartheta\\}}\\bigr]\n \\le16\\Var(\\Lambda_\\kappa).\n\\]\n\\item If $I\\subset(0,1-s)$ is an interval of length $x>0$ with\nthreshold $u$, then $\\Var(\\Lambda_I)\\le1/(Mux)$.\n\\end{enumerate}\nFor every admissible profile and every interval $I\\subset(0,1-s)$ of\npositive length, $\\kappa_I$ satisfies the hypothesis of \\textup{(a)} if\n$Q\\ge q$ on $I$, and that of \\textup{(b)} if $Q\\le q$ on $I$.\n\\end{lemma}",
+        "quote_sha256": "95c8bc6a504eb39575b013f382e56818cfb8d96d5475d170c53dd63e3c784264"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.vectorCenteredKernelScore_future_comparison",
+        "QuantitativeFollowup.vectorCenteredKernelScore_past_comparison",
+        "QuantitativeFollowup.vectorCenteredKernelScore_past_lower_comparison",
+        "QuantitativeFollowup.integral_vectorCenteredKernelScore_zero",
+        "QuantitativeFollowup.vectorCenteredKernelScore_conditional_square_variance",
+        "QuantitativeFollowup.vectorCenteredSelfOverlap_upper_tail",
+        "QuantitativeFollowup.vectorCenteredSelfOverlap_lower_tail",
+        "QuantitativeFollowup.vector_quantile_set_score_variance",
+        "QuantitativeFollowup.ae_quantileSetKernel_future",
+        "QuantitativeFollowup.ae_quantileSetKernel_past"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.vectorCenteredKernelScore_future_comparison": [
+          {
+            "name": "QuantitativeFollowup.vectorCenteredKernelScore_future_comparison",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/VectorCenteredKernelComparison.lean",
+            "line": 39
+          }
+        ],
+        "QuantitativeFollowup.vectorCenteredKernelScore_past_comparison": [
+          {
+            "name": "QuantitativeFollowup.vectorCenteredKernelScore_past_comparison",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/VectorCenteredKernelComparison.lean",
+            "line": 57
+          }
+        ],
+        "QuantitativeFollowup.vectorCenteredKernelScore_past_lower_comparison": [
+          {
+            "name": "QuantitativeFollowup.vectorCenteredKernelScore_past_lower_comparison",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/VectorCenteredKernelComparison.lean",
+            "line": 77
+          }
+        ],
+        "QuantitativeFollowup.integral_vectorCenteredKernelScore_zero": [
+          {
+            "name": "QuantitativeFollowup.integral_vectorCenteredKernelScore_zero",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/VectorKernelScoreCentering.lean",
+            "line": 83
+          }
+        ],
+        "QuantitativeFollowup.vectorCenteredKernelScore_conditional_square_variance": [
+          {
+            "name": "QuantitativeFollowup.vectorCenteredKernelScore_conditional_square_variance",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/VectorCenteredKernelComparison.lean",
+            "line": 94
+          }
+        ],
+        "QuantitativeFollowup.vectorCenteredSelfOverlap_upper_tail": [
+          {
+            "name": "QuantitativeFollowup.vectorCenteredSelfOverlap_upper_tail",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/VectorScoreTail.lean",
+            "line": 74
+          }
+        ],
+        "QuantitativeFollowup.vectorCenteredSelfOverlap_lower_tail": [
+          {
+            "name": "QuantitativeFollowup.vectorCenteredSelfOverlap_lower_tail",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/VectorScoreTail.lean",
+            "line": 101
+          }
+        ],
+        "QuantitativeFollowup.vector_quantile_set_score_variance": [
+          {
+            "name": "QuantitativeFollowup.vector_quantile_set_score_variance",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/VectorQuantileSetVariance.lean",
+            "line": 93
+          }
+        ],
+        "QuantitativeFollowup.ae_quantileSetKernel_future": [
+          {
+            "name": "QuantitativeFollowup.ae_quantileSetKernel_future",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/QuantileSetKernel.lean",
+            "line": 103
+          }
+        ],
+        "QuantitativeFollowup.ae_quantileSetKernel_past": [
+          {
+            "name": "QuantitativeFollowup.ae_quantileSetKernel_past",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/QuantileSetKernel.lean",
+            "line": 109
+          }
+        ]
+      },
+      "coverage_note": "Ten actual-model declarations jointly cover future/past conditional comparisons, centering, conditional-square variance, both tails, quantile-set variance and support. Kernels have explicit integrability/support conditions; partial atoms use Radon-Nikodym quantile pushforward.",
+      "coverage_category": "proved_bundle"
+    },
+    {
+      "id": "current:proposition:5.2",
+      "type": "proposition",
+      "number": "5.2",
+      "labels": [
+        "prop:wi-vfs",
+        "eq:wi-vfs"
+      ],
+      "title_tex": "Variance on a quantile interval",
+      "source": {
+        "file": "sections/05-shells.tex",
+        "start_line": 345,
+        "end_line": 356,
+        "source_character_range": [
+          15469,
+          16034
+        ],
+        "quote": "\\begin{proposition}[Variance on a quantile interval]\\label{prop:wi-vfs}\nLet $\\mu$ be a minimizer of $\\mathcal F_{t,s}$, and let\n$I\\subset(0,1-s)$ be an interval of length $h>0$ with threshold $u>0$\nand image diameter $\\ell=\\ell(I)$. Let $\\epsilon=(Mu)^{-1}$. Then\n\\begin{equation}\\label{eq:wi-vfs}\n \\int_I\\Var(S_{Q(v)})\\dd v\n \\le128\\Bigl[\\min\\bigl\\{h,\\epsilon\\bigl(1+\\log_+(h/\\epsilon)\\bigr)\\bigr\\}\n +(\\epsilon\\ell)^{2/3}h^{1/3}\\Bigr].\n\\end{equation}\nThe constant is absolute, and $I$ may contain part of the quantile\ninterval of an atom of $\\nu$.\n\\end{proposition}",
+        "quote_sha256": "07c2983118bb99a6416b14d106b378e9dabab8bf0fe4a4d808c4ee075a3ac9e4"
+      },
+      "lean_declarations": [
+        "HexagonPaper.vector_quantile_interval_variance_128"
+      ],
+      "declaration_locations": {
+        "HexagonPaper.vector_quantile_interval_variance_128": [
+          {
+            "name": "HexagonPaper.vector_quantile_interval_variance_128",
+            "kind": "theorem",
+            "file": "HexagonPaper/MomentsVariance.lean",
+            "line": 19
+          }
+        ]
+      },
+      "coverage_note": "Literal 128 variance target for an order-connected interval, its positive Lebesgue length, threshold and essential quantile-image diameter. Atomic profiles and partially occupied quantiles are allowed; conditions are mathematical input, not conclusions.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:corollary:5.3",
+      "type": "corollary",
+      "number": "5.3",
+      "labels": [
+        "cor:wi-cub",
+        "eq:wi-cub"
+      ],
+      "title_tex": "Cubic self-overlap moment",
+      "source": {
+        "file": "sections/05-shells.tex",
+        "start_line": 513,
+        "end_line": 521,
+        "source_character_range": [
+          23066,
+          23423
+        ],
+        "quote": "\\begin{corollary}[Cubic self-overlap moment]\\label{cor:wi-cub}\nLet $\\mu$ be a minimizer of $\\mathcal F_{t,s}$, and assume that $M\\ge1$.\nThen for every $0<z\\le1/4$,\n\\begin{equation}\\label{eq:wi-cub}\n H_3\\le zV+\\frac{425}{Ms}\\log(2M)\\log\\frac2z .\n\\end{equation}\nThe constant is absolute; atoms of $\\nu$, including an atom at zero, are\nallowed.\n\\end{corollary}",
+        "quote_sha256": "fda3aca403a7b8bfd9ab994d0ac5855ba327e19ad9531bc6f0a88e378e2f989b"
+      },
+      "lean_declarations": [
+        "HexagonPaper.vector_cubic_self_overlap_moment_free_170_log_one",
+        "HexagonPaper.vector_cubic_self_overlap_moment_free_170",
+        "HexagonPaper.vector_cubic_self_overlap_moment_free_425_from_full_layercake"
+      ],
+      "declaration_locations": {
+        "HexagonPaper.vector_cubic_self_overlap_moment_free_170_log_one": [
+          {
+            "name": "HexagonPaper.vector_cubic_self_overlap_moment_free_170_log_one",
+            "kind": "theorem",
+            "file": "HexagonPaper/MomentsCubicFree.lean",
+            "line": 15
+          }
+        ],
+        "HexagonPaper.vector_cubic_self_overlap_moment_free_170": [
+          {
+            "name": "HexagonPaper.vector_cubic_self_overlap_moment_free_170",
+            "kind": "theorem",
+            "file": "HexagonPaper/MomentsCubicFree.lean",
+            "line": 29
+          }
+        ],
+        "HexagonPaper.vector_cubic_self_overlap_moment_free_425_from_full_layercake": [
+          {
+            "name": "HexagonPaper.vector_cubic_self_overlap_moment_free_425_from_full_layercake",
+            "kind": "theorem",
+            "file": "HexagonPaper/MomentsCubicFree.lean",
+            "line": 43
+          }
+        ]
+      },
+      "coverage_note": "Exact printed 425/log(2M)/log(2/z) target is the _425_from_full_layercake theorem on M>=1 and z<=1/4. Separate _170 and _170_log_one declarations are stronger alternate inequalities on wider z range; they should not be presented as exact textual replicas.",
+      "coverage_category": "proved_bundle"
+    },
+    {
+      "id": "current:lemma:6.1",
+      "type": "lemma",
+      "number": "6.1",
+      "labels": [
+        "lem:th-ric"
+      ],
+      "title_tex": "Directional covariance decay",
+      "source": {
+        "file": "sections/06-meancov.tex",
+        "start_line": 95,
+        "end_line": 106,
+        "source_character_range": [
+          4612,
+          4993
+        ],
+        "quote": "\\begin{lemma}[Directional covariance decay]\\label{lem:th-ric}\nLet $\\mu=s\\delta_0+\\nu$ be any deterministic admissible profile, let\n$0\\le q'<q\\le1$, and let\n\\[\n \\mathcal I=c\\int_{q'}^qa(u)^2\\dd u .\n\\]\nThen $\\mathcal I\\ge cs^2(q-q')>0$, and for every\n$\\calG_{q'}$-measurable random vector $b\\in\\R^N$ with $\\E|b|^2<\\infty$,\n\\[\n \\E[b^TC_qb]\\le\\frac{\\E|b|^2}{\\mathcal I}.\n\\]\n\\end{lemma}",
+        "quote_sha256": "a14f3f8605e962c66feecdd6c7f94ed22baa0b700a37442bef4f62b0a385fc69"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.directional_covariance_decay"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.directional_covariance_decay": [
+          {
+            "name": "QuantitativeFollowup.directional_covariance_decay",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/DirectionalCovarianceDecay.lean",
+            "line": 15
+          }
+        ]
+      },
+      "coverage_note": "Actual covariance decay for a past-measurable L2 random direction, no minimization. Canonical whole-noise-past measurability includes the paper's observed-field past. Integral denominator and c*s^2*(q-r) lower bound are conclusions.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:lemma:6.2",
+      "type": "lemma",
+      "number": "6.2",
+      "labels": [
+        "lem:th-gamma"
+      ],
+      "title_tex": "Lipschitz bound toward the support",
+      "source": {
+        "file": "sections/06-meancov.tex",
+        "start_line": 209,
+        "end_line": 216,
+        "source_character_range": [
+          9412,
+          9726
+        ],
+        "quote": "\\begin{lemma}[Lipschitz bound toward the support]\\label{lem:th-gamma}\nLet $\\mu$ be a minimizer of $\\mathcal F_{t,s}$. For every $q\\in\\supp\\nu$\nand every $r\\in[0,1]$,\n\\[\n |\\mathsf S(r)-\\mathsf S(q)|\\le2|r-q|;\\qquad\\text{in particular,}\\qquad\n 0\\le\\mathsf S(q)-\\mathsf S(r)\\le2(q-r)\\quad(0\\le r\\le q).\n\\]\n\\end{lemma}",
+        "quote_sha256": "a97cb6cb52bba6174318b4f33c04493306e4831f6a261c6c2de25ec2c27b1418"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.vector_mean_increment_towards_support_full",
+        "QuantitativeFollowup.vector_mean_increment_ordered_bound",
+        "QuantitativeFollowup.vector_spinMean_increment_towards_support_full",
+        "QuantitativeFollowup.parisiFreeMeasure_one"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.vector_mean_increment_towards_support_full": [
+          {
+            "name": "QuantitativeFollowup.vector_mean_increment_towards_support_full",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/VectorMeanIncrementEndpoints.lean",
+            "line": 17
+          }
+        ],
+        "QuantitativeFollowup.vector_mean_increment_ordered_bound": [
+          {
+            "name": "QuantitativeFollowup.vector_mean_increment_ordered_bound",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/VectorMeanIncrement.lean",
+            "line": 40
+          }
+        ],
+        "QuantitativeFollowup.vector_spinMean_increment_towards_support_full": [
+          {
+            "name": "QuantitativeFollowup.vector_spinMean_increment_towards_support_full",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/VectorMeanIncrementEndpoints.lean",
+            "line": 30
+          }
+        ],
+        "QuantitativeFollowup.parisiFreeMeasure_one": [
+          {
+            "name": "QuantitativeFollowup.parisiFreeMeasure_one",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/VectorMeanIncrementEndpoints.lean",
+            "line": 13
+          }
+        ]
+      },
+      "coverage_note": "Concrete free-support contact geometry yields both absolute and ordered factor-two increment bounds. Floor-one case is vacuous through zero free measure. Spin-mean target is an additional physical L2 realization.",
+      "coverage_category": "proved_bundle"
+    },
+    {
+      "id": "current:lemma:6.3",
+      "type": "lemma",
+      "number": "6.3",
+      "labels": [
+        "lem:th-res",
+        "eq:th-res-K",
+        "eq:th-res"
+      ],
+      "title_tex": "Covariance of a mean increment",
+      "source": {
+        "file": "sections/06-meancov.tex",
+        "start_line": 278,
+        "end_line": 288,
+        "source_character_range": [
+          12081,
+          12531
+        ],
+        "quote": "\\begin{lemma}[Covariance of a mean increment]\\label{lem:th-res}\nLet $\\mu$ be a minimizer of $\\mathcal F_{t,s}$, let $q\\in\\supp\\nu$ and\n$0\\le p\\le q$, and let $a_*=a((p+q)/2)$. For every integer $K\\ge1$,\n\\begin{equation}\\label{eq:th-res-K}\n \\calR(p,q)\\le(K+1)\\Bigl[\\frac{4K}{Ma_*^2}+2(q-p)2^{-K}\\Bigr].\n\\end{equation}\nMoreover,\n\\begin{equation}\\label{eq:th-res}\n \\calR(p,q)\\le\\frac{56\\bigl(1+\\log_+(M(q-p))\\bigr)^2}{Ma_*^2}.\n\\end{equation}\n\\end{lemma}",
+        "quote_sha256": "6ecc1ba5432edca772772da14e878a2081eb7f00ee5284738f41c7b217cef8f1"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.covariance_of_mean_increment"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.covariance_of_mean_increment": [
+          {
+            "name": "QuantitativeFollowup.covariance_of_mean_increment",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/MeanCovarianceResidual.lean",
+            "line": 32
+          }
+        ]
+      },
+      "coverage_note": "Actual minimizing model, dyadic and logarithmic bounds with the paper's midpoint a_star and constant 56. No contact-geometry bound is supplied as an independent conclusion premise.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:proposition:6.4",
+      "type": "proposition",
+      "number": "6.4",
+      "labels": [
+        "prop:th-j",
+        "eq:th-j-pointwise",
+        "eq:th-J"
+      ],
+      "title_tex": "Covariance in the mean direction",
+      "source": {
+        "file": "sections/06-meancov.tex",
+        "start_line": 381,
+        "end_line": 393,
+        "source_character_range": [
+          16166,
+          16691
+        ],
+        "quote": "\\begin{proposition}[Covariance in the mean direction]\\label{prop:th-j}\nLet $\\mu=s\\delta_0+\\nu$ be a minimizer of $\\mathcal F_{t,s}$. For every\n$v\\in(0,1-s)$,\n\\begin{equation}\\label{eq:th-j-pointwise}\n j_{Q(v)}\\le\\frac{341(1+\\log_+M)^2}{M(s+v)^2},\n\\end{equation}\nand\n\\begin{equation}\\label{eq:th-J}\n J=\\int j_q\\,\\nu(\\dd q)\\le\\frac{341(1+\\log_+M)^2}{Ms}.\n\\end{equation}\nThe constant is absolute. The bounds hold for all $N\\ge1$, $c>0$,\n$0<s\\le1/2$, and every minimizing profile, including profiles with atoms.\n\\end{proposition}",
+        "quote_sha256": "4f82e7b4d6590e224a247da58ed128be3064c68ed9abc7aab2fef9f85deba865"
+      },
+      "lean_declarations": [
+        "HexagonPaper.mean_direction_covariance_341"
+      ],
+      "declaration_locations": {
+        "HexagonPaper.mean_direction_covariance_341": [
+          {
+            "name": "HexagonPaper.mean_direction_covariance_341",
+            "kind": "theorem",
+            "file": "HexagonPaper/MeanCovariance.lean",
+            "line": 120
+          }
+        ]
+      },
+      "coverage_note": "Literal pointwise/integrated 341 bounds with M(s+v)^2 and Ms denominators and squared log-plus factor. Alternative proof uses a quarter-window estimate/internal 212 constant, then relaxes to 341; it does not reproduce every manuscript proof step.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:proposition:7.1",
+      "type": "proposition",
+      "number": "7.1",
+      "labels": [
+        "prop:loc-inputs",
+        "eq:loc-firstvariation",
+        "eq:loc-response",
+        "eq:loc-in-curv"
+      ],
+      "title_tex": "Variational and response facts",
+      "source": {
+        "file": "sections/07-isolation.tex",
+        "start_line": 161,
+        "end_line": 196,
+        "source_character_range": [
+          9043,
+          10653
+        ],
+        "quote": "\\begin{proposition}[Variational and response facts]\n\\label{prop:loc-inputs}\nLet $\\gamma$ be admissible and define\n$G_\\gamma(x)=\\int_x^1(S_\\gamma(q)-q)\\dd q$ for $0\\le x\\le1$.\n\\begin{enumerate}\n\\item[(a)] Let $\\nu'\\ge0$ be a measure on $[0,1]$ of mass $\\beta-\\lambda$.\nThen $F_\\rho$ is convex along the segment from $\\gamma$ to the profile with\nfree measure $\\nu'$, and its one-sided derivative at $\\gamma$ is\n\\begin{equation}\\label{eq:loc-firstvariation}\n D_+F_\\rho(\\gamma)[\\nu'-\\nu_\\gamma]\n =\\frac\\rho2\\int G_\\gamma\\,\\dd(\\nu'-\\nu_\\gamma).\n\\end{equation}\nThe function $G_\\gamma$ is continuously differentiable with\n$G_\\gamma'(x)=x-S_\\gamma(x)$. In particular, $G_\\gamma'(0)=0$, and\n$x\\mapsto G_\\gamma'(x)-x$ is nonincreasing.\n\\item[(b)] Let $(\\gamma_\\theta)$ be a segment, $\\psi=\\gamma_1-\\gamma_0$, and\n$f(\\theta)=F_\\rho(\\gamma_\\theta)$. Then $f$ is convex and continuous on\n$[0,1]$ and twice differentiable on $(0,1)$. Fix $\\theta\\in(0,1)$ and write\n$b_\\theta=b_{\\gamma_\\theta}$ and $\\zeta_\\theta=\\zeta_{\\gamma_\\theta}$. For every\ncompactly supported Lipschitz function $\\varphi$ on $(0,1)$, let\n\\[\n Y=\\int_0^1 b_\\theta|\\varphi'|^2\\dd q,\\qquad\n Z=\\rho\\int_{(0,1)}\\varphi^2\\zeta_\\theta\\dd\\gamma_\\theta .\n\\]\nThen\n\\begin{equation}\\label{eq:loc-response}\n \\rho\\left|\\int_0^1\\psi\\zeta_\\theta\\varphi\\dd q\\right|\n \\le\\Bigl(\\frac{f''(\\theta)}\\rho\\Bigr)^{1/2}\n \\bigl[Y^{1/2}+2(Y+Z)^{1/2}\\bigr].\n\\end{equation}\n\\item[(c)] There exists $k_\\beta>0$, depending only on $\\beta$, such that\n\\begin{equation}\\label{eq:loc-in-curv}\n \\zeta_\\gamma(q)\\ge k_\\beta^2\\qquad(0\\le q<1).\n\\end{equation}\n\\end{enumerate}\n\\end{proposition}",
+        "quote_sha256": "9c878e947a7e874c39035d99f86deeaec7e24be89ec9288f6f9348a2c996e7fd"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.localization_profile_of_energy_free",
+        "QuantitativeFollowup.localization_firstvariation_source",
+        "QuantitativeFollowup.localization_convexity_source",
+        "QuantitativeFollowup.localization_deficit_source",
+        "QuantitativeFollowup.localization_curvature_source",
+        "QuantitativePaper.contDiffOn_responseEnergyFunctional_mix_two",
+        "QuantitativePaper.response_C1_actual_functional_curvature_bound",
+        "QuantitativeFollowup.localization_compact_Lipschitz_response_interior",
+        "QuantitativeFollowup.localization_segment_regularity_source"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.localization_profile_of_energy_free": [
+          {
+            "name": "QuantitativeFollowup.localization_profile_of_energy_free",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupVariationalSourceFacts.lean",
+            "line": 55
+          }
+        ],
+        "QuantitativeFollowup.localization_firstvariation_source": [
+          {
+            "name": "QuantitativeFollowup.localization_firstvariation_source",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupVariationalSourceFacts.lean",
+            "line": 73
+          }
+        ],
+        "QuantitativeFollowup.localization_convexity_source": [
+          {
+            "name": "QuantitativeFollowup.localization_convexity_source",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupVariationalSourceFacts.lean",
+            "line": 100
+          }
+        ],
+        "QuantitativeFollowup.localization_deficit_source": [
+          {
+            "name": "QuantitativeFollowup.localization_deficit_source",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupVariationalSourceFacts.lean",
+            "line": 111
+          }
+        ],
+        "QuantitativeFollowup.localization_curvature_source": [
+          {
+            "name": "QuantitativeFollowup.localization_curvature_source",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupVariationalSourceFacts.lean",
+            "line": 134
+          }
+        ],
+        "QuantitativePaper.contDiffOn_responseEnergyFunctional_mix_two": [
+          {
+            "name": "QuantitativePaper.contDiffOn_responseEnergyFunctional_mix_two",
+            "kind": "theorem",
+            "file": "QuantitativePaper/VectorMeasureFunctionalProfileC2.lean",
+            "line": 44
+          }
+        ],
+        "QuantitativePaper.response_C1_actual_functional_curvature_bound": [
+          {
+            "name": "QuantitativePaper.response_C1_actual_functional_curvature_bound",
+            "kind": "theorem",
+            "file": "QuantitativePaper/ResponseC1ActualCurvature.lean",
+            "line": 48
+          }
+        ],
+        "QuantitativeFollowup.localization_compact_Lipschitz_response_interior": [
+          {
+            "name": "QuantitativeFollowup.localization_compact_Lipschitz_response_interior",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/VectorActualLipschitzResponse.lean",
+            "line": 103
+          }
+        ],
+        "QuantitativeFollowup.localization_segment_regularity_source": [
+          {
+            "name": "QuantitativeFollowup.localization_segment_regularity_source",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/VectorActualLipschitzResponse.lean",
+            "line": 126
+          }
+        ]
+      },
+      "coverage_note": "Bundle of actual energy-normalized first variation, convexity, C1 deficit/monotonicity, C2 segments, beta-only positive curvature and Lipschitz response. Arbitrary prescribed free measures are constructed as admissible profiles. Stieltjes terms retain interior atoms and compact-support tests kill endpoints. No response/coercivity conclusion is assumed.",
+      "coverage_category": "proved_bundle"
+    },
+    {
+      "id": "current:lemma:7.3",
+      "type": "lemma",
+      "number": "7.3",
+      "labels": [
+        "lem:loc-smoothing"
+      ],
+      "title_tex": "Reflected regularization",
+      "source": {
+        "file": "sections/07-isolation.tex",
+        "start_line": 367,
+        "end_line": 389,
+        "source_character_range": [
+          19491,
+          20697
+        ],
+        "quote": "\\begin{lemma}[Reflected regularization]\\label{lem:loc-smoothing}\nLet $\\gamma$ be admissible and $h>0$.\n\\begin{enumerate}\n\\item[(a)] Let $0<T<1$, $h\\le1-T$, and $m=\\nu_\\gamma([0,T))$. Let\n$\\bar\\gamma$ be the profile with $\\dd\\bar\\gamma=\\lambda\\delta_0+\\bar\\nu$, where\n$\\bar\\nu$ is obtained from $\\nu_\\gamma$ by replacing each unit of mass at a\npoint $q<T$ by the image of the uniform distribution on $[q-h,q+h]$ under\n$x\\mapsto|x|$. Then $\\bar\\gamma$ is\nadmissible, $\\bar\\gamma(0)=\\lambda$, the restriction of $\\dd\\bar\\gamma$ to\n$(0,T)$ has density at most $m/h$, and\n$F_\\rho(\\bar\\gamma)-F_\\rho(\\gamma)\\le\\rho mh^2/12$.\n\\item[(b)] Let $h\\le1/2$, and let $\\pi(x)=|x|$ for $x\\le1$ and $\\pi(x)=2-x$\nfor $x>1$. Let $\\gamma^h$ be the profile with\n$\\dd\\gamma^h=\\lambda\\delta_0+\\nu^h$, where $\\nu^h$ is obtained from $\\nu_\\gamma$\nby replacing each unit of mass at a point $q\\in[0,1]$ by the image of the\nuniform distribution on $[q-h,q+h]$ under $\\pi$. Then $\\gamma^h$ is admissible, $\\gamma^h(0)=\\lambda$, its\nfree measure has density at most $\\beta/h$ on $[0,1]$, and\n\\[\n \\|\\gamma^h-\\gamma\\|_{L^1(0,1)}\\le\\beta h,\\qquad\n F_\\rho(\\gamma^h)-F_\\rho(\\gamma)\\le\\frac{\\rho\\beta h^2}{12} .\n\\]\n\\end{enumerate}\n\\end{lemma}",
+        "quote_sha256": "aef74e0435a0e1c68ca0b782e703d208a36bdd4f61d8f884851f74eacd65b82c"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.partial_reflected_regularization_full",
+        "QuantitativeFollowup.reflected_regularization_full",
+        "QuantitativeFollowup.partial_reflected_followup_energy_cost_le",
+        "QuantitativeFollowup.reflected_followup_energy_cost_le",
+        "QuantitativeFollowup.partial_reflected_regularization_measure_clauses",
+        "QuantitativeFollowup.reflected_regularization_measure_clauses"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.partial_reflected_regularization_full": [
+          {
+            "name": "QuantitativeFollowup.partial_reflected_regularization_full",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/PartialFunctionalRegularization.lean",
+            "line": 35
+          }
+        ],
+        "QuantitativeFollowup.reflected_regularization_full": [
+          {
+            "name": "QuantitativeFollowup.reflected_regularization_full",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/ReflectedFunctionalRegularization.lean",
+            "line": 52
+          }
+        ],
+        "QuantitativeFollowup.partial_reflected_followup_energy_cost_le": [
+          {
+            "name": "QuantitativeFollowup.partial_reflected_followup_energy_cost_le",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/PartialFunctionalRegularization.lean",
+            "line": 14
+          }
+        ],
+        "QuantitativeFollowup.reflected_followup_energy_cost_le": [
+          {
+            "name": "QuantitativeFollowup.reflected_followup_energy_cost_le",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/ReflectedFunctionalRegularization.lean",
+            "line": 32
+          }
+        ],
+        "QuantitativeFollowup.partial_reflected_regularization_measure_clauses": [
+          {
+            "name": "QuantitativeFollowup.partial_reflected_regularization_measure_clauses",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/PartialReflectedRegularization.lean",
+            "line": 41
+          }
+        ],
+        "QuantitativeFollowup.reflected_regularization_measure_clauses": [
+          {
+            "name": "QuantitativeFollowup.reflected_regularization_measure_clauses",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/ReflectedRegularization.lean",
+            "line": 52
+          }
+        ]
+      },
+      "coverage_note": "Actual reflected and partial-reflected pushforward profiles construct root mass, floor membership, density, transport and rho*m*h^2/12/rho*beta*h^2/12 costs. Cost targets include rho=0. Companion measure-only declarations are constructions, not alone proofs of energy estimates.",
+      "coverage_category": "proved_bundle"
+    },
+    {
+      "id": "current:lemma:7.4",
+      "type": "lemma",
+      "number": "7.4",
+      "labels": [
+        "lem:loc-coercive",
+        "eq:loc-weighted-density",
+        "eq:loc-coercive"
+      ],
+      "title_tex": "Coercivity from a difference of one sign",
+      "source": {
+        "file": "sections/07-isolation.tex",
+        "start_line": 522,
+        "end_line": 545,
+        "source_character_range": [
+          27044,
+          28072
+        ],
+        "quote": "\\begin{lemma}[Coercivity from a difference of one sign]\n\\label{lem:loc-coercive}\nLet $(\\gamma_\\theta)$ be a segment, $\\psi=\\gamma_1-\\gamma_0$, and\n$f(\\theta)=F_\\rho(\\gamma_\\theta)$, and fix $\\theta\\in(0,1)$. Let\n$\\varphi:[0,1]\\to[0,1]$ be Lipschitz, with $\\varphi(0)=\\varphi(1)=0$, and not\nidentically zero, and let\n\\[\n \\Delta=\\rho\\int_0^1\\zeta_\\theta\\varphi\\dd q,\\qquad\n Y_0=\\int_0^1|\\varphi'|^2\\dd q .\n\\]\nSuppose that there exist $A>0$, $d\\ge0$, and $\\sigma\\in\\{-1,1\\}$ such that\n$\\sigma\\psi\\ge A/2$ wherever $\\varphi>0$, and\n\\begin{equation}\\label{eq:loc-weighted-density}\n \\rho\\int_{(0,1)}\\varphi^2\\zeta_\\theta\\dd\\gamma_\\theta\\le d\\Delta.\n\\end{equation}\nThe last condition holds if the restriction of $\\dd\\gamma_\\theta$ to the set\n$\\{\\varphi>0\\}$ has density at most $d$. Then\n\\begin{equation}\\label{eq:loc-coercive}\n f''(\\theta)\\ge\\rho\\,\\frac{A^2}{72}\n \\min\\left\\{\\frac{\\Delta^2}{\\beta Y_0},\\ \\frac\\Delta d\\right\\},\n\\end{equation}\nwhere $\\Delta/0=+\\infty$ if $\\Delta>0$, and the right side is $0$ if\n$\\Delta=0$.\n\\end{lemma}",
+        "quote_sha256": "f82c3d4a02cf0b385bddf5be5b4fa1b80d4a0a0d902d5a450818a9957db39681"
+      },
+      "lean_declarations": [
+        "HexagonPaper.weighted_one_sign_coercivity",
+        "HexagonPaper.weighted_one_sign_coercivity_unit_interval",
+        "HexagonPaper.weighted_density_of_positive_support_density"
+      ],
+      "declaration_locations": {
+        "HexagonPaper.weighted_one_sign_coercivity": [
+          {
+            "name": "HexagonPaper.weighted_one_sign_coercivity",
+            "kind": "theorem",
+            "file": "HexagonPaper/Coercivity.lean",
+            "line": 73
+          }
+        ],
+        "HexagonPaper.weighted_one_sign_coercivity_unit_interval": [
+          {
+            "name": "HexagonPaper.weighted_one_sign_coercivity_unit_interval",
+            "kind": "theorem",
+            "file": "HexagonPaper/Coercivity.lean",
+            "line": 173
+          }
+        ],
+        "HexagonPaper.weighted_density_of_positive_support_density": [
+          {
+            "name": "HexagonPaper.weighted_density_of_positive_support_density",
+            "kind": "theorem",
+            "file": "HexagonPaper/Coercivity.lean",
+            "line": 229
+          }
+        ]
+      },
+      "coverage_note": "Weighted one-sign coercivity retains the manuscript's weighted Stieltjes density premise explicitly. Unit-interval wrapper clamps a real-line Lipschitz extension; positive-support density theorem proves the sufficient weighted condition. Endpoint-zero tests suppress endpoint atoms; interior atoms are retained.",
+      "coverage_category": "proved_bundle"
+    },
+    {
+      "id": "current:lemma:7.5",
+      "type": "lemma",
+      "number": "7.5",
+      "labels": [
+        "lem:loc-lipschitz",
+        "eq:loc-lipschitz"
+      ],
+      "title_tex": "Density bound",
+      "source": {
+        "file": "sections/07-isolation.tex",
+        "start_line": 621,
+        "end_line": 633,
+        "source_character_range": [
+          32215,
+          32847
+        ],
+        "quote": "\\begin{lemma}[Density bound]\\label{lem:loc-lipschitz}\nThere exists $L_\\beta<\\infty$ such that\n\\begin{equation}\\label{eq:loc-lipschitz}\n \\alpha_\\beta(y)-\\alpha_\\beta(x)\\le L_\\beta(y-x)\n \\qquad(0\\le x<y<q_\\beta).\n\\end{equation}\nWith $L=\\max\\{1,\\beta L_\\beta\\}$, the trial profile satisfies\n$\\gamma^{\\rm tr}(0)=\\lambda$, $\\gamma^{\\rm tr}=\\beta$ on $[q_\\beta,1]$, and\n$|\\gamma^{\\rm tr}(x)-\\gamma^{\\rm tr}(y)|\\le L|x-y|$ for $x,y\\in[0,q_\\beta)$. In\nparticular, the restriction of $\\dd\\gamma^{\\rm tr}$ to\n$(0,1]\\setminus\\{q_\\beta\\}$ is absolutely continuous, with density at most $L$\non $(0,q_\\beta)$ and $0$ on $(q_\\beta,1]$.\n\\end{lemma}",
+        "quote_sha256": "51ccb48ed13efca939cad1eb88eff023621a243dc1a40654a38ce4be11e32957"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.scalar_density_bound_uniform_minimizers",
+        "QuantitativeFollowup.scalar_trial_density_bound_uniform_minimizers",
+        "QuantitativeFollowup.scalar_trial_free_measure_above_terminal",
+        "QuantitativeFollowup.scalar_trial_free_measure_absolutelyContinuous_away_terminal",
+        "HexagonPaper.currentScalarXi_positive_minimum",
+        "FRSB.continuousOn_quotientDenominator",
+        "FRSB.quotientDenominator_pos"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.scalar_density_bound_uniform_minimizers": [
+          {
+            "name": "QuantitativeFollowup.scalar_density_bound_uniform_minimizers",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/ScalarDensity.lean",
+            "line": 68
+          }
+        ],
+        "QuantitativeFollowup.scalar_trial_density_bound_uniform_minimizers": [
+          {
+            "name": "QuantitativeFollowup.scalar_trial_density_bound_uniform_minimizers",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/ScalarTrialDensity.lean",
+            "line": 90
+          }
+        ],
+        "QuantitativeFollowup.scalar_trial_free_measure_above_terminal": [
+          {
+            "name": "QuantitativeFollowup.scalar_trial_free_measure_above_terminal",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/ScalarTrialDensity.lean",
+            "line": 126
+          }
+        ],
+        "QuantitativeFollowup.scalar_trial_free_measure_absolutelyContinuous_away_terminal": [
+          {
+            "name": "QuantitativeFollowup.scalar_trial_free_measure_absolutelyContinuous_away_terminal",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/ScalarTrialDensity.lean",
+            "line": 140
+          }
+        ],
+        "HexagonPaper.currentScalarXi_positive_minimum": [
+          {
+            "name": "HexagonPaper.currentScalarXi_positive_minimum",
+            "kind": "theorem",
+            "file": "HexagonPaper/CurrentScalarStability.lean",
+            "line": 111
+          }
+        ],
+        "FRSB.continuousOn_quotientDenominator": [
+          {
+            "name": "FRSB.continuousOn_quotientDenominator",
+            "kind": "theorem",
+            "file": "FRSB/MomentQuotient.lean",
+            "line": 39
+          }
+        ],
+        "FRSB.quotientDenominator_pos": [
+          {
+            "name": "FRSB.quotientDenominator_pos",
+            "kind": "theorem",
+            "file": "FRSB/MomentQuotient.lean",
+            "line": 47
+          }
+        ]
+      },
+      "coverage_note": "Actual scalar minimization yields common terminal support point, density/Lipschitz bound, trial density domination, zero mass above terminal and absolute continuity away from the possible terminal atom. The current positive compact minimum of E[C_q^3] is separately proved. The main density proof uses an equivalent smooth-support quotient route, rather than depending on the new minimum bridge.",
+      "coverage_category": "proved_bundle"
+    },
+    {
+      "id": "current:proposition:7.6",
+      "type": "proposition",
+      "number": "7.6",
+      "labels": [
+        "prop:loc-isolation",
+        "eq:loc-isolation"
+      ],
+      "title_tex": "Isolation against the trial",
+      "source": {
+        "file": "sections/07-isolation.tex",
+        "start_line": 771,
+        "end_line": 780,
+        "source_character_range": [
+          39566,
+          40093
+        ],
+        "quote": "\\begin{proposition}[Isolation against the trial]\\label{prop:loc-isolation}\nThere exists $C=C(\\beta)<\\infty$ such that, for all $N\\ge1$, $0<\\rho\\le1$,\n$0<\\lambda\\le\\lambda_0$, every minimizer $\\gamma_*$ of $F_\\rho$, and every\ntrial budget $\\eta$ for $\\gamma_*$,\n\\begin{equation}\\label{eq:loc-isolation}\n \\|\\gamma_*-\\gamma^{\\rm tr}\\|_{L^1(0,1)}\\le C\\min\\{1,\\rho^{-3/4}\\eta^{1/4}\\}.\n\\end{equation}\nThe constant depends on $\\beta$ only through $\\beta$, $k_\\beta$, and the\nconstant $L$ of \\cref{lem:loc-lipschitz}.\n\\end{proposition}",
+        "quote_sha256": "2b9f25c0b94a56f6c7277901f0f8f96c1c33e7b166516ddea131900d99fb9c4e"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.scalar_trial_isolation"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.scalar_trial_isolation": [
+          {
+            "name": "QuantitativeFollowup.scalar_trial_isolation",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/TrialIsolation.lean",
+            "line": 21
+          }
+        ]
+      },
+      "coverage_note": "Actual minimizing energy profile and clipped-trial gap give beta*CDF L1 isolation. Lambda in [0,beta] is broader than the paper's small-lambda window. Adaptive tests, reflected smoothing and weak-limit response are internal conclusions.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:lemma:8.1",
+      "type": "lemma",
+      "number": "8.1",
+      "labels": [
+        "lem:lz-certificate",
+        "eq:lz-certificate"
+      ],
+      "title_tex": "Local deficit certificate",
+      "source": {
+        "file": "sections/08-root.tex",
+        "start_line": 48,
+        "end_line": 66,
+        "source_character_range": [
+          2764,
+          3533
+        ],
+        "quote": "\\begin{lemma}[Local deficit certificate]\\label{lem:lz-certificate}\nThere exists $c_{\\rm cert}=c_{\\rm cert}(\\beta)>0$ with the following property.\nLet $I\\Subset(0,1)$ be an open interval of length $\\ell$, let\n$\\gamma_0,\\gamma_1$ be admissible profiles, and let $\\eta>0$ be such that\n$F_\\rho(\\gamma_i)\\le\\min F_\\rho+\\eta$ for $i=0,1$. Suppose that there exist\n$k>0$, $d_0,d_1\\ge0$, and $A>0$ such that, on $I$, the derivative measures and\nthe profile gap satisfy\n\\[\n \\dd\\gamma_0\\le d_0\\dd x,\\qquad\n k\\dd x\\le\\dd\\gamma_1\\le d_1\\dd x,\n \\qquad \\gamma_1-\\gamma_0\\ge A .\n\\]\nThen\n\\begin{equation}\\label{eq:lz-certificate}\n \\frac\\eta\\rho\\ge c_{\\rm cert}\\min\\left\\{\n k\\ell^3,\\ A\\ell^2,\\ A^2\\ell^4,\n                  \\frac{A^2\\ell^2}{d_0+d_1+k}\\right\\}.\n\\end{equation}\n\\end{lemma}",
+        "quote_sha256": "e45c1ff9181ee444c1485fc47468e4e96108d9d5491cd3418ac56e6ab894290f"
+      },
+      "lean_declarations": [
+        "HexagonPaper.local_deficit_certificate",
+        "HexagonPaper.local_deficit_certificate_constant_pos"
+      ],
+      "declaration_locations": {
+        "HexagonPaper.local_deficit_certificate": [
+          {
+            "name": "HexagonPaper.local_deficit_certificate",
+            "kind": "theorem",
+            "file": "HexagonPaper/LocalDeficitCertificate.lean",
+            "line": 24
+          }
+        ],
+        "HexagonPaper.local_deficit_certificate_constant_pos": [
+          {
+            "name": "HexagonPaper.local_deficit_certificate_constant_pos",
+            "kind": "theorem",
+            "file": "HexagonPaper/LocalDeficitArithmetic.lean",
+            "line": 20
+          }
+        ]
+      },
+      "coverage_note": "Actual near-minimizers plus local two-sided density/gap hypotheses yield the four-way minimum with positive beta-only certificate constant. No outside-interval regularity is assumed. Positive constant follows from the separately defined explicit constant and its positivity theorem.",
+      "coverage_category": "proved_bundle"
+    },
+    {
+      "id": "current:lemma:8.2",
+      "type": "lemma",
+      "number": "8.2",
+      "labels": [
+        "lem:lz-rootdensity",
+        "eq:lz-rootdensity"
+      ],
+      "title_tex": "Trial density near the root",
+      "source": {
+        "file": "sections/08-root.tex",
+        "start_line": 279,
+        "end_line": 284,
+        "source_character_range": [
+          14165,
+          14424
+        ],
+        "quote": "\\begin{lemma}[Trial density near the root]\\label{lem:lz-rootdensity}\nThere exists $T_1=T_1(\\beta)\\in(0,T_0]$ such that\n\\begin{equation}\\label{eq:lz-rootdensity}\n \\dd\\gamma_\\beta\\ge\\frac{k_0}2\\dd x\\qquad\\text{as measures on }[0,T_1].\n\\end{equation}\n\\end{lemma}",
+        "quote_sha256": "18cc97f5b32aa67ac51da69b77dcb4b6067944b82368b5e30d87fa65c869b7cc"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.scalar_root_density_measure_lower_of_linear_growth",
+        "QuantitativeFollowup.scalar_root_density_measure_lower"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.scalar_root_density_measure_lower_of_linear_growth": [
+          {
+            "name": "QuantitativeFollowup.scalar_root_density_measure_lower_of_linear_growth",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/ScalarRootDensityMeasure.lean",
+            "line": 49
+          }
+        ],
+        "QuantitativeFollowup.scalar_root_density_measure_lower": [
+          {
+            "name": "QuantitativeFollowup.scalar_root_density_measure_lower",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/ScalarRootDensityMeasure.lean",
+            "line": 95
+          }
+        ]
+      },
+      "coverage_note": "General theorem retains the printed linear-growth premise; selected-minimizer theorem additionally derives that growth and full root measure domination. Interval support and positive slope come from scalar FRSB dependencies, not an assumed lower-density conclusion.",
+      "coverage_category": "proved_bundle"
+    },
+    {
+      "id": "current:proposition:8.3",
+      "type": "proposition",
+      "number": "8.3",
+      "labels": [
+        "prop:lz-quantile",
+        "eq:lz-quantile"
+      ],
+      "title_tex": "Root localization",
+      "source": {
+        "file": "sections/08-root.tex",
+        "start_line": 307,
+        "end_line": 317,
+        "source_character_range": [
+          15571,
+          16099
+        ],
+        "quote": "\\begin{proposition}[Root localization]\\label{prop:lz-quantile}\nThere exists $C=C(\\beta)<\\infty$ with the following property. Let $N\\ge1$,\n$0<\\rho\\le1$, and $0<\\lambda\\le\\lambda_0$, let $\\gamma_*$ be a minimizer\nof $F_\\rho$, and let $\\eta$ be a trial budget for $\\gamma_*$. Then\n\\begin{equation}\\label{eq:lz-quantile}\n Q_{\\gamma_*}(v)\\le C\\left[\\lambda+v+\\min\\{1,(\\eta/\\rho)^{1/6}\\}\\right]\n \\qquad(0<v<\\beta-\\lambda).\n\\end{equation}\nThe constant depends on $\\beta$ only through $\\beta$, $k_0$, $C_0$, and\n$T_1$.\n\\end{proposition}",
+        "quote_sha256": "d69114ef49d3c9aa4741aca7ca783e22be24dc2e664486aed171dbc2b97bc50d"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.root_quantile_localization"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.root_quantile_localization": [
+          {
+            "name": "QuantitativeFollowup.root_quantile_localization",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/RootQuantileLocalization.lean",
+            "line": 17
+          }
+        ]
+      },
+      "coverage_note": "Actual minimizing profile and trial budget, including eta=0 by positive-budget limit. Energy quantile is probability free quantile at v/beta. Target covers all positive v, broader than the paper's v<beta-lambda.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:corollary:8.4",
+      "type": "corollary",
+      "number": "8.4",
+      "labels": [
+        "cor:lz-omega",
+        "eq:lz-omega",
+        "eq:lz-Q"
+      ],
+      "title_tex": "Quantile bound in probability normalization",
+      "source": {
+        "file": "sections/08-root.tex",
+        "start_line": 467,
+        "end_line": 487,
+        "source_character_range": [
+          23047,
+          23861
+        ],
+        "quote": "\\begin{corollary}[Quantile bound in probability normalization]\n\\label{cor:lz-omega}\nLet $N\\ge1$, $0<\\rho\\le1$, and $0<\\lambda\\le\\lambda_0$, and let\n$s=\\lambda/\\beta$. Let $\\mu=s\\delta_0+\\nu$ be a minimizer of\n$\\calF_{1-\\rho,s}$ in \\eqref{eq:fnd-functional}, so that\n$\\gamma_*=\\beta\\mu([0,\\cdot])$ minimizes $F_\\rho$, and let $\\eta\\ge0$ be a\ntrial budget for $\\gamma_*$. Let\n\\[\n Q(v)=\\inf\\{q\\in[0,1]:\\nu([0,q])\\ge v\\}\\qquad(0<v<1-s)\n\\]\nbe the quantile function \\eqref{eq:fnd-quantile} of $\\nu$, and define\n\\begin{equation}\\label{eq:lz-omega}\n \\omega(\\rho,\\eta)=\\min\\{1,(\\eta/\\rho)^{1/6}\\}.\n\\end{equation}\nThen, with $C_Q=\\max\\{1,\\beta C\\}$ and $C$ the constant of\n\\cref{prop:lz-quantile},\n\\begin{equation}\\label{eq:lz-Q}\n Q(v)\\le C_Q\\bigl(s+v+\\omega(\\rho,\\eta)\\bigr)\n \\qquad(0<v<1-s).\n\\end{equation}\n\\end{corollary}",
+        "quote_sha256": "189f54c1fbd47512932a26a0d6c99a5d9f687a9840015701fdf9cd59bf8a7e6b"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.probability_root_quantile_localization"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.probability_root_quantile_localization": [
+          {
+            "name": "QuantitativeFollowup.probability_root_quantile_localization",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/RootProbabilityQuantile.lean",
+            "line": 14
+          }
+        ]
+      },
+      "coverage_note": "Probability-normalized root quantile theorem constructs its constant as max(1,beta*C) and rescales the energy quantile at beta*v. It includes eta=0 and all v>0, broader than v<1-s.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:lemma:9.1",
+      "type": "lemma",
+      "number": "9.1",
+      "labels": [
+        "lem:sc-basic",
+        "eq:sc-basic-bounds",
+        "eq:sc-martingale"
+      ],
+      "title_tex": "Basic properties of the scalar law",
+      "source": {
+        "file": "sections/09-scalar.tex",
+        "start_line": 190,
+        "end_line": 212,
+        "source_character_range": [
+          9860,
+          10782
+        ],
+        "quote": "\\begin{lemma}[Basic properties of the scalar law]\\label{lem:sc-basic}\nLet $a$ be a profile and $d\\in[\\beta^2/2,\\beta^2]$.\n\\begin{enumerate}\n\\item[(a)] On $[0,1]\\times\\R$, we have\n\\begin{equation}\\label{eq:sc-basic-bounds}\n |\\partial_xu|\\le1,\\qquad\n 0\\le\\partial_{xx}u\\le1-(\\partial_xu)^2\\le1 .\n\\end{equation}\n\\item[(b)] For every $j\\ge1$, there exists a constant $C_j(\\beta)$,\ndepending only on $\\beta$ and $j$, such that $|u_j|\\le C_j(\\beta)$ on\n$[0,1]\\times\\R$. Further,\n$\\sup_x|u_{xx}(q,x)-u_{xx}(r,x)|\\le C_\\beta|q-r|$ for all\n$q,r\\in[0,1]$.\n\\item[(c)] We have\n\\begin{equation}\\label{eq:sc-martingale}\n m_q=\\E^0[\\epsilon\\mid\\calG_q^0],\\qquad m_0=0,\\qquad\n \\dd m_q=\\sqrt d\\,h_q\\dd B_q,\\qquad \\Gamma_{a,d}'(q)=k_{a,d}(q).\n\\end{equation}\nThe function $k_{a,d}$ is continuous on $[0,1]$, and $\\Gamma_{a,d}$ is\ncontinuously differentiable on $[0,1]$, with one-sided derivatives at\nthe endpoints.\n\\end{enumerate}\n\\end{lemma}",
+        "quote_sha256": "e58d68e96758198d6286820862b059990150927f605fe91230f945a5a1410298"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.supporting_printed_scalar_spatial_bounds",
+        "HexagonPaper.currentScalarFiniteJetNormBound",
+        "HexagonPaper.currentScalarPositiveSpatialJetBound",
+        "HexagonPaper.currentScalarHessianTimeLipschitz",
+        "HexagonPaper.scalar_variance_magnetization_observed_condExp",
+        "HexagonPaper.scalar_variance_magnetization_initial",
+        "HexagonPaper.scalar_variance_brownian_coefficient",
+        "HexagonPaper.scalar_variance_magnetization_stochastic_identity",
+        "HexagonPaper.scalarVarianceK_eq_GammaPrime",
+        "FRSB.continuousOn_GammaPrime",
+        "HexagonPaper.scalar_variance_Gamma_hasDerivWithinAt",
+        "HexagonPaper.scalar_variance_Gamma_hasDerivAt"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.supporting_printed_scalar_spatial_bounds": [
+          {
+            "name": "QuantitativeFollowup.supporting_printed_scalar_spatial_bounds",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/SupportingPrintedScalarStabilityChains.lean",
+            "line": 18
+          }
+        ],
+        "HexagonPaper.currentScalarFiniteJetNormBound": [
+          {
+            "name": "HexagonPaper.currentScalarFiniteJetNormBound",
+            "kind": "theorem",
+            "file": "HexagonPaper/CurrentScalarBasics.lean",
+            "line": 46
+          }
+        ],
+        "HexagonPaper.currentScalarPositiveSpatialJetBound": [
+          {
+            "name": "HexagonPaper.currentScalarPositiveSpatialJetBound",
+            "kind": "theorem",
+            "file": "HexagonPaper/CurrentScalarBasics.lean",
+            "line": 98
+          }
+        ],
+        "HexagonPaper.currentScalarHessianTimeLipschitz": [
+          {
+            "name": "HexagonPaper.currentScalarHessianTimeLipschitz",
+            "kind": "theorem",
+            "file": "HexagonPaper/CurrentScalarBasics.lean",
+            "line": 237
+          }
+        ],
+        "HexagonPaper.scalar_variance_magnetization_observed_condExp": [
+          {
+            "name": "HexagonPaper.scalar_variance_magnetization_observed_condExp",
+            "kind": "theorem",
+            "file": "HexagonPaper/ScalarVarianceMartingaleDecay.lean",
+            "line": 32
+          }
+        ],
+        "HexagonPaper.scalar_variance_magnetization_initial": [
+          {
+            "name": "HexagonPaper.scalar_variance_magnetization_initial",
+            "kind": "theorem",
+            "file": "HexagonPaper/ScalarVarianceMartingaleDecay.lean",
+            "line": 40
+          }
+        ],
+        "HexagonPaper.scalar_variance_brownian_coefficient": [
+          {
+            "name": "HexagonPaper.scalar_variance_brownian_coefficient",
+            "kind": "theorem",
+            "file": "HexagonPaper/ScalarVarianceMartingaleDecay.lean",
+            "line": 48
+          }
+        ],
+        "HexagonPaper.scalar_variance_magnetization_stochastic_identity": [
+          {
+            "name": "HexagonPaper.scalar_variance_magnetization_stochastic_identity",
+            "kind": "theorem",
+            "file": "HexagonPaper/ScalarVarianceMartingaleDecay.lean",
+            "line": 54
+          }
+        ],
+        "HexagonPaper.scalarVarianceK_eq_GammaPrime": [
+          {
+            "name": "HexagonPaper.scalarVarianceK_eq_GammaPrime",
+            "kind": "theorem",
+            "file": "HexagonPaper/ScalarVarianceMartingaleDecay.lean",
+            "line": 27
+          }
+        ],
+        "FRSB.continuousOn_GammaPrime": [
+          {
+            "name": "FRSB.continuousOn_GammaPrime",
+            "kind": "theorem",
+            "file": "FRSB/GammaPrime.lean",
+            "line": 20
+          }
+        ],
+        "HexagonPaper.scalar_variance_Gamma_hasDerivWithinAt": [
+          {
+            "name": "HexagonPaper.scalar_variance_Gamma_hasDerivWithinAt",
+            "kind": "theorem",
+            "file": "HexagonPaper/ScalarVarianceMartingaleDecay.lean",
+            "line": 61
+          }
+        ],
+        "HexagonPaper.scalar_variance_Gamma_hasDerivAt": [
+          {
+            "name": "HexagonPaper.scalar_variance_Gamma_hasDerivAt",
+            "kind": "theorem",
+            "file": "HexagonPaper/ScalarVarianceMartingaleDecay.lean",
+            "line": 68
+          }
+        ]
+      },
+      "coverage_note": "Actual scalar PDE positive spatial jets, beta-only uniform constants on d in [beta^2/2,beta^2], and Hessian time Lipschitz even with profile atoms. Observed marked-spin conditional expectation, initial zero, Brownian left-sum convergence in measure and Gamma derivative/endpoint continuity are proved. Potential's additive log2 normalization changes no positive jet.",
+      "coverage_category": "proved_bundle"
+    },
+    {
+      "id": "current:lemma:9.2",
+      "type": "lemma",
+      "number": "9.2",
+      "labels": [
+        "lem:sc-likelihood",
+        "eq:sc-prefix-law",
+        "eq:sc-joint-law"
+      ],
+      "title_tex": "Exact path likelihood",
+      "source": {
+        "file": "sections/09-scalar.tex",
+        "start_line": 313,
+        "end_line": 329,
+        "source_character_range": [
+          15449,
+          16325
+        ],
+        "quote": "\\begin{lemma}[Exact path likelihood]\\label{lem:sc-likelihood}\nLet $a$ be a profile and $d\\in[\\beta^2/2,\\beta^2]$. Under a reference\nlaw, let $X_q=\\sqrt d\\,B_q$, where $B$ is a standard Brownian motion.\nFor every $q\\in[0,1]$, the law of $(Y_r)_{0\\le r\\le q}$ has density\n\\begin{equation}\\label{eq:sc-prefix-law}\n \\exp\\Bigl\\{a(q)u(q,X_q)-\\int_{[0,q]}u(r,X_r)\\,\\mu(\\dd r)\\Bigr\\}\n\\end{equation}\nwith respect to the law of $(X_r)_{0\\le r\\le q}$. The joint law of\n$(Y,\\epsilon)$ has density\n\\begin{equation}\\label{eq:sc-joint-law}\n \\exp\\Bigl\\{\\epsilon X_1-su(0,0)-\\int_{[0,1]}u(q,X_q)\\,\\nu(\\dd q)\\Bigr\\}\n\\end{equation}\nwith respect to the product of the law of $X$ and counting measure on\n$\\{-1,1\\}$. The same holds if the coefficient $d$ in \\eqref{eq:sc-pde}\nis replaced by a bounded measurable function $c(q)>0$ almost\neverywhere, and $X_q=\\int_0^q\\sqrt{c(r)}\\dd B_r$.\n\\end{lemma}",
+        "quote_sha256": "88a423359a2fab7df54111ee2296dd1ec6bf4a3e1b5ecfdfbef2c0fd0dfe9008"
+      },
+      "lean_declarations": [
+        "HexagonPaper.scalarStoppedPath_printed_likelihood",
+        "HexagonPaper.scalarMarkedSpinLaw_fullPath_printed_density",
+        "HexagonPaper.scalar_positive_bounded_coefficient_likelihoods",
+        "HexagonPaper.scalarCoefficientPotential_ae_PDE",
+        "HexagonPaper.currentScalarPositiveRepresentative_driver_ready",
+        "HexagonPaper.currentScalarPositiveRepresentative_primitive_eq",
+        "HexagonPaper.currentScalarPositiveRepresentative_drift_integral_eq",
+        "HexagonPaper.currentScalarPositiveRepresentative_sqrt_ae"
+      ],
+      "declaration_locations": {
+        "HexagonPaper.scalarStoppedPath_printed_likelihood": [
+          {
+            "name": "HexagonPaper.scalarStoppedPath_printed_likelihood",
+            "kind": "theorem",
+            "file": "HexagonPaper/PrefixLikelihoodPrinted.lean",
+            "line": 65
+          }
+        ],
+        "HexagonPaper.scalarMarkedSpinLaw_fullPath_printed_density": [
+          {
+            "name": "HexagonPaper.scalarMarkedSpinLaw_fullPath_printed_density",
+            "kind": "theorem",
+            "file": "HexagonPaper/PrefixLikelihoodJoint.lean",
+            "line": 143
+          }
+        ],
+        "HexagonPaper.scalar_positive_bounded_coefficient_likelihoods": [
+          {
+            "name": "HexagonPaper.scalar_positive_bounded_coefficient_likelihoods",
+            "kind": "theorem",
+            "file": "HexagonPaper/VariableScalarClockDriver.lean",
+            "line": 22
+          }
+        ],
+        "HexagonPaper.scalarCoefficientPotential_ae_PDE": [
+          {
+            "name": "HexagonPaper.scalarCoefficientPotential_ae_PDE",
+            "kind": "theorem",
+            "file": "HexagonPaper/VariableScalarClockPDE.lean",
+            "line": 71
+          }
+        ],
+        "HexagonPaper.currentScalarPositiveRepresentative_driver_ready": [
+          {
+            "name": "HexagonPaper.currentScalarPositiveRepresentative_driver_ready",
+            "kind": "theorem",
+            "file": "HexagonPaper/CurrentScalarLikelihood.lean",
+            "line": 79
+          }
+        ],
+        "HexagonPaper.currentScalarPositiveRepresentative_primitive_eq": [
+          {
+            "name": "HexagonPaper.currentScalarPositiveRepresentative_primitive_eq",
+            "kind": "theorem",
+            "file": "HexagonPaper/CurrentScalarLikelihood.lean",
+            "line": 62
+          }
+        ],
+        "HexagonPaper.currentScalarPositiveRepresentative_drift_integral_eq": [
+          {
+            "name": "HexagonPaper.currentScalarPositiveRepresentative_drift_integral_eq",
+            "kind": "theorem",
+            "file": "HexagonPaper/CurrentScalarLikelihood.lean",
+            "line": 70
+          }
+        ],
+        "HexagonPaper.currentScalarPositiveRepresentative_sqrt_ae": [
+          {
+            "name": "HexagonPaper.currentScalarPositiveRepresentative_sqrt_ae",
+            "kind": "theorem",
+            "file": "HexagonPaper/CurrentScalarLikelihood.lean",
+            "line": 46
+          }
+        ]
+      },
+      "coverage_note": "Constant-coefficient prefix and joint full-path likelihoods are actual law equalities. Variable-coefficient theorem is stated for an everywhere-positive representative; current bridges give a measurable bounded positive representative for an a.e.-positive c and preserve every prefix clock, drift integral and a.e. square-root integrand. The original a.e.-positive claim is supported by composition/representative equivalence, not one standalone original-coefficient driver/likelihood declaration. This construction scope must be disclosed.",
+      "coverage_category": "representative_likelihood_bundle"
+    },
+    {
+      "id": "current:lemma:9.3",
+      "type": "lemma",
+      "number": "9.3",
+      "labels": [
+        "lem:scalarcontinuity",
+        "eq:scalarcontinuity"
+      ],
+      "title_tex": "Continuity of the scalar multiplier",
+      "source": {
+        "file": "sections/09-scalar.tex",
+        "start_line": 405,
+        "end_line": 412,
+        "source_character_range": [
+          19746,
+          20158
+        ],
+        "quote": "\\begin{lemma}[Continuity of the scalar multiplier]\\label{lem:scalarcontinuity}\nThere exists $C_\\beta<\\infty$ such that, for any two profiles\n$a,\\widetilde a$ and any $d,\\widetilde d\\in[\\beta^2/2,\\beta^2]$,\n\\begin{equation}\\label{eq:scalarcontinuity}\n \\sup_{0\\le q\\le1}|k_{a,d}(q)-k_{\\widetilde a,\\widetilde d}(q)|\n \\le C_\\beta\\bigl(\\|a-\\widetilde a\\|_{L^1(0,1)}+|d-\\widetilde d|\\bigr).\n\\end{equation}\n\\end{lemma}",
+        "quote_sha256": "acd77d2dd95664d46b46ba0572b2e2973bc9ff07c0a33597e8e1293a08ba1894"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.scalar_multiplier_continuity"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.scalar_multiplier_continuity": [
+          {
+            "name": "QuantitativeFollowup.scalar_multiplier_continuity",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/ScalarMultiplierContinuity.lean",
+            "line": 104
+          }
+        ]
+      },
+      "coverage_note": "Actual Brownian-coupled scalar states/Hessians yield parameter Lipschitz multiplier bound, uniformly at every q in [0,1], with no continuity premise. d is represented by positive sqrt(d), and its square equals d.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:lemma:9.4",
+      "type": "lemma",
+      "number": "9.4",
+      "labels": [
+        "lem:cl-scalar",
+        "eq:cl-Gamma-bound",
+        "eq:cl-k1",
+        "eq:cl-k2",
+        "eq:cl-k3",
+        "eq:cl-k4"
+      ],
+      "title_tex": "Scalar kernels and their level weight",
+      "source": {
+        "file": "sections/09-scalar.tex",
+        "start_line": 522,
+        "end_line": 543,
+        "source_character_range": [
+          24524,
+          25510
+        ],
+        "quote": "\\begin{lemma}[Scalar kernels and their level weight]\\label{lem:cl-scalar}\nFor every profile $a$ and $d\\in[\\beta^2/2,\\beta^2]$, write\n$\\Gamma=\\Gamma_{a,d}$. Then $\\Gamma$ is nondecreasing and\n\\begin{equation}\\label{eq:cl-Gamma-bound}\n 0\\le\\Gamma(p)\\le\\min\\{1,dp\\}\\le\\min\\{1,\\beta^2p\\}.\n\\end{equation}\nFor all $p,r,\\ell\\in[0,1]$,\n\\begin{align}\n |\\E^0[m_ph_pm_r]|&\\le\\sqrt{\\Gamma(p)\\Gamma(r)},&\n |\\E^0[\\bar f_p\\epsilon m_r]|&\\le\\sqrt{\\Gamma(p)\\Gamma(r)},\n                                                        \\label{eq:cl-k1}\\\\\n |\\E^0[\\bar f_pm_rm_\\ell]|&\\le\\sqrt{\\Gamma(p)\\Gamma(r\\wedge\\ell)},&\n |\\E^0[\\bar f_pm_pm_r]|&\\le\\sqrt{\\Gamma(p)\\Gamma(p\\wedge r)},\n                                                        \\label{eq:cl-k2}\\\\\n 0\\le\\Var^0(f_p)&\\le\\Gamma(p),&\n 0\\le\\E^0[m_p^2h_p]&\\le\\Gamma(p).                       \\label{eq:cl-k3}\n\\end{align}\nFor $\\ell\\ge p$,\n\\begin{equation}\\label{eq:cl-k4}\n |\\Cov^0(f_p,g_p^\\ell(Y_p))|\\le\\sqrt{\\Gamma(p)\\Gamma(\\ell)}.\n\\end{equation}\n\\end{lemma}",
+        "quote_sha256": "42b36e2a3dcbd86a5f74a2329efbfe7a526d0ef39f61cd98332fdf9e407560ea"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.scalar_kernel_bounds",
+        "QuantitativeFollowup.scalarGamma_window_bound"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.scalar_kernel_bounds": [
+          {
+            "name": "QuantitativeFollowup.scalar_kernel_bounds",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/ScalarKernelBounds.lean",
+            "line": 62
+          }
+        ],
+        "QuantitativeFollowup.scalarGamma_window_bound": [
+          {
+            "name": "QuantitativeFollowup.scalarGamma_window_bound",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/ScalarKernelBasics.lean",
+            "line": 86
+          }
+        ]
+      },
+      "coverage_note": "Actual marked spin and fresh-restart kernels: monotonicity, Gamma bounds, all displayed pairings, square variance and conditional future covariance. Separate d-window theorem supplies the printed beta^2 bound.",
+      "coverage_category": "proved_bundle"
+    },
+    {
+      "id": "current:lemma:9.6",
+      "type": "lemma",
+      "number": "9.6",
+      "labels": [
+        "lem:sc-response"
+      ],
+      "title_tex": "Response identity",
+      "source": {
+        "file": "sections/09-scalar.tex",
+        "start_line": 731,
+        "end_line": 740,
+        "source_character_range": [
+          34788,
+          35199
+        ],
+        "quote": "\\begin{lemma}[Response identity]\\label{lem:sc-response}\nLet $a$ be a profile, let $d\\in[\\beta^2/2,\\beta^2]$, and let $\\varphi$\nand $\\widetilde\\Gamma_\\theta$ be as above. Then, for every $p\\in[0,1]$,\nthe function $\\theta\\mapsto\\widetilde\\Gamma_\\theta(p)$ is continuously\ndifferentiable near $\\theta=0$, and\n\\[\n \\frac{\\dd}{\\dd\\theta}\\widetilde\\Gamma_\\theta(p)\\Big|_{\\theta=0}\n =(J_{a,d}\\varphi)(p).\n\\]\n\\end{lemma}",
+        "quote_sha256": "5ff56d405260f2074342768dc91197447fa0793ea80592e1093f8bb4294cc522"
+      },
+      "lean_declarations": [
+        "HexagonPaper.scalar_response_identity"
+      ],
+      "declaration_locations": {
+        "HexagonPaper.scalar_response_identity": [
+          {
+            "name": "HexagonPaper.scalar_response_identity",
+            "kind": "theorem",
+            "file": "HexagonPaper/ScalarChapterSix.lean",
+            "line": 19
+          }
+        ]
+      },
+      "coverage_note": "Actual arbitrary-profile transported Gamma is C1 near zero, with exact response derivative at all levels for smooth endpoint-zero tests. sqrt(d)^2=d fixes coefficient normalization. No derivative formula is a premise.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:lemma:9.7",
+      "type": "lemma",
+      "number": "9.7",
+      "labels": [
+        "lem:Jdom",
+        "eq:Jdom"
+      ],
+      "title_tex": "Scalar multiplier domination",
+      "source": {
+        "file": "sections/09-scalar.tex",
+        "start_line": 1075,
+        "end_line": 1083,
+        "source_character_range": [
+          50884,
+          51235
+        ],
+        "quote": "\\begin{lemma}[Scalar multiplier domination]\\label{lem:Jdom}\nFor every profile $a$ and $d\\in[\\beta^2/2,\\beta^2]$, the operator\n$J^{\\scal}_{a,d}$ is self-adjoint on $\\mathcal H_\\nu$, with norm at most\n$C_\\beta$, and\n\\begin{equation}\\label{eq:Jdom}\n J^{\\scal}_{a,d}\\preceq M_{k_{a,d}},\n \\qquad (M_{k_{a,d}}v)(q)=k_{a,d}(q)v(q).\n\\end{equation}\n\\end{lemma}",
+        "quote_sha256": "2b0999a0e729605e3cc2b487d7febc09cd1302dd2cfe7444223a0a630eb3ae86"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.scalar_multiplier_domination",
+        "QuantitativeFollowup.scalarResponseL2Operator_test_coeFn"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.scalar_multiplier_domination": [
+          {
+            "name": "QuantitativeFollowup.scalar_multiplier_domination",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/ScalarMultiplierDomination.lean",
+            "line": 28
+          }
+        ],
+        "QuantitativeFollowup.scalarResponseL2Operator_test_coeFn": [
+          {
+            "name": "QuantitativeFollowup.scalarResponseL2Operator_test_coeFn",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/ScalarResponseL2Operator.lean",
+            "line": 36
+          }
+        ]
+      },
+      "coverage_note": "Genuine endpoint-fixed completed L2 response has self-adjointness, beta-only norm bound and quadratic domination by actual GammaPrime multiplier. This is the closed space vanishing at endpoint atoms, with no extra centering restriction. Def.9.5 dense-test extension qualification applies.",
+      "coverage_category": "proved_bundle"
+    },
+    {
+      "id": "current:lemma:9.8",
+      "type": "lemma",
+      "number": "9.8",
+      "labels": [
+        "lem:reference",
+        "eq:referencek"
+      ],
+      "title_tex": "Reference multiplier on the whole interval",
+      "source": {
+        "file": "sections/09-scalar.tex",
+        "start_line": 1281,
+        "end_line": 1290,
+        "source_character_range": [
+          60772,
+          61165
+        ],
+        "quote": "\\begin{lemma}[Reference multiplier on the whole interval]\\label{lem:reference}\nAt the scalar Parisi measure,\n\\begin{equation}\\label{eq:referencek}\n k_{\\alpha_\\beta,\\beta^2}(q)=1\\quad(0\\le q\\le q_\\beta),\n \\qquad\n k_{\\alpha_\\beta,\\beta^2}(q)\n       \\le e^{-\\beta^2(q-q_\\beta)/2}\\quad(q_\\beta\\le q\\le1).\n\\end{equation}\nIn particular, $\\sup_{q\\in[0,1]}k_{\\alpha_\\beta,\\beta^2}(q)\\le1$.\n\\end{lemma}",
+        "quote_sha256": "24e35bdc2f8d0c1ae1b7883adeb4f72168e31f449681ead2ddc1038a72fc23d2"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.scalar_reference_multiplier"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.scalar_reference_multiplier": [
+          {
+            "name": "QuantitativeFollowup.scalar_reference_multiplier",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/ScalarReferenceMultiplier.lean",
+            "line": 77
+          }
+        ]
+      },
+      "coverage_note": "Actual scalar Parisi minimizer gives interval support, GammaPrime=1 there, exponential decay above terminal and global <=1. All endpoints are included. Proof uses the native Doob/cosh route; revised explanatory likelihood argument is an alternative route, not an additional certified theorem.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:proposition:9.9",
+      "type": "proposition",
+      "number": "9.9",
+      "labels": [
+        "prop:lz-stability",
+        "eq:lz-profileconvergence",
+        "eq:lz-stability"
+      ],
+      "title_tex": "Scalar stability at the minimizing profile",
+      "source": {
+        "file": "sections/09-scalar.tex",
+        "start_line": 1448,
+        "end_line": 1472,
+        "source_character_range": [
+          68244,
+          69389
+        ],
+        "quote": "\\begin{proposition}[Scalar stability at the minimizing profile]\n\\label{prop:lz-stability}\nThere exists a constant $C_{\\rm st}\\ge1$, depending only on $\\beta$ (in\nparticular, not on the minimizer or its atoms), with the following\nproperty. Let $N\\ge2$, $0<\\rho\\le1$, $t=1-\\rho$, and\n$0<\\lambda\\le\\lambda_0$, and set $s=\\lambda/\\beta$. Let\n$\\mu_N=s\\delta_0+\\nu_N$ be a minimizer of $\\mathcal F_{t,s}$ in\n\\eqref{eq:fnd-functional}, let $a_N(q)=\\mu_N([0,q])$ be its profile,\nand let $\\eta$ be a trial budget for the minimizer $\\beta a_N$ of\n$F_\\rho$, in the sense of \\eqref{eq:loc-trialbudget}. Let\n$d_N=\\beta^2(1-t/N)$. Then\n\\begin{equation}\\label{eq:lz-profileconvergence}\n \\|a_N-\\alpha_\\beta\\|_{L^1(0,1)}\n \\le\\min\\bigl\\{1,C_{\\rm st}[\\rho^{-3/4}\\eta^{1/4}+\\lambda^2]\\bigr\\}.\n\\end{equation}\nFurther, let\n$\\varepsilon_N=\\max\\{0,\\sup_{q\\in[0,1]}k_{a_N,d_N}(q)-1\\}$. Then, on the\nscalar transport space $\\mathcal H_{\\nu_N}$ of $\\mu_N$,\n\\begin{equation}\\label{eq:lz-stability}\n J^{\\scal}_{a_N,d_N}\\preceq(1+\\varepsilon_N)I,\n \\qquad\n \\varepsilon_N\\le C_{\\rm st}\n       \\bigl[\\rho^{-3/4}\\eta^{1/4}+\\lambda^2+N^{-1}\\bigr].\n\\end{equation}\n\\end{proposition}",
+        "quote_sha256": "420e766adeae7a9b2c5e8d6ba34ffd8520d6147c1c3e55f2011c983c52e5bebb"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.scalar_minimizer_stability",
+        "HexagonPaper.currentScalarStabilityError",
+        "HexagonPaper.currentScalarStabilityError_nonneg",
+        "HexagonPaper.currentScalarMultiplier_bddAbove",
+        "HexagonPaper.currentScalarMultiplier_le_exact_error",
+        "HexagonPaper.currentScalarStabilityError_le_native",
+        "HexagonPaper.currentScalarResponse_le_exact_error"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.scalar_minimizer_stability": [
+          {
+            "name": "QuantitativeFollowup.scalar_minimizer_stability",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/ScalarMinimizerStability.lean",
+            "line": 44
+          }
+        ],
+        "HexagonPaper.currentScalarStabilityError": [
+          {
+            "name": "HexagonPaper.currentScalarStabilityError",
+            "kind": "def",
+            "file": "HexagonPaper/CurrentScalarStability.lean",
+            "line": 21
+          }
+        ],
+        "HexagonPaper.currentScalarStabilityError_nonneg": [
+          {
+            "name": "HexagonPaper.currentScalarStabilityError_nonneg",
+            "kind": "theorem",
+            "file": "HexagonPaper/CurrentScalarStability.lean",
+            "line": 24
+          }
+        ],
+        "HexagonPaper.currentScalarMultiplier_bddAbove": [
+          {
+            "name": "HexagonPaper.currentScalarMultiplier_bddAbove",
+            "kind": "theorem",
+            "file": "HexagonPaper/CurrentScalarStability.lean",
+            "line": 28
+          }
+        ],
+        "HexagonPaper.currentScalarMultiplier_le_exact_error": [
+          {
+            "name": "HexagonPaper.currentScalarMultiplier_le_exact_error",
+            "kind": "theorem",
+            "file": "HexagonPaper/CurrentScalarStability.lean",
+            "line": 36
+          }
+        ],
+        "HexagonPaper.currentScalarStabilityError_le_native": [
+          {
+            "name": "HexagonPaper.currentScalarStabilityError_le_native",
+            "kind": "theorem",
+            "file": "HexagonPaper/CurrentScalarStability.lean",
+            "line": 48
+          }
+        ],
+        "HexagonPaper.currentScalarResponse_le_exact_error": [
+          {
+            "name": "HexagonPaper.currentScalarResponse_le_exact_error",
+            "kind": "theorem",
+            "file": "HexagonPaper/CurrentScalarStability.lean",
+            "line": 78
+          }
+        ]
+      },
+      "coverage_note": "Native minimizer-stability theorem gives CDF/rate and a native nonnegative error. Current bridges define the paper's exact max(0,sSup k-1), prove its boundedness/nonnegativity, its pointwise bound, <=native error, and response bound. Compose the bundle for the printed exact-error rate; no operator bound is used to infer the multiplier supremum. The combined current-error minimizer statement is not a single existing declaration.",
+      "coverage_category": "exact_error_bundle"
+    },
+    {
+      "id": "current:lemma:10.2",
+      "type": "lemma",
+      "number": "10.2",
+      "labels": [
+        "lem:tree-regularity",
+        "eq:tree-integrated-pde"
+      ],
+      "title_tex": "Regularity in the parameters",
+      "source": {
+        "file": "sections/10-cavity.tex",
+        "start_line": 321,
+        "end_line": 337,
+        "source_character_range": [
+          17675,
+          18644
+        ],
+        "quote": "\\begin{lemma}[Regularity in the parameters]\\label{lem:tree-regularity}\nLet $\\mu$ be a deterministic profile, and let $U=U(q,x,y)$ solve\n\\eqref{eq:cavityPDE} with the row replaced by\n$\\epsilon\\sum_i\\theta_i\\tau_i$ and $b(u)$ replaced by $b>0$. Then $U$ has\nderivatives of every order in $(\\theta,x,y)$. Each derivative of positive\norder is bounded by a constant depending only on $N$ and its order. This\nbound is uniform in the couplings, $\\theta$, $b$, $(q,x,y)$, and the\nprofile, and each first derivative is bounded by one in absolute value.\nThe function $U$ and all these derivatives are jointly continuous in\n$(b,q,\\theta,x,y)\\in(0,\\infty)\\times[0,1]\\times\\R^n\\times\\R^n\\times\\R$.\nFinally, writing $\\nabla$ for the gradient in $(x,y)$, we have for\n$0\\le r\\le h\\le1$ that\n\\begin{equation}\\label{eq:tree-integrated-pde}\n U(r,x,y)-U(h,x,y)=\\frac12\\int_r^h\\bigl[\\Tr(\\Lambda_b\\nabla^2U)\n   +a(q)\\,\\nabla U^T\\Lambda_b\\nabla U\\bigr](q,x,y)\\dd q.\n\\end{equation}\n\\end{lemma}",
+        "quote_sha256": "7e37fb7d442b561155df158edd82c63e0a35cba136ca4c54832d6df58e324f1d"
+      },
+      "lean_declarations": [
+        "HexagonPaper.cavityTree_native_tail_smooth_and_jets",
+        "HexagonPaper.cavityTree_native_unit_tail_positive_jet_bound",
+        "HexagonPaper.cavityTree_native_mixed_coordinate_jet_bound",
+        "HexagonPaper.cavityTree_native_tail_variance_joint_continuous",
+        "HexagonPaper.cavityTree_native_tail_variance_jet_joint_continuous",
+        "QuantitativeFollowup.anisotropicMeasureTailMagnetization_component_bound",
+        "QuantitativeFollowup.anisotropicTailPairResponse_bound",
+        "QuantitativeFollowup.anisotropicMeasureTail_time_integral",
+        "QuantitativeFollowup.anisotropicMeasureTailTimeSource_coordinates"
+      ],
+      "declaration_locations": {
+        "HexagonPaper.cavityTree_native_tail_smooth_and_jets": [
+          {
+            "name": "HexagonPaper.cavityTree_native_tail_smooth_and_jets",
+            "kind": "theorem",
+            "file": "HexagonPaper/CavityTreeNativeAllJets.lean",
+            "line": 24
+          }
+        ],
+        "HexagonPaper.cavityTree_native_unit_tail_positive_jet_bound": [
+          {
+            "name": "HexagonPaper.cavityTree_native_unit_tail_positive_jet_bound",
+            "kind": "theorem",
+            "file": "HexagonPaper/CavityTreeNativeAllJets.lean",
+            "line": 70
+          }
+        ],
+        "HexagonPaper.cavityTree_native_mixed_coordinate_jet_bound": [
+          {
+            "name": "HexagonPaper.cavityTree_native_mixed_coordinate_jet_bound",
+            "kind": "theorem",
+            "file": "HexagonPaper/CavityTreeNativeAllJets.lean",
+            "line": 87
+          }
+        ],
+        "HexagonPaper.cavityTree_native_tail_variance_joint_continuous": [
+          {
+            "name": "HexagonPaper.cavityTree_native_tail_variance_joint_continuous",
+            "kind": "theorem",
+            "file": "HexagonPaper/CavityTreeNativeVarianceJets.lean",
+            "line": 20
+          }
+        ],
+        "HexagonPaper.cavityTree_native_tail_variance_jet_joint_continuous": [
+          {
+            "name": "HexagonPaper.cavityTree_native_tail_variance_jet_joint_continuous",
+            "kind": "theorem",
+            "file": "HexagonPaper/CavityTreeNativeVarianceJets.lean",
+            "line": 56
+          }
+        ],
+        "QuantitativeFollowup.anisotropicMeasureTailMagnetization_component_bound": [
+          {
+            "name": "QuantitativeFollowup.anisotropicMeasureTailMagnetization_component_bound",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/AnisotropicTailDerivative.lean",
+            "line": 70
+          }
+        ],
+        "QuantitativeFollowup.anisotropicTailPairResponse_bound": [
+          {
+            "name": "QuantitativeFollowup.anisotropicTailPairResponse_bound",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/AnisotropicPairResponses.lean",
+            "line": 89
+          }
+        ],
+        "QuantitativeFollowup.anisotropicMeasureTail_time_integral": [
+          {
+            "name": "QuantitativeFollowup.anisotropicMeasureTail_time_integral",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/AnisotropicTailTimeLimit.lean",
+            "line": 60
+          }
+        ],
+        "QuantitativeFollowup.anisotropicMeasureTailTimeSource_coordinates": [
+          {
+            "name": "QuantitativeFollowup.anisotropicMeasureTailTimeSource_coordinates",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/AnisotropicTailTimeResults.lean",
+            "line": 48
+          }
+        ]
+      },
+      "coverage_note": "Nine actual potential/jet/variance/time declarations form a conjunction. Unit-coupling coordinates encode physical coefficients and give dimension/order-only positive jet bounds uniform in coupling/variance/profile. Variance/spatial/time continuity and negative time-source identity give the printed positive backward PDE integral.",
+      "coverage_category": "proved_bundle"
+    },
+    {
+      "id": "current:lemma:10.3",
+      "type": "lemma",
+      "number": "10.3",
+      "labels": [
+        "lem:tree-density",
+        "eq:treedensity"
+      ],
+      "title_tex": "Density of a tree law",
+      "source": {
+        "file": "sections/10-cavity.tex",
+        "start_line": 476,
+        "end_line": 493,
+        "source_character_range": [
+          26228,
+          27187
+        ],
+        "quote": "\\begin{lemma}[Density of a tree law]\\label{lem:tree-density}\nLet $\\mu$ be a deterministic profile, $u\\in[0,1]$, and $\\mathcal T$ a\nmarked tree with $k$ leaves. Consider the product of the original\nGaussian law of the couplings, the driftless Gaussian field on\n$\\mathcal T$, and counting measure on the spins. With respect to this\nreference measure, the joint law of the couplings, the field on\n$\\mathcal T$, and the spins of the leaves under $\\Pp_{\\mathcal T,u}$ has\ndensity $Z_s(u)^{-1}\\mathscr D_{\\mathcal T}$, where\n\\begin{equation}\\label{eq:treedensity}\n \\mathscr D_{\\mathcal T}=\\exp\\Bigl\\{\n       \\sum_{\\mathsf a=1}^k\\mathcal E(\\sigma^{\\mathsf a};\n                  X^{\\mathsf a}_1,Y^{\\mathsf a}_1)\n       -\\int_{\\mathcal T}U(q_v,X_v,Y_v)\\,\\omega(\\dd v)\\Bigr\\},\n \\qquad \\omega\\ge0,\\qquad \\omega(\\mathcal T)=k-s.\n\\end{equation}\nFor fixed couplings, the conditional density of the field and the spins\nis $e^{-sU(0,0,0)}\\mathscr D_{\\mathcal T}$.\n\\end{lemma}",
+        "quote_sha256": "e350dafd92af78355f2e035c369001775af438081d52a6cd2e820765603fae83"
+      },
+      "lean_declarations": [
+        "HexagonPaper.tree_likelihood_arbitrary_profile",
+        "HexagonPaper.treeNativeFullLaw_printed_density",
+        "HexagonPaper.treePrintedFullDensity_common_normalizer",
+        "HexagonPaper.treePathWeight_mass",
+        "HexagonPaper.treeNativeSourceLog_full_weight",
+        "HexagonPaper.treeNativePathKernel_source_exp_density"
+      ],
+      "declaration_locations": {
+        "HexagonPaper.tree_likelihood_arbitrary_profile": [
+          {
+            "name": "HexagonPaper.tree_likelihood_arbitrary_profile",
+            "kind": "theorem",
+            "file": "HexagonPaper/TreeLikelihood.lean",
+            "line": 59
+          }
+        ],
+        "HexagonPaper.treeNativeFullLaw_printed_density": [
+          {
+            "name": "HexagonPaper.treeNativeFullLaw_printed_density",
+            "kind": "theorem",
+            "file": "HexagonPaper/TreeLikelihoodFullLaw.lean",
+            "line": 84
+          }
+        ],
+        "HexagonPaper.treePrintedFullDensity_common_normalizer": [
+          {
+            "name": "HexagonPaper.treePrintedFullDensity_common_normalizer",
+            "kind": "theorem",
+            "file": "HexagonPaper/TreeLikelihood.lean",
+            "line": 40
+          }
+        ],
+        "HexagonPaper.treePathWeight_mass": [
+          {
+            "name": "HexagonPaper.treePathWeight_mass",
+            "kind": "theorem",
+            "file": "HexagonPaper/TreePathWeightCoalescing.lean",
+            "line": 137
+          }
+        ],
+        "HexagonPaper.treeNativeSourceLog_full_weight": [
+          {
+            "name": "HexagonPaper.treeNativeSourceLog_full_weight",
+            "kind": "theorem",
+            "file": "HexagonPaper/TreeLikelihoodCoalescing.lean",
+            "line": 132
+          }
+        ],
+        "HexagonPaper.treeNativePathKernel_source_exp_density": [
+          {
+            "name": "HexagonPaper.treeNativePathKernel_source_exp_density",
+            "kind": "theorem",
+            "file": "HexagonPaper/TreeLikelihoodCoalescing.lean",
+            "line": 30
+          }
+        ]
+      },
+      "coverage_note": "Actual arbitrary-profile tree likelihood, full outer tilt and common normalizer, positive tree weight mass k-s, normalization and endpoint records. Native tree representation is shared-grid binary genealogy; general marked-tree encoding bridge from Def.10.1 applies. Conditional path density is separately in the native kernel likelihood.",
+      "coverage_category": "proved_bundle"
+    },
+    {
+      "id": "current:lemma:10.4",
+      "type": "lemma",
+      "number": "10.4",
+      "labels": [
+        "lem:tree-responses",
+        "eq:nodeTheta",
+        "eq:tree-node-y",
+        "eq:nodeb"
+      ],
+      "title_tex": "Parameter responses",
+      "source": {
+        "file": "sections/10-cavity.tex",
+        "start_line": 595,
+        "end_line": 616,
+        "source_character_range": [
+          32272,
+          33212
+        ],
+        "quote": "\\begin{lemma}[Parameter responses]\\label{lem:tree-responses}\nLet $\\mu$ be a deterministic profile, and let $U$, $\\pi_i$, and $m_N$ be\nas above, for fixed couplings, $\\theta\\in\\R^n$, and $b>0$. Then for every\n$q\\in[0,1]$ and $i\\le n$,\n\\begin{equation}\\label{eq:nodeTheta}\n \\partial_{\\theta_i}U(q)=\\pi_i(q),\\qquad\n \\partial_{\\theta_i}^2U(q)\n =1-a(q)\\pi_i(q)^2-\\int_{(q,1]}\\E[\\pi_i(r)^2\\mid\\calG_q]\\,\\nu(\\dd r),\n\\end{equation}\n\\begin{equation}\\label{eq:tree-node-y}\n \\partial_yU(q)=m_N(q),\\qquad\n \\partial_{yy}U(q)\n =1-a(q)m_N(q)^2-\\int_{(q,1]}\\E[m_N(r)^2\\mid\\calG_q]\\,\\nu(\\dd r).\n\\end{equation}\nFurther, the derivative of $U$ in $b$ exists and, for each fixed $q$, is\njointly continuous in $(b,\\theta,x,y)$. It satisfies\n\\begin{equation}\\label{eq:nodeb}\n \\partial_bU(q)=\\frac12\\Bigl[(1-q)-\\int_{(q,1]}(r-q)\n                   \\E[m_N(r)^2\\mid\\calG_q]\\,\\nu(\\dd r)\\Bigr].\n\\end{equation}\nIn particular, $0\\le\\partial_bU(q)\\le(1-q)/2$.\n\\end{lemma}",
+        "quote_sha256": "f14e5d40c05bc64558cffbe06fae4bc73ad5e6a4d9372d16018c5e91b0f0a35a"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.anisotropic_cavity_row_parameter_nodeTheta",
+        "QuantitativeFollowup.anisotropic_marked_pair_square_condExp",
+        "QuantitativeFollowup.anisotropic_marked_spin_parameter_nodeResponse",
+        "QuantitativeFollowup.anisotropic_marked_spin_square_condExp",
+        "QuantitativeFollowup.anisotropic_marked_variance_nodeb",
+        "QuantitativeFollowup.anisotropicRestartConditionalSpinSquare_condExp",
+        "HexagonPaper.cavityMovingNativePotential_hasDerivAt_variance",
+        "HexagonPaper.cavityMovingNativePotentialVarianceDerivative_joint_continuous",
+        "QuantitativeFollowup.anisotropicRestartVarianceResponse_mem_Icc"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.anisotropic_cavity_row_parameter_nodeTheta": [
+          {
+            "name": "QuantitativeFollowup.anisotropic_cavity_row_parameter_nodeTheta",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/AnisotropicNodeTheta.lean",
+            "line": 144
+          }
+        ],
+        "QuantitativeFollowup.anisotropic_marked_pair_square_condExp": [
+          {
+            "name": "QuantitativeFollowup.anisotropic_marked_pair_square_condExp",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/AnisotropicNodeTheta.lean",
+            "line": 85
+          }
+        ],
+        "QuantitativeFollowup.anisotropic_marked_spin_parameter_nodeResponse": [
+          {
+            "name": "QuantitativeFollowup.anisotropic_marked_spin_parameter_nodeResponse",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/AnisotropicNodeY.lean",
+            "line": 107
+          }
+        ],
+        "QuantitativeFollowup.anisotropic_marked_spin_square_condExp": [
+          {
+            "name": "QuantitativeFollowup.anisotropic_marked_spin_square_condExp",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/AnisotropicNodeY.lean",
+            "line": 86
+          }
+        ],
+        "QuantitativeFollowup.anisotropic_marked_variance_nodeb": [
+          {
+            "name": "QuantitativeFollowup.anisotropic_marked_variance_nodeb",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/AnisotropicNodeB.lean",
+            "line": 31
+          }
+        ],
+        "QuantitativeFollowup.anisotropicRestartConditionalSpinSquare_condExp": [
+          {
+            "name": "QuantitativeFollowup.anisotropicRestartConditionalSpinSquare_condExp",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/AnisotropicVarianceRestartConditional.lean",
+            "line": 88
+          }
+        ],
+        "HexagonPaper.cavityMovingNativePotential_hasDerivAt_variance": [
+          {
+            "name": "HexagonPaper.cavityMovingNativePotential_hasDerivAt_variance",
+            "kind": "theorem",
+            "file": "HexagonPaper/CavityMovingCoefficientParameterResponse.lean",
+            "line": 53
+          }
+        ],
+        "HexagonPaper.cavityMovingNativePotentialVarianceDerivative_joint_continuous": [
+          {
+            "name": "HexagonPaper.cavityMovingNativePotentialVarianceDerivative_joint_continuous",
+            "kind": "theorem",
+            "file": "HexagonPaper/CavityMovingCoefficientParameterResponse.lean",
+            "line": 62
+          }
+        ],
+        "QuantitativeFollowup.anisotropicRestartVarianceResponse_mem_Icc": [
+          {
+            "name": "QuantitativeFollowup.anisotropicRestartVarianceResponse_mem_Icc",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityNormalizerVarianceBounds.lean",
+            "line": 55
+          }
+        ]
+      },
+      "coverage_note": "Actual derivative and strict future (q,1] atom convention, future-square conditional expectations, variance response and bounds. Process formulas are a.e.; pointwise variance derivative is at every physical parameter. Joint variance-response continuity is certified for fixed q, matching the revised named statement; a joint b,q response claim would exceed these anchors.",
+      "coverage_category": "proved_bundle"
+    },
+    {
+      "id": "current:lemma:10.5",
+      "type": "lemma",
+      "number": "10.5",
+      "labels": [
+        "lem:streaming",
+        "eq:streaming"
+      ],
+      "title_tex": "Differentiation under the tree law",
+      "source": {
+        "file": "sections/10-cavity.tex",
+        "start_line": 837,
+        "end_line": 861,
+        "source_character_range": [
+          44254,
+          45559
+        ],
+        "quote": "\\begin{lemma}[Differentiation under the tree law]\\label{lem:streaming}\nLet $\\mu$ be a deterministic profile, $\\mathcal T$ a marked tree with $k$\nleaves, and $F$ a bounded function of the spins of its leaves. Then\n$u\\mapsto\\E_{\\mathcal T,u}F$ belongs to $C^2([0,1])$, with one-sided\nderivatives at the endpoints, and\n\\begin{align}\n \\frac{\\dd}{\\dd u}\\E_{\\mathcal T,u}F=\\frac\\alpha2\\bigg[&\n \\sum_{\\mathsf a\\ne\\mathsf b}\\E(FD_{\\mathsf{ab}})\n -2\\sum_{\\mathsf a,v}\\omega_v\\E(FD_{\\mathsf a\\hat v})\n +\\sum_{v,w}\\omega_v\\omega_w\\E(FD_{\\hat v\\check w})\\nonumber\\\\\n &+\\sum_v\\omega_va(q_v)\\E(FD_{\\hat v\\check v})\n +\\sum_v\\omega_v\\int_{(q_v,1]}\\E(FD_{\\hat r\\check r})\\,\\nu(\\dd r)\n \\nonumber\\\\\n &+s\\,\\E_{\\mathcal T,u}F\\int\\E_{2,r,u}D_{12}\\,\\nu(\\dd r)\\bigg].\n \\label{eq:streaming}\n\\end{align}\nThe sums run over leaves $\\mathsf a,\\mathsf b$ and points $v,w$ of\n$\\mathcal T$, with the weighted sums interpreted as integrals against\n$\\omega$ as above. The first five expectations are taken under extended\ntrees, and the last term is a product of expectations over independent\ncopies. The absolute coefficients in the bracket sum to at most\n$4k^2+2k+1$. The second derivative is obtained by applying the same\nformula to each tree moment on its right side, and the product rule to\nindependent products of moments.\n\\end{lemma}",
+        "quote_sha256": "869e5c84d7db00fc4e1bf8be35fa9c7c4b72e4b9ffbb9a5f5cd7e5a1f04aa92a"
+      },
+      "lean_declarations": [
+        "HexagonPaper.cavity_streaming_arbitrary_profile"
+      ],
+      "declaration_locations": {
+        "HexagonPaper.cavity_streaming_arbitrary_profile": [
+          {
+            "name": "HexagonPaper.cavity_streaming_arbitrary_profile",
+            "kind": "theorem",
+            "file": "HexagonPaper/CavityStreaming.lean",
+            "line": 26
+          }
+        ]
+      },
+      "coverage_note": "Actual arbitrary-profile finite-tree streaming: C2 on closed [0,1], one-sided endpoint derivatives, literal six-term source bracket and second bracket, coalesced charges and count-only envelope. The source shape is finite grid/binary genealogy; no streaming identity is supplied as a premise.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:corollary:10.6",
+      "type": "corollary",
+      "number": "10.6",
+      "labels": [
+        "cor:comparison",
+        "eq:comparison"
+      ],
+      "title_tex": "Comparison of nonnegative observables",
+      "source": {
+        "file": "sections/10-cavity.tex",
+        "start_line": 1143,
+        "end_line": 1152,
+        "source_character_range": [
+          60583,
+          61013
+        ],
+        "quote": "\\begin{corollary}[Comparison of nonnegative observables]\\label{cor:comparison}\nFor every deterministic profile, every marked tree $\\mathcal T$ with $k$\nleaves, and every nonnegative bounded function $F$ of the spins of its\nleaves,\n\\begin{equation}\\label{eq:comparison}\n \\E_{\\mathcal T,u}F\\le K_{\\beta,k}\\E_{\\mathcal T,v}F\n \\quad(0\\le u,v\\le1),\n \\qquad K_{\\beta,k}=\\exp\\bigl(\\beta^2(4k^2+2k+1)\\bigr).\n\\end{equation}\n\\end{corollary}",
+        "quote_sha256": "bd61fa4ef193996f929da89f6117e6cf75bb07e9ca9d3a046f4ba800cad64d83"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.cavityNative_positive_spin_comparison"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.cavityNative_positive_spin_comparison": [
+          {
+            "name": "QuantitativeFollowup.cavityNative_positive_spin_comparison",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityNativeComparison.lean",
+            "line": 106
+          }
+        ]
+      },
+      "coverage_note": "Actual nonnegative spin-observable comparison for finite terminal trees; printed exp((4k^2+2k+1)beta^2) is the proved constant. Positivity of observable is genuine input. Same genealogy representation qualification as Def.10.1.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:lemma:10.7",
+      "type": "lemma",
+      "number": "10.7",
+      "labels": [
+        "lem:cav-threeproducts",
+        "eq:threeproducts"
+      ],
+      "title_tex": "Three-defect bound",
+      "source": {
+        "file": "sections/10-cavity.tex",
+        "start_line": 1209,
+        "end_line": 1220,
+        "source_character_range": [
+          64058,
+          64589
+        ],
+        "quote": "\\begin{lemma}[Three-defect bound]\\label{lem:cav-threeproducts}\nFor every deterministic profile, every such term containing three\ndefects $\\Delta_1,\\Delta_2,\\Delta_3$, of pairs of leaves in the same or\nin independent trees, satisfies\n\\begin{equation}\\label{eq:threeproducts}\n \\int\\E\\bigl|\\Delta_1\\Delta_2\\Delta_3\\bigr|\\,\\dd\\mathfrak m\n \\le C\\mathcal M_3(u).\n\\end{equation}\nHere $\\E$ is the expectation under the product of the tree laws of the\nterm, and $C$ depends only on the numbers of leaves and of\ndifferentiations.\n\\end{lemma}",
+        "quote_sha256": "52dcdd2b54df99316fc184e1491b6c8623d387ad3780a1b47a1fa79670df8b83"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.cavityGeneratedActualObservedRawStreamingTerm_three_defects",
+        "QuantitativeFollowup.cavityGeneratedActualObservedRawStreamingTerm_physical_three_defects",
+        "QuantitativeFollowup.cavityGeneratedActualObservedRawTaggedStreamingTerm_source_coverage",
+        "QuantitativeFollowup.hasDerivWithinAt_cavityGeneratedActualObservedRawTaggedStreamingTerm_source_step",
+        "QuantitativeFollowup.cavityGeneratedActualObservedRawTaggedStreamingTerm_computed_successors",
+        "QuantitativeFollowup.cavityGeneratedActualObservedRawTaggedStreamingTerm_source_step_three_defects"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.cavityGeneratedActualObservedRawStreamingTerm_three_defects": [
+          {
+            "name": "QuantitativeFollowup.cavityGeneratedActualObservedRawStreamingTerm_three_defects",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityGeneratedObservedRawTermThreeDefects.lean",
+            "line": 21
+          }
+        ],
+        "QuantitativeFollowup.cavityGeneratedActualObservedRawStreamingTerm_physical_three_defects": [
+          {
+            "name": "QuantitativeFollowup.cavityGeneratedActualObservedRawStreamingTerm_physical_three_defects",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityGeneratedObservedRawTermThreeDefects.lean",
+            "line": 57
+          }
+        ],
+        "QuantitativeFollowup.cavityGeneratedActualObservedRawTaggedStreamingTerm_source_coverage": [
+          {
+            "name": "QuantitativeFollowup.cavityGeneratedActualObservedRawTaggedStreamingTerm_source_coverage",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityGeneratedObservedRawTaggedSourceThreeDefects.lean",
+            "line": 23
+          }
+        ],
+        "QuantitativeFollowup.hasDerivWithinAt_cavityGeneratedActualObservedRawTaggedStreamingTerm_source_step": [
+          {
+            "name": "QuantitativeFollowup.hasDerivWithinAt_cavityGeneratedActualObservedRawTaggedStreamingTerm_source_step",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityGeneratedObservedRawTaggedSourceThreeDefects.lean",
+            "line": 51
+          }
+        ],
+        "QuantitativeFollowup.cavityGeneratedActualObservedRawTaggedStreamingTerm_computed_successors": [
+          {
+            "name": "QuantitativeFollowup.cavityGeneratedActualObservedRawTaggedStreamingTerm_computed_successors",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityGeneratedObservedRawTaggedSourceThreeDefects.lean",
+            "line": 77
+          }
+        ],
+        "QuantitativeFollowup.cavityGeneratedActualObservedRawTaggedStreamingTerm_source_step_three_defects": [
+          {
+            "name": "QuantitativeFollowup.cavityGeneratedActualObservedRawTaggedStreamingTerm_source_step_three_defects",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityGeneratedObservedRawTaggedSourceThreeDefects.lean",
+            "line": 123
+          }
+        ]
+      },
+      "coverage_note": "Generated-history theorem family proves three-defect bound for inductively generated streaming terms; source coverage/successor theorems prove all six differentiation operations for measurable original bounded tests. Normalized history measure has count-only constant. Restoring physical differentiation multiplies both sides by |alpha/2|^r; alpha is not hidden inside the count-only prefactor. Generated-term witness is infrastructure encoding source derivation, not a free arbitrary term hypothesis.",
+      "coverage_category": "proved_bundle"
+    },
+    {
+      "id": "current:lemma:10.8",
+      "type": "lemma",
+      "number": "10.8",
+      "labels": [
+        "lem:remainder",
+        "eq:C2derivative"
+      ],
+      "title_tex": "Taylor remainder",
+      "source": {
+        "file": "sections/10-cavity.tex",
+        "start_line": 1343,
+        "end_line": 1350,
+        "source_character_range": [
+          70839,
+          71156
+        ],
+        "quote": "\\begin{lemma}[Taylor remainder]\\label{lem:remainder}\nFor every deterministic profile and every $u\\in[0,1]$,\n\\begin{equation}\\label{eq:C2derivative}\n \\int|\\mathcal C_{pp}''(u)|\\,\\nu(\\dd p)\\le C_\\beta\\mathcal M_3(u),\n \\qquad\n |\\mathcal R_{\\rm cav}|\\le C_\\beta\\sup_{0\\le w\\le1}\\mathcal M_3(w).\n\\end{equation}\n\\end{lemma}",
+        "quote_sha256": "96c2cb8e574226c73517f2e20b960272e471bc2ba8346b89b432b31ddf65acf4"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.followup_cavity_taylor_remainder"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.followup_cavity_taylor_remainder": [
+          {
+            "name": "QuantitativeFollowup.followup_cavity_taylor_remainder",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityTaylorRemainderLemma.lean",
+            "line": 17
+          }
+        ]
+      },
+      "coverage_note": "Actual fixed-level second within derivative integrated over free measure and integrated Taylor remainder; both beta-only cubic bounds, deterministic profiles including atoms and u endpoints. Remainder target is the literal integrated native function.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:lemma:11.1",
+      "type": "lemma",
+      "number": "11.1",
+      "labels": [
+        "lem:c7-endpoint-pointwise",
+        "eq:diagonallinear"
+      ],
+      "title_tex": "Endpoint derivative at a fixed level",
+      "source": {
+        "file": "sections/11-endpoint.tex",
+        "start_line": 237,
+        "end_line": 250,
+        "source_character_range": [
+          11142,
+          11680
+        ],
+        "quote": "\\begin{lemma}[Endpoint derivative at a fixed level]\n\\label{lem:c7-endpoint-pointwise}\nLet $\\mu=s\\delta_0+\\nu$ be a deterministic profile with\n$\\nu(\\{1\\})=0$, and let $p\\in[0,1]$. If $\\alpha>0$, then\n\\begin{align}\n \\frac{\\mathcal C_{pp}'(0)}\\alpha\n ={}&\\frac1d(J^{\\scal}_{a,d}\\Sigma^-)(p,p)+T_p\\nonumber\\\\\n &+\\frac12\\int\\nu(\\dd r)\\int_{(r,1]}\n  \\Cov^0\\bigl(f_p,g_r^\\ell(Y_r)\\bigr)\n    \\bigl[\\Theta(r;\\ell,p)-\\Sigma^-(\\ell,p)\\bigr]\\nu(\\dd\\ell).\n \\label{eq:diagonallinear}\n\\end{align}\nIf $\\alpha=0$, then $\\mathcal C_{pp}'(0)=0$.\n\\end{lemma}",
+        "quote_sha256": "f05c5a3f99a64c878430ccfa58c192392acbb4fb03a24f9a078c9398a374e8bf"
+      },
+      "lean_declarations": [
+        "HexagonPaper.cavityOriginalCpp_zero_response_three_group",
+        "HexagonPaper.cavityFixedRowMarked_three_group_data_all_profiles",
+        "HexagonPaper.cavityFixedRowMarked_three_group_eq_printed_linear_response",
+        "HexagonPaper.hasDerivWithinAt_cavityOriginalCpp_zero_printed_linear_response",
+        "QuantitativeFollowup.followupCavityCppFunction_eq_actual"
+      ],
+      "declaration_locations": {
+        "HexagonPaper.cavityOriginalCpp_zero_response_three_group": [
+          {
+            "name": "HexagonPaper.cavityOriginalCpp_zero_response_three_group",
+            "kind": "theorem",
+            "file": "HexagonPaper/CavityFixedRowExpansionOriginalResponse.lean",
+            "line": 79
+          }
+        ],
+        "HexagonPaper.cavityFixedRowMarked_three_group_data_all_profiles": [
+          {
+            "name": "HexagonPaper.cavityFixedRowMarked_three_group_data_all_profiles",
+            "kind": "theorem",
+            "file": "HexagonPaper/CavityFixedRowExpansionOriginalResponse.lean",
+            "line": 22
+          }
+        ],
+        "HexagonPaper.cavityFixedRowMarked_three_group_eq_printed_linear_response": [
+          {
+            "name": "HexagonPaper.cavityFixedRowMarked_three_group_eq_printed_linear_response",
+            "kind": "theorem",
+            "file": "HexagonPaper/CavityFixedRowExpansionOriginalResponse.lean",
+            "line": 49
+          }
+        ],
+        "HexagonPaper.hasDerivWithinAt_cavityOriginalCpp_zero_printed_linear_response": [
+          {
+            "name": "HexagonPaper.hasDerivWithinAt_cavityOriginalCpp_zero_printed_linear_response",
+            "kind": "theorem",
+            "file": "HexagonPaper/CavityFixedRowExpansionOriginalResponse.lean",
+            "line": 91
+          }
+        ],
+        "QuantitativeFollowup.followupCavityCppFunction_eq_actual": [
+          {
+            "name": "QuantitativeFollowup.followupCavityCppFunction_eq_actual",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityCppNativeFunction.lean",
+            "line": 58
+          }
+        ]
+      },
+      "coverage_note": "Actual right derivative on Icc(0,1) equals alpha times scalar response plus signed-rest and half correction. alpha=0 remains through factorization; divide only for alpha>0. Four manuscript product-rule groups reorganize to three evaluated groups. No endpoint-response formula is assumed.",
+      "coverage_category": "proved_bundle"
+    },
+    {
+      "id": "current:lemma:11.2",
+      "type": "lemma",
+      "number": "11.2",
+      "labels": [
+        "lem:linear",
+        "eq:lineartrace"
+      ],
+      "title_tex": "Integrated linear response",
+      "source": {
+        "file": "sections/11-endpoint.tex",
+        "start_line": 261,
+        "end_line": 279,
+        "source_character_range": [
+          12154,
+          13154
+        ],
+        "quote": "\\begin{lemma}[Integrated linear response]\\label{lem:linear}\nLet $\\mu=s\\delta_0+\\nu$ be a deterministic profile with\n$\\nu(\\{1\\})=0$, and let $V^-=\\int\\Var^-(A_p^-)\\nu(\\dd p)$. Then\n\\begin{equation}\\label{eq:lineartrace}\n \\int\\mathcal C_{pp}'(0)\\,\\nu(\\dd p)\n =\\alpha\\Bigl[\\frac1d\\Tr_\\nu(J^{\\scal}_{a,d}\\Sigma^-)\n                     -\\frac12\\mathcal P+\\int T_p\\,\\nu(\\dd p)\\Bigr],\n \\qquad \\mathcal P\\ge0,\n\\end{equation}\nwhere $\\mathcal P$ is given by \\eqref{eq:Ppositive},\n$\\Tr_\\nu(J^{\\scal}_{a,d}\\Sigma^-)\n=\\int(J^{\\scal}_{a,d}\\Sigma^-)(p,p)\\nu(\\dd p)$, and $T_p$ is given by\n\\eqref{eq:cav-T1}--\\eqref{eq:cav-T3}. Further, $\\Sigma^-$ is a positive\ntrace-class covariance operator on $L^2(\\nu)$ with trace $V^-$ and range\nin $\\mathcal H_\\nu$. With $\\bar A^-$ the random function\n$p\\mapsto\\bar A_p^-$, the number $\\Tr_\\nu(J^{\\scal}_{a,d}\\Sigma^-)$\nequals $\\E^-\\langle\\bar A^-,J^{\\scal}_{a,d}\\bar A^-\\rangle_{L^2(\\nu)}$,\nthe trace of the operator $J^{\\scal}_{a,d}\\Sigma^-$ on $\\mathcal H_\\nu$.\n\\end{lemma}",
+        "quote_sha256": "7d9f4e552d3ed933f6529b16457a9bcec356680aa7da3fd43afe63c7e33ba804"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.followupCavityCpp_zero_response_integral",
+        "QuantitativeFollowup.integrable_followupCavityCpp_zero_firstJet",
+        "QuantitativeFollowup.followup_cavity_covariance_trace_data",
+        "QuantitativeFollowup.cavityRestResponseTrace_hasSum",
+        "QuantitativeFollowup.cavityRestResponseTrace_eq_tsum",
+        "QuantitativeFollowup.cavityRestEndpointProcess_response_pairing",
+        "QuantitativeFollowup.cavityRestResponseTrace_eq_kernel_diagonal",
+        "QuantitativeFollowup.cavityRestResponseTrace_kernel_diagonal_hasSum"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.followupCavityCpp_zero_response_integral": [
+          {
+            "name": "QuantitativeFollowup.followupCavityCpp_zero_response_integral",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityCppZeroResponseIntegratedResults.lean",
+            "line": 27
+          }
+        ],
+        "QuantitativeFollowup.integrable_followupCavityCpp_zero_firstJet": [
+          {
+            "name": "QuantitativeFollowup.integrable_followupCavityCpp_zero_firstJet",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityCppZeroResponseIntegratedResults.lean",
+            "line": 18
+          }
+        ],
+        "QuantitativeFollowup.followup_cavity_covariance_trace_data": [
+          {
+            "name": "QuantitativeFollowup.followup_cavity_covariance_trace_data",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityTraceCovarianceData.lean",
+            "line": 39
+          }
+        ],
+        "QuantitativeFollowup.cavityRestResponseTrace_hasSum": [
+          {
+            "name": "QuantitativeFollowup.cavityRestResponseTrace_hasSum",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityRestResponseTrace.lean",
+            "line": 23
+          }
+        ],
+        "QuantitativeFollowup.cavityRestResponseTrace_eq_tsum": [
+          {
+            "name": "QuantitativeFollowup.cavityRestResponseTrace_eq_tsum",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityRestResponseTrace.lean",
+            "line": 34
+          }
+        ],
+        "QuantitativeFollowup.cavityRestEndpointProcess_response_pairing": [
+          {
+            "name": "QuantitativeFollowup.cavityRestEndpointProcess_response_pairing",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityRestTraceDiagonal.lean",
+            "line": 29
+          }
+        ],
+        "QuantitativeFollowup.cavityRestResponseTrace_eq_kernel_diagonal": [
+          {
+            "name": "QuantitativeFollowup.cavityRestResponseTrace_eq_kernel_diagonal",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityRestTraceDiagonal.lean",
+            "line": 81
+          }
+        ],
+        "QuantitativeFollowup.cavityRestResponseTrace_kernel_diagonal_hasSum": [
+          {
+            "name": "QuantitativeFollowup.cavityRestResponseTrace_kernel_diagonal_hasSum",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityRestTraceDiagonal.lean",
+            "line": 114
+          }
+        ]
+      },
+      "coverage_note": "Actual integrated endpoint derivative and L2 covariance trace data; trace is expectation of the response pairing and then basis-trace/kernel-diagonal equalities are proved. Positive trace-class covariance, endpoint-fixed range, actual variance trace and nonnegative penalty are conclusions. No self-adjointness of response is a trace premise.",
+      "coverage_category": "proved_bundle"
+    },
+    {
+      "id": "current:lemma:11.3",
+      "type": "lemma",
+      "number": "11.3",
+      "labels": [
+        "lem:cl-response",
+        "eq:cl-response",
+        "eq:cl-response-final"
+      ],
+      "title_tex": "Signed response estimate",
+      "source": {
+        "file": "sections/11-endpoint.tex",
+        "start_line": 887,
+        "end_line": 898,
+        "source_character_range": [
+          40973,
+          41443
+        ],
+        "quote": "\\begin{lemma}[Signed response estimate]\\label{lem:cl-response}\nLet $\\mu=s\\delta_0+\\nu$ be a deterministic profile with\n$\\nu(\\{1\\})=0$. Then\n\\begin{equation}\\label{eq:cl-response}\n \\Bigl|\\int T_p\\,\\nu(\\dd p)\\Bigr|\\le\\mathfrak a+24\\,\\mathfrak j\n\\end{equation}\nand, with $K_{\\beta,3}$ from \\cref{cor:comparison},\n\\begin{equation}\\label{eq:cl-response-final}\n \\alpha\\Bigl|\\int T_p\\,\\nu(\\dd p)\\Bigr|\n \\le192\\beta^2K_{\\beta,3}\\bigl[A+J+N^{-2}\\bigr].\n\\end{equation}\n\\end{lemma}",
+        "quote_sha256": "6dfb2e22fe59b3078c221d62d164564c4e0b7fe901c3dea5c8ae03f3e8c0c937"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.followup_signed_response_estimate"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.followup_signed_response_estimate": [
+          {
+            "name": "QuantitativeFollowup.followup_signed_response_estimate",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavitySignedResponseLemma.lean",
+            "line": 14
+          }
+        ]
+      },
+      "coverage_note": "Actual signed response gives both weighted a+24j and exact 192 beta^2 exp(43 beta^2)(A+J+N^-2). Native target permits more profiles than the printed nu({1})=0 restriction.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:lemma:12.1",
+      "type": "lemma",
+      "number": "12.1",
+      "labels": [
+        "lem:cl-star",
+        "eq:cl-star"
+      ],
+      "title_tex": "Four-descendant variance comparison",
+      "source": {
+        "file": "sections/12-closure.tex",
+        "start_line": 170,
+        "end_line": 175,
+        "source_character_range": [
+          8852,
+          9105
+        ],
+        "quote": "\\begin{lemma}[Four-descendant variance comparison]\\label{lem:cl-star}\nLet $\\mu=s\\delta_0+\\nu$ minimize $\\mathcal F_{t,s}$. Then\n\\begin{equation}\\label{eq:cl-star}\n V^-\\le V+C_\\beta\\sup_{0\\le u\\le1}\\mathcal M_3(u)+\\frac1{4n^2}.\n\\end{equation}\n\\end{lemma}",
+        "quote_sha256": "d4dd40583f8196136676c097e65863a30576eef9a598143287a7e94d59476434"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.followup_cavity_four_rest_variance_comparison"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.followup_cavity_four_rest_variance_comparison": [
+          {
+            "name": "QuantitativeFollowup.followup_cavity_four_rest_variance_comparison",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityFourRestVarianceComparison.lean",
+            "line": 61
+          }
+        ]
+      },
+      "coverage_note": "Actual minimizing profile and four-descendant tree comparison give rest variance <= full variance + beta-only cubic supremum +1/(4n^2), with N=n+1. Natural positive floor/profile membership and minimization only.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:lemma:12.2",
+      "type": "lemma",
+      "number": "12.2",
+      "labels": [
+        "lem:cav-trace",
+        "eq:finaltrace"
+      ],
+      "title_tex": "Trace identity for the full variance",
+      "source": {
+        "file": "sections/12-closure.tex",
+        "start_line": 266,
+        "end_line": 278,
+        "source_character_range": [
+          13439,
+          13905
+        ],
+        "quote": "\\begin{lemma}[Trace identity for the full variance]\\label{lem:cav-trace}\nLet the profile be deterministic with $\\nu(\\{1\\})=0$, and let\n\\[\n V^{\\rm site}=\\int\\Var_1\\bigl(m_N(p)^2\\bigr)\\,\\nu(\\dd p).\n\\]\nThen $0\\le V^{\\rm site}\\le1/4$ and\n\\begin{equation}\\label{eq:finaltrace}\n V=\\frac{V^{\\rm site}}N+\\frac nN\\Bigl[\n \\frac\\alpha d\\Tr_\\nu(J^{\\scal}_{a,d}\\Sigma^-)\n -\\frac\\alpha2\\mathcal P+\\alpha\\int T_p\\,\\nu(\\dd p)\n +\\mathcal R_{\\rm cav}\\Bigr].\n\\end{equation}\n\\end{lemma}",
+        "quote_sha256": "978d188cfef5bc44960fe4644650aff8255060d121d3aea9cd4af72ed8683c35"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.followup_actual_full_variance_trace"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.followup_actual_full_variance_trace": [
+          {
+            "name": "QuantitativeFollowup.followup_actual_full_variance_trace",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityFullVarianceTraceActualSource.lean",
+            "line": 17
+          }
+        ]
+      },
+      "coverage_note": "Actual full variance trace identity, N=n+1, beta positive and free terminal mass zero. Site variance in [0,1/4], all alpha/d and n/N factors, signed response, penalty and actual Taylor remainder match.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:lemma:12.3",
+      "type": "lemma",
+      "number": "12.3",
+      "labels": [
+        "lem:c7-thermal"
+      ],
+      "title_tex": "Third moment of the rest overlap",
+      "source": {
+        "file": "sections/12-closure.tex",
+        "start_line": 317,
+        "end_line": 326,
+        "source_character_range": [
+          15572,
+          15949
+        ],
+        "quote": "\\begin{lemma}[Third moment of the rest overlap]\\label{lem:c7-thermal}\nFor every deterministic profile,\n\\[\n \\sup_{0\\le u\\le1}\\mathcal M_3(u)\n \\le K_{\\beta,2}\\bigl[64(A+J)+16H_3+32N^{-3}\\bigr],\n\\]\nwhere $K_{\\beta,2}=e^{21\\beta^2}$ is the constant of\n\\cref{cor:comparison} for two leaves, and $A$, $J$, and $H_3$ are\ncomputed for the full system with the same profile.\n\\end{lemma}",
+        "quote_sha256": "6df90c3fe448fc03ac878a42c1a8db315b726a6abcf84a071f3073b876a3c40f"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.followup_cavity_third_rest_moment_thermal"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.followup_cavity_third_rest_moment_thermal": [
+          {
+            "name": "QuantitativeFollowup.followup_cavity_third_rest_moment_thermal",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityThirdRestMomentThermalIntegral.lean",
+            "line": 78
+          }
+        ]
+      },
+      "coverage_note": "Actual deterministic profile gives rest cubic supremum <=exp(21 beta^2)[64(A+J)+16H3+32N^-3]. All quantities use full system N=n+1. No minimization premise.",
+      "coverage_category": "proved_statement"
+    },
+    {
+      "id": "current:proposition:12.4",
+      "type": "proposition",
+      "number": "12.4",
+      "labels": [
+        "prop:c7-closure",
+        "eq:c7-stab",
+        "eq:c7-C1"
+      ],
+      "title_tex": "Self-overlap contraction",
+      "source": {
+        "file": "sections/12-closure.tex",
+        "start_line": 402,
+        "end_line": 414,
+        "source_character_range": [
+          19120,
+          19732
+        ],
+        "quote": "\\begin{proposition}[Self-overlap contraction]\\label{prop:c7-closure}\nLet $N\\ge2$, $0<\\rho\\le1$, and $0<s\\le1/2$, and let $\\mu=s\\delta_0+\\nu$\nminimize $\\mathcal F_{t,s}$, with cumulative function $a$. Suppose that\nthe scalar response with coefficient $d=\\beta^2(1-t/N)$ satisfies\n\\begin{equation}\\label{eq:c7-stab}\n J^{\\scal}_{a,d}\\preceq(1+\\eps_N)I\\ \\text{ on }\\mathcal H_\\nu,\n \\qquad 0\\le\\eps_N\\le\\rho/4 .\n\\end{equation}\nThen, with a constant $C_{\\rm cav}$ depending only on $\\beta$,\n\\begin{equation}\\label{eq:c7-C1}\n \\frac{3\\rho}{4}\\,V\\le C_{\\rm cav}\\bigl[N^{-1}+A+J+H_3\\bigr].\n\\end{equation}\n\\end{proposition}",
+        "quote_sha256": "5aa95d764e5bab2efa48918a2c3c28cd89d6d7ecfc2c3b2387a3370b8e458c5b"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.followup_cavity_contraction_actual_printed_stability"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.followup_cavity_contraction_actual_printed_stability": [
+          {
+            "name": "QuantitativeFollowup.followup_cavity_contraction_actual_printed_stability",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityStableDefectActualSource.lean",
+            "line": 34
+          }
+        ]
+      },
+      "coverage_note": "Conditional contraction infrastructure: assumes the paper's actual scalar response stability with 0<=epsilon<=rho/4 in addition to genuine minimization and feasible floor. Proves literal 3rho/4 V bound. Stability is separately derived in9.9 when used in the main theorem; this target alone is not an unconditional stability theorem.",
+      "coverage_category": "conditional_stability_infrastructure",
+      "target_definitions": {
+        "QuantitativeFollowup.FollowupCavityPrintedScalarStability": {
+          "name": "QuantitativeFollowup.FollowupCavityPrintedScalarStability",
+          "kind": "def",
+          "file": "QuantitativeFollowup/FollowupCavityStableDefectActualSource.lean",
+          "line": 18
+        },
+        "QuantitativeFollowup.FollowupCavityStableContractionAt": {
+          "name": "QuantitativeFollowup.FollowupCavityStableContractionAt",
+          "kind": "def",
+          "file": "QuantitativeFollowup/FollowupCavityStableDefectIntegrated.lean",
+          "line": 17
+        }
+      }
+    },
+    {
+      "id": "current:corollary:12.5",
+      "type": "corollary",
+      "number": "12.5",
+      "labels": [
+        "cor:c7-defect",
+        "eq:c7-defect",
+        "eq:c7-integrated"
+      ],
+      "title_tex": "Defect on the stable interval",
+      "source": {
+        "file": "sections/12-closure.tex",
+        "start_line": 506,
+        "end_line": 528,
+        "source_character_range": [
+          23627,
+          24680
+        ],
+        "quote": "\\begin{corollary}[Defect on the stable interval]\\label{cor:c7-defect}\nLet $N\\ge2$, $1/N\\le\\rho\\le1$, and $0<s=\\lambda/\\beta\\le1/2$.\n\\begin{enumerate}[label=\\textup{(\\alph*)}]\n\\item Every minimizer $\\mu=s\\delta_0+\\nu$ of $\\mathcal F_{t,s}$ at these\nparameters that satisfies \\eqref{eq:c7-stab} for some $\\eps_N$, with $a$\nits cumulative function, obeys\n\\begin{equation}\\label{eq:c7-defect}\n \\beta(A+2J+V)\\le C_\\beta\\frac{\\log^2(2+N)}{N\\lambda\\rho^2},\n\\end{equation}\nwhere $A$, $J$, and $V$ are computed at $\\mu$, and $C_\\beta$ depends only\non $\\beta$.\n\\item If the defect $\\calD_N(\\rho)$ is defined at $\\rho$ by\n\\eqref{eq:in-envelope} and some minimizer at $\\rho$ satisfies\n\\eqref{eq:c7-stab}, then $\\calD_N(\\rho)$ satisfies the bound\n\\eqref{eq:c7-defect}.\n\\item If $1/N\\le\\rho_0\\le1$ and, for every $\\rho\\in[\\rho_0,1]$, every\nminimizer at $\\rho$ satisfies \\eqref{eq:c7-stab}, then\n\\begin{equation}\\label{eq:c7-integrated}\n \\int_{\\rho_0}^1\\calD_N(\\rho)\\dd\\rho\n \\le C_\\beta\\frac{\\log^2(2+N)}{N\\lambda\\rho_0}.\n\\end{equation}\n\\end{enumerate}\n\\end{corollary}",
+        "quote_sha256": "5b2c39a93de7c539c1479eafd2330b864d072830617d266491a5f7c2925c2aa7"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.followup_cavity_stable_defect_actual_printed_stability",
+        "QuantitativeFollowup.followup_cavity_stable_defect_actual_optimized_of_stable_minimizer",
+        "QuantitativeFollowup.followup_cavity_stable_defect_actual_optimized_some_minimizer_ae",
+        "QuantitativeFollowup.followup_cavity_stable_defect_actual_printed_integrated"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.followup_cavity_stable_defect_actual_printed_stability": [
+          {
+            "name": "QuantitativeFollowup.followup_cavity_stable_defect_actual_printed_stability",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityStableDefectActualSource.lean",
+            "line": 51
+          }
+        ],
+        "QuantitativeFollowup.followup_cavity_stable_defect_actual_optimized_of_stable_minimizer": [
+          {
+            "name": "QuantitativeFollowup.followup_cavity_stable_defect_actual_optimized_of_stable_minimizer",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityStableDefectActualEnvelopeSource.lean",
+            "line": 15
+          }
+        ],
+        "QuantitativeFollowup.followup_cavity_stable_defect_actual_optimized_some_minimizer_ae": [
+          {
+            "name": "QuantitativeFollowup.followup_cavity_stable_defect_actual_optimized_some_minimizer_ae",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityStableDefectActualEnvelopeSource.lean",
+            "line": 40
+          }
+        ],
+        "QuantitativeFollowup.followup_cavity_stable_defect_actual_printed_integrated": [
+          {
+            "name": "QuantitativeFollowup.followup_cavity_stable_defect_actual_printed_integrated",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/FollowupCavityStableDefectActualSource.lean",
+            "line": 110
+          }
+        ]
+      },
+      "coverage_note": "Conditional stable-profile bounds and optimized/integrated envelope. Part(a) applies to a specified stable minimizer including rho=1. Part(b) target is at an interior differentiability point with one stable minimizer; companion a.e. theorem needs some stable minimizer. Part(c) assumes all minimizers stable throughout the interval and proves actual integrability/integral. These are the printed stability inputs, discharged in the main argument, not new axioms.",
+      "coverage_category": "conditional_stability_infrastructure"
+    },
+    {
+      "id": "current:proposition:13.1",
+      "type": "proposition",
+      "number": "13.1",
+      "labels": [
+        "prop:sm-small",
+        "eq:sm-pointwise",
+        "eq:sm-moving",
+        "eq:sm-integrated"
+      ],
+      "title_tex": "The interval near $\\rho=0$",
+      "source": {
+        "file": "sections/13-proof.tex",
+        "start_line": 64,
+        "end_line": 96,
+        "source_character_range": [
+          3311,
+          4596
+        ],
+        "quote": "\\begin{proposition}[The interval near $\\rho=0$]\\label{prop:sm-small}\nLet $N\\ge2$, $0<\\lambda\\le\\lambda_0$, and $0<\\rho\\le1$, and let $\\eta>0$\nbe a trial budget at $\\rho$, that is, a bound for the left side of\n\\eqref{eq:fnd-trial}. Let\n$\\omega(\\rho,\\eta)=\\min\\{1,(\\eta/\\rho)^{1/6}\\}$ be as in\n\\eqref{eq:lz-omega}. Then every minimizing profile $\\mu$ at these\nparameters satisfies\n\\begin{align}\n \\beta(A+2J+V)\n &\\le C_\\beta\\left[\n \\frac{\\log^2(2+N)}{N\\rho\\lambda}\n +(N\\rho)^{-2/3}\n +(N\\rho)^{-2/3}\\lambda^{-1/3}\\omega(\\rho,\\eta)^{2/3}\n \\right],\\label{eq:sm-pointwise}\\\\\n \\beta(A+2J+V)&\\le C_\\beta(N\\rho)^{-1/2},\n \\label{eq:sm-moving}\n\\end{align}\nwhere $A$, $J$, and $V$ are computed at $\\mu$. In particular, the same\nbounds hold for $\\calD_N(\\rho)$ whenever $\\calD_N(\\rho)$ is defined. If\n$0<\\rho_0\\le1$ and $\\eta$ is a trial budget at every $\\rho\\in(0,\\rho_0]$,\nthen\n\\begin{equation}\\label{eq:sm-integrated}\n \\int_0^{\\rho_0}\\calD_N(\\rho)\\dd\\rho\n \\le C_\\beta\\left[\n N^{-1}+\\frac{\\log^3(2+N)}{N\\lambda}\n +N^{-2/3}\\rho_0^{1/3}\n +N^{-2/3}\\lambda^{-1/3}\\eta^{1/9}\\rho_0^{2/9}\n \\right].\n\\end{equation}\nThe constants depend only on $\\beta$; in particular, they do not depend\non $N$, $\\rho$, $\\lambda$, $\\eta$, the minimizer, or the positions and\nmasses of the atoms of $\\nu$.\n\\end{proposition}",
+        "quote_sha256": "f8b2c16fb9a6573b6695c4079a0ad01714d0888d7b937bd9a6eb880ecd14075c"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.small_interval_near_zero",
+        "QuantitativeFollowup.SmallIntervalTarget"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.small_interval_near_zero": [
+          {
+            "name": "QuantitativeFollowup.small_interval_near_zero",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/SmallIntervalProposition.lean",
+            "line": 39
+          }
+        ],
+        "QuantitativeFollowup.SmallIntervalTarget": [
+          {
+            "name": "QuantitativeFollowup.SmallIntervalTarget",
+            "kind": "def",
+            "file": "QuantitativeFollowup/SmallIntervalProposition.lean",
+            "line": 14
+          }
+        ]
+      },
+      "coverage_note": "SmallIntervalTarget is a proposition-valued target definition, not proof by itself; small_interval_near_zero discharges it. It proves both actual minimizing-profile bounds and the optimized integral with one beta-only constant, includes eta=0 (stronger than source eta>0), and takes genuine trial budget as premise. Optimized pointwise consequence is at differentiability points; integrability is actual theorem conclusion.",
+      "coverage_category": "proved_bundle"
+    }
+  ],
+  "numbered_definitions": [
+    {
+      "id": "current:definition:4.1",
+      "type": "definition",
+      "number": "4.1",
+      "labels": [
+        "def:gauss-law",
+        "eq:fnd-general-pde"
+      ],
+      "title_tex": "Generalized law",
+      "source": {
+        "file": "sections/04-gaussian.tex",
+        "start_line": 48,
+        "end_line": 81,
+        "source_character_range": [
+          2491,
+          4294
+        ],
+        "quote": "\\begin{definition}[Generalized law]\\label{def:gauss-law}\nLet $\\Lambda=\\operatorname{diag}(\\vartheta_1,\\ldots,\\vartheta_N)$ with\n$\\vartheta_i>0$, and let $(\\kappa_{ij})_{1\\le i\\le j\\le N}$ be real\nnumbers; $\\Lambda$ and $\\kappa$ are deterministic. Let\n$\\omega=(\\omega_{ij})_{1\\le i\\le j\\le N}$ be independent standard\nGaussian variables, and write $\\E_{\\rm ref}$ for expectation under their\nlaw. Let $\\mu=s\\delta_0+\\nu$ be either an admissible profile in the\nsense of \\cref{sec:fnd-functional}, so that $0<s\\le1/2$, or, with\n$s=0$, an arbitrary deterministic probability measure $\\mu=\\nu$ on\n$[0,1]$. Let $a(q)=\\mu([0,q])$, and let $U$ solve\n\\begin{equation}\\label{eq:fnd-general-pde}\n \\partial_qU=-\\frac12\\bigl(\\Tr(\\Lambda\\nabla^2U)\n      +a(q)\\nabla U^T\\Lambda\\nabla U\\bigr),\\qquad\n U(1,x;\\omega)=\\log\\sum_{\\sigma\\in\\{-1,1\\}^N}\n     e^{\\mathcal H_\\sigma(\\omega,x)},\n\\end{equation}\nwhere\n$\\mathcal H_\\sigma(\\omega,x)=\\sum_{i\\le j}\\kappa_{ij}\\omega_{ij}\\sigma_i\\sigma_j+x\\cdot\\sigma$.\nThe \\emph{generalized law} of $(\\Lambda,\\kappa,\\mu)$ is the joint law of\n$(\\omega,X,\\sigma)$ built in three stages.\n\\begin{enumerate}[label=(\\roman*)]\n\\item The Gaussian law of $\\omega$ is tilted by the density\n$e^{sU(0,0;\\omega)}/\\E_{\\rm ref}e^{sU(0,0;\\omega)}$.\n\\item Given $\\omega$, the field solves\n$\\dd X_q=a(q)\\Lambda\\nabla U(q,X_q;\\omega)\\dd q+\\Lambda^{1/2}\\dd B_q$\nwith $X_0=0$, where $B$ is a standard Brownian motion in $\\R^N$.\n\\item Given $\\omega$ and $X$, the spin $\\sigma$ is drawn with\nprobabilities proportional to $e^{\\mathcal H_\\sigma(\\omega,X_1)}$.\n\\end{enumerate}\nAs in \\cref{subsec:fnd-law}, we write $\\Pp$ and $\\E$ for this law, and\nwe define $\\calG_q=\\sigma(\\omega,X_r:0\\le r\\le q)$,\n$m_q=\\E[\\sigma\\mid\\calG_q]$, $C_q=\\Cov(\\sigma\\mid\\calG_q)$, and\n$H_q=\\nabla_x^2U(q,X_q;\\omega)$.\n\\end{definition}",
+        "quote_sha256": "e748290617f439bbab2b98f74f30b146daf118ac5b11ad5e16ca63d7c8a89c26"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.AnisotropicSpinModel",
+        "QuantitativeFollowup.anisotropicHamiltonian",
+        "QuantitativeFollowup.anisotropicDisorderLaw",
+        "QuantitativeFollowup.anisotropicMeasureTailPotential",
+        "QuantitativeFollowup.anisotropicMeasureOuterLaw",
+        "QuantitativeFollowup.anisotropicMeasureOuterLaw_density",
+        "QuantitativeFollowup.anisotropicMeasureSampleLaw",
+        "QuantitativeFollowup.anisotropicMeasureState",
+        "QuantitativeFollowup.anisotropicMeasureState_equation",
+        "QuantitativeFollowup.anisotropicMeasureTerminalKernel",
+        "QuantitativeFollowup.anisotropicMeasureSpinPathLaw"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.AnisotropicSpinModel": [
+          {
+            "name": "QuantitativeFollowup.AnisotropicSpinModel",
+            "kind": "structure",
+            "file": "QuantitativeFollowup/AnisotropicSpinModel.lean",
+            "line": 20
+          }
+        ],
+        "QuantitativeFollowup.anisotropicHamiltonian": [
+          {
+            "name": "QuantitativeFollowup.anisotropicHamiltonian",
+            "kind": "def",
+            "file": "QuantitativeFollowup/AnisotropicSpinModel.lean",
+            "line": 41
+          }
+        ],
+        "QuantitativeFollowup.anisotropicDisorderLaw": [
+          {
+            "name": "QuantitativeFollowup.anisotropicDisorderLaw",
+            "kind": "def",
+            "file": "QuantitativeFollowup/AnisotropicSpinModel.lean",
+            "line": 25
+          }
+        ],
+        "QuantitativeFollowup.anisotropicMeasureTailPotential": [
+          {
+            "name": "QuantitativeFollowup.anisotropicMeasureTailPotential",
+            "kind": "def",
+            "file": "QuantitativeFollowup/AnisotropicDyadicTail.lean",
+            "line": 43
+          }
+        ],
+        "QuantitativeFollowup.anisotropicMeasureOuterLaw": [
+          {
+            "name": "QuantitativeFollowup.anisotropicMeasureOuterLaw",
+            "kind": "def",
+            "file": "QuantitativeFollowup/AnisotropicMeasureOuterLaw.lean",
+            "line": 32
+          }
+        ],
+        "QuantitativeFollowup.anisotropicMeasureOuterLaw_density": [
+          {
+            "name": "QuantitativeFollowup.anisotropicMeasureOuterLaw_density",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/AnisotropicMeasureOuterLaw.lean",
+            "line": 40
+          }
+        ],
+        "QuantitativeFollowup.anisotropicMeasureSampleLaw": [
+          {
+            "name": "QuantitativeFollowup.anisotropicMeasureSampleLaw",
+            "kind": "def",
+            "file": "QuantitativeFollowup/AnisotropicMeasureDrift.lean",
+            "line": 21
+          }
+        ],
+        "QuantitativeFollowup.anisotropicMeasureState": [
+          {
+            "name": "QuantitativeFollowup.anisotropicMeasureState",
+            "kind": "def",
+            "file": "QuantitativeFollowup/AnisotropicMeasureState.lean",
+            "line": 21
+          }
+        ],
+        "QuantitativeFollowup.anisotropicMeasureState_equation": [
+          {
+            "name": "QuantitativeFollowup.anisotropicMeasureState_equation",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/AnisotropicMeasureState.lean",
+            "line": 47
+          }
+        ],
+        "QuantitativeFollowup.anisotropicMeasureTerminalKernel": [
+          {
+            "name": "QuantitativeFollowup.anisotropicMeasureTerminalKernel",
+            "kind": "def",
+            "file": "QuantitativeFollowup/AnisotropicTerminalPathLaw.lean",
+            "line": 17
+          }
+        ],
+        "QuantitativeFollowup.anisotropicMeasureSpinPathLaw": [
+          {
+            "name": "QuantitativeFollowup.anisotropicMeasureSpinPathLaw",
+            "kind": "def",
+            "file": "QuantitativeFollowup/AnisotropicTerminalPathLaw.lean",
+            "line": 27
+          }
+        ]
+      },
+      "coverage_note": "Definition/construction, not a theorem. Positive diagonal variances and arbitrary real Gaussian couplings, dyadic-recursion Parisi potential, tilted outer law, Picard state, Gibbs terminal kernel and marked path law are concrete. The anchor bundle is not a standalone existence/uniqueness theorem for the displayed classical PDE at arbitrary atomic profiles.",
+      "coverage_category": "definition"
+    },
+    {
+      "id": "current:definition:9.5",
+      "type": "definition",
+      "number": "9.5",
+      "labels": [
+        "def:sc-response",
+        "eq:scalarJexplicit"
+      ],
+      "title_tex": "Response operator",
+      "source": {
+        "file": "sections/09-scalar.tex",
+        "start_line": 618,
+        "end_line": 640,
+        "source_character_range": [
+          28883,
+          30104
+        ],
+        "quote": "\\begin{definition}[Response operator]\\label{def:sc-response}\nLet $a$ be a profile with $\\mu=s\\delta_0+\\nu$, and let\n$d\\in[\\beta^2/2,\\beta^2]$. For a bounded Borel function $\\varphi$ on\n$[0,1]$ and $p\\in[0,1]$, we define\n\\begin{align}\n \\frac1d(J_{a,d}\\varphi)(p)={}&\n \\E^0\\bigl[h_p^2+2(1-a(p))m_p^2h_p\\bigr]\\varphi(p)\n -\\int_{(p,1]}\\E^0\\bigl[m_p\\partial_y g_p^\\ell(Y_p)\\bigr]\n                                      \\varphi(\\ell)\\,\\nu(\\dd\\ell)\\nonumber\\\\\n &-2\\int\\E^0[m_ph_pm_r]\\varphi(p\\wedge r)\\,\\nu(\\dd r)\n  -\\int\\E^0[\\bar f_p\\epsilon m_r]\\varphi(r)\\,\\nu(\\dd r)\\nonumber\\\\\n &+\\frac12\\int a(r)\\E^0[\\bar f_pm_r^2]\\varphi(r)\\,\\nu(\\dd r)\n  +\\frac12\\iint\\E^0[\\bar f_pm_rm_\\ell]\\varphi(r\\wedge\\ell)\n                                      \\,\\nu(\\dd r)\\nu(\\dd\\ell)\\nonumber\\\\\n &+\\frac12\\int\\nu(\\dd r)\\int_{(r,1]}\n           \\E^0\\bigl[\\bar f_pg_r^\\ell(Y_r)\\bigr]\\varphi(\\ell)\\,\\nu(\\dd\\ell).\n \\label{eq:scalarJexplicit}\n\\end{align}\nIntegrals without a domain are over $[0,1]$. The same formula defines\n$J_{a,d}v$ for $v\\in L^2(\\nu)$. The \\emph{scalar response operator}\n$J^{\\scal}_{a,d}$ is the compression of $J_{a,d}$ to $\\mathcal H_\\nu$,\nthat is, $J^{\\scal}_{a,d}v=\\ind_{(0,1)}J_{a,d}v$ for $v\\in\\mathcal H_\\nu$.\n\\end{definition}",
+        "quote_sha256": "9962a7d44870a47b7acb1986820d587be17bc679399d9e535f2a799e69fdf049"
+      },
+      "lean_declarations": [
+        "QuantitativeFollowup.scalarResponseOperator",
+        "QuantitativeFollowup.scalarFutureCenteredPairing",
+        "QuantitativeFollowup.scalarCompressedResponse",
+        "FourPapersCommon.endpointFixedL2",
+        "FourPapersCommon.endpointFixedL2Compression",
+        "QuantitativeFollowup.scalar_response_L2_bound",
+        "QuantitativeFollowup.scalarResponseL2Operator",
+        "QuantitativeFollowup.scalarResponseL2Operator_test_coeFn"
+      ],
+      "declaration_locations": {
+        "QuantitativeFollowup.scalarResponseOperator": [
+          {
+            "name": "QuantitativeFollowup.scalarResponseOperator",
+            "kind": "def",
+            "file": "QuantitativeFollowup/ScalarResponseOperator.lean",
+            "line": 33
+          }
+        ],
+        "QuantitativeFollowup.scalarFutureCenteredPairing": [
+          {
+            "name": "QuantitativeFollowup.scalarFutureCenteredPairing",
+            "kind": "def",
+            "file": "QuantitativeFollowup/ScalarResponseOperator.lean",
+            "line": 25
+          }
+        ],
+        "QuantitativeFollowup.scalarCompressedResponse": [
+          {
+            "name": "QuantitativeFollowup.scalarCompressedResponse",
+            "kind": "def",
+            "file": "QuantitativeFollowup/ScalarResponseOperator.lean",
+            "line": 50
+          }
+        ],
+        "FourPapersCommon.endpointFixedL2": [
+          {
+            "name": "FourPapersCommon.endpointFixedL2",
+            "kind": "def",
+            "file": "FourPapersCommon/EndpointFixedL2Density.lean",
+            "line": 33
+          }
+        ],
+        "FourPapersCommon.endpointFixedL2Compression": [
+          {
+            "name": "FourPapersCommon.endpointFixedL2Compression",
+            "kind": "def",
+            "file": "FourPapersCommon/EndpointFixedL2Compression.lean",
+            "line": 45
+          }
+        ],
+        "QuantitativeFollowup.scalar_response_L2_bound": [
+          {
+            "name": "QuantitativeFollowup.scalar_response_L2_bound",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/ScalarResponseL2Bounds.lean",
+            "line": 33
+          }
+        ],
+        "QuantitativeFollowup.scalarResponseL2Operator": [
+          {
+            "name": "QuantitativeFollowup.scalarResponseL2Operator",
+            "kind": "def",
+            "file": "QuantitativeFollowup/ScalarResponseL2Operator.lean",
+            "line": 18
+          }
+        ],
+        "QuantitativeFollowup.scalarResponseL2Operator_test_coeFn": [
+          {
+            "name": "QuantitativeFollowup.scalarResponseL2Operator_test_coeFn",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/ScalarResponseL2Operator.lean",
+            "line": 36
+          }
+        ]
+      },
+      "coverage_note": "Concrete seven-term response on representatives and endpoint compression. Completed L2 operator is defined as the unique bounded extension from dense endpoint-fixed Lipschitz tests, and agrees a.e. with the compressed formula on those tests. The listed targets do not separately certify the manuscript's formula as a representative identity for every arbitrary L2 input; public coverage must retain this distinction.",
+      "coverage_category": "definition"
+    },
+    {
+      "id": "current:definition:10.1",
+      "type": "definition",
+      "number": "10.1",
+      "labels": [
+        "def:tree-marked"
+      ],
+      "title_tex": "Marked trees and tree laws",
+      "source": {
+        "file": "sections/10-cavity.tex",
+        "start_line": 251,
+        "end_line": 274,
+        "source_character_range": [
+          13531,
+          15016
+        ],
+        "quote": "\\begin{definition}[Marked trees and tree laws]\\label{def:tree-marked}\nA \\emph{marked tree} $\\mathcal T$ with $k\\ge1$ leaves is a finite rooted\ntree whose vertices $v$ carry deterministic levels $q_v\\in[0,1]$, with\nthe following properties. The root has level $0$, and levels increase\nstrictly along every edge. Every vertex at a level in $(0,1)$ has at\nleast two outgoing edges. The vertices at level $1$ have no outgoing\nedges; we call them terminal points. Finally, $k$ labeled leaves\n$\\mathsf a=1,\\ldots,k$ are attached to the terminal points, and every\nterminal point carries at least one leaf.\n\nGiven $u\\in[0,1]$, the \\emph{tree law} $\\Pp_{\\mathcal T,u}$, with\nexpectation $\\E_{\\mathcal T,u}$, is constructed as follows. The couplings\nare drawn once from their tilted law under $\\Pp_u$. Given the couplings,\nthe field starts at the origin at the root and follows the diffusion of\n\\cref{subsec:c7-row} along each edge. At each vertex, it continues along\nthe outgoing edges in conditionally independent ways. Given the couplings\nand the field, the leaves carry conditionally independent spins\n$\\sigma^{\\mathsf a}=(\\tau^{\\mathsf a},\\epsilon_{\\mathsf a})$. The spin\n$\\sigma^{\\mathsf a}$ is drawn with probabilities proportional to\n$e^{\\mathcal E(\\sigma;X^{\\mathsf a}_1,Y^{\\mathsf a}_1)}$, where\n$(X^{\\mathsf a}_1,Y^{\\mathsf a}_1)$ is the field at the terminal point of\n$\\mathsf a$. We write $\\E_{k,q,u}$ for the tree law of $k$ leaves that\nall split at the level $q$.\n\\end{definition}",
+        "quote_sha256": "36ac1b89b3ce5c1c0a70eaf9d5510742ad2457f55819cdfd5f390a88ea64d00c"
+      },
+      "lean_declarations": [
+        "FourPapersCommon.FiniteTerminalGenealogy",
+        "QuantitativeFollowup.anisotropicRecordedProfileTreeLaw",
+        "HexagonPaper.treeNativeFullLaw",
+        "HexagonPaper.treeNativeFullLaw_endpoint_records",
+        "FourPapersCommon.finiteCascadeGenealogyKernel_leaf_marginal",
+        "QuantitativeFollowup.anisotropicRecordedProfileTreeLaw_pruning",
+        "QuantitativeFollowup.anisotropicRecordedProfileTreeKernel_leaf_marginal",
+        "QuantitativeFollowup.anisotropicRecordedProfileTreeLaw_pair_marginal"
+      ],
+      "declaration_locations": {
+        "FourPapersCommon.FiniteTerminalGenealogy": [
+          {
+            "name": "FourPapersCommon.FiniteTerminalGenealogy",
+            "kind": "inductive",
+            "file": "FourPapersCommon/FiniteCascadeTreeRecords.lean",
+            "line": 16
+          }
+        ],
+        "QuantitativeFollowup.anisotropicRecordedProfileTreeLaw": [
+          {
+            "name": "QuantitativeFollowup.anisotropicRecordedProfileTreeLaw",
+            "kind": "def",
+            "file": "QuantitativeFollowup/AnisotropicRecordedProfileTree.lean",
+            "line": 107
+          }
+        ],
+        "HexagonPaper.treeNativeFullLaw": [
+          {
+            "name": "HexagonPaper.treeNativeFullLaw",
+            "kind": "def",
+            "file": "HexagonPaper/TreeLikelihoodFullLaw.lean",
+            "line": 61
+          }
+        ],
+        "HexagonPaper.treeNativeFullLaw_endpoint_records": [
+          {
+            "name": "HexagonPaper.treeNativeFullLaw_endpoint_records",
+            "kind": "theorem",
+            "file": "HexagonPaper/CavitySinglePathNativeLaw.lean",
+            "line": 22
+          }
+        ],
+        "FourPapersCommon.finiteCascadeGenealogyKernel_leaf_marginal": [
+          {
+            "name": "FourPapersCommon.finiteCascadeGenealogyKernel_leaf_marginal",
+            "kind": "theorem",
+            "file": "FourPapersCommon/FiniteCascadeGenealogy.lean",
+            "line": 115
+          }
+        ],
+        "QuantitativeFollowup.anisotropicRecordedProfileTreeLaw_pruning": [
+          {
+            "name": "QuantitativeFollowup.anisotropicRecordedProfileTreeLaw_pruning",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/AnisotropicRecordedProfilePruning.lean",
+            "line": 40
+          }
+        ],
+        "QuantitativeFollowup.anisotropicRecordedProfileTreeKernel_leaf_marginal": [
+          {
+            "name": "QuantitativeFollowup.anisotropicRecordedProfileTreeKernel_leaf_marginal",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/AnisotropicRecordedProfilePruning.lean",
+            "line": 48
+          }
+        ],
+        "QuantitativeFollowup.anisotropicRecordedProfileTreeLaw_pair_marginal": [
+          {
+            "name": "QuantitativeFollowup.anisotropicRecordedProfileTreeLaw_pair_marginal",
+            "kind": "theorem",
+            "file": "QuantitativeFollowup/AnisotropicRecordedProfilePruning.lean",
+            "line": 70
+          }
+        ]
+      },
+      "coverage_note": "Concrete finite terminal genealogy and actual tree path law, not a theorem. Levels use a shared antitone finite grid and binary forks; general finite marked trees can be encoded by ordering their finitely many levels, padding branches and resolving multiple forks. This representation equivalence is a mathematical bridge, not an independently listed Lean theorem. Native pruning/leaf/pair marginal theorems are additional infrastructure.",
+      "coverage_category": "definition"
+    }
+  ],
+  "numbered_remarks": [
+    {
+      "id": "current:remark:3.2",
+      "type": "remark",
+      "number": "3.2",
+      "labels": [
+        "rem:fnd-root"
+      ],
+      "title_tex": "",
+      "source": {
+        "file": "sections/03-interpolation.tex",
+        "start_line": 458,
+        "end_line": 464,
+        "source_character_range": [
+          21979,
+          22345
+        ],
+        "quote": "\\begin{remark}\\label{rem:fnd-root}\nA contact level is a point of the support of the free measure $\\nu$. At\n$q=0$, we have $\\E S_0=0$ for every profile, since $m_0=0$. The bound\non $\\E\\Tr H_0^2$ in \\eqref{eq:in-contact} holds when $0\\in\\supp\\nu$;\nthe prescribed mass $s\\delta_0$ alone does not give it, because the\nminimization does not act on that mass.\n\\end{remark}",
+        "quote_sha256": "f5872b32d9fb2dbc27108efda8e5e5adf20c022d3c8c6349dc1d555c13b069fc"
+      },
+      "lean_declarations": [],
+      "declaration_locations": {},
+      "coverage_note": "Explanatory remark with no separate exact target. Root-zero/free-root contact follows within3.1. The negative observation that prescribed root mass alone gives no trace bound is not a certified counterexample theorem.",
+      "coverage_category": "explanatory_unanchored"
+    },
+    {
+      "id": "current:remark:3.4",
+      "type": "remark",
+      "number": "3.4",
+      "labels": [
+        "rem:fnd-partial-atoms"
+      ],
+      "title_tex": "",
+      "source": {
+        "file": "sections/03-interpolation.tex",
+        "start_line": 739,
+        "end_line": 749,
+        "source_character_range": [
+          35691,
+          36180
+        ],
+        "quote": "\\begin{remark}\\label{rem:fnd-partial-atoms}\nSince $k$ in \\eqref{eq:in-Lvar} is arbitrary, the bound applies to\nsub-measures of $\\nu$, such as the image of Lebesgue measure on an\ninterval of quantiles that contains only part of an atom. If $h$ is a\nBorel function with $0\\le h\\le1$, then applying \\eqref{eq:in-Lvar} with\n$kh$ in place of $k$ and using $h^2\\le h$, we obtain\n\\[\n \\Var\\Bigl(\\int k(q)h(q)L_q\\,\\nu(\\dd q)\\Bigr)\n \\le\\frac1M\\int\\frac{k(q)^2h(q)}{a(q)}\\,\\nu(\\dd q).\n\\]\n\\end{remark}",
+        "quote_sha256": "6ef8f23a0b72b83edd394ad2c2fefa665f67fbfab89b9cc9db8c05ccc2b88ab9"
+      },
+      "lean_declarations": [],
+      "declaration_locations": {},
+      "coverage_note": "Explanatory remark with no separate exact target. Signed L2 variance and Radon-Nikodym quantile constructions support use; its submeasure inequality is not a separately listed exact declaration.",
+      "coverage_category": "explanatory_unanchored"
+    },
+    {
+      "id": "current:remark:4.4",
+      "type": "remark",
+      "number": "4.4",
+      "labels": [
+        "rem:gauss-local"
+      ],
+      "title_tex": "",
+      "source": {
+        "file": "sections/04-gaussian.tex",
+        "start_line": 533,
+        "end_line": 559,
+        "source_character_range": [
+          26492,
+          27965
+        ],
+        "quote": "\\begin{remark}\\label{rem:gauss-local}\nWe show in the proof that the right sides of \\eqref{eq:fnd-path-heat} and\n\\eqref{eq:fnd-path-normalizer} are continuous in $z\\in I$, so that\n$z\\mapsto\\E_z\\Phi_z$ and $z\\mapsto\\log Z_z$ are continuously\ndifferentiable on $I$. The assumptions hold, in particular, for the\nsmooth local functionals that we use in\n\\cref{sec:sc,sec:c7,sec:c7-endpoint},\nintegrated against a fixed finite measure. For instance, let $\\varpi$ be\na finite measure on the path part of $\\mathcal I$, possibly with atoms,\nand let $\\ell_z(G)=-\\int V_z(i,G(i))\\,\\varpi(\\dd i)$, where $V_z(i,x)$\nis twice continuously differentiable in $x$, and $\\partial_xV_z$ and\n$\\partial_x^2V_z$ are bounded and jointly continuous in $(z,i,x)$. Then\n\\[\n S=-\\partial_xV_z(\\cdot,G(\\cdot))\\,\\varpi,\\qquad\n M=-\\operatorname{diag}_{\\#}\\bigl(\\partial_x^2V_z(\\cdot,G(\\cdot))\\,\\varpi\\bigr),\n\\]\nwhere $\\operatorname{diag}_{\\#}$ is the pushforward under\n$i\\mapsto(i,i)$. The total variation of the difference of the scores at\n$G$ and $G'$ is at most\n$\\varpi(\\mathcal I)\\sup_i|\\partial_xV_z(i,G(i))-\\partial_xV_z(i,G'(i))|$,\nand the same holds for the Hessians with $\\partial_x^2V_z$. We note that\nthese functions are uniformly continuous on compact sets\nand that $G$ is bounded, which gives the continuity in (A4) for this\nterm. An atom of $\\varpi$ produces an atom of $M$ on\nthe diagonal, and its contribution to $\\langle\\dot K_z,M\\rangle$\ninvolves $\\dot K_z$ on the diagonal.\n\\end{remark}",
+        "quote_sha256": "747dd175c8cf666a8c56bd4c242410a2a4c62d24e48038cf8240cf3883830383"
+      },
+      "lean_declarations": [],
+      "declaration_locations": {},
+      "coverage_note": "Explanatory remark and alternative analytic proof with no separately certified theorem. Heat theorem covers certified derivatives when its explicit hypotheses are met; prose about all smooth local functionals satisfying those hypotheses is not an independent kernel result.",
+      "coverage_category": "explanatory_unanchored"
+    },
+    {
+      "id": "current:remark:7.2",
+      "type": "remark",
+      "number": "7.2",
+      "labels": [
+        "rem:loc-stieltjes"
+      ],
+      "title_tex": "Atoms and the Stieltjes term",
+      "source": {
+        "file": "sections/07-isolation.tex",
+        "start_line": 285,
+        "end_line": 296,
+        "source_character_range": [
+          14984,
+          15830
+        ],
+        "quote": "\\begin{remark}[Atoms and the Stieltjes term]\\label{rem:loc-stieltjes}\nThe term $Z$ is where atoms of the profile enter \\eqref{eq:loc-response}. In\nthe proof of \\cite[Lemma~A.2]{AL}, the Fisher estimate (A.3) follows from the\nidentity of measures $\\dd\\mathscr P=2\\mathcal J_\\theta\\dd q\n-\\rho\\zeta_\\theta\\dd\\gamma_\\theta$ on $(0,1)$ \\cite[(A.19)]{AL}, where\n$\\mathscr P(q)=N^{-1}\\E_\\theta\\Tr\\dot h$ and $\\dot h$ is the derivative in\n$q$, at fixed magnetization, of the Hessian of $\\widetilde U_{\\gamma_\\theta}$ written as\na function of the magnetization. At an atom of $\\dd\\gamma_\\theta$ at $q$, the\nfunction $\\mathscr P$ jumps by $-\\rho\\zeta_\\theta(q)\\,\\dd\\gamma_\\theta(\\{q\\})$.\nIn \\cref{prop:loc-isolation,lem:lz-certificate}, we choose the cutoffs so that\n$\\dd\\gamma_\\theta$ has a bounded density on the set where they are positive.\n\\end{remark}",
+        "quote_sha256": "d9fdaa2d7cc0f19b56f19103d4b429bc29ea548521501df3805382e40b90dc45"
+      },
+      "lean_declarations": [],
+      "declaration_locations": {},
+      "coverage_note": "Cited Stieltjes/Fisher background and explanatory remark, not a separately certified theorem. Interior-atom contributions are retained in the response/coercivity targets, but the cited measure identity/jump prose has no exact numbered proof anchor.",
+      "coverage_category": "explanatory_unanchored"
+    },
+    {
+      "id": "current:remark:13.2",
+      "type": "remark",
+      "number": "13.2",
+      "labels": [
+        "rem:b7-exponents"
+      ],
+      "title_tex": "",
+      "source": {
+        "file": "sections/13-proof.tex",
+        "start_line": 483,
+        "end_line": 504,
+        "source_character_range": [
+          20919,
+          22251
+        ],
+        "quote": "\\begin{remark}\\label{rem:b7-exponents}\nThe leading term in \\eqref{eq:b7-normalized-input} is\n$N^{-2/3}\\eta^{1/21}$. The exponent $1/21$ is the product of the exponent\n$1/3$ of $\\rho_0$ in the integrated shell estimate\n\\eqref{eq:sm-integrated} and the exponent $1/7$ of $\\eta$ in the cutoff\n\\eqref{eq:b7-cutoff}, which comes from the stability threshold\n$\\rho^{-3/4}\\eta^{1/4}\\lesssim\\rho$. If $\\eta$ is of order $N^{-a}$,\nthe leading term is of the same order when $a=2/3+a/21$, that is,\n$20a/21=2/3$ and $a=7/10$. The scalar cost $\\lambda^5$ in the trial\nbudget is then of the same order when $\\lambda=N^{-7/50}$. For this\nchoice, the localization correction has the extra factor $N^{-1/50}$\nafter normalization, and the stable interval and the two elementary\nterms in \\eqref{eq:sm-integrated} contribute at most\n$N^{-3/50}\\log^3(2+N)$, as the table in Step~5 shows. The bound\n\\eqref{eq:b7-closure} on the stable interval has only a squared\nlogarithm; the third logarithm comes from integrating the first term of\n\\eqref{eq:sm-pointwise} over $[1/N,\\rho_0]$. These contributions have\nstrict polynomial slack, and the leading term carries no logarithm.\nAfter the closure, $L_sN^{-7/10}\\le\\eta\\le C_\\beta N^{-7/10}$, so that\nfor all sufficiently large $N$ the cutoff satisfies $\\rho_0<1$ and is\ncomparable to $N^{-1/10}$.\n\\end{remark}",
+        "quote_sha256": "9bf71b88fe3e5f60ee2fa98ea0e92da2d5b89841ea4c02d2490f20bc8367a452"
+      },
+      "lean_declarations": [
+        "HexagonPaper.critical_exponent_balance",
+        "HexagonPaper.normalized_critical_budget",
+        "HexagonPaper.normalized_localization_budget",
+        "HexagonPaper.normalized_stable_interval",
+        "HexagonPaper.elementary_error_below_stable_interval",
+        "HexagonPaper.normalized_log_cube_bounded",
+        "HexagonPaper.critical_trial_error_input",
+        "HexagonPaper.critical_trial_error_bound"
+      ],
+      "declaration_locations": {
+        "HexagonPaper.critical_exponent_balance": [
+          {
+            "name": "HexagonPaper.critical_exponent_balance",
+            "kind": "theorem",
+            "file": "HexagonPaper/RateArithmetic.lean",
+            "line": 13
+          }
+        ],
+        "HexagonPaper.normalized_critical_budget": [
+          {
+            "name": "HexagonPaper.normalized_critical_budget",
+            "kind": "theorem",
+            "file": "HexagonPaper/RateArithmetic.lean",
+            "line": 17
+          }
+        ],
+        "HexagonPaper.normalized_localization_budget": [
+          {
+            "name": "HexagonPaper.normalized_localization_budget",
+            "kind": "theorem",
+            "file": "HexagonPaper/RateArithmetic.lean",
+            "line": 26
+          }
+        ],
+        "HexagonPaper.normalized_stable_interval": [
+          {
+            "name": "HexagonPaper.normalized_stable_interval",
+            "kind": "theorem",
+            "file": "HexagonPaper/RateArithmetic.lean",
+            "line": 38
+          }
+        ],
+        "HexagonPaper.elementary_error_below_stable_interval": [
+          {
+            "name": "HexagonPaper.elementary_error_below_stable_interval",
+            "kind": "theorem",
+            "file": "HexagonPaper/RateArithmetic.lean",
+            "line": 45
+          }
+        ],
+        "HexagonPaper.normalized_log_cube_bounded": [
+          {
+            "name": "HexagonPaper.normalized_log_cube_bounded",
+            "kind": "theorem",
+            "file": "HexagonPaper/RateArithmetic.lean",
+            "line": 56
+          }
+        ],
+        "HexagonPaper.critical_trial_error_input": [
+          {
+            "name": "HexagonPaper.critical_trial_error_input",
+            "kind": "theorem",
+            "file": "HexagonPaper/CriticalClosure.lean",
+            "line": 16
+          }
+        ],
+        "HexagonPaper.critical_trial_error_bound": [
+          {
+            "name": "HexagonPaper.critical_trial_error_bound",
+            "kind": "theorem",
+            "file": "HexagonPaper/CriticalClosureNormalized.lean",
+            "line": 148
+          }
+        ]
+      },
+      "coverage_note": "Partial remark coverage: exact rational balances/normalizations/log bounds and actual critical error closure have theorem anchors. Explanatory provenance and final cutoff comparability are not a standalone exact remark theorem; several closure anchors themselves retain genuine budget hypotheses.",
+      "coverage_category": "partial_remark"
+    }
+  ]
+}

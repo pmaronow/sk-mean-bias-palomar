@@ -1,0 +1,1179 @@
+\chapter{The derivative at the independent endpoint}\label{sec:c7-endpoint}
+
+In \cref{sec:c7}, we constructed the cavity interpolation $\Pp_u$,
+$0\le u\le1$. At $u=1$, it is the tilted law of the full system with
+$N$ spins. At $u=0$, it is a product law: the last spin $\epsilon$ is
+independent of the remaining $n=N-1$ spins. We also introduced the
+covariance
+\[
+ \mathcal C_{pp}(u)=\Cov_u\bigl(m_N(p)^2,A_p^-\bigr)
+\]
+between the squared conditional magnetization of the last spin and the
+rest self-overlap. By \cref{lem:streaming}, it is twice continuously
+differentiable in $u$ (see \cref{subsec:c7-three}), and
+\cref{lem:remainder} bounds its Taylor remainder. The covariance
+vanishes at $u=0$. In this section, we compute its derivative there.
+
+The main result is \cref{lem:linear}. It states that after
+integration against $\nu$, the derivative $\mathcal C_{pp}'(0)$ equals
+$\alpha/d$ times the trace of the scalar response operator
+$J^{\scal}_{a,d}$ of \cref{sec:scalar-stability} against the
+covariance operator $\Sigma^-$ of the rest self-overlap, minus a
+nonnegative term $\alpha\mathcal P/2$, plus explicit error terms. The
+identity before integration is \cref{lem:c7-endpoint-pointwise}. In
+\cref{lem:cl-response}, we bound the integrated error terms by the
+trace term $A$ and the mean--covariance term $J$ of the full system,
+up to an additive $N^{-2}$. The three lemmas hold for every
+deterministic profile with $\nu(\{1\})=0$; no minimizing property is
+used. In
+\cref{sec:c7-closure}, we insert \cref{lem:linear} into the proof of
+the trace identity of \cref{lem:cav-trace} and use
+\cref{lem:cl-response} to bound its error term in the proof of
+\cref{prop:c7-closure}.
+
+The computation uses the exact density \eqref{eq:treedensity} of the
+cavity law and the parameter responses \eqref{eq:nodeTheta} from
+\cref{sec:c7}, the Gaussian heat identity of \cref{lem:fnd-path-heat},
+and the explicit form \eqref{eq:scalarJexplicit} of the scalar
+response operator. The error bounds also use the kernel bounds of
+\cref{lem:cl-scalar}, the posterior variance bound \eqref{eq:cl-BL},
+and the comparison inequality of \cref{cor:comparison}.
+
+\paragraph{Standing assumptions.}
+We keep the assumptions of \cref{sec:c7}: $N\ge2$, $n=N-1$,
+$0<\rho\le1$, $t=1-\rho$, $c=\beta^2\rho$, and $0<s=\lambda/\beta\le1/2$.
+The parameters $\alpha$, $d$, and $b(u)$ are as in \eqref{eq:cavityparameters}. In
+particular, $0\le\alpha\le\beta^2$ and $d\in[\beta^2/2,\beta^2]$. The
+profile $\mu=s\delta_0+\nu$ is deterministic and otherwise arbitrary,
+with cumulative function $a(q)=\mu([0,q])$. From now on, we also
+assume that $\nu(\{1\})=0$. This holds at every minimizing profile by
+\eqref{eq:in-contact}; \cref{subsec:c7-tree,subsec:c7-three} did not
+use it. Under this assumption, we show below that the covariance
+operator of the rest self-overlap has its range in the scalar
+transport space $\mathcal H_\nu$ of \cref{sec:scalar-stability}, on
+which $J^{\scal}_{a,d}$ acts.
+
+\section{Linear response at the independent endpoint}
+\label{subsec:c7-linear}
+
+\subsection{The product law at the independent endpoint}
+
+In this section, we take all expectations at $u=0$ unless a
+subscript says otherwise. Recall from \cref{subsec:c7-row} that
+$\Pp_0$ is a product law. Its first factor is the tilted law of the $n$-spin
+system with Hamiltonian $\mathcal E^-$, field coefficient $c$, and profile
+$\mu$, and the second is the scalar law of \cref{sec:scalar-stability}
+with coefficient $d$. We
+write $\E^-$, $\Var^-$, and $\Cov^-$ for the first factor (the rest
+system) and $\E^0$, $\Var^0$, and $\Cov^0$ for the second;
+$\calG^-_q$ and $\calG^0_q$ denote their filtrations. At $u=0$, the
+solution of \eqref{eq:cavityPDE} splits as
+$U(q,x,y)=U^-(q,x)+U^0(q,y)$. We define
+\[
+ \begin{gathered}
+ M(r,x)=\nabla_xU^-(r,x),\qquad M_i(r,x)=\partial_{x_i}U^-(r,x),\\
+ A^-(r,x)=\frac{|M(r,x)|^2}n,\qquad m(r,y)=\partial_yU^0(r,y),
+ \end{gathered}
+\]
+so that $M_r=M(r,X_r)$, $A_r^-=A^-(r,X_r)$,
+$H_r^-=\nabla_x^2U^-(r,X_r)$, $m_r=m(r,Y_r)$, and
+$h_r=\partial_ym(r,Y_r)$. We use the scalar quantities $f_p=m_p^2$,
+$\bar f_p=f_p-\E^0f_p$, $g_r^\ell(y)=P^0_{r,\ell}(m(\ell,\cdot)^2)(y)$,
+and $\Gamma=\Gamma_{a,d}$, with $\Gamma(p)=\E^0m_p^2$, of
+\cref{sec:scalar-stability}. Recall that
+$g_r^\ell(Y_r)=\E^0[m_\ell^2\mid\calG^0_r]$ and
+$m_r=\E^0[\epsilon\mid\calG^0_r]$. For $r\le\ell$, let
+$P^-_{r,\ell}$ be the transition operator of the rest diffusion. Its
+state includes the rest couplings, so that
+$(P^-_{r,\ell}A^-_\ell)(X_r)=\E^-[A^-_\ell\mid\calG^-_r]$. For
+notational convenience, we abbreviate $a_r^-=a_r^-(0)$ and
+$j_r^-=j_r^-(0)$ for the quantities of \eqref{eq:cav-rest-errors} at
+$u=0$.
+
+Note that the rest Hamiltonian $\mathcal E^-$ is invariant under the
+global spin reversal $\tau\mapsto-\tau$. Then $U^-(0,\cdot)$ is even,
+which implies that $M_0=0$ and
+\begin{equation}\label{eq:c7-root-overlap}
+ A_0^-=0.
+\end{equation}
+Since the spatial derivatives of $U^-$ are bounded and jointly
+continuous, $r\mapsto A_r^-$ is continuous with values in $[0,1]$.
+
+\paragraph{The rest self-overlap.}
+We define
+\[
+ \begin{gathered}
+ \Sigma^-(p,q)=\Cov^-(A_p^-,A_q^-),\qquad
+ \bar A_p^-=A_p^--\E^-A_p^-,\\
+ \Theta(r;\ell,p)=\Cov^-\bigl(P^-_{r,\ell}A_\ell^-,A_p^-\bigr)
+ \quad(r\le\ell),
+ \end{gathered}
+\]
+where we recall that $P^-_{r,\ell}A_\ell^-$ stands for
+$\E^-[A_\ell^-\mid\calG^-_r]$. Note that $\Sigma^-$ is continuous and
+bounded by one, and that $\Sigma^-(0,p)=0$ by
+\eqref{eq:c7-root-overlap}. If $r\ge p$, then $\bar A_p^-$ is
+$\calG^-_r$-measurable, and by the tower property, we have
+\begin{equation}\label{eq:c7-theta-past}
+ \Theta(r;\ell,p)=\E^-\bigl[\E^-[A_\ell^-\mid\calG^-_r]\,\bar A_p^-\bigr]
+ =\E^-\bigl[A_\ell^-\bar A_p^-\bigr]=\Sigma^-(\ell,p)
+ \qquad(r\ge p).
+\end{equation}
+
+\paragraph{Fluctuations along the path.}
+Let $\tau$ be the terminal rest spin. For levels $r,\ell\in[0,1]$, we
+define
+\[
+ x_r=\frac{\tau\cdot M_r}n-A_r^-,\qquad
+ y_{r\ell}=\frac{M_r\cdot M_\ell}n-A_{r\wedge\ell}^-,
+\]
+random variables of the rest system; the subscripts distinguish them
+from the field variables $x$ and $y$. The vector
+$M_q=\E^-[\tau\mid\calG^-_q]$ is a martingale, and by the conditional
+law of total covariance, we have, for $r\le\ell$,
+\begin{equation}\label{eq:c7-total-cov}
+ C_r^-=\E^-[C_\ell^-\mid\calG^-_r]
+ +\E^-\bigl[(M_\ell-M_r)(M_\ell-M_r)^T\bigm|\calG^-_r\bigr].
+\end{equation}
+In particular, $\E^-[C_\ell^-\mid\calG^-_r]\preceq C_r^-$ and
+$\Cov^-(M_\ell\mid\calG^-_r)\preceq C_r^-$. We have
+$x_r=M_r\cdot(\tau-M_r)/n$, and $y_{r\ell}=M_r\cdot(M_\ell-M_r)/n$ if
+$r\le\ell$. By conditioning on $\calG^-_r$, we deduce from
+\eqref{eq:c7-total-cov} that
+\begin{equation}\label{eq:cl-xy}
+ \E^-[x_r\mid\calG_r^-]=0,\quad \E^-x_r^2=j_r^-,\qquad
+ \E^-y_{r\ell}=0,\quad \E^-y_{r\ell}^2\le j_{r\wedge\ell}^-.
+\end{equation}
+Indeed, $\E^-[x_r^2\mid\calG^-_r]=M_r^TC_r^-M_r/n^2$, and for
+$r\le\ell$, the vector $M_\ell-M_r$ has conditional mean zero and
+conditional covariance at most $C_r^-$ given $\calG^-_r$, so that
+$\E^-[y_{r\ell}^2\mid\calG^-_r]\le M_r^TC_r^-M_r/n^2$. The case
+$r>\ell$ follows by symmetry.
+
+\paragraph{The error terms.}
+We set $v_p^0=\Var^0(f_p)$ and
+\begin{gather*}
+ a_p^H=\frac{\E^-\Tr\bigl((H_p^-)^2\bigr)}{n^2},\qquad
+ b_p^H=\frac{\E^-[M_p^TH_p^-M_p]}{n^2},\qquad
+ b_{r,p}^H=\frac{\E^-[M_r^TH_p^-M_p]}{n^2},\\
+ z_{p,\ell}=\frac1n\E^-\bigl[M_p\cdot\nabla(P^-_{p,\ell}A_\ell^-)(X_p)\bigr]
+ \quad(\ell\ge p),
+\end{gather*}
+where $\nabla(P^-_{p,\ell}A_\ell^-)$ is the gradient of
+$x\mapsto(P^-_{p,\ell}A_\ell^-)(x)$, with the rest couplings fixed. The
+error terms are
+\begin{align}
+ T_p^{(1)}={}&2\E^0[m_ph_p\epsilon]\,\E^-[x_p\bar A_p^-]
+ -2\int\E^0[m_ph_pm_r]\,\E^-[y_{pr}\bar A_p^-]\,\nu(\dd r),
+ \label{eq:cav-T1}\\
+ T_p^{(2)}={}&-\int\E^0[\bar f_p\epsilon m_r]\,
+                         \E^-[x_r\bar A_p^-]\,\nu(\dd r)\nonumber\\
+ &+\frac12\iint\E^0[\bar f_pm_rm_\ell]\,
+                  \E^-[y_{r\ell}\bar A_p^-]\,\nu(\dd r)\nu(\dd\ell),
+ \label{eq:cav-T2}\\
+ T_p^{(3)}={}&v_p^0a_p^H+
+       \bigl[4\E^0(m_p^2h_p)+2(1-a(p))v_p^0\bigr]b_p^H\nonumber\\
+ &-\int_{(p,1]}\Cov^0\bigl(f_p,g_p^\ell(Y_p)\bigr)z_{p,\ell}\,\nu(\dd\ell)
+ -2\int\E^0[\bar f_pm_pm_r]\,b_{r,p}^H\,\nu(\dd r),
+ \label{eq:cav-T3}
+\end{align}
+and $T_p=T_p^{(1)}+T_p^{(2)}+T_p^{(3)}$. When we integrate against
+$\nu$ without indicating a domain, we integrate over $[0,1]$, including
+any atom of $\nu$ at $0$.
+The terms $T_p^{(1)}$ and $T_p^{(2)}$ contain the fluctuations
+$x_r$ and $y_{r\ell}$, and $T_p^{(3)}$ contains the derivatives of the
+rest observable $A_p^-$ in the coupling vector of the incident row.
+
+\paragraph{The conditional future correction.}
+For $p,\ell>r$, we define
+\[
+ \Lambda_r(p,\ell)=\Cov^0\bigl(g_r^p(Y_r),g_r^\ell(Y_r)\bigr),\qquad
+ \Sigma_r^-(p,\ell)=\E^-\Cov^-(A_p^-,A_\ell^-\mid\calG_r^-),
+\]
+and
+\begin{equation}\label{eq:Ppositive}
+ \mathcal P=\int\nu(\dd r)\iint_{p,\ell>r}
+      \Lambda_r(p,\ell)\,\Sigma_r^-(p,\ell)\,\nu(\dd p)\nu(\dd\ell).
+\end{equation}
+Note that $\Lambda_r$ is a covariance of the scalar law and that
+$\Sigma_r^-$ is an averaged conditional covariance of the rest system.
+We show in the proof of \cref{lem:linear} that $\mathcal P\ge0$ and
+that $-\alpha\mathcal P/2$ is the contribution of the difference
+between $\Theta$ and $\Sigma^-$.
+
+\paragraph{The scalar response operator applied to $\Sigma^-$.}
+For a bounded Borel function $\varphi$ on $[0,1]$ and $p\in[0,1]$, the
+seven terms on the right side of \eqref{eq:scalarJexplicit}, in the
+order written there, are
+\begin{alignat*}{2}
+ &\text{(J1)}\qquad&&\E^0\bigl[h_p^2+2(1-a(p))m_p^2h_p\bigr]\varphi(p),\\
+ &\text{(J2)}&&-\int_{(p,1]}\E^0[m_p\partial_y g_p^\ell(Y_p)]\,
+                                      \varphi(\ell)\,\nu(\dd\ell),\\
+ &\text{(J3)}&&-2\int\E^0[m_ph_pm_r]\,\varphi(p\wedge r)\,\nu(\dd r),\\
+ &\text{(J4)}&&-\int\E^0[\bar f_p\epsilon m_r]\,\varphi(r)\,\nu(\dd r),\\
+ &\text{(J5)}&&\frac12\int a(r)\E^0[\bar f_pm_r^2]\,\varphi(r)\,\nu(\dd r),\\
+ &\text{(J6)}&&\frac12\iint\E^0[\bar f_pm_rm_\ell]\,\varphi(r\wedge\ell)
+                                      \,\nu(\dd r)\nu(\dd\ell),\\
+ &\text{(J7)}&&\frac12\int\nu(\dd r)\int_{(r,1]}
+           \E^0[\bar f_pg_r^\ell(Y_r)]\,\varphi(\ell)\,\nu(\dd\ell),
+\end{alignat*}
+and their sum is $d^{-1}(J_{a,d}\varphi)(p)$. All kernels in (J1)--(J7)
+are bounded by constants depending only on $\beta$
+(\cref{sec:scalar-stability}). For $p\in[0,1]$, we denote by
+$(J^{\scal}_{a,d}\Sigma^-)(p,p)$ the value at $p$ of the function
+$J_{a,d}\Sigma^-(\cdot,p)$, that is, of $J_{a,d}$ applied to the first
+variable of $\Sigma^-$. This notation agrees with the compression
+$J^{\scal}_{a,d}$. Indeed, let $\varphi$ be bounded with
+$\varphi(0)=0$. Each of the terms (J2)--(J7) contains a factor $m_p$
+or $\bar f_p$, and $m_0=\bar f_0=0$. At $p=0$, these terms vanish, and
+(J1) equals $h_0^2\varphi(0)=0$. As $\nu(\{1\})=0$, the function
+$J_{a,d}\varphi$ therefore lies in $\mathcal H_\nu$,
+and it coincides with $J^{\scal}_{a,d}\varphi$ when
+$\varphi\in\mathcal H_\nu$. By \eqref{eq:c7-root-overlap}, this applies
+to $\varphi=\Sigma^-(\cdot,p)$ for every $p$.
+
+\subsection{The endpoint derivative}
+
+\begin{lemma}[Endpoint derivative at a fixed level]
+\label{lem:c7-endpoint-pointwise}
+Let $\mu=s\delta_0+\nu$ be a deterministic profile with
+$\nu(\{1\})=0$, and let $p\in[0,1]$. If $\alpha>0$, then
+\begin{align}
+ \frac{\mathcal C_{pp}'(0)}\alpha
+ ={}&\frac1d(J^{\scal}_{a,d}\Sigma^-)(p,p)+T_p\nonumber\\
+ &+\frac12\int\nu(\dd r)\int_{(r,1]}
+  \Cov^0\bigl(f_p,g_r^\ell(Y_r)\bigr)
+    \bigl[\Theta(r;\ell,p)-\Sigma^-(\ell,p)\bigr]\nu(\dd\ell).
+ \label{eq:diagonallinear}
+\end{align}
+If $\alpha=0$, then $\mathcal C_{pp}'(0)=0$.
+\end{lemma}
+
+The first term on the right side of \eqref{eq:diagonallinear} is the
+scalar response applied to $\Sigma^-(\cdot,p)$ in place of $\varphi$,
+and $T_p$ collects the error terms. The last line has no scalar
+counterpart. It comes from the conditional expectation
+$\E^-[A_\ell^-\mid\calG^-_r]$ in the second derivative of the density,
+which replaces $\Sigma^-(\ell,p)$ by $\Theta(r;\ell,p)$ in (J7). After
+integration over $p$, it becomes the nonpositive term
+$-\mathcal P/2$.
+
+\begin{lemma}[Integrated linear response]\label{lem:linear}
+Let $\mu=s\delta_0+\nu$ be a deterministic profile with
+$\nu(\{1\})=0$, and let $V^-=\int\Var^-(A_p^-)\nu(\dd p)$. Then
+\begin{equation}\label{eq:lineartrace}
+ \int\mathcal C_{pp}'(0)\,\nu(\dd p)
+ =\alpha\Bigl[\frac1d\Tr_\nu(J^{\scal}_{a,d}\Sigma^-)
+                     -\frac12\mathcal P+\int T_p\,\nu(\dd p)\Bigr],
+ \qquad \mathcal P\ge0,
+\end{equation}
+where $\mathcal P$ is given by \eqref{eq:Ppositive},
+$\Tr_\nu(J^{\scal}_{a,d}\Sigma^-)
+=\int(J^{\scal}_{a,d}\Sigma^-)(p,p)\nu(\dd p)$, and $T_p$ is given by
+\eqref{eq:cav-T1}--\eqref{eq:cav-T3}. Further, $\Sigma^-$ is a positive
+trace-class covariance operator on $L^2(\nu)$ with trace $V^-$ and range
+in $\mathcal H_\nu$. With $\bar A^-$ the random function
+$p\mapsto\bar A_p^-$, the number $\Tr_\nu(J^{\scal}_{a,d}\Sigma^-)$
+equals $\E^-\langle\bar A^-,J^{\scal}_{a,d}\bar A^-\rangle_{L^2(\nu)}$,
+the trace of the operator $J^{\scal}_{a,d}\Sigma^-$ on $\mathcal H_\nu$.
+\end{lemma}
+
+\subsection{Proof of the endpoint derivative at a fixed level}
+
+\begin{proof}[Proof of \cref{lem:c7-endpoint-pointwise}]
+If $\alpha=0$, then the row variance $\alpha u/n$ vanishes and
+$b(u)=d$ for every $u$, so that $\Pp_u=\Pp_0$ for every $u$ and
+$\mathcal C_{pp}$ vanishes identically. From now on, we assume that
+$\alpha>0$ and fix $p\in[0,1]$. The proof has six steps. In Step~1,
+we show that $\mathcal C_{pp}'(0)$ is a Laplacian, in the coupling
+vector of the incident row, of a covariance under laws with
+deterministic rows. In Step~2, we write this Laplacian as a sum of four
+groups of terms, using the exact density of these laws. In Steps~3--5,
+we compute the four groups. In Step~6, we match the result with
+(J1)--(J7). At fixed $N$, the spin observables and the required
+positive-order derivatives of $U$ are bounded. The reference-density
+integrands have the integrable Gaussian envelopes established below, so
+we may exchange expectations and finite level integrals by Fubini's
+theorem.
+
+\paragraph{Step 1: reduction to fixed couplings.}
+For $w\ge0$ and $b\in[c,d]$, let $\Pp_{w,b}$ be the law of
+\cref{subsec:c7-row} with an incident row of variance $w$ per
+coordinate in place of $\alpha u/n$, and with last-field coefficient
+$b$ in place of $b(u)$. In this notation, $\Pp_u=\Pp_{\alpha u/n,b(u)}$,
+and $b(u)\in[c,d]$. We denote expectation and covariance under these laws by
+$\E_{w,b}$ and $\Cov_{w,b}$, and define
+\[
+ C(w,b)=\Cov_{w,b}\bigl(m_N(p)^2,A_p^-\bigr),
+ \qquad\text{so that}\qquad
+ \mathcal C_{pp}(u)=C\bigl(\alpha u/n,b(u)\bigr).
+\]
+At $w=0$, the row vanishes, and $U$ splits into a function of $(q,x)$
+and a function of $(q,y)$, as at $u=0$ but with $d$ replaced by $b$.
+Then $\Pp_{0,b}$ is a product law, under which $m_N(p)$ and $A_p^-$
+are independent, and therefore
+\begin{equation}\label{eq:c7-zero-row}
+ C(0,b)=0\qquad\text{for every }b\in[c,d].
+\end{equation}
+Applying \cref{lem:fnd-path-heat} with the row variance $w$ as its
+parameter, together with \cref{lem:tree-regularity,lem:tree-responses},
+we see that the function $w\mapsto C(w,b)$ is continuous on $[0,\alpha/n]$ and
+differentiable on $(0,\alpha/n]$, with a right derivative at $w=0$.
+The derivative $\partial_wC$ is jointly continuous in $(w,b)$. To see
+this, we couple the row as $\sqrt w\,g$ and the last field as
+$\sqrt b\,B$ and use the Gaussian envelope of the density, as in
+the continuity part of the proof of \cref{lem:streaming}. Let
+$0<u\le1$. By \eqref{eq:c7-zero-row} and the mean value theorem in
+$w$, there exists $w_u\in(0,\alpha u/n)$ such that
+\[
+ \mathcal C_{pp}(u)=C\bigl(\alpha u/n,b(u)\bigr)-C\bigl(0,b(u)\bigr)
+ =\frac{\alpha u}n\,\partial_wC\bigl(w_u,b(u)\bigr).
+\]
+Dividing by $u$ and letting $u\downarrow0$, we find
+\begin{equation}\label{eq:c7-row-only}
+ \mathcal C_{pp}'(0)=\frac\alpha n\,\partial_wC(0,d).
+\end{equation}
+In particular, the variation of the last-field coefficient $b(u)$
+does not contribute to $\mathcal C_{pp}'(0)$.
+
+We now compute $\partial_wC(0,d)$. For $\theta\in\R^n$, let
+$\Pp^\theta$ be the law of \cref{subsec:c7-row} with last-field
+coefficient $d$ and with the incident row replaced by a deterministic
+coupling: the term $\sqrt{\alpha u/n}\,\epsilon\sum_ig_{iN}\tau_i$ in
+$\mathcal E(\sigma;x,y)$ becomes $\epsilon\,\theta\cdot\tau$. We write
+$U(q,x,y;\theta)$ for the corresponding solution of
+\eqref{eq:cavityPDE}, $\E^\theta$ and $\Cov^\theta$ for expectation and
+covariance under $\Pp^\theta$, and
+\[
+ Z(\theta)=\E_{\rm ref}\,e^{sU(0,0,0;\theta)}
+\]
+for its outer normalizer, which is an expectation over the couplings
+$g_{ij}$, $1\le i<j\le n$, only. Under $\Pp^\theta$, observables such
+as $m_N(p)=\partial_yU(p,X_p,Y_p;\theta)$ and
+$M_p=\nabla_xU(p,X_p,Y_p;\theta)$ are computed from $U(\cdot;\theta)$.
+Under $\Pp_{w,d}$, we may integrate first over the couplings $g_{ij}$
+and then over $\theta=\sqrt w\,(g_{1N},\dots,g_{nN})$. Given $\theta$,
+the conditional law is $\Pp^\theta$. Because of the outer tilt
+$e^{sU(0,0,0)}$, the vector $\theta$ has the density
+$Z(\theta)/\E Z(\theta)$ with respect to $N(0,wI_n)$. We obtain, for every bounded observable
+$G$,
+\begin{equation}\label{eq:c7-mixture}
+ \E_{w,d}G=\frac{\E[Z(\theta)\,\E^\theta G]}{\E Z(\theta)},
+ \qquad\theta\sim N(0,wI_n).
+\end{equation}
+This mixture is not the Gaussian average of the laws $\Pp^\theta$,
+because $\theta$ is weighted by $Z(\theta)$. We now check that this
+weight does not change the derivative at $w=0$.
+
+Let $f=m_N(p)^2$. For an observable $G$, we write
+$\Phi_G(\theta)=\E^\theta G$. Replacing the summation variable
+$\epsilon$ by $-\epsilon$ in the terminal value of \eqref{eq:cavityPDE},
+we find $U(1,x,y;\theta)=U(1,x,-y;-\theta)$. The invariance of
+\eqref{eq:cavityPDE} under $y\mapsto-y$ then implies that
+$U(q,x,y;\theta)=U(q,x,-y;-\theta)$ for every $q$. Hence the
+reflection $(\epsilon,Y)\mapsto(-\epsilon,-Y)$ of the last spin and its
+field maps $\Pp^\theta$ to $\Pp^{-\theta}$, preserves
+$U(0,0,0;\theta)$ and $M_p$, and changes the sign of $m_N(p)$. It
+follows that the functions
+\[
+ Z,\qquad \Phi_f,\qquad \Phi_{A_p^-},\qquad \Phi_{fA_p^-}
+\]
+are even in $\theta$, so that their gradients vanish at $\theta=0$. At
+fixed $N$, they are twice continuously differentiable, with second
+derivatives bounded by $Ce^{C|\theta|}$ for a constant $C$ that may
+depend on $N$. Indeed, by \eqref{eq:nodeTheta}, we have
+$|\partial_{\theta_i}U|\le1$ and $0\le\partial_{\theta_i}^2U\le1$. By
+\cref{lem:tree-regularity}, all derivatives of $U$ of positive order in
+$(\theta,x,y)$ are bounded at fixed $N$. Further, the density of $\Pp^\theta$ and its
+first two derivatives in $\theta$ are bounded by the integrable
+envelope
+\[
+ C\exp\Bigl\{C\Bigl(1+\sum_{1\le i<j\le n}|g_{ij}|+|\theta|
+ +\sup_{q\le1}|X_q|+\sup_{q\le1}|Y_q|\Bigr)\Bigr\}
+\]
+under the Gaussian reference law of the couplings and the paths.
+Constants that we use only to justify differentiation may depend on
+$N$; they do not enter the identity we prove.
+
+Let $F\in C^2(\R^n)$ satisfy $|\nabla^2F(\theta)|\le Ce^{C|\theta|}$, and
+let $g$ be a standard Gaussian vector in $\R^n$. For $w>0$, Gaussian
+integration by parts shows that the derivative of
+$w\mapsto\E F(\sqrt w\,g)$ is $\E\,\Delta F(\sqrt w\,g)/2$, which
+tends to $\Delta F(0)/2$ as $w\downarrow0$ by dominated convergence.
+By the mean value theorem, the right derivative at $w=0$ is
+$\Delta F(0)/2$. This is the heat equation for the Gaussian
+semigroup. We use this fact for $F=Z\Phi_G$ and for $F=Z$ in
+\eqref{eq:c7-mixture}. By the quotient rule, we have
+\[
+ \begin{aligned}
+ \partial_w\E_{w,d}G\big|_{w=0}
+ &=\frac{\Delta(Z\Phi_G)(0)-\Phi_G(0)\Delta Z(0)}{2Z(0)}\\
+ &=\frac12\Delta\Phi_G(0)+\frac{\nabla Z(0)\cdot\nabla\Phi_G(0)}{Z(0)}
+ =\frac12\Delta\Phi_G(0),
+ \end{aligned}
+\]
+where in the second equality we used
+$\Delta(Z\Phi_G)=Z\Delta\Phi_G+2\nabla Z\cdot\nabla\Phi_G+\Phi_G\Delta Z$,
+and in the third that $\nabla Z(0)=0$. We use this for
+$G\in\{f,A_p^-,fA_p^-\}$, together with the product rule. The cross term
+$\nabla\Phi_f\cdot\nabla\Phi_{A_p^-}$ in the expansion of
+$\Delta(\Phi_f\Phi_{A_p^-})/2$ vanishes at $\theta=0$, because
+$\nabla\Phi_f(0)=0$. We conclude that
+\[
+ \partial_wC(0,d)=\frac12\Delta\Phi_{fA_p^-}(0)
+ -\frac12\Delta\Phi_f(0)\,\Phi_{A_p^-}(0)
+ -\frac12\Phi_f(0)\,\Delta\Phi_{A_p^-}(0)
+ =\frac12\Delta_\theta\Cov^\theta(f,A_p^-)\Big|_{\theta=0}.
+\]
+Inserting this into \eqref{eq:c7-row-only}, we obtain
+\begin{equation}\label{eq:c7-fixedcoupling}
+ \mathcal C_{pp}'(0)=\frac{\alpha}{2n}\sum_{i=1}^n
+   \partial_{\theta_i}^2\Cov^{\theta}(f,A_p^-)\Big|_{\theta=0}.
+\end{equation}
+
+\paragraph{Step 2: derivatives in one coordinate of the row.}
+For $\theta=0$, the law $\Pp^\theta$ is the product law $\Pp_0$, and
+$U(q,x,y;0)=U^-(q,x)+U^0(q,y)$. In this proof, $\E$ and $\Cov$ without
+superscript denote expectation and covariance under $\Pp_0$. Let
+\[
+ \dot U_i(r,x,y)=\partial_{\theta_i}U(r,x,y;\theta)\big|_{\theta=0},
+ \qquad
+ \ddot U_i(r,x,y)=\partial_{\theta_i}^2U(r,x,y;\theta)\big|_{\theta=0}.
+\]
+Under $\Pp_0$, the conditional law of $(\tau,\epsilon)$ given $\calG_r$
+is the product of the conditional laws of $\tau$ given $\calG^-_r$ and
+of $\epsilon$ given $\calG^0_r$. The conditional feature
+$\pi_i(r)=\E[\tau_i\epsilon\mid\calG_r]$ of \eqref{eq:nodeTheta}
+therefore equals $M_i(r,X_r)m_r$, and for $\ell\ge r$, we have
+$\E[\pi_i(\ell)^2\mid\calG_r]=(P^-_{r,\ell}M_i(\ell,\cdot)^2)(X_r)\,
+g_r^\ell(Y_r)$. Inserting these identities into \eqref{eq:nodeTheta}, we obtain
+\begin{align}
+ \dot U_i(r,x,y)&=M_i(r,x)\,m(r,y),\label{eq:Vi}\\
+ \ddot U_i(r,x,y)&=1-a(r)M_i(r,x)^2m(r,y)^2
+ -\int_{(r,1]}\bigl(P^-_{r,\ell}M_i(\ell,\cdot)^2\bigr)(x)\,
+ g_r^\ell(y)\,\nu(\dd\ell).
+ \label{eq:Wi}
+\end{align}
+Since $\sum_iM_i(\ell,\cdot)^2=nA^-(\ell,\cdot)$, the average of
+\eqref{eq:Wi} over $i$ is
+\begin{equation}\label{eq:c7-average}
+ \ddot U_{\rm av}(r,x,y)=\frac1n\sum_{i=1}^n\ddot U_i(r,x,y)
+ =1-a(r)A^-(r,x)\,m(r,y)^2
+ -\int_{(r,1]}(P^-_{r,\ell}A^-_\ell)(x)\,g_r^\ell(y)\,\nu(\dd\ell).
+\end{equation}
+
+By \cref{lem:tree-density} with one leaf, applied with the row fixed
+at $\theta$, the law $\Pp^\theta$ has the density
+\[
+ \varpi_\theta=\frac1{Z(\theta)}\exp\Bigl\{\mathcal E^-(\tau)
+ +\epsilon\,\theta\cdot\tau+X_1\cdot\tau+Y_1\epsilon
+ -\int_{[0,1]}U(q,X_q,Y_q;\theta)\,\nu(\dd q)\Bigr\}
+\]
+with respect to the Gaussian reference law of the couplings $g_{ij}$,
+the Gaussian reference paths $X$ and $Y$ with covariances
+$c(q\wedge q')I_n$ and $d(q\wedge q')$, and counting measure on
+$\sigma=(\tau,\epsilon)$. Recall from Step~1 that $\nabla Z(0)=0$.
+Then the $\theta_i$-score of $\varpi_\theta$ at $\theta=0$ is
+\[
+ \mathfrak s_i=\partial_{\theta_i}\log\varpi_\theta\big|_{\theta=0}
+ =\tau_i\epsilon-\int M_i(r)\,m_r\,\nu(\dd r),
+ \qquad M_i(r)=M_i(r,X_r),
+\]
+where we used \eqref{eq:Vi}, and the second derivative satisfies
+\begin{equation}\label{eq:c7-density-hessian}
+ \frac{\partial_{\theta_i}^2\varpi_\theta}{\varpi_\theta}\Big|_{\theta=0}
+ =\mathfrak s_i^2+\partial_{\theta_i}^2\log\varpi_\theta\big|_{\theta=0}
+ =\mathfrak s_i^2-\int\ddot U_i(r,X_r,Y_r)\,\nu(\dd r)
+ -\partial_{\theta_i}^2\log Z(0).
+\end{equation}
+This quantity has mean zero under $\Pp_0$, because $\varpi_\theta$
+integrates to one for every $\theta$.
+
+An observable $G_\theta$ under $\Pp^\theta$ depends on $\theta$
+explicitly, through $U(\cdot;\theta)$, and through the law. We write
+$G_i$ and $G_{ii}$ for its first and second explicit
+$\theta_i$-derivatives at $\theta=0$, with the couplings, the paths, and
+the spins fixed. Differentiating under the reference integral, which
+the envelope of Step~1 permits, we have
+\[
+ \partial_{\theta_i}^2\E^\theta G_\theta\big|_{\theta=0}
+ =\E\Bigl[G_{ii}+2G_i\mathfrak s_i
+ +G\,\frac{\partial_{\theta_i}^2\varpi_\theta}{\varpi_\theta}
+ \Big|_{\theta=0}\Bigr].
+\]
+This formula holds for $G=fA_p^-$, $f$, and $A_p^-$. At $\theta=0$, we
+have $f=f_p$. We denote the explicit derivatives of $f$ by $f_{p,i}$ and
+$f_{p,ii}$, and those of $A_p^-$ by $A_{p,i}^-$ and $A_{p,ii}^-$.
+The first derivatives of $\E^\theta f$ and $\E^\theta A_p^-$ vanish at
+$\theta=0$ by Step~1. Expanding
+$\Cov^\theta(f,A_p^-)=\E^\theta[fA_p^-]-\E^\theta f\,\E^\theta A_p^-$
+with the product rule, and using that \eqref{eq:c7-density-hessian}
+has mean zero, we find that $\partial_{\theta_i}^2\Cov^\theta(f,A_p^-)$
+at $\theta=0$ equals
+\[
+ \E\bigl[f_{p,ii}\bar A_p^-+\bar f_pA_{p,ii}^-+2f_{p,i}A_{p,i}^-\bigr]
+ +2\E\bigl[\mathfrak s_i(f_{p,i}\bar A_p^-+\bar f_pA_{p,i}^-)\bigr]
+ +\E\Bigl[\bar f_p\bar A_p^-\frac{\partial_{\theta_i}^2\varpi_\theta}
+ {\varpi_\theta}\Big|_{\theta=0}\Bigr].
+\]
+Since $\Pp_0$ is a product law, we have $\E[\bar f_p\bar A_p^-]=0$,
+and the constant $\partial_{\theta_i}^2\log Z(0)$ in
+\eqref{eq:c7-density-hessian} drops out. Summing over $i$, we see from
+\eqref{eq:c7-fixedcoupling} that
+\begin{align}
+ \frac{\mathcal C_{pp}'(0)}\alpha=\frac1{2n}\sum_i\Bigl\{&
+ \E\bigl[f_{p,ii}\bar A_p^-+\bar f_pA_{p,ii}^-+2f_{p,i}A_{p,i}^-\bigr]
+ +2\E\bigl[\mathfrak s_i(f_{p,i}\bar A_p^-+\bar f_pA_{p,i}^-)\bigr]
+ \nonumber\\
+ &+\E\Bigl[\bar f_p\bar A_p^-
+       \Bigl(\mathfrak s_i^2-\int\ddot U_i\dd\nu\Bigr)\Bigr]\Bigr\}.
+ \label{eq:productcovderivative}
+\end{align}
+We sort the right side into four groups, each including the factor
+$1/(2n)$ and the sum over $i$:
+\begin{enumerate}[label=(\alph*)]
+\item the terms $f_{p,ii}\bar A_p^-$;
+\item the terms $2\mathfrak s_if_{p,i}\bar A_p^-$;
+\item the terms $\bar f_p\bar A_p^-(\mathfrak s_i^2-\int\ddot U_i\dd\nu)$;
+\item the three terms containing a derivative of $A_p^-$, namely
+$\bar f_pA_{p,ii}^-$, $2f_{p,i}A_{p,i}^-$, and
+$2\mathfrak s_i\bar f_pA_{p,i}^-$.
+\end{enumerate}
+
+We now compute the explicit derivatives. We have
+$f=(\partial_yU(p,X_p,Y_p;\theta))^2$ and
+$A_p^-=|\nabla_xU(p,X_p,Y_p;\theta)|^2/n$, and by \eqref{eq:Vi},
+$\partial_y\dot U_i(p)=M_i(p)h_p$ and $\nabla_x\dot U_i(p)=m_pH_p^-e_i$.
+Differentiating once and twice in $\theta_i$, we obtain
+\begin{align}
+ f_{p,i}&=2m_ph_pM_i(p),&
+ f_{p,ii}&=2M_i(p)^2h_p^2+2m_p\partial_y\ddot U_i(p),\nonumber\\
+ A_{p,i}^-&=\frac{2m_p}{n}(H_p^-M_p)_i,&
+ A_{p,ii}^-&=\frac2n\bigl\{m_p^2|H_p^-e_i|^2+
+                         M_p\cdot\nabla_x\ddot U_i(p)\bigr\},
+ \label{eq:cav-explicit-derivatives}
+\end{align}
+where $\ddot U_i(p)$ and its derivatives are evaluated at
+$(p,X_p,Y_p)$ and $e_i$ is the $i$th coordinate vector of $\R^n$.
+
+\paragraph{Step 3: the groups (a) and (b).}
+The identities \eqref{eq:cav-explicit-derivatives} and
+\eqref{eq:c7-average}, together with $\partial_y(m^2)=2mh$, yield
+\[
+ \begin{aligned}
+ \frac1{2n}\sum_if_{p,ii}&=A_p^-h_p^2+m_p\partial_y\ddot U_{\rm av}(p)\\
+ &=\bigl(h_p^2-2a(p)m_p^2h_p\bigr)A_p^-
+ -\int_{(p,1]}m_p\,\partial_yg_p^\ell(Y_p)\,
+ (P^-_{p,\ell}A_\ell^-)(X_p)\,\nu(\dd\ell).
+ \end{aligned}
+\]
+We multiply by $\bar A_p^-$ and take the expectation. The scalar and
+rest factors are independent, $\E^-[A_p^-\bar A_p^-]=\Sigma^-(p,p)$,
+and $\E^-[(P^-_{p,\ell}A_\ell^-)\bar A_p^-]=\Theta(p;\ell,p)
+=\Sigma^-(\ell,p)$ by \eqref{eq:c7-theta-past}. We conclude that group
+(a) equals
+\begin{equation}\label{eq:c7-group-a}
+ \bigl(\E^0h_p^2-2a(p)\E^0[m_p^2h_p]\bigr)\Sigma^-(p,p)
+ -\int_{(p,1]}\E^0[m_p\,\partial_yg_p^\ell(Y_p)]\,
+                                  \Sigma^-(\ell,p)\,\nu(\dd\ell).
+\end{equation}
+
+For group (b), we insert the definitions of $\mathfrak s_i$, $x_p$, and
+$y_{pr}=y_{rp}$ and find
+\[
+ \begin{aligned}
+ \frac1n\sum_i\mathfrak s_if_{p,i}
+ &=2m_ph_p\Bigl[\epsilon\,\frac{\tau\cdot M_p}n
+ -\int m_r\frac{M_r\cdot M_p}n\,\nu(\dd r)\Bigr]\\
+ &=2m_ph_p\Bigl[\epsilon(A_p^-+x_p)
+ -\int m_r(A_{p\wedge r}^-+y_{pr})\,\nu(\dd r)\Bigr].
+ \end{aligned}
+\]
+We multiply by $\bar A_p^-$ and take the expectation. Since
+$\E^0[\epsilon\mid\calG^0_p]=m_p$, we have
+$\E^0[m_ph_p\epsilon]=\E^0[m_p^2h_p]$. The terms containing $A^-$
+produce covariances of the rest self-overlap, and the terms containing
+$x_p$ and $y_{pr}$ make up $T_p^{(1)}$ of \eqref{eq:cav-T1}. Therefore,
+group (b) equals
+\begin{equation}\label{eq:c7-group-b}
+ 2\E^0[m_p^2h_p]\Sigma^-(p,p)
+ -2\int\E^0[m_ph_pm_r]\,\Sigma^-(p\wedge r,p)\,\nu(\dd r)
+ +T_p^{(1)}.
+\end{equation}
+The coefficients of $\Sigma^-(p,p)$ in \eqref{eq:c7-group-a} and
+\eqref{eq:c7-group-b} add up to
+$\E^0[h_p^2+2(1-a(p))m_p^2h_p]$, the coefficient in (J1).
+
+\paragraph{Step 4: the group (c).}
+We average the last factor of \eqref{eq:productcovderivative} over $i$.
+Using $\tau_i^2=\epsilon^2=1$, the definitions of $x_r$ and
+$y_{r\ell}$, the identity \eqref{eq:c7-average}, and
+$\nu([0,1])=1-s$, we have
+\begin{align}
+ \frac1n\sum_i\Bigl(\mathfrak s_i^2-\int\ddot U_i\dd\nu\Bigr)
+ ={}&s-2\int\epsilon m_r(A_r^-+x_r)\,\nu(\dd r)
+ +\iint m_rm_\ell(A_{r\wedge\ell}^-+y_{r\ell})\,\nu(\dd r)\nu(\dd\ell)
+ \nonumber\\
+ &+\int a(r)m_r^2A_r^-\,\nu(\dd r)
+ +\int\nu(\dd r)\int_{(r,1]}g_r^\ell(Y_r)\,
+ (P^-_{r,\ell}A_\ell^-)(X_r)\,\nu(\dd\ell).
+ \label{eq:c7-density-average}
+\end{align}
+Here the constant $s$ is $1-\nu([0,1])$: the squares $\tau_i^2\epsilon^2$
+in $\mathfrak s_i^2$ contribute $1$, and the constant in
+\eqref{eq:c7-average} integrates to $\nu([0,1])$. We multiply
+\eqref{eq:c7-density-average} by $\bar f_p\bar A_p^-/2$ and take the
+expectation. The constant contributes $s\E[\bar f_p\bar A_p^-]/2=0$.
+Each term containing $A^-$ factorizes into a scalar expectation times
+$\E^-[A^-_q\bar A_p^-]=\Sigma^-(q,p)$, with $q=r$ or $q=r\wedge\ell$,
+or, in the last integral, times
+$\E^-[(P^-_{r,\ell}A_\ell^-)\bar A_p^-]=\Theta(r;\ell,p)$. The terms containing $x_r$ and $y_{r\ell}$ make
+up $T_p^{(2)}$ of \eqref{eq:cav-T2}. Collecting these terms, we find
+that group (c) equals
+\begin{equation}\label{eq:c7-group-c}
+ \begin{aligned}
+ &-\int\E^0[\bar f_p\epsilon m_r]\,\Sigma^-(r,p)\,\nu(\dd r)
+ +\frac12\iint\E^0[\bar f_pm_rm_\ell]\,
+      \Sigma^-(r\wedge\ell,p)\,\nu(\dd r)\nu(\dd\ell)\\
+ &+\frac12\int a(r)\E^0[\bar f_pm_r^2]\,\Sigma^-(r,p)\,\nu(\dd r)
+ +\frac12\int\nu(\dd r)\int_{(r,1]}
+       \E^0[\bar f_pg_r^\ell(Y_r)]\,\Theta(r;\ell,p)\,\nu(\dd\ell)
+ +T_p^{(2)}.
+ \end{aligned}
+\end{equation}
+
+\paragraph{Step 5: the group (d).}
+We compute the three terms in turn. First, by
+\eqref{eq:cav-explicit-derivatives},
+$\sum_i|H_p^-e_i|^2=\Tr((H_p^-)^2)$, and \eqref{eq:c7-average}, we have
+\[
+ \frac1{2n}\sum_iA_{p,ii}^-
+ =\frac{m_p^2}{n^2}\Tr\bigl((H_p^-)^2\bigr)
+ +\frac1nM_p\cdot\nabla_x\ddot U_{\rm av}(p).
+\]
+We differentiate \eqref{eq:c7-average} in $x$, using
+$\nabla_xA^-(p,x)=2H^-(p,x)M(p,x)/n$, where
+$H^-(p,x)=\nabla_x^2U^-(p,x)$, and obtain
+\[
+ M_p\cdot\nabla_x\ddot U_{\rm av}(p)
+ =-\frac{2a(p)m_p^2}n\,M_p^TH_p^-M_p
+ -\int_{(p,1]}g_p^\ell(Y_p)\,M_p\cdot\nabla(P^-_{p,\ell}A_\ell^-)(X_p)
+ \,\nu(\dd\ell).
+\]
+We multiply by $\bar f_p$ and take the expectation. Using
+$\E^0[\bar f_pm_p^2]=\Var^0(f_p)=v_p^0$ and
+$\E^0[\bar f_pg_p^\ell(Y_p)]=\Cov^0(f_p,g_p^\ell(Y_p))$, we find
+\[
+ \frac1{2n}\sum_i\E\bigl[\bar f_pA_{p,ii}^-\bigr]
+ =v_p^0a_p^H-2a(p)v_p^0b_p^H
+ -\int_{(p,1]}\Cov^0\bigl(f_p,g_p^\ell(Y_p)\bigr)z_{p,\ell}\,\nu(\dd\ell).
+\]
+Second, \eqref{eq:cav-explicit-derivatives} gives
+$n^{-1}\sum_if_{p,i}A_{p,i}^-=4n^{-2}m_p^2h_p\,M_p^TH_p^-M_p$, and
+therefore
+\[
+ \frac1{2n}\sum_i\E\bigl[2f_{p,i}A_{p,i}^-\bigr]
+ =4\E^0[m_p^2h_p]\,b_p^H.
+\]
+Third, by the definition of $\mathfrak s_i$, we have
+\[
+ \frac1n\sum_i\mathfrak s_iA_{p,i}^-
+ =\frac{2m_p}{n^2}\Bigl[\epsilon\,\tau^TH_p^-M_p
+ -\int m_r\,M_r^TH_p^-M_p\,\nu(\dd r)\Bigr].
+\]
+We multiply by $\bar f_p$ and take the expectation. Conditioning
+$\epsilon$ on $\calG^0_p$ and $\tau$ on $\calG^-_p$, we have
+$\E^0[\bar f_pm_p\epsilon]=\E^0[\bar f_pm_p^2]=v_p^0$ and
+$\E^-[\tau^TH_p^-M_p]=\E^-[M_p^TH_p^-M_p]$. We conclude that
+\[
+ \frac1{2n}\sum_i\E\bigl[2\mathfrak s_i\bar f_pA_{p,i}^-\bigr]
+ =2v_p^0b_p^H-2\int\E^0[\bar f_pm_pm_r]\,b_{r,p}^H\,\nu(\dd r).
+\]
+Adding the three terms, we find that group (d) equals
+\begin{equation}\label{eq:c7-group-d}
+ \begin{aligned}
+ &v_p^0a_p^H+\bigl[4\E^0(m_p^2h_p)+2(1-a(p))v_p^0\bigr]b_p^H\\
+ &-\int_{(p,1]}\Cov^0\bigl(f_p,g_p^\ell(Y_p)\bigr)z_{p,\ell}\,\nu(\dd\ell)
+ -2\int\E^0[\bar f_pm_pm_r]\,b_{r,p}^H\,\nu(\dd r),
+ \end{aligned}
+\end{equation}
+which is $T_p^{(3)}$ of \eqref{eq:cav-T3}.
+
+\paragraph{Step 6: comparison with the scalar response operator.}
+By \eqref{eq:productcovderivative}, $\mathcal C_{pp}'(0)/\alpha$ is the
+sum of \eqref{eq:c7-group-a}, \eqref{eq:c7-group-b},
+\eqref{eq:c7-group-c}, and \eqref{eq:c7-group-d}. We take
+$\varphi=\Sigma^-(\cdot,p)$ in (J1)--(J7) and compare;
+\cref{tab:c7-matching} lists the origin of every term.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Term & Origin in \eqref{eq:productcovderivative} & Group\\
+\midrule
+(J1) & coefficients of $\Sigma^-(p,p)$ in \eqref{eq:c7-group-a} and \eqref{eq:c7-group-b} & (a), (b)\\
+(J2) & future part of $\partial_y\ddot U_i(p)$ in $f_{p,ii}$ & (a)\\
+(J3) & integral part of $\mathfrak s_i$, times $f_{p,i}$ & (b)\\
+(J4) & cross term of $\mathfrak s_i^2$ & (c)\\
+(J5) & present-level part of $-\int\ddot U_i\dd\nu$ & (c)\\
+(J6) & square of the integral part of $\mathfrak s_i$ & (c)\\
+(J7) & future part of $-\int\ddot U_i\dd\nu$, with $\Sigma^-(\ell,p)$ for $\Theta(r;\ell,p)$ & (c)\\
+last line of \eqref{eq:diagonallinear} & future part of $-\int\ddot U_i\dd\nu$, the difference $\Theta-\Sigma^-$ & (c)\\
+$T_p^{(1)}$ & fluctuations $x_p$, $y_{pr}$ in the score term & (b)\\
+$T_p^{(2)}$ & fluctuations $x_r$, $y_{r\ell}$ in $\mathfrak s_i^2$ & (c)\\
+$T_p^{(3)}$ & all derivatives of $A_p^-$ & (d)\\
+\bottomrule
+\end{tabular}
+\caption{The terms of \eqref{eq:diagonallinear}, with
+$\varphi=\Sigma^-(\cdot,p)$ in (J1)--(J7), and the groups of
+\eqref{eq:productcovderivative} from which they arise.}
+\label{tab:c7-matching}
+\end{table}
+
+In detail, the integral in \eqref{eq:c7-group-a} is (J2), and the
+integral in \eqref{eq:c7-group-b} is (J3), with
+$\varphi(p\wedge r)=\Sigma^-(p\wedge r,p)$. The first three terms of
+\eqref{eq:c7-group-c} are (J4), (J6), and (J5). In the fourth
+term of \eqref{eq:c7-group-c}, we write
+$\Theta(r;\ell,p)=\Sigma^-(\ell,p)+[\Theta(r;\ell,p)-\Sigma^-(\ell,p)]$
+and use $\E^0[\bar f_pg_r^\ell(Y_r)]=\Cov^0(f_p,g_r^\ell(Y_r))$. The
+first part is (J7), and the second part is the last line of
+\eqref{eq:diagonallinear}. The remaining terms are $T_p^{(1)}$,
+$T_p^{(2)}$, and $T_p^{(3)}$. The terms (J1)--(J7) add up to
+$d^{-1}(J_{a,d}\Sigma^-(\cdot,p))(p)
+=d^{-1}(J^{\scal}_{a,d}\Sigma^-)(p,p)$, and \eqref{eq:diagonallinear}
+follows.
+
+Atoms of $\nu$ need no separate treatment, because the computation
+uses only the exact density \eqref{eq:treedensity} and the exact
+parameter responses \eqref{eq:nodeTheta}. At an atom, the formulas use the
+right-continuous value $a(p)$ together with the strict future
+intervals $(p,1]$ and $(r,1]$, as \eqref{eq:scalarJexplicit} does, and
+the double integrals over $[0,1]^2$ include their diagonal atoms. This
+completes the proof.
+\end{proof}
+
+\subsection{Proof of the integrated linear response}
+
+\begin{proof}[Proof of \cref{lem:linear}]
+The proof has three steps. First, we show that the last line of
+\eqref{eq:diagonallinear}, integrated over $p$, equals
+$-\mathcal P/2$, and that $\mathcal P\ge0$. Second, we prove the
+assertions about $\Sigma^-$ and the trace. Third, we integrate
+\eqref{eq:diagonallinear}.
+
+\paragraph{Step 1: the conditional future correction.}
+If $r\ge p$, the bracket in \eqref{eq:diagonallinear} vanishes by
+\eqref{eq:c7-theta-past}. As the inner integral runs over $\ell>r$,
+only levels with $p,\ell>r$ contribute. For such levels, we have
+$g_r^p(Y_r)=\E^0[f_p\mid\calG^0_r]$, which implies that
+\[
+ \Cov^0\bigl(f_p,g_r^\ell(Y_r)\bigr)
+ =\Cov^0\bigl(g_r^p(Y_r),g_r^\ell(Y_r)\bigr)=\Lambda_r(p,\ell).
+\]
+By the law of total covariance given $\calG^-_r$, we have
+\[
+ \begin{aligned}
+ \Sigma^-(\ell,p)
+ &=\E^-\Cov^-\bigl(A_\ell^-,A_p^-\bigm|\calG^-_r\bigr)
+ +\Cov^-\bigl(\E^-[A_\ell^-\mid\calG^-_r],\E^-[A_p^-\mid\calG^-_r]\bigr)\\
+ &=\Sigma^-_r(p,\ell)+\Theta(r;\ell,p),
+ \end{aligned}
+\]
+where in the second equality we used that the covariance of the
+$\calG^-_r$-measurable variable $\E^-[A_\ell^-\mid\calG^-_r]$ with
+$A_p^-$ equals its covariance with $\E^-[A_p^-\mid\calG^-_r]$. We
+conclude that $\Theta(r;\ell,p)-\Sigma^-(\ell,p)=-\Sigma^-_r(p,\ell)$. Integrating
+the last line of \eqref{eq:diagonallinear} against $\nu(\dd p)$, and
+exchanging the order of integration, we obtain
+\begin{equation}\label{eq:c7-correction-integrated}
+ \frac12\int\nu(\dd p)\int\nu(\dd r)\int_{(r,1]}
+  \Cov^0\bigl(f_p,g_r^\ell(Y_r)\bigr)
+    \bigl[\Theta(r;\ell,p)-\Sigma^-(\ell,p)\bigr]\nu(\dd\ell)
+ =-\frac12\mathcal P.
+\end{equation}
+
+To show that $\mathcal P\ge0$, we fix $r\in[0,1]$ and define, under the
+product of the scalar and rest laws,
+\[
+ \Xi_r=\int_{(r,1]}
+   \bigl(g_r^p(Y_r)-\E^0g_r^p(Y_r)\bigr)
+   \bigl(A_p^--\E^-[A_p^-\mid\calG_r^-]\bigr)\,\nu(\dd p).
+\]
+We expand the square of $\Xi_r$ and use the independence of the two
+factors. Since
+$\E^-[(A_p^--\E^-[A_p^-\mid\calG^-_r])(A_\ell^--\E^-[A_\ell^-\mid\calG^-_r])]
+=\Sigma^-_r(p,\ell)$, we have
+\[
+ \E\,\Xi_r^2=\iint_{p,\ell>r}\Lambda_r(p,\ell)\,\Sigma_r^-(p,\ell)
+ \,\nu(\dd p)\nu(\dd\ell),
+ \qquad\text{and hence}\qquad
+ \mathcal P=\int\E\,\Xi_r^2\,\nu(\dd r)\ge0.
+\]
+Individual entries of $\Lambda_r$ and $\Sigma^-_r$ need not have a
+sign; only the integrated form is a square.
+
+\paragraph{Step 2: the covariance operator and the trace.}
+Let $B=\bar A^-$ be the random function $p\mapsto\bar A_p^-$. The
+function $p\mapsto A_p^-$ is continuous with values in $[0,1]$, and
+$\nu([0,1])\le1$. Then $B$ is a random element of $L^2(\nu)$ with
+$\|B\|_{L^2(\nu)}\le1$. Its covariance operator
+$\Sigma^-=\E^-[B\otimes B]$, where $(B\otimes B)w=\langle B,w\rangle B$,
+is a Bochner integral in the space of trace-class operators, since
+$\E^-\|B\otimes B\|_1=\E^-\|B\|^2<\infty$. Hence $\Sigma^-$ is positive
+and trace class, its integral kernel is $\Sigma^-(p,q)$, and its trace
+is $\E^-\|B\|^2_{L^2(\nu)}=\int\Var^-(A_p^-)\nu(\dd p)=V^-$. By
+\eqref{eq:c7-root-overlap}, $B(0)=0$; together with $\nu(\{1\})=0$,
+this places $B$ in $\mathcal H_\nu$ for every realization. Since
+$\mathcal H_\nu$ is closed, the vector
+$\Sigma^-w=\E^-[\langle B,w\rangle B]$ lies in $\mathcal H_\nu$ for
+every $w\in L^2(\nu)$, that is, the range of $\Sigma^-$ is contained in
+$\mathcal H_\nu$.
+
+By \eqref{eq:sc-J-bounded}, $J^{\scal}_{a,d}$ is bounded on
+$\mathcal H_\nu$. The rank-one operator $J^{\scal}_{a,d}(B\otimes B)$
+has trace $\langle B,J^{\scal}_{a,d}B\rangle$. As the trace is
+continuous in the trace norm and $\Sigma^-=\E^-[B\otimes B]$, the trace
+of $J^{\scal}_{a,d}\Sigma^-$ on $\mathcal H_\nu$ is
+$\E^-\langle B,J^{\scal}_{a,d}B\rangle$. Since $B\in\mathcal H_\nu$
+and $J^{\scal}_{a,d}$ is the compression of $J_{a,d}$, we have
+$\langle B,J^{\scal}_{a,d}B\rangle=\langle B,J_{a,d}B\rangle
+=\int B(p)(J_{a,d}B)(p)\,\nu(\dd p)$. We expand $(J_{a,d}B)(p)$ as the
+sum (J1)--(J7) with $\varphi=B$. Each term is a kernel bounded by a
+constant depending only on $\beta$, integrated against $\nu$, and
+evaluated on $B$ at one of the levels $p$, $r$, $\ell$, $p\wedge r$,
+or $r\wedge\ell$. As $|B|\le1$ and $\nu$ is finite, Fubini's theorem
+lets us take $\E^-$ inside all integrals, and
+$\E^-[B(p)B(q)]=\Sigma^-(q,p)$. We obtain
+\[
+ \E^-\langle B,J^{\scal}_{a,d}B\rangle
+ =\int\bigl(J_{a,d}\Sigma^-(\cdot,p)\bigr)(p)\,\nu(\dd p)
+ =\Tr_\nu(J^{\scal}_{a,d}\Sigma^-).
+\]
+
+\paragraph{Step 3: integration.}
+Let $\alpha>0$. All terms of \eqref{eq:diagonallinear} are bounded
+measurable functions of $p$. We integrate \eqref{eq:diagonallinear}
+against $\nu(\dd p)$, use \eqref{eq:c7-correction-integrated} and the
+definition of $\Tr_\nu$, and multiply by $\alpha$, which gives
+\eqref{eq:lineartrace}. If $\alpha=0$, then $\mathcal C_{pp}'(0)=0$ by
+\cref{lem:c7-endpoint-pointwise}, and both sides of
+\eqref{eq:lineartrace} vanish.
+\end{proof}
+
+\section{The integrated response errors}\label{sec:c7-response}
+
+If we bounded the error terms $T_p$ of \cref{lem:linear} one level
+at a time, we would meet covariances such as $\E^-[x_r\bar A_p^-]$,
+whose Cauchy--Schwarz bound involves $\Var^-(A_p^-)$. Its integral
+$V^-$ is what the cavity argument is meant to control, so such a bound
+is of no use. Instead, we first integrate in $p$ against the
+deterministic scalar kernels. The error terms then become covariances
+of centered variables of the rest system with $\nu$-averages of $A^-$,
+to which the variance bound \eqref{eq:cl-BL} applies. The resulting
+error is linear in $A$ and $J$.
+
+As in \cref{subsec:c7-linear}, $\E^-$ and $\E^0$ refer to $u=0$,
+$a_p^-=a_p^-(0)$, $j_p^-=j_p^-(0)$, and $\Gamma=\Gamma_{a,d}$ is as in
+\cref{lem:cl-scalar}. We define
+\[
+ \mathfrak a=\int\Gamma(p)\,a_p^-\,\nu(\dd p),\qquad
+ \mathfrak j=\int\Gamma(p)\,j_p^-\,\nu(\dd p).
+\]
+The quantities $A$ and $J$ below are those of \cref{sec:fnd} for the
+full system with $N$ spins and the same profile $\mu$.
+
+\begin{lemma}[Signed response estimate]\label{lem:cl-response}
+Let $\mu=s\delta_0+\nu$ be a deterministic profile with
+$\nu(\{1\})=0$. Then
+\begin{equation}\label{eq:cl-response}
+ \Bigl|\int T_p\,\nu(\dd p)\Bigr|\le\mathfrak a+24\,\mathfrak j
+\end{equation}
+and, with $K_{\beta,3}$ from \cref{cor:comparison},
+\begin{equation}\label{eq:cl-response-final}
+ \alpha\Bigl|\int T_p\,\nu(\dd p)\Bigr|
+ \le192\beta^2K_{\beta,3}\bigl[A+J+N^{-2}\bigr].
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The proof has eight steps. In Step~1, we record two elementary
+inequalities. In Steps~2--6, we split $\int T_p\,\nu(\dd p)$ into eight
+pieces and bound each of them: the remaining term of $T^{(1)}$, the two
+terms of $T^{(2)}$, the first line of \eqref{eq:cav-T3}, the explicit
+and score parts of its future-gradient term, and its last integral over
+$r\ge p$ and over $r<p$. In Step~7, we add the bounds (\cref{tab:c7-response}) and obtain
+\eqref{eq:cl-response}. In Step~8, we compare $\mathfrak a+\mathfrak j$
+with the full system and deduce \eqref{eq:cl-response-final}. Bounded
+observables and integrable Gaussian envelopes justify the exchanges of
+expectations and finite level integrals below; in Step~1, integrability
+follows from $\E^-\xi^2<\infty$.
+
+\paragraph{Step 1: two elementary inequalities.}
+Let $\xi$ be a random variable of the rest system with $\E^-\xi=0$ and
+$\E^-\xi^2<\infty$, let $r\in[0,1]$, and let $\psi$ be a deterministic
+Borel function on $[0,1]$ such that $\psi(q)^2\le\Gamma(r)\Gamma(q)$ for all
+$q$. Note that $\E^-[\xi Y]=\E^-[\xi(Y-\E^-Y)]$ for every
+square-integrable $Y$, because $\xi$ is centered. Using the
+Cauchy--Schwarz inequality and \eqref{eq:cl-BL} at $u=0$, we find
+\begin{equation}\label{eq:cl-CS}
+ \Bigl|\E^-\Bigl[\xi\int\psi A^-\dd\nu\Bigr]\Bigr|
+ \le(\E^-\xi^2)^{1/2}\Var^-\Bigl(\int\psi A^-\dd\nu\Bigr)^{1/2}
+ \le2\bigl(\Gamma(r)\,\mathfrak j\,\E^-\xi^2\bigr)^{1/2},
+\end{equation}
+where in the last inequality we used
+$4\int\psi^2j^-\dd\nu\le4\Gamma(r)\int\Gamma j^-\dd\nu=4\Gamma(r)\mathfrak j$.
+Next, for every Borel function $\chi\ge0$, we have
+\begin{equation}\label{eq:cl-min}
+ \int\sqrt{\Gamma j^-}\dd\nu\le\sqrt{\mathfrak j},\qquad
+ \iint\chi(r\wedge\ell)\,\nu(\dd r)\nu(\dd\ell)\le2\int\chi\dd\nu ,
+\end{equation}
+where the first bound follows from the Cauchy--Schwarz inequality and
+$\nu([0,1])\le1$, and the second from
+$\chi(r\wedge\ell)\le\chi(r)+\chi(\ell)$.
+
+\paragraph{Step 2: the term $T^{(1)}$.}
+The first term of \eqref{eq:cav-T1} vanishes, since
+$\E^-[x_p\mid\calG_p^-]=0$ by \eqref{eq:cl-xy} and $\bar A_p^-$ is
+$\calG_p^-$-measurable. In the second term, if $r\ge p$, then
+$y_{pr}=M_p\cdot(M_r-M_p)/n$ has conditional mean zero given
+$\calG^-_p$, and the term vanishes. If $r<p$, then
+$\E^-[x_r\mid\calG_p^-]=M_p\cdot M_r/n-A_r^-=y_{pr}$, so that
+$\E^-[y_{pr}\bar A_p^-]=\E^-[x_r\bar A_p^-]=\E^-[x_rA_p^-]$, since
+$x_r$ is centered. Exchanging the integrals over $p$ and $r$, we obtain
+\[
+ \int T_p^{(1)}\,\nu(\dd p)
+ =-2\int\E^-\Bigl[x_r\int_{(r,1]}\E^0[m_ph_pm_r]\,A_p^-\,\nu(\dd p)\Bigr]
+   \nu(\dd r).
+\]
+For fixed $r$, the kernel $\psi(p)=\ind_{\{p>r\}}\E^0[m_ph_pm_r]$
+satisfies $\psi^2\le\Gamma(r)\Gamma$ by \eqref{eq:cl-k1}, and
+$\E^-x_r^2=j_r^-$ by \eqref{eq:cl-xy}. By \eqref{eq:cl-CS}, the inner
+expectation is at most $2(\Gamma(r)\mathfrak j\,j_r^-)^{1/2}$ in
+absolute value. Integrating over $r$ and using \eqref{eq:cl-min}, we
+conclude that
+\[
+ \Bigl|\int T_p^{(1)}\,\nu(\dd p)\Bigr|
+ \le4\sqrt{\mathfrak j}\int\sqrt{\Gamma j^-}\dd\nu\le4\mathfrak j.
+\]
+
+\paragraph{Step 3: the term $T^{(2)}$.}
+Since $x_r$ is centered, the first term of \eqref{eq:cav-T2},
+integrated in $p$, equals
+\[
+ -\int\E^-\Bigl[x_r\int\E^0[\bar f_p\epsilon m_r]\,A_p^-\,\nu(\dd p)\Bigr]
+ \nu(\dd r).
+\]
+The kernel $\psi(p)=\E^0[\bar f_p\epsilon m_r]$ satisfies
+$\psi^2\le\Gamma(r)\Gamma$ by \eqref{eq:cl-k1}. Using \eqref{eq:cl-CS} and \eqref{eq:cl-min} as in Step~2, but
+without the factor $2$, we bound
+this term by $2\sqrt{\mathfrak j}\int\sqrt{\Gamma j^-}\dd\nu
+\le2\mathfrak j$. In the second term of \eqref{eq:cav-T2}, the variable
+$y_{r\ell}$ is centered with $\E^-y_{r\ell}^2\le j^-_{r\wedge\ell}$ by
+\eqref{eq:cl-xy}, and the kernel $\psi(p)=\E^0[\bar f_pm_rm_\ell]$
+satisfies $\psi^2\le\Gamma(r\wedge\ell)\Gamma$ by \eqref{eq:cl-k2}.
+Using \eqref{eq:cl-CS} at the level $r\wedge\ell$ and both parts of
+\eqref{eq:cl-min}, with $\chi=\sqrt{\Gamma j^-}$, we bound this term
+by
+\[
+ \frac12\iint2\sqrt{\mathfrak j}\,\chi(r\wedge\ell)\,
+ \nu(\dd r)\nu(\dd\ell)
+ \le2\sqrt{\mathfrak j}\int\chi\dd\nu\le2\mathfrak j.
+\]
+
+\paragraph{Step 4: the first line of $T^{(3)}$.}
+By \cref{lem:fnd-posterior}, as recalled in \cref{subsec:c7-row}, we
+have $0\preceq H_p^-\preceq C_p^-$. For positive semidefinite matrices
+$0\preceq H\preceq C$, we have
+$\Tr(H^2)\le\Tr(HC)\le\Tr(C^2)$, because
+$\Tr(H(C-H))=\Tr(H^{1/2}(C-H)H^{1/2})\ge0$ and
+$\Tr((C-H)C)=\Tr(C^{1/2}(C-H)C^{1/2})\ge0$. Further,
+$M_p^TH_p^-M_p\le M_p^TC_p^-M_p$. We conclude that
+\[
+ 0\le a_p^H\le a_p^-,\qquad 0\le b_p^H\le j_p^-.
+\]
+In addition, \eqref{eq:cl-k3} implies that $0\le v_p^0\le\Gamma(p)$ and
+$0\le\E^0[m_p^2h_p]\le\Gamma(p)$, and we have $0\le1-a(p)\le1$. The first line
+of \eqref{eq:cav-T3} is therefore nonnegative and at most
+$\Gamma(p)a_p^-+(4+2)\Gamma(p)j_p^-$. Integrating against $\nu$, we
+find that it contributes at most $\mathfrak a+6\mathfrak j$.
+
+\paragraph{Step 5: the future gradient in $T^{(3)}$.}
+We first compute $z_{p,\ell}$ for $\ell\ge p$. Given $\calG_p^-$, the
+future of the rest system consists of the increments
+$(X_r-X_p)_{r\ge p}$ and the terminal spin $\tau$. By the edge
+likelihood \eqref{eq:cav-edge-likelihood} on $[p,1]$ and the terminal
+Gibbs probability, as in \eqref{eq:treedensity}, their conditional law
+has the density
+\[
+ \exp\Bigl\{\mathcal E^-(\tau)+X_1\cdot\tau-a(p)U^-(p,X_p)
+ -\int_{(p,1]}U^-(r,X_r)\,\nu(\dd r)\Bigr\}
+\]
+with respect to driftless Gaussian increments and counting measure on
+$\tau$. If we vary $X_p=x$ with the increments fixed, every $X_r$ with
+$r\ge p$ moves by the same vector. The gradient in $x$ of the
+logarithm of this density is therefore the score
+$\tau-a(p)M_p-\int_{(p,1]}M_r\,\nu(\dd r)$, while the gradient in $x$
+of $A_\ell^-=A^-(\ell,X_\ell)$ is $2H_\ell^-M_\ell/n$. We may
+differentiate $(P^-_{p,\ell}A_\ell^-)(x)$ under the integral, because at fixed $N$ the density and its $x$-gradient have an
+integrable Gaussian envelope. This gives
+\[
+ \nabla(P^-_{p,\ell}A_\ell^-)(X_p)
+ =\E^-\Bigl[\frac2nH_\ell^-M_\ell
+ +A_\ell^-\Bigl(\tau-a(p)M_p-\int_{(p,1]}M_r\,\nu(\dd r)\Bigr)
+ \Bigm|\calG^-_p\Bigr].
+\]
+Taking the inner product with $M_p/n$ and using $a(p)+\nu((p,1])=1$,
+we obtain
+\begin{equation}\label{eq:c7-future-gradient}
+ \begin{gathered}
+ z_{p,\ell}=\frac2{n^2}\E^-[M_p^TH_\ell^-M_\ell]+\E^-[\zeta_pA_\ell^-],
+ \\
+ \zeta_p=\frac{M_p\cdot(\tau-M_p)}n
+   -\int_{(p,1]}\frac{M_p\cdot(M_r-M_p)}n\,\nu(\dd r).
+ \end{gathered}
+\end{equation}
+
+We bound the explicit term. For $\ell\ge p$, \eqref{eq:c7-total-cov}
+implies that $\E^-[C_\ell^-\mid\calG_p^-]\preceq C_p^-$. Recall also
+that $H_\ell^-\preceq C_\ell^-$. Using the Cauchy--Schwarz inequality
+for the positive semidefinite form of $H_\ell^-$ and then for $\E^-$,
+we find
+\[
+ \frac2{n^2}\bigl|\E^-[M_p^TH_\ell^-M_\ell]\bigr|
+ \le\frac2{n^2}\bigl(\E^-[M_p^TC_\ell^-M_p]\,
+ \E^-[M_\ell^TC_\ell^-M_\ell]\bigr)^{1/2}
+ \le2\sqrt{j_p^-j_\ell^-},
+\]
+where in the last inequality we conditioned on $\calG^-_p$ in the first
+factor. Next, both parts of $\zeta_p$ have conditional mean zero given
+$\calG_p^-$, since $\E^-[\tau\mid\calG^-_p]=M_p$ and
+$\E^-[M_r\mid\calG^-_p]=M_p$ for $r\ge p$. The first part has
+conditional second moment $M_p^TC_p^-M_p/n^2$. By
+\eqref{eq:c7-total-cov}, each $M_p\cdot(M_r-M_p)/n$ has conditional
+second moment at most $M_p^TC_p^-M_p/n^2$. As $\nu((p,1])\le1$, the
+conditional Minkowski inequality bounds the conditional $L^2$ norm of
+the second part by $(M_p^TC_p^-M_p)^{1/2}/n$. We conclude that
+\[
+ \E^-\zeta_p=0,\qquad\E^-\zeta_p^2\le4j_p^-.
+\]
+
+Let
+$\mathcal K(p,\ell)=\ind_{\{\ell>p\}}\Cov^0\bigl(f_p,g_p^\ell(Y_p)\bigr)$.
+By \eqref{eq:cl-k4}, we have $\mathcal K(p,\ell)^2\le\Gamma(p)\Gamma(\ell)$.
+The future-gradient term of \eqref{eq:cav-T3}, integrated in $p$, is
+$-\iint\mathcal K(p,\ell)z_{p,\ell}\,\nu(\dd p)\nu(\dd\ell)$. Inserting
+\eqref{eq:c7-future-gradient}, we split it into an explicit part and a
+score part. Using \eqref{eq:cl-min}, we find that the explicit part is
+at most
+\[
+ 2\iint\sqrt{\Gamma(p)j_p^-}\,\sqrt{\Gamma(\ell)j_\ell^-}\,
+ \nu(\dd p)\nu(\dd\ell)
+ =2\Bigl(\int\sqrt{\Gamma j^-}\dd\nu\Bigr)^2\le2\mathfrak j.
+\]
+The score part is
+$-\int\E^-[\zeta_p\int\mathcal K(p,\ell)A_\ell^-\nu(\dd\ell)]\nu(\dd p)$.
+Using \eqref{eq:cl-CS} with $\xi=\zeta_p$, $\psi=\mathcal K(p,\cdot)$,
+and the level $p$, and then \eqref{eq:cl-min}, we bound it by
+$\int2(\Gamma(p)\mathfrak j\cdot4j_p^-)^{1/2}\nu(\dd p)
+\le4\sqrt{\mathfrak j}\int\sqrt{\Gamma j^-}\dd\nu\le4\mathfrak j$.
+
+\paragraph{Step 6: the last integral in $T^{(3)}$.}
+If $r\ge p$, conditioning on $\calG^-_p$ gives
+$\E^-[M_r^TH_p^-M_p]=\E^-[M_p^TH_p^-M_p]$, so that
+$b^H_{r,p}=b^H_p\in[0,j_p^-]$. By \eqref{eq:cl-k2}, the kernel
+satisfies $|\E^0[\bar f_pm_pm_r]|\le\sqrt{\Gamma(p)\Gamma(p\wedge r)}
+=\Gamma(p)$. This part contributes at most
+$2\int\Gamma(p)j_p^-\nu([p,1])\,\nu(\dd p)\le2\mathfrak j$. If $r<p$,
+the Cauchy--Schwarz inequalities of Step~5 imply that
+\[
+ |b^H_{r,p}|
+ \le n^{-2}\bigl(\E^-[M_r^TC_p^-M_r]\,\E^-[M_p^TC_p^-M_p]\bigr)^{1/2}
+ \le\sqrt{j_r^-j_p^-},
+\]
+where we used $\E^-[C_p^-\mid\calG^-_r]\preceq C_r^-$ in the first
+factor. The kernel is at most $\sqrt{\Gamma(r)\Gamma(p)}$ by
+\eqref{eq:cl-k2}, and by \eqref{eq:cl-min}, this part also contributes
+at most $2(\int\sqrt{\Gamma j^-}\dd\nu)^2\le2\mathfrak j$.
+
+\paragraph{Step 7: the sum.}
+\Cref{tab:c7-response} collects the bounds of Steps~2--6, with their
+running total.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+Piece of $\int T_p\,\nu(\dd p)$ & Step & Bound & Running total\\
+\midrule
+$T^{(1)}$, second term & 2 & $4\mathfrak j$ & $4\mathfrak j$\\
+$T^{(2)}$, first term & 3 & $2\mathfrak j$ & $6\mathfrak j$\\
+$T^{(2)}$, second term & 3 & $2\mathfrak j$ & $8\mathfrak j$\\
+$T^{(3)}$, first line & 4 & $\mathfrak a+6\mathfrak j$ & $\mathfrak a+14\mathfrak j$\\
+$T^{(3)}$, future gradient, explicit part & 5 & $2\mathfrak j$ & $\mathfrak a+16\mathfrak j$\\
+$T^{(3)}$, future gradient, score part & 5 & $4\mathfrak j$ & $\mathfrak a+20\mathfrak j$\\
+$T^{(3)}$, last integral, $r\ge p$ & 6 & $2\mathfrak j$ & $\mathfrak a+22\mathfrak j$\\
+$T^{(3)}$, last integral, $r<p$ & 6 & $2\mathfrak j$ & $\mathfrak a+24\mathfrak j$\\
+\bottomrule
+\end{tabular}
+\caption{Bounds for the pieces of the integrated error terms in the
+proof of \cref{lem:cl-response}.}
+\label{tab:c7-response}
+\end{table}
+
+Summing the bounds, we obtain
+$|\int T_p\,\nu(\dd p)|\le\mathfrak a+(4+2+2+6+2+4+2+2)\mathfrak j
+=\mathfrak a+24\mathfrak j$, which is \eqref{eq:cl-response}.
+
+\paragraph{Step 8: transfer to the full system.}
+Fix $q\in[0,1]$, and consider three descendants splitting at $q$, with
+rest spins $\tau^1,\tau^2,\tau^3$. Given $\calG_q$, they are
+conditionally independent with conditional mean $M_q$ and conditional
+covariance $C_q^-$. The difference $D=\tau^1-\tau^2$ has conditional
+mean zero and conditional second-moment matrix $2C_q^-$, and $\tau^3$
+is conditionally independent of it, with second-moment matrix
+$C_q^-+M_qM_q^T$. Then
+$\E[(D\cdot\tau^3)^2\mid\calG_q]=\Tr\bigl(2C_q^-(C_q^-+M_qM_q^T)\bigr)
+=2\Tr((C_q^-)^2)+2M_q^TC_q^-M_q$, and
+\[
+ a_q^-(u)+j_q^-(u)
+ =\frac12\E_{3,q,u}\Bigl[\Bigl(\frac{(\tau^1-\tau^2)\cdot\tau^3}n\Bigr)^2
+ \Bigr]\qquad(0\le u\le1).
+\]
+The observable on the right is nonnegative and bounded, and it does not
+depend on $u$. By \cref{cor:comparison} with $k=3$, its mean at $u=0$
+is at most $K_{\beta,3}$ times its mean at $u=1$.
+
+At $u=1$, we use the notation of \cref{sec:fnd} for the full system:
+$m_q\in\R^N$ is the full conditional mean, $C_q$ the full conditional
+covariance, and $a_q^{\rm th}$ and $j_q$ are as defined there. Then
+$C_q^-$ is the principal $n\times n$ block of $C_q$, and
+$(M_q,0)=m_q-m_N(q)e_N$, where $e_N$ is the last coordinate vector, so
+that $M_q^TC_q^-M_q=(M_q,0)^TC_q(M_q,0)$. The
+sum of the squared entries of a principal block is at most that of the
+whole matrix, which implies that $\Tr((C_q^-)^2)\le\Tr(C_q^2)$. Since $C_q\succeq0$, we
+have
+\[
+ (M_q,0)^TC_q(M_q,0)\le2m_q^TC_qm_q+2m_N(q)^2(C_q)_{NN},
+\]
+and $m_N(q)^2(C_q)_{NN}\le1$. Dividing by $n^2$ and taking expectations,
+we find
+\[
+ a_q^-(1)\le\Bigl(\frac Nn\Bigr)^2a_q^{\rm th},\qquad
+ j_q^-(1)\le2\Bigl(\frac Nn\Bigr)^2j_q+\frac2{n^2}.
+\]
+We multiply the comparison by $\Gamma(q)\in[0,1]$, integrate against
+$\nu$, and use these bounds, $\nu([0,1])\le1$, and $n\ge N/2$. This
+yields
+\[
+ \mathfrak a+\mathfrak j
+ \le K_{\beta,3}\Bigl[\Bigl(\frac Nn\Bigr)^2A+2\Bigl(\frac Nn\Bigr)^2J
+ +\frac2{n^2}\Bigr]
+ \le8K_{\beta,3}\bigl[A+J+N^{-2}\bigr].
+\]
+Since $\alpha\le\beta^2$, \eqref{eq:cl-response} implies that
+$\alpha|\int T_p\,\nu(\dd p)|\le24\beta^2(\mathfrak a+\mathfrak j)$.
+Together with the previous bound, this proves
+\eqref{eq:cl-response-final}, with $192=24\cdot8$.
+\end{proof}

@@ -1,0 +1,760 @@
+\chapter{Introduction}\label{sec:introduction}
+
+\section{The Sherrington--Kirkpatrick model and the Parisi formula}\label{sec:intro-background}
+
+Let $(g_{ij})_{1\le i<j\le N}$ be independent standard Gaussian
+variables. The Sherrington--Kirkpatrick (SK)
+model~\cite{SherringtonKirkpatrick1975} at zero external field and
+inverse temperature $\beta>0$ has Hamiltonian
+\[
+ H_N(\sigma)=\frac1{\sqrt N}\sum_{1\le i<j\le N}g_{ij}\sigma_i\sigma_j,
+ \qquad \sigma\in\{-1,1\}^N.
+\]
+Its logarithmic partition function and expected pressure are
+\[
+ F_{N,\beta}=\log\sum_{\sigma\in\{-1,1\}^N}e^{\beta H_N(\sigma)},
+ \qquad
+ p_{N,\beta}=\frac{\E F_{N,\beta}}N.
+\]
+For a probability measure $\mu$ on $[0,1]$ with distribution function
+$\alpha(q)=\mu([0,q])$, let $u_\alpha$ be the solution of the Parisi
+equation on $[0,1]\times\R$, and define the Parisi functional
+$\mathcal P_\beta$ and the Parisi value $P_\beta$ by
+\begin{equation}\label{eq:intro-parisi}
+\begin{gathered}
+ \partial_qu_\alpha=-\frac{\beta^2}{2}
+ \bigl(\partial_{xx}u_\alpha+\alpha(q)(\partial_xu_\alpha)^2\bigr),
+ \qquad u_\alpha(1,x)=\log(2\cosh x),\\
+ \mathcal P_\beta(\alpha)=u_\alpha(0,0)
+       -\frac{\beta^2}{2}\int_0^1q\alpha(q)\dd q,
+ \qquad P_\beta=\inf_{\mu\in\mathcal P([0,1])}\mathcal P_\beta(\alpha),
+\end{gathered}
+\end{equation}
+where $\mathcal P([0,1])$ is the set of probability measures on
+$[0,1]$. For a general $\mu$, the equation is understood in the weak
+sense of~\cite[Theorem~4]{JagannathTobasco2016}.
+
+Sherrington and Kirkpatrick introduced this model and studied it by a
+replica-symmetric calculation, which fails at low
+temperature~\cite{SherringtonKirkpatrick1975}; a longer treatment, with
+numerical comparisons, is given in~\cite{KirkpatrickSherrington1978}.
+De~Almeida and Thouless showed that the replica-symmetric saddle point
+becomes unstable~\cite{deAlmeidaThouless1978}. Parisi proposed a
+hierarchical breaking of the replica symmetry in~\cite{Parisi1979}, and
+he developed a sequence of approximate solutions and the order
+parameter on $[0,1]$ that leads to \eqref{eq:intro-parisi}
+in~\cite{Parisi1980Sequence,Parisi1980OrderParameter}. He later
+interpreted this order parameter through the distribution of overlaps
+between states~\cite{Parisi1983OrderParameter}. M\'ezard, Parisi,
+Sourlas, Toulouse, and Virasoro then described the organization of the
+states, with sample-dependent weights and ultrametric overlaps,
+in~\cite{MezardEtAl1984Nature}.
+
+The Parisi formula states that $p_{N,\beta}\to P_\beta$ as
+$N\to\infty$. Guerra proved the upper bound $p_{N,\beta}\le P_\beta$ for
+every $N$~\cite{Guerra2003}, and Talagrand proved the matching lower
+bound in the limit~\cite{Talagrand}. The infimum in
+\eqref{eq:intro-parisi} is attained at a unique measure
+$\mu_\beta$~\cite{AuffingerChen2015Uniqueness}, the Parisi measure,
+whose distribution function we denote by $\alpha_\beta$. For $\beta>1$,
+its support is an interval $[0,q_\beta]$ with
+$0<q_\beta<1$~\cite[Theorem~1.1]{Lopatto}; for $\beta>1$ close to $1$,
+this was proved earlier by Zhou~\cite{Zhou2026FRSB}.
+
+\section{Finite-size corrections}\label{sec:intro-finite-size}
+
+In this paper, we study the rate of convergence in the Parisi formula at
+low temperature. By Guerra's bound, the \emph{mean bias}
+$P_\beta-p_{N,\beta}$ is nonnegative for every $N$. Up to a factor
+$1/\beta$, it is the finite-size correction to the expected free energy
+per spin (\cref{sec:intro-results}).
+
+At high temperature, the mean bias is small. For $0<\beta<1$, Guerra
+and Toninelli showed by a quadratic coupling of two replicas that it is
+of order at most $N^{-1}$~\cite[Section~3]{GuerraToninelli2002Quadratic}.
+With a nonzero external field, Lopatto proved that the limiting
+pressure equals the replica-symmetric value up to and including the
+de~Almeida--Thouless line~\cite[Theorem~1.1]{Lopatto2026ATLine}, and
+Kusuoka and Nakajima proved that the pressure is within $O(N^{-1})$ of
+this value on compact subsets of the strict de~Almeida--Thouless
+region~\cite[Theorem~1.1]{KusuokaNakajima2026}.
+
+Below the critical temperature, the mean bias is expected to decay more
+slowly. In~\cite[Theorem~1.1, (1.5)]{AL}, we proved that
+$0\le P_\beta-p_{N,\beta}\le C\beta N^{-1/2}$ for every $\beta>0$ and
+$N\ge1$, with a numerical constant $C$. For fixed $\beta>1$, we used
+the interval support of $\mu_\beta$ to prove the sharper upper bound
+$C_\beta N^{-2/3}$ and the lower bound $c_\beta N^{-11/12}$, for all
+sufficiently large $N$~\cite[Theorem~1.4]{AL}. In physics, the
+correction is expected to decay like $N^{-\omega}$ with $\omega<1$ at
+low temperature. Two values have been proposed for the full model,
+$\omega=2/3$ and $\omega=3/4$. A calculation retaining only
+longitudinal fluctuations gives
+$\omega=4/5$~\cite{ParisiSarraTalamanca2019}. We review these predictions in
+\cref{subsec:intro-physics}. We improve the exponent of the upper bound
+from $2/3$ to $7/10$.
+
+\section{Main result}\label{sec:intro-results}
+
+Our main result is the following.
+
+\begin{theorem}\label{thm:main}
+For every $\beta>1$ there is a constant $C_\beta<\infty$ such that
+\[
+ P_\beta-p_{N,\beta}\le C_\beta N^{-7/10}
+ \qquad(N\ge2).
+\]
+\end{theorem}
+
+Since $P_\beta-p_{N,\beta}\ge0$ for every $N$~\cite{Guerra2003},
+\cref{thm:main} is a two-sided estimate. In physical units, the
+expected free energy density is $\E[-F_{N,\beta}/(\beta N)]$, and its
+limit is $-P_\beta/\beta$. By \cref{thm:main}, we have
+\[
+ 0\le \E\Bigl[-\frac{F_{N,\beta}}{\beta N}\Bigr]
+     -\Bigl(-\frac{P_\beta}{\beta}\Bigr)
+ =\frac{P_\beta-p_{N,\beta}}{\beta}
+ \le\frac{C_\beta}{\beta}N^{-7/10}
+ \qquad(N\ge2).
+\]
+For the expected logarithm of the partition function itself, the
+corresponding bound is $0\le NP_\beta-\E F_{N,\beta}\le C_\beta N^{3/10}$. The constant
+$C_\beta$ depends on $\beta$, and we do not control it as
+$\beta\downarrow1$ or as $\beta\to\infty$. In particular, we do not
+obtain a corresponding bound for the ground-state energy.
+
+Together with the lower bound in~\cite[Theorem~1.4]{AL},
+\cref{thm:main} implies that for every fixed $\beta>1$,
+\[
+ c_\beta N^{-11/12}\le P_\beta-p_{N,\beta}\le C_\beta N^{-7/10}
+\]
+for all sufficiently large $N$. The exponent $7/10$ lies between the
+exponent $2/3$ of~\cite[Theorem~1.4]{AL} and the exponent $3/4$
+predicted by Franz, Parisi, and
+Ricci-Tersenghi~\cite{FranzParisiRicciTersenghi2026}, which we discuss
+in \cref{subsec:intro-physics}. In \cref{subsec:intro-openai}, we
+compare \cref{thm:main} with two conditional consequences of results
+stated in the OpenAI
+manuscripts~\cite{OpenAIFluctuationScale,OpenAILimitingLaw}. An
+uncentered comparison stated there would give an unspecified strict
+improvement over $2/3$, and the variance asymptotic stated there would
+imply the lower bound $P_\beta-p_{N,\beta}\ge c_\beta N^{-5/6}$.
+
+We now outline the proof; \cref{sec:overview} gives a detailed
+overview. We follow the interpolation scheme of~\cite{AL}, which is a
+quantitative form of the Guerra interpolation~\cite{Guerra2003} that
+Talagrand used for the positive fractional moments of the partition
+function~\cite{Talagrand2007FractionalMoments}. For a tilt
+$0<\lambda\le\lambda_0$, let $e_{N,\beta}(\lambda)\ge0$ be the error,
+in energy units, between the constrained Parisi value and the normalized
+logarithmic moment of order $\lambda/\beta$ of the completed partition
+function. The constraint requires mass at least $\lambda/\beta$ at zero
+(\cref{sec:fnd}).
+Imposing this mass raises the Parisi value by at most
+$C_\beta\lambda^5$ in energy units~\cite[Lemma~7.2]{AL}. Using this
+bound and the convexity of Gaussian logarithmic
+moments~\cite[Theorem~1]{ChenConvexity}, as in the proof
+of~\cite[Theorem~7.8, Step~1]{AL}, we find
+\[
+ 0\le\frac{P_\beta-p_{N,\beta}}{\beta}
+ \le C_\beta\lambda^5+2e_{N,\beta}(\lambda).
+\]
+For sufficiently large $N$, we take $\lambda=N^{-7/50}$, so it
+suffices to show that
+$e_{N,\beta}(N^{-7/50})\le C_\beta N^{-7/10}$.
+
+Up to a factor of four, $e_{N,\beta}(\lambda)$ is the integral over
+$\rho\in(0,1]$ of a defect $\calD_N(\rho)=\beta(A+2J+V)$ along the
+interpolation, evaluated at a minimizing profile of an $N$-dimensional
+variational problem. The terms $A$ and $J$ are controlled directly
+(\cref{sec:fnd,sec:th}). The difficulty is $V$, the integrated variance
+of a self-overlap. For $\rho$ above a cutoff $\rho_0$, we bound $V$ by
+a one-site cavity argument (\cref{part:cavity}). Removing one spin leads
+to an inequality $V\le(1-\rho)(1+\eps_N)V+{}$errors, where
+$1+\eps_N$ bounds a scalar response operator at the minimizing profile,
+and this inequality contracts once $\eps_N\le\rho/4$. To prove this
+bound, we show that the response operator at the Parisi measure is
+bounded by the identity, which reflects the marginal stability of
+$\mu_\beta$, and that the minimizing profile is close to a scalar trial
+profile (\cref{part:profile}). For $\rho\le\rho_0$, we bound $V$ by
+the quantile-shell estimates of~\cite[Section~3]{AL}, refined in
+\cref{sec:wi}, and by a localization of the lowest quantiles of the
+minimizer (\cref{sec:lz-root}), which refines~\cite[Lemma~7.6]{AL}. The cutoff is
+$\rho_0=\min\{1,K_\beta\eta^{1/7}\}$, where the trial budget
+$\eta=e_{N,\beta}(\lambda)+C_\beta\lambda^5$ contains the unknown error.
+The result is an implicit inequality of the form
+\[
+ e_{N,\beta}(\lambda)\lesssim N^{-2/3}
+ \bigl(e_{N,\beta}(\lambda)+\lambda^5\bigr)^{1/21}+\text{smaller terms}.
+\]
+If $e_{N,\beta}(\lambda)$ and $\lambda^5$ are both of order $N^{-a}$,
+this inequality is balanced when $a=2/3+a/21$, that is, $a=7/10$.
+
+\section{Relation to physical predictions}\label{subsec:intro-physics}
+
+\paragraph{Expectations and early calculations.}
+Below the critical temperature, physicists expect the finite-size
+correction to the free energy density to be nonanalytic, of order
+$N^{-\omega}$ with $\omega<1$. This expectation is related to marginal
+stability. In a truncated replica model near criticality,
+De~Dominicis and Kondor found that the stability matrix of the Parisi
+solution has nonnegative eigenvalues and many zero
+modes~\cite[pp.~606--608]{DeDominicisKondor1983}. These zero modes make the
+expansion in fluctuations around this solution singular;
+see~\cite[Section~2]{FranzParisiRicciTersenghi2026}. Parisi, Ritort,
+and Slanina studied finite-size corrections at
+criticality~\cite{ParisiRitortSlanina1993Critical},
+where the free energy density has a correction $(\log N)/(12N)$
+(see~\cite{Billoire2006FiniteSize}), as well as slightly below
+criticality and along the de~Almeida--Thouless line, including
+corrections to overlap distributions and to
+ultrametricity~\cite{ParisiRitortSlanina1993Corrections}.
+
+\paragraph{The exponent $2/3$.}
+At zero temperature, Bouchaud, Krzakala, and Martin found numerically,
+for Gaussian couplings, that the mean ground-state energy per spin
+approaches its limit like
+$N^{-2/3}$~\cite[Section~VI\,B]{BouchaudKrzakalaMartin2003}. In a
+study of the SK model with binary couplings, Boettcher fits the corrections to the
+mean of the ground-state energy per spin and to the width of its
+distribution with exponents close to $2/3$ and $3/4$,
+respectively~\cite[Section~3]{Boettcher2005}. In a later study of
+diluted versions of the model, the fit for the undiluted model is
+again close to $2/3$~\cite[Table~I]{Boettcher2020Diluted}. At positive
+temperature, Billoire estimated the correction numerically for binary
+couplings, by integrating overlap observables along the interpolation of
+Guerra and Toninelli~\cite{GuerraToninelli2002}, and found data
+compatible with $\omega=2/3$~\cite{Billoire2006FiniteSize}. Aspelmeier,
+Billoire, Marinari, and Moore derived $\omega=2/3$ from a heuristic
+argument: a system of $N$ spins resolves about $N^{1/6}$ steps of
+replica symmetry breaking, and truncation after $K$ steps changes the
+free energy density by order
+$K^{-4}$~\cite[Section~2]{AspelmeierEtAl2008FiniteSize}.
+
+\paragraph{Longitudinal fluctuations and the exponent $4/5$.}
+Parisi and Biscari obtained an earlier contribution of order
+$N^{-3/4}\log N$ from the positive longitudinal eigenvalues near
+criticality, neglecting interactions between
+modes~\cite[Section~1 and Eq.~(5.25)]{ParisiBiscari1992}. Their
+contribution from the longitudinal zero modes diverges when treated separately
+from the omitted transverse modes~\cite[discussion following
+Eq.~(5.27)]{ParisiBiscari1992}; see
+\cite[Section~1]{ParisiSarraTalamanca2019}. Parisi, Sarra,
+and Talamanca later used a resummation-based scaling argument for the
+longitudinal fluctuations of a truncated free-energy functional for the SK model near
+criticality and predicted
+$\omega=4/5$~\cite[Section~3, Eqs.~(16)--(19)]{ParisiSarraTalamanca2019}.
+They omit the transverse fluctuations, so this exponent describes their
+longitudinal approximation. To determine the exponent for the full model, one
+must also control the omitted modes.
+
+\paragraph{The exponent $3/4$.}
+Franz, Parisi, and Ricci-Tersenghi~\cite{FranzParisiRicciTersenghi2026}
+argue that $\omega=2/3$ is incorrect and that the correct value is
+$\omega=3/4$, possibly up to logarithmic
+factors~\cite[Eq.~(14)]{FranzParisiRicciTersenghi2026}. Their
+calculation for the Gaussian SK model matches two regimes: one in which the
+overlaps of two coupled systems lock and the Guerra--Toninelli
+integrand decays like $(Nt)^{-1/2}$, and a perturbative regime in which
+this integrand is of order $t^{-3/2}/N$~\cite[Eqs.~(9)--(12) and
+(15)--(17)]{FranzParisiRicciTersenghi2026}. They estimate the large-$z$ locking
+exponent semianalytically by sampling random ultrametric
+trees generated by the Bolthausen--Sznitman coalescent and extrapolating
+in the number of leaves~\cite[Materials and Methods]{FranzParisiRicciTersenghi2026}.
+Matching this behavior to the perturbative regime gives the scaling
+prediction. The
+fit of the energy uses random regular graphs of degree
+four~\cite[Eq.~(18) and Fig.~2]{FranzParisiRicciTersenghi2026}, and the
+simulations of the mode-locking integral use rewired random regular
+graphs of degree four with binary couplings (see the subsection
+``Direct simulations of the mode-locking integral''
+of~\cite[Materials and Methods]{FranzParisiRicciTersenghi2026}). These
+models differ from the Gaussian SK model in their connectivity, and the
+latter also in the law of the couplings.
+
+\paragraph{Consequences of \cref{thm:main}.}
+\Cref{thm:main} implies that $P_\beta-p_{N,\beta}=O(N^{-7/10})$ for
+every fixed $\beta>1$; in particular, the correction is $o(N^{-2/3})$. We therefore exclude a nonzero leading
+correction of order $N^{-2/3}$ for the Gaussian SK model at every fixed
+temperature below the critical one. This is
+consistent with the prediction of Franz, Parisi, and Ricci-Tersenghi.
+\Cref{thm:main} does not determine the leading exponent $\omega$. Since our
+constants are not uniform as $\beta\to\infty$, it also says nothing
+about the numerical results at zero temperature described above.
+
+The estimates on which our proof rests have a similar structure with
+two regimes, although they concern a different interpolation. If we
+ignore logarithms and the dependence on the tilt $\lambda$, the defect
+$\calD_N(\rho)$ is at most of order $(N\rho)^{-2/3}$ for small $\rho$
+and of order $(N\rho^2)^{-1}$ on the interval where our cavity argument
+applies. If the second bound held for all $\rho\ge N^{-1/4}$, where the
+two bounds are equal, integration would give $N^{-3/4}$. In our proof,
+the cavity interval begins only at $\rho_0\ge N^{-1/10}$, and the tilt
+$\lambda=N^{-7/50}$ enters both bounds; these two features account for
+the difference between $7/10$ and $3/4$.
+
+Marginal stability also enters our proof, through a scalar statement:
+at the Parisi measure, the multiplier that dominates our scalar response
+operator equals one on $\supp\mu_\beta$ (\cref{sec:sc}). Crisanti and
+Rizzo wrote the corresponding identity in physical variables, on the
+part of the order parameter that
+varies~\cite[Eqs.~(22)--(23)]{CrisantiRizzo2002}. This scalar statement
+does not describe the full stability spectrum of the replica
+calculation.
+
+\paragraph{Mean, width, and large deviations.}
+The exponents $\omega$ for the finite-size correction discussed above concern
+the mean. The sample-to-sample fluctuations
+of the free energy and its large deviations are governed by different
+exponents. In a truncated replica model near criticality, Kondor
+obtained a fifth-order dependence on $n$ along the Parisi branch for small positive
+$n$~\cite[pp.~L129--L130, Eq.~(11)]{Kondor1983}. Interpreted
+as a formal prediction for the SK model, this says that the
+replica-normalized pressure in the thermodynamic limit,
+$\lim_{N\to\infty}(Nn)^{-1}\log\E e^{nF_{N,\beta}}$, differs from
+$P_\beta$ first at order $n^5$ as $n\downarrow0$ with
+$n>0$ (see~\cite[pp.~1 and~3]{ParisiRizzo2008}).
+Parisi and Rizzo extended this calculation throughout the
+low-temperature phase in~\cite{ParisiRizzo2008}
+and~\cite[Appendix~B]{ParisiRizzo2009}. Equivalently, in this formal
+expansion, the limit of $N^{-1}\log\E e^{n(F_{N,\beta}-NP_\beta)}$
+begins at order $n^6$, and its Legendre transform gives a rate with
+power $6/5$ for upward deviations of
+$F_{N,\beta}/N$~\cite{ParisiRizzo2008}.
+Crisanti, Paladin, Sommers, and
+Vulpiani interpreted the replica number
+as a tilt over the disorder and predicted that the free energy per spin
+fluctuates on the scale
+$N^{-5/6}$~\cite{CrisantiEtAl1992Fluctuations}. Under an asymmetric
+scaled-law assumption, the same calculation also predicts a correction to the mean
+density on this scale~\cite[p.~1331, Eq.~(34) and following
+text]{CrisantiEtAl1992Fluctuations}. This conclusion uses the
+truncated replica theory near criticality and a matching of the disorder
+tails to the typical peak.
+In our convention, in which $F_{N,\beta}$ is the logarithm of the partition
+function, Parisi and Rizzo's
+replica predictions give upward density deviations with speed $N$ and
+power $6/5$, and downward density deviations with speed $N^2$ and power
+$12/5$~\cite[Eqs.~(12)--(15)]{ParisiRizzo2010}. Smoothly matching these
+tails to the finite-size peak predicts the typical density scale
+$N^{-5/6}$. This matching is an additional assumption; the limits
+$n\downarrow0$ and $N\to\infty$ cannot simply be
+interchanged~\cite[Section~VI]{ParisiRizzo2009}.
+Aspelmeier, Billoire,
+Marinari, and Moore also predicted a variance of order $N^{1/3}$ for
+$F_{N,\beta}$~\cite{AspelmeierEtAl2008FiniteSize}.
+Aspelmeier derived exact Gaussian interpolation identities relating
+the variance of the free energy to two- and four-replica overlaps between
+systems with correlated disorder~\cite[Eqs.~(14) and~(31)]{Aspelmeier2008Exact}.
+Combining these identities with replica estimates of the bond-chaos
+overlap distribution gives a predicted upper bound $1/4$ for the
+extensive standard-deviation exponent~\cite[Section~4.3]{Aspelmeier2008Exact,Aspelmeier2008Bond}.
+The identities are exact; this exponent estimate uses replica
+approximations and concerns the width.
+At zero temperature,
+the width of the distribution of the ground-state energy has been
+studied numerically in~\cite{Boettcher2005,Palassini2008,Boettcher2010Fluctuations}.
+For Gaussian couplings, Palassini finds data consistent with a mean
+correction exponent $2/3$ and, after subleading corrections, favors the
+exponent $5/6$ over
+$3/4$ for the standard deviation per spin~\cite[Sections~3--4 and~6]{Palassini2008}.
+Boettcher discusses the difficulty of distinguishing the exponents
+$3/4$ and $5/6$ after corrections to
+scaling~\cite[Section~IV]{Boettcher2010Fluctuations}.
+Monthus and Garel studied rare-disorder scenarios and the matching
+between typical and large-deviation tails for the ground-state energy of the SK model at zero
+temperature~\cite[Section~III C--F]{MonthusGarel2010}.
+Their alternative width--tail relations illustrate the additional
+assumptions involved in such matching.
+
+\section{Related work}\label{sec:intro-related}
+
+\paragraph{The Parisi formula.}
+Besides the proofs of Guerra and Talagrand, the rigorous theory of the
+Parisi formula includes the following results. Guerra and Toninelli
+proved by interpolation that the thermodynamic limit
+exists~\cite{GuerraToninelli2002}, and Aizenman, Sims, and Starr
+formulated an extended variational principle in terms of random overlap
+structures~\cite{AizenmanSimsStarr2003}. Panchenko proved that the
+Ghirlanda--Guerra identities~\cite{GhirlandaGuerra1998} imply ultrametricity of
+overlaps~\cite[Theorem~1]{Panchenko2013Ultrametricity}, and he proved
+the Parisi formula for mixed $p$-spin models, including mixtures with
+odd interactions~\cite{Panchenko2014Parisi}. We refer to the books of
+Talagrand~\cite{TalagrandVolI2011,TalagrandVolII2011} and
+Panchenko~\cite{Panchenko2013Book} for accounts of this theory;
+Panchenko develops it through Ruelle probability cascades.
+
+\paragraph{The Parisi measure.}
+Toninelli proved that the replica-symmetric value is not optimal for
+$\beta>1$ at zero field~\cite{Toninelli2002}. Auffinger and Chen proved
+that the minimizer is unique~\cite{AuffingerChen2015Uniqueness}, that
+zero belongs to its support, and that the largest point of its support
+is an atom for $1<\beta\le3/2$~\cite[Theorems~1
+and~4]{AuffingerChen2015Properties}. They also proved that its
+distribution function is smooth on $[a,b)$ whenever $(a,b)$ is
+contained in its support, for $0\le a<b\le1$~\cite[Theorem~2]{AuffingerChen2015Properties}.
+They expressed the Parisi functional through a stochastic control
+problem, which they used in their uniqueness proof, and they proved
+martingale identities for the derivatives of
+$u_\alpha$~\cite[Theorem~3 and Lemma~2]{AuffingerChen2015Uniqueness}. An earlier
+Hamilton--Jacobi--Bellman representation appears
+in~\cite[Section~6.2]{BovierKlimovsky2009}, and Jagannath and Tobasco
+developed a dynamic programming treatment of the
+functional~\cite[Lemma~18]{JagannathTobasco2016}. First-variation
+formulas along segments and optimality conditions on the support are
+given by Jagannath and Tobasco~\cite[Lemma~3.2 and
+Proposition~1.1]{JagannathTobasco2017PhaseDiagram} and by
+Chen~\cite[Theorem~2 and Proposition~1]{Chen2017Variational}. Lopatto
+proved, in addition to the interval support for every $\beta>1$, that
+$\mu_\beta$ is the sum of a density that is smooth up to the endpoints
+of $[0,q_\beta]$ and an atom at $q_\beta$~\cite[Theorem~1.1]{Lopatto}.
+Auffinger, Chen, and Zeng proved that the Parisi
+minimizer at zero temperature has infinitely many support
+points~\cite{AuffingerChenZeng2020}. H.-B.~Chen proved that
+$q_\beta\to1$ as $\beta\to\infty$, and that the Stieltjes measure
+associated with the Parisi order parameter at zero temperature has a
+smooth density and support
+$[0,1)$~\cite[Theorems~1.2 and~1.3]{Chen2026ZeroTemperatureSupport}. The
+full support at zero temperature is also stated
+in~\cite[Theorem~1.1]{OpenAIFullSupport}. We use the interval support
+at fixed $\beta>1$ throughout, and the regularity of $\mu_\beta$ in
+\cref{part:profile}.
+
+\paragraph{Fluctuations of the free energy.}
+The fluctuations of $F_{N,\beta}$ depend on $\beta$ and on the external
+field. For $0<\beta<1$, Aizenman, Lebowitz, and Ruelle proved a
+Gaussian limit for its fluctuations, which are of order
+one~\cite{AizenmanLebowitzRuelle1987}, and Comets and Neveu studied this
+limit by stochastic calculus~\cite{CometsNeveu1995}. With a nonzero
+external field, Chen, Dey, and Panchenko proved that the variance is of
+order $N$ and that a central limit theorem holds, under assumptions on
+the interactions that include the SK
+model~\cite[Theorems~1 and~2]{ChenDeyPanchenko2017}. At $\beta=1$, Chen
+and Lam proved a variance bound of order
+$\log^2N$~\cite[Theorem~1.1]{ChenLam2019}. Schertzer proved that the
+variance is at most $(\log N)/4+C$ and at least of order
+$\log\log\log N$~\cite[Theorems~1 and~2]{Schertzer2026Critical}, and Du
+and Huang proved that $\Var(F_{N,1})=(\log N)/6+O(1)$ and that the
+fluctuations have a Gaussian limit~\cite[Theorem~1.3]{DuHuang2026}. Dey and Kang obtained
+variance asymptotics and a Gaussian limit as $\beta$ approaches $1$ from
+below along sequences $\beta=\beta_N$ satisfying
+$N^{1/3}(1-\beta_N^2)\to c\in(0,\infty]$~\cite[Theorem~1.1]{DeyKang2026}.
+For fixed $\beta>1$, Chatterjee proved the superconcentration bound
+$\Var(F_{N,\beta})\le C_\beta N/\log N$ and related it to disorder
+chaos~\cite[Theorem~1.5]{Chatterjee2009Chaos}. In~\cite[Theorem~1.4]{AL},
+we proved that $\Var(F_{N,\beta})$ lies between constant multiples of
+$N^{4/15}$ and $N^{7/15}$ for large $N$. The OpenAI manuscripts state
+the order $N^{1/3+o(1)}$, a positive limit for
+$N^{-1/3}\Var(F_{N,\beta})$, and a limiting law for the normalized
+fluctuations; see \cref{subsec:intro-openai}. A variance bound alone
+does not bound the mean bias from above, but a lower bound on the
+variance gives a lower bound on the mean bias
+through~\cite[Lemma~7.4]{AL}. For the spherical SK model, Baik and Lee
+proved that the free energy per spin has Gaussian fluctuations of order
+$N^{-1}$ at high temperature and Tracy--Widom fluctuations of order
+$N^{-2/3}$ at low temperature, governed by the largest eigenvalue of
+the coupling matrix~\cite[Theorems~2.10 and~2.11]{BaikLee2016}.
+
+\paragraph{Gaussian-process comparisons.}
+Chu and Raginsky use Gaussian-process geometry and information-theoretic
+tensorization to bound expected soft maxima~\cite{ChuRaginsky2026}.
+Their application to the SK model gives a finite-volume comparison with the Parisi
+variational value up to universal multiplicative
+constants~\cite[Section~6, Theorem~10]{ChuRaginsky2026}.
+It uses a uniform spin prior and normalizes the Hamiltonian differently.
+Its conclusion is a multiplicative comparison; the present theorem
+controls the additive error to the limiting value.
+
+\paragraph{Fractional moments.}
+Talagrand computed the limits of normalized logarithms of positive
+moments of the partition function~\cite{Talagrand2007FractionalMoments}. For moments of order
+$0<s<1$, the limit of $(Ns)^{-1}\log\E e^{sF_{N,\beta}}$ is the minimum
+$P_\beta(s)$ of $\mathcal P_\beta$ over measures $\mu$ with
+$\mu(\{0\})\ge s$. For the SK model at zero field, this formula is
+contained in the one-level specialization of the multiscale formula of
+Contucci and Mingione~\cite[Theorem~2.1]{ContucciMingione2019}. Chen,
+Guionnet, Ko, Lacroix-A-Chez-Toine, and Mourrat stated it in this form
+and used it to study one-sided large deviations of the ground-state
+energy~\cite[Theorem~2.1]{ChenEtAl2026LargeDeviations}.
+In~\cite[Lemma~7.2 and Proposition~7.3]{AL}, we proved that for fixed
+$\beta>1$, the increase $P_\beta(s)-P_\beta$ is of order $s^5$ as
+$s\downarrow0$. This is a rigorous counterpart of the replica
+calculations of Kondor and of Parisi and Rizzo described in
+\cref{subsec:intro-physics}, and Pei identified the leading coefficient
+of this increase~\cite[Theorem~1(a)]{Pei2026}. The tilt
+$\lambda=N^{-7/50}$ in our proof balances this cost against the
+fractional-moment error.
+
+\paragraph{Origins of the methods.}
+The interpolation of~\cite[Section~2]{AL} is a finite-dimensional,
+quantitative form of Guerra's interpolation, with which he proved the
+upper bound in the Parisi formula~\cite{Guerra2003}. For posterior
+estimates under its tilted laws, we combine the Brascamp--Lieb
+inequality~\cite[Theorem~4.1]{BrascampLieb1976}, in its inverse-Hessian
+form~\cite[Proposition~2.2]{AL}, with a joint-source argument from the
+proof of~\cite[Lemma~2.3]{OpenAIFluctuationScale} (\cref{sec:gauss}).
+Near the singular end of the interpolation, our estimates refine the
+quantile-window bound of~\cite[Lemma~3.3]{AL} and the localization of
+lowest quantiles in~\cite[Lemma~7.6]{AL}. We close the final implicit
+inequality as in the proof of~\cite[Proposition~7.7]{AL}.
+
+The cavity method originates in physics. An early precursor is the
+single-site description of Thouless, Anderson, and
+Palmer~\cite[Section~3, Eqs.~(10)--(12)]{ThoulessAndersonPalmer1977},
+and M\'ezard, Parisi, and
+Virasoro formulated the cavity construction for broken replica symmetry
+in~\cite{MezardParisiVirasoro1986}; see also the exposition
+in~\cite{MezardParisiVirasoro1987}. We use Talagrand's rigorous version
+of the one-site argument~\cite[Section~1.6]{TalagrandVolI2011}. The
+expansion under hierarchical Gaussian laws relies on normalized replica
+trees and covariance insertions of the type developed
+in~\cite[Section~2]{OpenAIFluctuationScale}. In the scalar stability
+argument, the first variation of $\mathcal P_\beta$ under transports of
+levels is due to Talagrand~\cite[Lemma~3.7]{Talagrand2006ParisiMeasures};
+see~\cite[Section~3, (19)]{AuffingerChen2015Properties}. We compute the
+second variation and compare it with a response multiplier, using
+convexity of $\mathcal P_\beta$ along segments of distribution
+functions~\cite{AuffingerChen2015Uniqueness}. This multiplier equals one
+on $\supp\mu_\beta$, by an identity of
+Talagrand~\cite{Talagrand2006ParisiMeasures}, in the form stated
+in~\cite[Theorem~5]{AuffingerChen2015Properties}
+and~\cite[Lemma~2.6]{Lopatto}, and by the interval
+support~\cite[Theorem~1.1]{Lopatto}. Above the support, we bound it by one
+using the curvature of the forward density and its heat evolution
+from~\cite[Proposition~4.1 and Lemma~2.4(ii)]{Lopatto}.
+
+\paragraph{Our related work.}
+This paper continues~\cite{AL}, where we proved the quantitative Parisi
+formulas recalled in \cref{sec:intro-finite-size}, the variance bounds
+above, and upper-tail estimates for $F_{N,\beta}$ with exponent
+$6/5$~\cite[Theorem~1.5]{AL}. The interval-support theorem used in both
+papers was proved by the second author~\cite{Lopatto}.
+In~\cite{AronowLopatto2026EA}, we studied a different approximation of
+the SK pressure. On $d$-dimensional tori of side length $L\ge3$ and on
+hypercubes, with independent Gaussian couplings of variance $1/(2d)$
+and $1/d$, respectively, the expected pressure per site converges to the
+SK pressure as $d\to\infty$, for every fixed inverse temperature
+$\beta\ge0$ and every uniform field $h\in\R$; on tori, the convergence
+is uniform in the side length. The present paper concerns the
+finite-size bias of the SK model itself.
+
+\section{Comparison with the OpenAI preprints}\label{subsec:intro-openai}
+
+We obtained the exponent $7/10$ on September~23, 2026, following a
+suggestion from Silvio Franz on September~15, 2026. The OpenAI
+mathematics repository~\cite{OpenAIMathRepository} contains
+\emph{The low-temperature Sherrington--Kirkpatrick fluctuation
+scale}~\cite{OpenAIFluctuationScale} and its companion \emph{The
+low-temperature Sherrington--Kirkpatrick free-energy limiting
+law}~\cite{OpenAILimitingLaw}, both dated September~24, 2026. We refer
+to their initial repository version.
+
+\paragraph{Stated results.}
+For every fixed $\beta>1$, \cite[Theorem~1.1]{OpenAIFluctuationScale}
+states that $\Var(F_{N,\beta})=N^{1/3+o(1)}$. The companion paper states
+that $N^{-1/3}\Var(F_{N,\beta})$ converges to a positive limit and that
+$F_{N,\beta}$, standardized by its exact mean and variance, converges in
+law to a nondegenerate limit~\cite[Theorems~1.1
+and~1.2]{OpenAILimitingLaw}. These results concern fluctuations about
+the finite-size mean $\E F_{N,\beta}$, and they do not by themselves
+estimate $P_\beta-p_{N,\beta}$. We do not use these results, or the
+comparison discussed next, in the proof of \cref{thm:main}.
+
+\paragraph{A conditional upper bound.}
+An improvement of the exponent $2/3$ for the mean bias is implicit in an
+uncentered comparison stated in~\cite{OpenAILimitingLaw}. We use the
+notation of that paper. Let $T=\beta^2$ and $x=N^{-1/6}$, and fix an
+admissible choice of its auxiliary exponents and reference parameters.
+For its direct, unmasked, and unseeded reference paths,
+\cite[Proposition~6.1, (G1)]{OpenAILimitingLaw} states that there
+exists $c_G>0$ such that
+\begin{equation}\label{eq:intro-openai-G1}
+ 0\le F_*(\lambda)-f_N(b_\lambda,h_{*,\lambda})\le x^{4+c_G}
+\end{equation}
+for all sufficiently large $N$. Here $F_*$ is a scalar trial objective,
+$f_N$ is a self-corrected hierarchical pressure evaluated at the clocks
+$(b_\lambda,h_{*,\lambda})$, and $\lambda$ is a perturbation strength
+that is unrelated to our tilt. We take terminal mass one and the
+allowed strength $\lambda=x^{12}$. From the definitions
+in~\cite[Section~3.1]{OpenAILimitingLaw}, one checks that the scalar
+objective at $\lambda=0$ equals $P_\beta-\log2-T/4$. Using the perturbation estimates for the direct
+scalar lift~\cite[Section~3.2, proof of Lemma~3.2]{OpenAILimitingLaw}
+and the construction of the clocks~\cite[Section~3.4,
+(P3)--(P4)]{OpenAILimitingLaw}, we find
+\[
+ \|b_\lambda-T\|_\infty+\|h_{*,\lambda}\|_\infty\le C_\beta\lambda,
+ \qquad
+ \Bigl|F_*(\lambda)-\Bigl(P_\beta-\log2-\frac T4\Bigr)\Bigr|
+ \le C_\beta\lambda.
+\]
+With the uniform spin prior and centered Gaussian completion
+of~\cite[Section~2.1]{OpenAILimitingLaw}, the unperturbed clocks satisfy
+$f_N(T,0)=p_{N,\beta}-\log2-T/4$. Integrating the pressure variation
+formula~\cite[Lemma~2.1, (A1)]{OpenAILimitingLaw} along the segment
+between the two pairs of clocks, and using that its integrands lie in
+$[0,1]$ at terminal mass one, we obtain
+\[
+ \bigl|f_N(b_\lambda,h_{*,\lambda})-f_N(T,0)\bigr|
+ \le\frac14\|b_\lambda-T\|_1+\frac12\|h_{*,\lambda}\|_1
+ \le C_\beta\lambda.
+\]
+We write $P_\beta-p_{N,\beta}$ as the sum of
+$P_\beta-\log2-T/4-F_*(\lambda)$,
+$F_*(\lambda)-f_N(b_\lambda,h_{*,\lambda})$, and
+$f_N(b_\lambda,h_{*,\lambda})-f_N(T,0)$. We bound the first and last
+differences by $C_\beta\lambda$ and the middle one by
+\eqref{eq:intro-openai-G1}. Since $x^{4+c_G}=N^{-2/3-c_G/6}$ and
+$x^{12}=N^{-2}$, we obtain
+\begin{equation}\label{eq:intro-openai-bias}
+ 0\le P_\beta-p_{N,\beta}
+ \le x^{4+c_G}+C_\beta x^{12}
+ \le C_\beta N^{-2/3-\delta_\beta},\qquad
+ \delta_\beta=c_G/6>0,
+\end{equation}
+after decreasing $c_G$ so that $c_G<8$ if necessary. The lower bound is
+Guerra's, and \eqref{eq:intro-openai-bias} holds for the finitely many
+remaining $N\ge2$ after we enlarge $C_\beta$. This bound follows from
+\eqref{eq:intro-openai-G1} and the perturbation estimates above; it is
+not a theorem on the mean bias stated in either paper. The proof
+of~\cite[Proposition~6.1]{OpenAILimitingLaw} leaves $c_G$ unspecified,
+and we do not extract from it the saving $c_G\ge1/5$ that the exponent
+$7/10$ would require. The budgets of order $x^{5+c}$
+in~\cite[Proposition~4.1]{OpenAILimitingLaw} concern increments of a
+centered pressure~\cite[(A4)]{OpenAILimitingLaw}, from which the
+finite-size mean has been subtracted, so they do not bound the mean
+bias.
+
+\paragraph{Conditional lower bounds.}
+In the other direction, the variance--mean-deficit inequality
+of~\cite[Lemma~7.4 and Remark~7.14, (7.68)]{AL} states that for every
+$N\ge1$,
+\[
+ P_\beta-p_{N,\beta}\ge c_\beta
+ \Bigl(\frac{\Var(F_{N,\beta})+\beta^2/2}{N}\Bigr)^{5/4}.
+\]
+Inserting $\Var(F_{N,\beta})\ge N^{1/3-4\varepsilon/5}$, we see that the
+variance exponent stated in~\cite[Theorem~1.1]{OpenAIFluctuationScale}
+would imply, for every fixed $\varepsilon>0$, that
+$P_\beta-p_{N,\beta}\ge c_{\beta,\varepsilon}N^{-5/6-\varepsilon}$ for
+all sufficiently large $N$. The positive limit of
+$N^{-1/3}\Var(F_{N,\beta})$ stated
+in~\cite[Theorem~1.2]{OpenAILimitingLaw} would give the stronger bound
+\begin{equation}\label{eq:intro-openai-lower}
+ P_\beta-p_{N,\beta}\ge c_\beta N^{-5/6}
+ \qquad\text{for all sufficiently large }N.
+\end{equation}
+For \eqref{eq:intro-openai-lower}, an eventual lower bound
+$\Var(F_{N,\beta})\ge k_\beta N^{1/3}$ with $k_\beta>0$ would suffice.
+Combined with \cref{thm:main}, the variance exponent
+of~\cite{OpenAIFluctuationScale} would imply that if
+$P_\beta-p_{N,\beta}$ is of exact order $N^{-a}$, then $7/10\le a\le5/6$.
+
+\paragraph{Verification status.}
+We have checked the statements quoted above and the conditional
+deductions from them. We have not independently reconstructed complete
+proofs of the global comparison and fluctuation estimates
+of~\cite{OpenAIFluctuationScale,OpenAILimitingLaw}, and we do not
+assume their conclusions. The repository also contains Lean sources on
+the fluctuations of the SK model. Their main theorem on the fluctuation
+exponents, as we inspected it, takes as an explicit hypothesis a
+two-sided bound on the centered logarithmic Laplace transform of the
+completed free energy, \texttt{PositiveLaplaceWindow}; in the
+fluctuation-scale paper, this bound is the conclusion
+of~\cite[Proposition~7.5]{OpenAIFluctuationScale}. The conclusion of
+that theorem concerns the fluctuation exponents, not a positive variance
+prefactor or a limiting law.\footnote{We inspected the 151 files of the
+directory \nolinkurl{lean/OAI/Probability/SKFluctuations} at commit
+\nolinkurl{adc7f1241b42e322a6451854ab7e4b4c146bf78a}. The theorem
+\nolinkurl{main_of_positiveLaplaceWindow}, at line~294 of
+\nolinkurl{EventuallyNatPos.lean}, takes a hypothesis
+\texttt{hw} of type \nolinkurl{PositiveLaplaceWindow}, which is defined at
+lines~453--459 of \nolinkurl{Spin.lean}; the conclusion of the
+theorem, \nolinkurl{MainFluctuationStatement}, is defined at
+lines~531--540 of the same file. We found no proof supplying the
+hypothesis in this directory. The directory was unchanged at commit
+\nolinkurl{fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb}, which we checked on
+October~9, 2026. This was an inspection of the sources, not a
+compilation.} Neither this conditional formal statement nor our
+incomplete reconstruction shows that the stated results are false.
+Our inspection did not identify an invalid step in the portions
+examined.
+
+\paragraph{Proof techniques.}
+The limiting-law paper contains a one-site cavity expansion whose
+structure is similar to that of \cref{part:cavity}.
+In~\cite[Lemma~2.2]{OpenAILimitingLaw}, one site is chosen by
+exchangeability and removed, and its Gaussian kernels are interpolated
+to those of an independent scalar model on one site; the linear cavity
+kernel is half of a connected four-spin correlation of the removed
+spin~\cite[(A8)]{OpenAILimitingLaw}. In the proof
+of~\cite[Proposition~6.1]{OpenAILimitingLaw}, the resulting linear
+equation is inverted under a gap condition on the scalar
+response~\cite[Proposition~5.1, (H1)]{OpenAILimitingLaw},
+and~\cite[Lemma~5.2, (H2)]{OpenAILimitingLaw} writes the response on
+the additive sector as a susceptibility multiplier minus a positive
+semidefinite Hessian kernel. In our argument, the cavity inequality
+contracts because the scalar response operator is at most $1+\eps_N$
+with $\eps_N\le\rho/4$, while the interpolation contributes the factor
+$1-\rho$. We derive the bound on the response operator from the second
+variation of the Parisi functional under transports of levels
+(\cref{lem:Jdom}); this operator acts on a space of transports, not on
+the additive sector of~\cite{OpenAILimitingLaw}. The fluctuation-scale
+paper also contains a one-site closure for the mean
+overlap~\cite[Proposition~4.1]{OpenAIFluctuationScale}. We use two
+tools from that paper. \Cref{part:cavity} relies on normalized replica
+trees and covariance insertions of the type developed
+in~\cite[Section~2]{OpenAIFluctuationScale} and used
+in~\cite[Sections~2.1--2.3]{OpenAILimitingLaw}. In
+\cref{lem:fnd-posterior}, we adapt the joint-source Brascamp--Lieb
+argument of the proof of~\cite[Lemma~2.3]{OpenAIFluctuationScale}, which
+is also used in the proof of~\cite[Lemma~2.1]{OpenAILimitingLaw}, to
+squared conditional means on selected coordinates and to anisotropic
+laws.
+
+
+
+\section{Organization and conventions}\label{sec:intro-organization}
+
+\Cref{sec:overview} contains an overview of the proof and a map of its
+dependencies. The proof itself occupies five parts.
+\begin{itemize}
+\item \Cref{part:interpolation} concerns the interpolation.
+\Cref{sec:fnd} recalls the interpolation of~\cite{AL}, its tilted law,
+and the decomposition of the defect, and reduces the mean bias to
+the fractional-moment error. \Cref{sec:gauss} proves two Gaussian tools
+for tilted laws defined by arbitrary profiles, which we use in
+\cref{part:profile,part:cavity}.
+\item \Cref{part:overlap} contains overlap estimates at a minimizing
+profile. \Cref{sec:wi} estimates moments of the self-overlap on
+quantile intervals, and \cref{sec:th} bounds the mean--covariance term.
+\item \Cref{part:profile} concerns the minimizing profile and the scalar
+response. \Cref{sec:lz} shows that the minimizing profile is close in
+$L^1$ to the scalar trial profile, and \cref{sec:lz-root} localizes its
+lowest quantiles. \Cref{sec:sc} studies the scalar response operator and
+proves its stability at the minimizing profile.
+\item \Cref{part:cavity} contains the cavity argument. \Cref{sec:c7}
+sets up the cavity interpolation and its tree laws,
+\cref{sec:c7-endpoint} computes the derivative at the independent
+endpoint, and \cref{sec:c7-closure} closes the cavity inequality and
+bounds the defect.
+\item In \cref{part:proof}, \cref{sec:b7} integrates these estimates and
+proves \cref{thm:main}.
+\end{itemize}
+
+We rely on~\cite{AL} for the interpolation identities and the scalar
+floor estimates, and on~\cite{Lopatto} and~\cite{AuffingerChen2015Properties}
+for the structure and regularity of $\mu_\beta$. We restate these
+results where they are used. Locators in~\cite{AL} refer to its arXiv
+version~1, locators in~\cite{Lopatto} to its arXiv version~4, and
+locators in the OpenAI manuscripts to their initial repository version.
+
+Throughout, $\beta>1$ is fixed, and $C_\beta$ denotes a constant
+depending only on $\beta$ whose value may change from line to line; a
+numerical constant does not depend on any parameter. All profiles defining a tilted law are
+deterministic: minimizers may depend on $N$, $\rho$, and $\lambda$ but
+not on the couplings. For symmetric matrices or self-adjoint operators,
+$B\preceq C$ means that $C-B$ is positive semidefinite. We write
+$\log_+x=\log(\max\{1,x\})$ for $x\ge0$. Distribution functions, such
+as $\alpha$ and the profiles $a$ of \cref{sec:fnd}, are
+right-continuous. Atoms of measures are retained in Stieltjes
+integrals, and an interval $(q,1]$ excludes an atom at $q$.

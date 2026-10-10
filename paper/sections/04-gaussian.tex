@@ -1,0 +1,807 @@
+\chapter{Gaussian tools for arbitrary profiles}\label{sec:gauss}
+
+The results of \cref{sec:fnd} concern the law of \cref{subsec:fnd-law},
+and the sharper ones hold only at a minimizing profile. In
+\cref{sec:sc,sec:c7,sec:c7-endpoint}, we also need laws whose profile
+minimizes no functional, and laws whose auxiliary field has different
+variances in different coordinates. In this section, we introduce a
+class of generalized laws that contains these cases
+(\cref{def:gauss-law}), and we prove two Gaussian tools for them.
+
+The first tool is \cref{lem:fnd-posterior}, which shows that the
+martingale identities and the covariance order hold for every generalized
+law. It also bounds the variance of averages over
+levels of the squared conditional mean on a set of coordinates. We note
+that this bound holds for every profile and that its proof does not use
+contact identities. We use it in \cref{sec:sc} for the
+scalar law, which is the generalized law with $N=1$, field variance $d$,
+no couplings, and root mass $s=0$. We also use it in
+\cref{sec:c7,sec:c7-endpoint} for the cavity laws, which have diffusion
+matrix $\operatorname{diag}(cI_n,b(u))$ and root mass $s=\lambda/\beta$.
+
+The second tool is \cref{lem:fnd-path-heat}, a version of the Gaussian
+heat identity for normalized expectations. Here we take expectations of
+functionals of finitely many Gaussian
+variables and continuous Gaussian paths, and we hold the profile measure
+fixed. We use the lemma in
+\cref{sec:sc} to differentiate the scalar law under transports of its
+levels, and in \cref{sec:c7,sec:c7-endpoint} to differentiate the cavity
+laws in the cavity parameter. In this section, we use only the definitions of
+\cref{sec:fnd}, the arguments of \cite[Section~2]{AL}, and the proof of
+\cref{prop:fnd-contact}, which we adapt.
+
+Note that some letters have a local meaning in this section. The letter
+$\omega$ denotes Gaussian couplings, while in \cref{sec:c7}, $\omega$
+denotes the
+weights of a tree. In \cref{sec:gauss-heat}, the derivative measures $M$
+and $Q$ are unrelated to $M=Nc$, to the quantile function
+\eqref{eq:fnd-quantile}, and to the vector $M_q$ of \cref{sec:c7}.
+
+\section{Generalized laws and a posterior variance bound}
+\label{sec:gauss-posterior}
+
+In \cref{sec:c7}, we decouple one spin from the others. The remaining
+spins then evolve under a law whose profile need not minimize any
+functional and whose auxiliary field has unequal variances. The
+following class of laws contains both situations.
+
+\begin{definition}[Generalized law]\label{def:gauss-law}
+Let $\Lambda=\operatorname{diag}(\vartheta_1,\ldots,\vartheta_N)$ with
+$\vartheta_i>0$, and let $(\kappa_{ij})_{1\le i\le j\le N}$ be real
+numbers; $\Lambda$ and $\kappa$ are deterministic. Let
+$\omega=(\omega_{ij})_{1\le i\le j\le N}$ be independent standard
+Gaussian variables, and write $\E_{\rm ref}$ for expectation under their
+law. Let $\mu=s\delta_0+\nu$ be either an admissible profile in the
+sense of \cref{sec:fnd-functional}, so that $0<s\le1/2$, or, with
+$s=0$, an arbitrary deterministic probability measure $\mu=\nu$ on
+$[0,1]$. Let $a(q)=\mu([0,q])$, and let $U$ solve
+\begin{equation}\label{eq:fnd-general-pde}
+ \partial_qU=-\frac12\bigl(\Tr(\Lambda\nabla^2U)
+      +a(q)\nabla U^T\Lambda\nabla U\bigr),\qquad
+ U(1,x;\omega)=\log\sum_{\sigma\in\{-1,1\}^N}
+     e^{\mathcal H_\sigma(\omega,x)},
+\end{equation}
+where
+$\mathcal H_\sigma(\omega,x)=\sum_{i\le j}\kappa_{ij}\omega_{ij}\sigma_i\sigma_j+x\cdot\sigma$.
+The \emph{generalized law} of $(\Lambda,\kappa,\mu)$ is the joint law of
+$(\omega,X,\sigma)$ built in three stages.
+\begin{enumerate}[label=(\roman*)]
+\item The Gaussian law of $\omega$ is tilted by the density
+$e^{sU(0,0;\omega)}/\E_{\rm ref}e^{sU(0,0;\omega)}$.
+\item Given $\omega$, the field solves
+$\dd X_q=a(q)\Lambda\nabla U(q,X_q;\omega)\dd q+\Lambda^{1/2}\dd B_q$
+with $X_0=0$, where $B$ is a standard Brownian motion in $\R^N$.
+\item Given $\omega$ and $X$, the spin $\sigma$ is drawn with
+probabilities proportional to $e^{\mathcal H_\sigma(\omega,X_1)}$.
+\end{enumerate}
+As in \cref{subsec:fnd-law}, we write $\Pp$ and $\E$ for this law, and
+we define $\calG_q=\sigma(\omega,X_r:0\le r\le q)$,
+$m_q=\E[\sigma\mid\calG_q]$, $C_q=\Cov(\sigma\mid\calG_q)$, and
+$H_q=\nabla_x^2U(q,X_q;\omega)$.
+\end{definition}
+
+When $s=0$, the outer density in (i) is identically one. Recall that a
+Hopf--Cole step of mass zero is an
+ordinary Gaussian expectation. The
+fractional-moment functionals of \cref{sec:fnd} still have $s>0$. The
+equation \eqref{eq:fnd-general-pde} has a solution for every such
+profile, which is obtained from step profiles by the Hopf--Cole recursion and
+uniform approximation, as we show in Step~6 of the proof of
+\cref{lem:fnd-posterior}. With $\Lambda=cI$, with $\omega_{ij}=g_{ij}$
+and $\kappa_{ij}=\beta\sqrt{t/N}$ for $i<j$, and with $\omega_{ii}=z_i$
+and $\kappa_{ii}=\beta\sqrt{t/(2N)}$, we have
+$\mathcal H_\sigma(\omega,x)=\beta\sqrt t\,\sigma^TW\sigma/2+x\cdot\sigma$.
+In this case, the generalized law is the law of \cref{subsec:fnd-law}. The scalar
+law of \cref{sec:sc} is the generalized law with $N=1$, $\Lambda=d$,
+$\kappa=0$, and $s=0$. The cavity laws of \cref{sec:c7} are generalized
+laws with $\Lambda=\operatorname{diag}(cI_n,b(u))$ and
+independent Gaussian couplings with deterministic variances.
+
+In the next lemma, we adapt the argument of the proof of
+\cite[Lemma~2.3]{OpenAIFluctuationScale}, which is also used in the proof
+of \cite[Lemma~2.1]{OpenAILimitingLaw}. That argument combines joint
+convexity in the Gaussian drivers and a spin source, the inverse-Hessian
+Brascamp--Lieb inequality, and a gauge symmetry that removes the
+conditioning on the terminal spin. We use
+it for averages of squared conditional means on selected coordinates, and
+for diagonal anisotropic laws.
+
+\begin{lemma}[Averaged self-overlap under an arbitrary profile]
+\label{lem:fnd-posterior}
+Let $\mu=s\delta_0+\nu$ be an admissible profile, and consider either
+its joint law from \cref{subsec:fnd-law}, for some $0<\rho\le1$, or a
+generalized law; a generalized law also allows $s=0$ and an arbitrary
+probability measure $\mu=\nu$. Then
+$m_q=\nabla U(q,X_q)=\E[\sigma\mid\calG_q]$, $m_0=0$, and
+$a(q)C_q\preceq H_q\preceq C_q$ for every $q\in[0,1]$. Fix a set of
+$n\ge1$ coordinates, let $m_q^-$ be the restriction of $m_q$ to these
+coordinates, and let $H_q^{--}$ and $C_q^{--}$ be the corresponding
+principal submatrices of $H_q$ and $C_q$. For every deterministic
+$k\in L^2(\nu)$,
+\begin{equation}\label{eq:fnd-posterior}
+ \begin{aligned}
+ \Var\left(\int k(q)\frac{|m_q^-|^2}{n}\,\nu(\dd q)\right)
+ &\le\frac4{n^2}\int k(q)^2
+       \E[(m_q^-)^TH_q^{--}m_q^-]\,\nu(\dd q)\\
+ &\le\frac4{n^2}\int k(q)^2
+       \E[(m_q^-)^TC_q^{--}m_q^-]\,\nu(\dd q).
+ \end{aligned}
+\end{equation}
+\end{lemma}
+
+Recall that the law of \cref{subsec:fnd-law} is a generalized law, so
+that it suffices to prove the lemma for generalized laws. The proof also
+gives the
+martingale differential
+\begin{equation}\label{eq:gauss-martingale}
+ \dd m_q=H_q\Lambda^{1/2}\dd B_q\qquad(0\le q\le1)
+\end{equation}
+for every generalized law, as we will see in Steps~1 and~6 below.
+
+\begin{proof}[Proof of \cref{lem:fnd-posterior}]
+The proof has six steps. We first prove the martingale identities and
+the covariance order for step profiles. Next, still for step profiles,
+we write the law in terms of independent Gaussian coordinates. We
+compare the curvature of the posterior density with the gradient of the
+squared conditional mean, and we apply the Brascamp--Lieb inequality
+with the terminal spin fixed. We then remove the conditioning on the
+spin by a gauge symmetry. Finally, we pass to general profiles and
+general $k$.
+
+\paragraph{Step 1: martingale and covariance order.}
+Let $\mu$ be a step profile. We adapt Step~1 of the proof of
+\cref{prop:fnd-contact}, replacing $cI$ by $\Lambda$. The generator of
+the field is
+$\Tr(\Lambda\nabla^2)/2+a(q)(\Lambda\nabla U)\cdot\nabla$.
+Differentiating \eqref{eq:fnd-general-pde} in $x$ and applying It\^o's
+formula along the field on each interval between grid points, we find
+that
+\[
+ \dd\,\nabla U(q,X_q;\omega)=H_q\Lambda^{1/2}\dd B_q,\qquad
+ \dd H_q=-a(q)H_q\Lambda H_q\dd q+\nabla H_q\Lambda^{1/2}\dd B_q ,
+\]
+where the last term is the contraction of the third spatial derivative
+of $U$ with $\Lambda^{1/2}\dd B_q$. The stochastic integrals are martingales,
+since the spatial derivatives are bounded at fixed $N$. The
+gradient $\nabla U(1,X_1;\omega)$ is the Gibbs mean of the terminal spin.
+By the tower property, we have $\nabla U(q,X_q;\omega)=\E[\sigma\mid\calG_q]=m_q$,
+which proves \eqref{eq:gauss-martingale} for step profiles. Using
+$C_1=H_1$, the martingale isometry, and the equation for $H$, we find
+\[
+ \begin{gathered}
+ C_q=\E[H_1\mid\calG_q]+\int_q^1\E[H_u\Lambda H_u\mid\calG_q]\dd u,
+ \\
+ H_q=\E[H_1\mid\calG_q]+\int_q^1a(u)\E[H_u\Lambda H_u\mid\calG_q]\dd u .
+ \end{gathered}
+\]
+Note that the matrices $H_u\Lambda H_u$ are positive semidefinite and
+that $a(q)\le a(u)\le1$ for $u\ge q$. Subtracting the two identities as in
+Step~1 of the proof of \cref{prop:fnd-contact}, we obtain
+$a(q)C_q\preceq H_q\preceq C_q$. Note that
+$\mathcal H_{-\sigma}(\omega,x)=\mathcal H_\sigma(\omega,-x)$. Replacing
+$\sigma$ by $-\sigma$ in the terminal sum, we see that
+$U(1,\cdot\,;\omega)$ is even. The equation preserves this symmetry,
+which implies that $U(q,\cdot\,;\omega)$ is even and that $m_0=0$.
+
+\paragraph{Step 2: Gaussian coordinates and the posterior density.}
+Let $0=q_0<q_1<\cdots<q_K=1$ and $a=a_\ell$ on $[q_\ell,q_{\ell+1})$,
+with $a_\ell\ge s\ge0$. Then the cumulative function is constant between
+grid points,
+and the free measure $\nu$ is carried by the grid points, with
+$\nu(\{q_0\})=a_0-s$, $\nu(\{q_\ell\})=a_\ell-a_{\ell-1}$ for
+$1\le\ell\le K-1$, and $\nu(\{q_K\})=1-a_{K-1}$. Let
+$z_1,\ldots,z_K$ be independent standard Gaussian vectors in $\R^N$, let
+\[
+ X_{q_\ell}=\sum_{h=1}^\ell(q_h-q_{h-1})^{1/2}\Lambda^{1/2}z_h
+ \qquad(0\le\ell\le K),
+\]
+and let $Z$ collect the coordinates of $\omega$ and of
+$z_1,\ldots,z_K$. We write $U_q(Z)=U(q,X_q;\omega)$ at the grid points.
+We recall that \eqref{eq:fnd-general-pde} is solved by the Hopf--Cole
+recursion
+$U_{q_\ell}=a_\ell^{-1}\log\E_{z_{\ell+1}}e^{a_\ell U_{q_{\ell+1}}}$ when
+$a_\ell>0$, and by $U_{q_\ell}=\E_{z_{\ell+1}}U_{q_{\ell+1}}$ when
+$a_\ell=0$. We follow the construction of \cite[(2.1)--(2.3)]{AL}. We claim
+that, restricted to $\omega$, to the field at the grid points, and to the
+spin, the generalized law is the law of
+$(\omega,(X_{q_\ell})_\ell,\sigma)$ when $(Z,\sigma)$ has the density
+\[
+ \frac{\exp\{\mathcal H_\sigma(\omega,X_1)
+                    -\int U_q(Z)\,\nu(\dd q)\}}
+      {\E_{\rm ref}e^{sU(0,0;\omega)}}
+\]
+with respect to the standard Gaussian law of $Z$ and counting measure on
+$\{-1,1\}^N$. Indeed, the outer tilt contributes
+$sU_{q_0}$ to the exponent, the transition from $q_\ell$ to
+$q_{\ell+1}$ contributes $a_\ell(U_{q_{\ell+1}}-U_{q_\ell})$, and the
+terminal Gibbs probability contributes $\mathcal H_\sigma(\omega,X_1)-U_{q_K}$.
+In the sum, we see that the coefficients of
+$U_{q_0},U_{q_1},\ldots,U_{q_K}$ are
+\[
+ s-a_0,\quad a_0-a_1,\quad\ldots,\quad a_{K-2}-a_{K-1},\quad a_{K-1}-1,
+\]
+which are the negatives of the masses of $\nu$ at the grid points.
+A transition of mass zero has likelihood one, and the calculation also
+holds at $s=0$, where the denominator equals one. For a fixed spin
+$\sigma$, we find that the negative logarithm of the conditional density
+of $Z$ is, up to a constant, the posterior potential
+\[
+ \Phi_\sigma(Z)=\frac12|Z|^2-\mathcal H_\sigma(\omega,X_1)
+           +\int U_q(Z)\,\nu(\dd q).
+\]
+Note that $\mathcal H_\sigma(\omega,X_1)$ is linear in $Z$ and that each
+$U_q$ is convex in $Z$. To see the convexity, observe that the terminal value
+in \eqref{eq:fnd-general-pde} is a log-sum-exp of linear functions of
+$(\omega,x)$, that each Hopf--Cole step of positive mass preserves
+convexity by H\"older's inequality, and that Gaussian expectation at
+mass zero preserves it as well. Since $X_q$ is linear in $Z$,
+we obtain
+\[
+ \nabla_Z^2\Phi_\sigma=\mathcal Q=I+\int\mathcal A_q\,\nu(\dd q)\succeq I,
+ \qquad
+ \mathcal A_q=\nabla_Z^2U_q\succeq0 .
+\]
+The matrix $\mathcal Q$ does not depend on $\sigma$.
+
+\paragraph{Step 3: joint source curvature.}
+Let $\iota\colon\R^n\to\R^N$ embed a vector in the selected coordinates,
+and let $\mathcal U_q(Z,y)=U(q,X_q(Z)+\iota y;\omega)$ for
+$y\in\R^n$. This function is jointly convex in $(Z,y)$, since $U(q,x;\omega)$ is
+convex in $(\omega,x)$ by Step~2 and the map
+$(Z,y)\mapsto(\omega,X_q(Z)+\iota y)$ is linear. We write
+$\mathcal B_q=\nabla_Z\nabla_y\mathcal U_q(Z,0)$, a matrix with $n$
+columns. Since $\nabla_y\mathcal U_q(Z,0)=m_q^-$ and
+$\nabla_y^2\mathcal U_q(Z,0)=H_q^{--}$, joint convexity and the chain
+rule give
+\begin{equation}\label{eq:fnd-source-curvature}
+ \begin{pmatrix}
+  \mathcal A_q&\mathcal B_q\\
+  \mathcal B_q^T&H_q^{--}
+ \end{pmatrix}\succeq0,\qquad
+ \nabla_Z|m_q^-|^2=2\mathcal B_qm_q^- .
+\end{equation}
+For a vector $w$ and $r\in\R$, we evaluate this positive semidefinite
+form at $(rw,m_q^-)$. The resulting quadratic polynomial in $r$ is
+nonnegative. This implies that its discriminant is nonpositive:
+\[
+ |w^T\mathcal B_qm_q^-|^2
+ \le(w^T\mathcal A_qw)\,(m_q^-)^TH_q^{--}m_q^- .
+\]
+The same statements hold at $q=0$, where $m_0^-=0$.
+
+\paragraph{Step 4: the Brascamp--Lieb inequality.}
+Let $Y=n^{-1}\int k(q)|m_q^-|^2\,\nu(\dd q)$, a finite sum over grid
+points, and let $b=\int k(q)\mathcal B_qm_q^-\,\nu(\dd q)$, so that
+$\nabla_ZY=2b/n$ by \eqref{eq:fnd-source-curvature}. For every vector $w$,
+using the last display, the Cauchy--Schwarz
+inequality for the integral against $\nu$, and
+$\int\mathcal A_q\,\nu(\dd q)=\mathcal Q-I\preceq\mathcal Q$, we obtain
+\[
+ \begin{aligned}
+ |w^Tb|^2&\le\Bigl(\int w^T\mathcal A_qw\,\nu(\dd q)\Bigr)
+             \int k(q)^2(m_q^-)^TH_q^{--}m_q^-\,\nu(\dd q)\\
+ &\le(w^T\mathcal Qw)\int k(q)^2(m_q^-)^TH_q^{--}m_q^-\,\nu(\dd q).
+ \end{aligned}
+\]
+Taking $w=\mathcal Q^{-1}b$ and dividing by $b^T\mathcal Q^{-1}b$ when it is
+positive, we find that
+\[
+ b^T\mathcal Q^{-1}b\le\int k(q)^2(m_q^-)^TH_q^{--}m_q^-\,\nu(\dd q);
+\]
+if $b^T\mathcal Q^{-1}b=0$, this inequality holds trivially. Fix $\sigma$. The
+potential $\Phi_\sigma$ is smooth, its Hessian $\mathcal Q$ is at least
+$I$, and it has Gaussian tails. By the Brascamp--Lieb inequality
+\cite{BrascampLieb1976}, in the form
+\cite[Proposition~2.2, (2.14)]{AL}, we have
+$\Var(Y\mid\sigma)\le\E[\nabla_ZY^T\mathcal Q^{-1}\nabla_ZY\mid\sigma]$,
+and we conclude that
+\[
+ \Var(Y\mid\sigma)\le\frac4{n^2}
+   \E\Bigl[\int k(q)^2(m_q^-)^TH_q^{--}m_q^-\,\nu(\dd q)\Bigm|\sigma\Bigr].
+\]
+
+\paragraph{Step 5: removing the conditioning.}
+For $\tau\in\{-1,1\}^N$, we consider the map
+\[
+ \sigma_i\mapsto\tau_i\sigma_i,\qquad
+ \omega_{ij}\mapsto\tau_i\tau_j\omega_{ij},\qquad
+ z_{h,i}\mapsto\tau_iz_{h,i}.
+\]
+This map preserves the Gaussian reference law. Because $\Lambda$ is diagonal,
+it multiplies each $X_q$ coordinatewise by $\tau$. Further,
+$\mathcal H_{\tau\sigma}$ evaluated at the transformed $(\omega,x)$
+equals $\mathcal H_\sigma(\omega,x)$, and the map leaves every $U_q$
+invariant. It therefore preserves the joint density of Step~2. It maps
+$m_{q,i}$ to $\tau_im_{q,i}$ and $(H_q)_{ij}$ to $\tau_i\tau_j(H_q)_{ij}$,
+so that $Y$ and $(m_q^-)^TH_q^{--}m_q^-$ are invariant. The map acts
+transitively on spin configurations, which implies that the conditional
+law of these quantities given $\sigma$ does not depend on $\sigma$. In
+particular, $\E[Y\mid\sigma]$ is constant, and the law of total variance
+implies that $\Var(Y)=\E\Var(Y\mid\sigma)$. Combining this with Step~4, we
+obtain the first inequality in
+\eqref{eq:fnd-posterior} for step profiles. The second inequality follows
+from $H_q^{--}\preceq C_q^{--}$,
+since principal submatrices preserve the order $H_q\preceq C_q$.
+
+\paragraph{Step 6: general profiles and general $k$.}
+We approximate $\mu$ by step profiles with the same root mass, as in
+Step~4 of the proof of \cref{prop:fnd-contact} and
+\cite[Section~2.6]{AL}. That is, we push $\nu$ forward to finite meshes that
+contain $0$, $1$, and any prescribed finite set of levels, with mesh size
+tending to zero. The argument of \cite[Section~2.6]{AL} uses only that
+the spins are bounded, that spatial derivatives of fixed order are
+bounded uniformly over step profiles at fixed $N$, that the solution is
+Lipschitz in the profile in $L^1$, that the outer tilt has Gaussian
+domination, and that the disorder, the Brownian motion, and the terminal
+spin can be coupled. These facts carry over to a bounded diagonal
+$\Lambda$ and to couplings $\kappa_{ij}\omega_{ij}$. For the Lipschitz
+bound, let $U$ and $\widetilde U$ be the solutions for the cumulative
+functions $a$ and $\tilde a$, and let $\varphi=U-\widetilde U$. Subtracting
+the two equations, we find
+\[
+ \partial_q\varphi+\frac12\Tr(\Lambda\nabla^2\varphi)
+ +\frac a2(\nabla U+\nabla\widetilde U)^T\Lambda\nabla\varphi
+ =-\frac{a-\tilde a}{2}\,\nabla\widetilde U^T\Lambda\nabla\widetilde U,
+ \qquad \varphi(1,\cdot\,;\omega)=0 .
+\]
+Since each coordinate of $\nabla\widetilde U$ is a conditional spin
+mean, we have $\nabla\widetilde U^T\Lambda\nabla\widetilde U\le\Tr\Lambda$. By
+the backward representation of $\varphi$, we have
+\[
+ \sup_{x,\omega}|\varphi(q,x;\omega)|\le\frac{\Tr\Lambda}2\int_q^1|a(u)-\tilde a(u)|\dd u
+ \le\frac N2\max_i\vartheta_i\,\|a-\tilde a\|_{L^1([0,1])}.
+\]
+This replaces the constant $cN/2$ of \cite[(2.19)]{AL}. It follows that
+the ratio of the outer densities for $\mu$ and for an approximating step
+profile converges to one uniformly in $\omega$. At $s=0$, the outer
+density is identically one, and the approximation requires no division
+by a root mass.
+
+Under the common coupling of \cite[Section~2.6.1]{AL}, the processes
+$X$, $m$, $H$, and $C$ for the step profiles converge to those for $\mu$,
+uniformly in $q$, in probability. Then the identities of Step~1, including
+\eqref{eq:gauss-martingale},
+pass to the limit, where for \eqref{eq:gauss-martingale} we use the It\^o
+isometry and the bounded
+convergence of $H$. For continuous $k$, the integrands
+$q\mapsto k(q)|m_q^-|^2$ and $q\mapsto k(q)^2(m_q^-)^TH_q^{--}m_q^-$ are
+bounded and continuous along each path. From any subsequence we may
+extract a further subsequence on which the process convergence is
+almost surely uniform in $q$. On that subsequence the integrands
+converge uniformly, and their integrals then converge by weak
+convergence of the deterministic free measures. The integrands are bounded, the ratio of the outer densities converges
+to one uniformly in $\omega$, and, since $U(0,0;\omega)$ grows at most
+linearly in $\omega$, the outer densities are dominated, uniformly along
+the approximation, by a function that is integrable under the Gaussian
+reference law. This allows passage to the expectations and variances. Thus \eqref{eq:fnd-posterior} holds for continuous $k$.
+Next, we
+show that both sides of \eqref{eq:fnd-posterior} are continuous
+in $k\in L^2(\nu)$. Since $|m_q^-|^2\le n$, we have
+\[
+ \Bigl\|\frac1n\int\bigl(k_1(q)-k_2(q)\bigr)|m_q^-|^2\,\nu(\dd q)\Bigr\|_{L^2(\Pp)}
+ \le\nu([0,1])^{1/2}\|k_1-k_2\|_{L^2(\nu)},
+\]
+which shows that the left side of \eqref{eq:fnd-posterior} is
+continuous in $k$. Further,
+$(m_q^-)^TH_q^{--}m_q^-\le(m_q^-)^TC_q^{--}m_q^-\le n\|C_q\|_{\rm op}\le nN$,
+which implies that the right sides change by at most
+$4n^{-1}N\|k_1-k_2\|_{L^2(\nu)}\|k_1+k_2\|_{L^2(\nu)}$. Since continuous
+functions are dense in $L^2(\nu)$, this proves the lemma.
+\end{proof}
+
+\section{Differentiating normalized Gaussian path expectations}
+\label{sec:gauss-heat}
+
+In \cref{sec:sc,sec:c7,sec:c7-endpoint}, we differentiate normalized
+expectations under Gaussian field laws while keeping their profile
+measures fixed. The parameter changes the covariance of the Gaussian
+variables. In
+\cref{sec:sc}, it changes the clock of the field path, and in
+\cref{sec:c7,sec:c7-endpoint}, it changes the variance of a row of
+couplings and the clock of one field coordinate. The densities that we
+encounter are exponentials of
+integrals of smooth functions of the field against the profile measure,
+which may have atoms. We use the following version of the Gaussian heat
+identity, for finitely many Gaussian variables and continuous field
+paths. Its finite-dimensional input is the classical formula for the
+derivative of a Gaussian expectation with respect to the covariance. A
+general version, under hypotheses
+different from ours, is proved in \cite[Theorem~1]{Voigtlaender2021Price}.
+In the proof, we reduce to
+finite Gaussian vectors by Bernstein approximation of the paths, while we
+keep the profile measure, including its atoms, exact.
+
+\paragraph{Setting.}
+Let $I\subset\R$ be a nondegenerate compact interval with interior $I^\circ$, and let
+$z\in I$ be the parameter. Under a reference probability measure, with
+expectation $\E_{\rm ref}$, we consider the following random
+variables.
+\begin{enumerate}[label=(\roman*)]
+\item \emph{Finite coordinates}
+$G^{\rm fin}_z=(v_k(z)^{1/2}\xi_k)_{1\le k\le n_0}$, where
+$\xi_1,\ldots,\xi_{n_0}$ are independent standard Gaussian variables and
+$v_k\colon I\to[0,\infty)$.
+\item \emph{Field paths} on a fixed finite rooted tree. Each edge $e$
+carries the level interval $[0,1]$, after an affine change of variable,
+and $d$ components. For each edge $e$ and component $j\le d$, let
+$B_{e,j}$ be a standard Brownian motion, and let
+$T_{e,j,z}\colon[0,1]\to[0,\infty)$ be a deterministic nondecreasing clock
+such that $T_{e,j,z}(0)=0$. The Brownian motions for different edges
+and components are mutually independent. The path on the edge $e$ is
+\[
+ G_z(e,j,v)=G_z(e',j,1)+B_{e,j}\bigl(T_{e,j,z}(v)\bigr),
+ \qquad 0\le v\le1,
+\]
+where $e'$ is the parent edge of $e$, and the first term is $0$ if $e$
+starts at the root.
+\item A finite family $\omega$ of independent standard Gaussian variables that do not
+depend on $z$ and are independent of the variables in (i) and (ii), and
+a variable $\sigma$ that ranges over a nonempty finite set and is integrated
+against counting measure.
+\end{enumerate}
+The variables $\xi_k$ and the Brownian motions $B_{e,j}$ are mutually
+independent. Thus the finite coordinates and the field paths are
+independent under the reference law. This setting includes all the
+scalar and cavity applications below.
+We write $\mathcal I$ for the index space formed by the finite
+coordinates $1\le k\le n_0$ and the field points and components
+$(e,j,v)$. It is a compact metric space, the disjoint union of a finite
+set and finitely many copies of $[0,1]$. The Gaussian coordinates
+$G_z=(G_z^{\rm fin},G_z^{\rm path})$ form a random element of the space
+$\mathcal C$ of functions on $\mathcal I$ that are continuous on each
+copy of $[0,1]$, with the norm $|G^{\rm fin}|+\|G^{\rm path}\|_\infty$.
+We denote their covariance by $K_z(i,i')=\E_{\rm ref}[G_z(i)G_z(i')]$ for
+$i,i'\in\mathcal I$. For example, for one edge and one component,
+$K_z(v,v')=T_z(\min\{v,v'\})$.
+
+Let $\ell_z(G)=\ell_z(G,\omega,\sigma)$ and
+$\Phi_z(G)=\Phi_z(G,\omega,\sigma)$ be real functions of $z\in I$,
+$G\in\mathcal C$, $\omega$, and $\sigma$. We write $\dot\ell_z$ and
+$\dot\Phi_z$ for their derivatives in $z$, with $(G,\omega,\sigma)$
+fixed, and $\dot K_z$ for the derivative of $K_z$ in $z$. For a
+continuous kernel $A$ on $\mathcal I^2$ and a finite signed measure $B$
+on $\mathcal I^2$, we write $\langle A,B\rangle=\iint A(i,i')B(\dd i,\dd i')$,
+and $S\otimes P$ denotes the product of two signed measures on
+$\mathcal I$.
+
+\begin{lemma}[Normalized Gaussian path heat identity]
+\label{lem:fnd-path-heat}
+In the setting above, assume the following.
+\begin{enumerate}[label=\textup{(A\arabic*)}]
+\item \emph{Variances and clocks.} Each $v_k$ and each $T_{e,j,z}(v)$ is
+continuous in $z\in I$, jointly with $v$ for the clocks, and
+continuously differentiable in $z\in I^\circ$. For $z\in I^\circ$, each
+nonconstant $v_k$ is positive and each clock is strictly increasing in
+$v$. Coordinates with $v_k\equiv0$ are omitted.
+\item \emph{Covariance.} The covariance $K_z(i,i')$ is differentiable in
+$z\in I^\circ$, and the maps $(z,i,i')\mapsto K_z(i,i')$ and
+$(z,i,i')\mapsto\dot K_z(i,i')$ are jointly continuous on
+$I\times\mathcal I^2$, where $\dot K_z$ at the endpoints of $I$ denotes
+the continuous extension.
+\item \emph{Functionals.} For each $\sigma$, the functions
+$\ell_z(G,\omega,\sigma)$, $\Phi_z(G,\omega,\sigma)$,
+$\dot\ell_z(G,\omega,\sigma)$, and $\dot\Phi_z(G,\omega,\sigma)$ are jointly
+continuous in $(z,G,\omega)\in I\times\mathcal C\times\R^{n_1}$,
+where $n_1$ is the number of auxiliary Gaussian coordinates, with
+$\dot\ell_z$ and $\dot\Phi_z$ extended continuously to the endpoints of $I$.
+The functions $\Phi_z$, $\dot\Phi_z$, and
+$\dot\ell_z$ are bounded uniformly in all variables, and there exists
+$C<\infty$ such that
+\[
+ |\ell_z(G)|\le C\bigl(1+|\omega|+|G^{\rm fin}|+\|G^{\rm path}\|_\infty\bigr).
+\]
+\item \emph{Derivative measures.} For fixed $(z,\omega,\sigma)$, the maps
+$G\mapsto\ell_z(G)$ and $G\mapsto\Phi_z(G)$ are twice continuously
+differentiable on $\mathcal C$, and their derivatives are represented by
+finite signed measures
+\[
+ S=D\ell_z,\qquad M=D^2\ell_z,\qquad
+ P=D\Phi_z,\qquad Q=D^2\Phi_z
+\]
+on $\mathcal I$ and $\mathcal I^2$, in the sense that, for example,
+\[
+ D\ell_z(G)[h]=\int h\dd S,\qquad
+ D^2\ell_z(G)[h,h']=\iint h(i)h'(i')\,M(\dd i,\dd i')
+ \qquad(h,h'\in\mathcal C).
+\]
+For fixed $(\omega,\sigma)$, the four measures depend continuously on
+$(z,G)$ in the total-variation norm, and their total variations are
+bounded uniformly in all variables.
+\end{enumerate}
+Let $Z_z=\E_{\rm ref}e^{\ell_z(G_z)}$, where $\E_{\rm ref}$ includes the
+sum over $\sigma$, and let
+$\E_z\Phi=Z_z^{-1}\E_{\rm ref}\bigl[e^{\ell_z(G_z)}\Phi\bigr]$. Then, for
+every $z\in I$,
+\begin{align}
+ \frac\dd{\dd z}\E_z\Phi_z={}&
+ \E_z\dot\Phi_z+\Cov_z(\Phi_z,\dot\ell_z)\nonumber\\
+ &+\frac12\E_z\Bigl\langle\dot K_z,
+ Q+S\otimes P+P\otimes S
+ +(\Phi_z-\E_z\Phi_z)(M+S\otimes S)\Bigr\rangle,
+ \label{eq:fnd-path-heat}
+\end{align}
+where the functionals and measures are evaluated at $G_z$. The
+derivative is one-sided at the endpoints of $I$, including endpoints at
+which a finite-coordinate variance vanishes. The same differentiation
+gives
+\begin{equation}\label{eq:fnd-path-normalizer}
+ \frac\dd{\dd z}\log Z_z
+ =\E_z\dot\ell_z+\frac12\E_z\langle\dot K_z,M+S\otimes S\rangle.
+\end{equation}
+\end{lemma}
+
+\begin{remark}\label{rem:gauss-local}
+We show in the proof that the right sides of \eqref{eq:fnd-path-heat} and
+\eqref{eq:fnd-path-normalizer} are continuous in $z\in I$, so that
+$z\mapsto\E_z\Phi_z$ and $z\mapsto\log Z_z$ are continuously
+differentiable on $I$. The assumptions hold, in particular, for the
+smooth local functionals that we use in
+\cref{sec:sc,sec:c7,sec:c7-endpoint},
+integrated against a fixed finite measure. For instance, let $\varpi$ be
+a finite measure on the path part of $\mathcal I$, possibly with atoms,
+and let $\ell_z(G)=-\int V_z(i,G(i))\,\varpi(\dd i)$, where $V_z(i,x)$
+is twice continuously differentiable in $x$, and $\partial_xV_z$ and
+$\partial_x^2V_z$ are bounded and jointly continuous in $(z,i,x)$. Then
+\[
+ S=-\partial_xV_z(\cdot,G(\cdot))\,\varpi,\qquad
+ M=-\operatorname{diag}_{\#}\bigl(\partial_x^2V_z(\cdot,G(\cdot))\,\varpi\bigr),
+\]
+where $\operatorname{diag}_{\#}$ is the pushforward under
+$i\mapsto(i,i)$. The total variation of the difference of the scores at
+$G$ and $G'$ is at most
+$\varpi(\mathcal I)\sup_i|\partial_xV_z(i,G(i))-\partial_xV_z(i,G'(i))|$,
+and the same holds for the Hessians with $\partial_x^2V_z$. We note that
+these functions are uniformly continuous on compact sets
+and that $G$ is bounded, which gives the continuity in (A4) for this
+term. An atom of $\varpi$ produces an atom of $M$ on
+the diagonal, and its contribution to $\langle\dot K_z,M\rangle$
+involves $\dot K_z$ on the diagonal.
+\end{remark}
+
+\begin{proof}[Proof of \cref{lem:fnd-path-heat}]
+The proof has seven steps. We first prove the identities for finite
+Gaussian vectors. We then approximate the paths by their Bernstein
+polynomials and couple the approximations on one probability space.
+Next, we show that the derivative measures and the covariance kernels
+converge, and we establish a common integrable envelope and a lower
+bound for the normalizers. Finally, we pass to the limit in the interior
+of $I$ and treat the endpoints.
+
+\paragraph{Step 1: the finite-dimensional identity.}
+We begin with a finite Gaussian vector. Let $J$ be an open interval,
+and let $Y_z$, $z\in J$, be a centered Gaussian vector in $\R^p$ whose
+covariance $\Sigma_z$ is continuously differentiable in $z$. We allow the
+matrix $\Sigma_z$ to be
+singular. Let $F_z\colon\R^p\to\R$ be continuously
+differentiable in $z$ and twice continuously differentiable in
+$y\in\R^p$, and assume that $F_z$, $\partial_zF_z$, $\nabla F_z$, and
+$\nabla^2F_z$ are bounded by $Ce^{C|y|}$, locally uniformly in $z$. We
+claim that
+\begin{equation}\label{eq:gauss-finite-heat}
+ \frac\dd{\dd z}\E F_z(Y_z)=\E\,\partial_zF_z(Y_z)
+ +\frac12\E\bigl\langle\dot\Sigma_z,\nabla^2F_z(Y_z)\bigr\rangle .
+\end{equation}
+Let $\varepsilon>0$, let $\zeta$ be a standard Gaussian vector in
+$\R^p$, and let $A_z=(\Sigma_z+\varepsilon I)^{1/2}$. The matrix square
+root is smooth on positive definite matrices, so $A_z$ is continuously
+differentiable in $z$. By dominated convergence, we may differentiate
+$\E F_z(A_z\zeta)$ under the expectation. The chain rule gives, besides
+$\E\,\partial_zF_z(A_z\zeta)$, the term
+$\E[\nabla F_z(A_z\zeta)\cdot\dot A_z\zeta]$. Using Gaussian integration
+by parts, $\E[\zeta_lg(\zeta)]=\E[\partial_lg(\zeta)]$, we find that
+this term equals $\E\Tr\bigl(\dot A_z\nabla^2F_z(A_z\zeta)A_z\bigr)$.
+Since $\nabla^2F_z$ is symmetric and
+$\dot A_zA_z+A_z\dot A_z=\dot\Sigma_z$, this is
+$\E\langle\dot\Sigma_z,\nabla^2F_z(A_z\zeta)\rangle/2$. We integrate
+this identity over $[z_1,z_2]\subset J$ and let $\varepsilon\downarrow0$.
+The vector $A_z\zeta$ has the law of $Y_z+\sqrt\varepsilon\zeta'$, where
+$\zeta'$ is a standard Gaussian vector independent of $Y_z$. Since the
+growth bounds give domination, we obtain
+the integrated form of
+\eqref{eq:gauss-finite-heat}. Realizing $Y_z=\Sigma_z^{1/2}\zeta$, which
+is continuous in $z$, we see by the same domination that the right side
+of \eqref{eq:gauss-finite-heat} is continuous in $z$. The fundamental
+theorem of calculus then gives
+\eqref{eq:gauss-finite-heat}. This is the classical formula. Note that we
+never invert $\Sigma_z$.
+
+We will apply \eqref{eq:gauss-finite-heat} to $e^{\ell_z}$ and to
+$e^{\ell_z}\Phi_z$, composed with a linear map from $\R^p$ to
+$\mathcal C$, as in Step~2. By the product rule, we have
+$D e^{\ell}=e^{\ell}S$, $D^2e^{\ell}=e^{\ell}(M+S\otimes S)$, and
+\[
+ D^2(e^{\ell}\Phi)=e^{\ell}\bigl[Q+S\otimes P+P\otimes S+\Phi(M+S\otimes S)\bigr].
+\]
+Inserting these derivatives into \eqref{eq:gauss-finite-heat} for the
+numerator $\E_{\rm ref}[e^{\ell_z}\Phi_z]$ and the denominator
+$\E_{\rm ref}e^{\ell_z}$, and using the quotient rule, we obtain
+\eqref{eq:fnd-path-heat} for a finite Gaussian vector. Observe that the
+centering $\Phi_z-\E_z\Phi_z$ comes from the
+derivative of the denominator.
+Dividing the derivative of the denominator by the denominator gives
+\eqref{eq:fnd-path-normalizer}.
+
+\paragraph{Step 2: Bernstein approximation and kernel convergence.}
+We use the Bernstein approximation introduced in
+\cite{Bernstein1912}. Let $m\ge1$ and $v_l=l/m$ for $0\le l\le m$. For a
+continuous function $f$ on $[0,1]$, the Bernstein polynomial is
+\[
+ \Pi_mf(v)=\sum_{l=0}^mb_{m,l}(v)f(v_l),\qquad
+ b_{m,l}(v)=\binom ml v^l(1-v)^{m-l}.
+\]
+The operator $\Pi_m$ is linear, and $\Pi_mf(0)=f(0)$ and
+$\Pi_mf(1)=f(1)$. The weights are nonnegative and sum to one, which
+gives $\|\Pi_mf\|_\infty\le\|f\|_\infty$. Further, for every $\delta>0$, we have
+\[
+ \|\Pi_mf-f\|_\infty\le\omega_f(\delta)+\frac{\|f\|_\infty}{2m\delta^2},
+\]
+where $\omega_f$ is the modulus of continuity of $f$. This follows from
+Chebyshev's inequality for a binomial variable with $m$ trials, whose
+variance is at most $m/4$. In particular, $\Pi_mf\to f$ uniformly
+over any bounded equicontinuous family of functions $f$. The same holds for the
+tensor product $\Pi_m\otimes\Pi_m$ acting on continuous functions on
+$[0,1]^2$, with the bound $\omega_f(\delta)+\|f\|_\infty/(m\delta^2)$.
+
+On each edge and component, we let $\Pi_m$ act on the path, and we
+leave the finite coordinates unchanged. We denote the resulting operator
+on $\mathcal C$ also by $\Pi_m$. Then $\Pi_mG_z$ is a linear function of
+the finite Gaussian vector $Y_z$ formed by the finite coordinates and
+the sampled values $G_z(e,j,v_l)$. A value at a vertex of the tree may
+appear in several coordinates of $Y_z$. Step~1 allows such repeated
+coordinates, since it does not require an invertible covariance. The
+covariance of $Y_z$ consists of the values of $K_z$ at the sampled
+points. By (A2), it is continuously differentiable on $I^\circ$, with
+derivative given by the values of $\dot K_z$. The growth conditions of
+Step~1 hold by (A3) and (A4), since $\|\Pi_my\|_{\mathcal C}\le2|y|$.
+
+We set
+\[
+ \ell^{(m)}_z=\ell_z(\Pi_mG_z),\qquad
+ \Phi^{(m)}_z=\Phi_z(\Pi_mG_z),\qquad
+ Z^{(m)}_z=\E_{\rm ref}e^{\ell^{(m)}_z},
+\]
+and we normalize the approximate moment
+$\E^{(m)}_z\Phi^{(m)}_z=(Z^{(m)}_z)^{-1}\E_{\rm ref}[e^{\ell^{(m)}_z}\Phi^{(m)}_z]$
+by its own normalizer $Z^{(m)}_z$. By the chain rule, the derivative of
+$\ell_z(\Pi_my)$ in the sampled coordinate $(e,j,v_l)$ is
+$\int b_{m,l}\dd S$, where $b_{m,l}$ is placed on the edge $e$ and the
+component $j$. We obtain the second derivatives in the same way from
+$M$. We use Step~1 for fixed $(\omega,\sigma)$, and we then integrate
+over $\omega$ and sum over $\sigma$. The domination of Step~5 justifies
+this. We conclude that \eqref{eq:fnd-path-heat} and
+\eqref{eq:fnd-path-normalizer} hold for the approximations at every
+$z\in I^\circ$, with $\E_z$ replaced by $\E^{(m)}_z$ and with the
+functionals and
+measures evaluated at $\Pi_mG_z$. In these identities, $\dot K_z$ is
+replaced by the kernel
+\[
+ \dot K_z^{(m)}(v,w)
+  =\sum_{l,l'}b_{m,l}(v)b_{m,l'}(w)\dot K_z(v_l,v_{l'})
+\]
+on each pair of edges and components. Blocks between finite coordinates
+are unchanged, and blocks between a finite coordinate $k$ and a path use
+the same sampling in their path variable:
+\[
+ \dot K_z^{(m)}(k,(e,j,v))=\sum_lb_{m,l}(v)\dot K_z(k,(e,j,v_l)).
+\] By (A2),
+the kernels $K_z$ and $\dot K_z$ are uniformly continuous on the
+compact set $I\times\mathcal I^2$. Hence the families
+$\{K_z\}_{z\in I}$ and $\{\dot K_z\}_{z\in I}$ are bounded and
+equicontinuous. Using the Bernstein bound, we obtain
+\begin{equation}\label{eq:fnd-path-kernel-limit}
+ \sup_{z\in I}\|\dot K_z^{(m)}-\dot K_z\|_\infty\longrightarrow0,
+ \qquad
+ \sup_{z\in I}\|K_z^{(m)}-K_z\|_\infty\longrightarrow0,
+\end{equation}
+where $K_z^{(m)}$, the covariance of $\Pi_mG_z$, is defined in the same
+way.
+
+\paragraph{Step 3: coupling.}
+In Step~1, we used only the law of $Y_z$ at each fixed $z$. To pass to
+the limit, we use the realization of the setting, with one Brownian motion
+$B_{e,j}$ for each edge and component, evaluated at the varying clocks.
+The finite coordinates are $v_k(z)^{1/2}\xi_k$ for fixed
+$\xi_k$, independent of these Brownian motions as in the setting.
+By (A1), the map $(z,v)\mapsto G_z(e,j,v)$ is almost surely
+continuous on the compact set $I\times[0,1]$. It is therefore uniformly
+continuous, and the family $\{G_z(e,j,\cdot)\}_{z\in I}$ is
+equicontinuous. By Step~2, we have
+$\sup_{z\in I}\|\Pi_mG_z-G_z\|_{\mathcal C}\to0$ almost surely. Let
+$\bar T$ be the maximum of the clocks over $I\times[0,1]$, with
+$\bar T=0$ if there are no field paths. Let
+$\bar v=\max(\{0\}\cup\{v_k(z):1\le k\le n_0,\ z\in I\})$, so that
+$\bar v=0$ if there are no finite coordinates. Since the value of a path
+at a point of the edge $e$ is a sum of
+increments of the Brownian motions on $e$ and its ancestor edges, we find
+that
+\[
+ \sup_{z\in I}\|\Pi_mG_z\|_{\mathcal C}\le\sup_{z\in I}\|G_z\|_{\mathcal C}
+ \le\bar v^{1/2}|\xi|+\sum_{e,j}\sup_{0\le\tau\le\bar T}|B_{e,j}(\tau)| .
+\]
+
+\paragraph{Step 4: convergence of the derivative measures.}
+By (A4) and Step~3, we see that the measures $S$, $M$, $P$, and $Q$
+evaluated at $\Pi_mG_z$ converge in total variation to the same measures evaluated
+at $G_z$, almost surely, for every $z\in I$. Combining this with
+\eqref{eq:fnd-path-kernel-limit} and the uniform bounds on the total
+variations, we find that every contraction in the identity of Step~2
+converges. For example, writing $M^{(m)}$ for $M$ evaluated at $\Pi_mG_z$,
+we have
+\[
+ \bigl|\langle\dot K_z^{(m)},M^{(m)}\rangle-\langle\dot K_z,M\rangle\bigr|
+ \le\|\dot K_z^{(m)}-\dot K_z\|_\infty\|M^{(m)}\|_{\rm TV}
+ +\|\dot K_z\|_\infty\|M^{(m)}-M\|_{\rm TV},
+\]
+and for product measures we use
+$\|S'\otimes P'-S\otimes P\|_{\rm TV}\le\|S'-S\|_{\rm TV}\|P'\|_{\rm TV}
++\|S\|_{\rm TV}\|P'-P\|_{\rm TV}$. This includes the diagonal
+contributions of atoms, as in
+\cref{rem:gauss-local}, since only the field values are approximated
+and $\dot K^{(m)}_z(v,v)\to\dot K_z(v,v)$ uniformly.
+
+\paragraph{Step 5: domination and the normalizers.}
+By (A3) and Step~3, we have $e^{\ell^{(m)}_z}\le\mathcal W$ for all $m$
+and $z$, where
+\[
+ \mathcal W=\exp\Bigl\{C\Bigl(1+|\omega|+\bar v^{1/2}|\xi|
+ +\sum_{e,j}\sup_{0\le\tau\le\bar T}|B_{e,j}(\tau)|\Bigr)\Bigr\}
+\]
+and $C$ is the constant of (A3). All differentiated terms in the
+identity of Step~2 are products of a weight with quantities bounded by
+(A3), (A4), and \eqref{eq:fnd-path-kernel-limit}. Hence a constant
+multiple of $\mathcal W$ is a common envelope. It is integrable to every fixed
+positive power, because the suprema of Brownian motion over a bounded
+interval have Gaussian tails, and the sum over $\sigma$ is finite. We now
+show that the approximate normalizers have a common positive
+lower bound. We retain one value $\sigma_0$ of the counting variable.
+Using Jensen's inequality and the bound on $|\ell_z|$ in (A3), we obtain
+\[
+ Z^{(m)}_z\ge\E_{\rm ref}e^{\ell_z(\Pi_mG_z,\omega,\sigma_0)}
+ \ge\exp\bigl(\E_{\rm ref}\,\ell_z(\Pi_mG_z,\omega,\sigma_0)\bigr)\ge e^{-C'},
+\]
+where the expectations are over the Gaussian variables only, and $C'$
+does not depend on $m$ or $z$.
+
+\paragraph{Step 6: passage to the limit in the interior.}
+Let $\mathcal E_m(z)=\E^{(m)}_z\Phi^{(m)}_z$, and let $\Psi_m(z)$ be the
+right side of the identity of Step~2. Let $[z_1,z_2]\subset I^\circ$.
+By Step~2 and the fundamental theorem of calculus, we have
+\[
+ \mathcal E_m(z_2)-\mathcal E_m(z_1)=\int_{z_1}^{z_2}\Psi_m(z)\dd z .
+\]
+By Steps~3--5 and dominated convergence, we see that
+$\mathcal E_m(z)\to\E_z\Phi_z$
+and $\Psi_m(z)\to\Psi(z)$ for all $z\in I$, where
+$\Psi(z)$ is the right side of \eqref{eq:fnd-path-heat}. Here we used the
+lower bound on the normalizers and the continuity of $\ell_z$, $\Phi_z$,
+$\dot\ell_z$, and $\dot\Phi_z$ in $G$. The
+functions $\Psi_m$ are bounded uniformly in $m$ and $z$. Using dominated
+convergence in $z$, we obtain
+\[
+ \E_{z_2}\Phi_{z_2}-\E_{z_1}\Phi_{z_1}=\int_{z_1}^{z_2}\Psi(z)\dd z .
+\]
+The same argument with $z_k\to z$ in place of $m\to\infty$ shows that
+$\Psi$ and $z\mapsto\E_z\Phi_z$ are continuous on $I$. Indeed, by the
+coupling, $G_{z_k}\to G_z$ uniformly, the measures converge in total
+variation by (A4), $\dot K_{z_k}\to\dot K_z$ uniformly by (A2), and the
+envelope of Step~5 dominates. By the fundamental theorem of calculus, we
+conclude that
+\eqref{eq:fnd-path-heat} holds on $I^\circ$. The same argument with
+$\Phi\equiv1$, applied to $\log Z^{(m)}_z$ instead of a ratio, gives
+\eqref{eq:fnd-path-normalizer} on $I^\circ$.
+
+\paragraph{Step 7: endpoints.}
+Let $z_-$ be an endpoint of $I$, say the left one. The integrated
+identity of Step~6 holds for $z_-<z_1<z_2$ in $I^\circ$. As
+$z_1\downarrow z_-$, the left side converges because $z\mapsto\E_z\Phi_z$
+is continuous on $I$, and the integral converges because $\Psi$ is
+continuous on $I$. This also holds if a finite variance vanishes at $z_-$.
+In that case,
+the corresponding coordinate converges to zero, while the derivative
+measures and $\dot K_z$ have continuous limits, and we never invert the
+covariance matrix. We obtain
+$\E_{z_2}\Phi_{z_2}-\E_{z_-}\Phi_{z_-}=\int_{z_-}^{z_2}\Psi(z)\dd z$,
+and the continuity of $\Psi$ gives the one-sided derivative at
+$z_-$. We treat the right endpoint and \eqref{eq:fnd-path-normalizer} in the
+same way.
+\end{proof}

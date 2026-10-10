@@ -1,0 +1,158 @@
+\documentclass[12pt,oneside,openany]{book}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\DeclareFontFamily{U}{rsfs}{\skewchar\font127 }
+\DeclareFontShape{U}{rsfs}{m}{n}{<-6.5>rsfs5<6.5-7.5>rsfs7<7.5->rsfs10}{}
+\usepackage{booktabs,array}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{imakeidx}%
+\usepackage{environ}
+\PassOptionsToPackage{hypertexnames=false}{hyperref}
+\input{shared/trilogy-style}%
+\input{shortheads}
+\usepackage{xurl}%
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+\usepackage{aliascnt}
+\hypersetup{pdftitle={An N\textasciicircum(-7/10) Bound for the Finite-Size Bias of the Sherrington-Kirkpatrick Free Energy},pdfauthor={P. M. Aronow and Patrick Lopatto}}
+\renewcommand{\chaptername}{Section}
+\numberwithin{equation}{chapter}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
+\theoremstyle{definition}
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
+\newaliascnt{example}{theorem}
+\newtheorem{example}[example]{Example}
+\aliascntresetthe{example}
+\theoremstyle{remark}
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\aliascntresetthe{remark}
+\makeatletter
+\@addtoreset{proposition}{chapter}\@addtoreset{lemma}{chapter}\@addtoreset{corollary}{chapter}
+\@addtoreset{definition}{chapter}\@addtoreset{example}{chapter}\@addtoreset{remark}{chapter}
+\makeatother
+\crefname{theorem}{Theorem}{Theorems}
+\crefname{proposition}{Proposition}{Propositions}
+\crefname{lemma}{Lemma}{Lemmas}
+\crefname{corollary}{Corollary}{Corollaries}
+\crefname{definition}{Definition}{Definitions}
+\crefname{example}{Example}{Examples}
+\crefname{remark}{Remark}{Remarks}
+\crefname{chapter}{Section}{Sections}
+\crefname{part}{Part}{Parts}
+\crefname{section}{Section}{Sections}
+\crefname{subsection}{Section}{Sections}
+\crefname{table}{Table}{Tables}
+\crefname{equation}{}{}
+\crefformat{equation}{(#2#1#3)}
+\Crefformat{equation}{(#2#1#3)}
+\crefrangeformat{equation}{(#3#1#4)--(#5#2#6)}
+\Crefrangeformat{equation}{(#3#1#4)--(#5#2#6)}
+\crefmultiformat{equation}{(#2#1#3)}{ and~(#2#1#3)}{, (#2#1#3)}{, and~(#2#1#3)}
+\Crefmultiformat{equation}{(#2#1#3)}{ and~(#2#1#3)}{, (#2#1#3)}{, and~(#2#1#3)}
+\newcommand{\creflastconjunction}{, and~}
+\newcommand{\creflastgroupconjunction}{, and~}
+
+\makeatletter
+\newcommand{\npp@noteblock}[2]{%
+  \ifx\relax#1\relax\else{\centering\trilogy@spacedsc{#1}\par}\vspace{6pt}\fi
+  {\centering
+   \begin{minipage}{0.84\textwidth}\small\normalfont\setlength{\parindent}{1.5em}%
+     \noindent\ignorespaces#2\end{minipage}\par}}
+\NewEnviron{authorsnote}{%
+  \clearpage\thispagestyle{empty}%
+  \vspace*{\stretch{2}}%
+  \npp@noteblock{Authors' note}{\BODY}%
+  \vspace*{\stretch{3}}%
+  \clearpage}
+\NewEnviron{abstractpage}{%
+  \clearpage\thispagestyle{empty}%
+  \vspace*{\stretch{2}}%
+  \npp@noteblock{Abstract}{\BODY}%
+  \vspace*{\stretch{3}}%
+  \clearpage}
+\newcommand{\npptitlepage}[2]{%
+  \hypersetup{pageanchor=false}%
+  \begin{titlepage}
+  \centering\normalfont
+  \vspace*{1.7in}
+  {\large\strut\par}
+  \vspace{1.05in}
+  {\fontsize{28}{35}\selectfont #1\par}
+  \vspace{1.1in}
+  {\Large\def\\{\par\vspace{10pt}}#2\par}
+  \vfill
+  \end{titlepage}%
+  \hypersetup{pageanchor=true}}
+\makeatother
+
+\input{macros}
+\allowdisplaybreaks[2]
+
+\clubpenalty=10000
+\patchcmd{\thebibliography}{\clubpenalty4000}{\clubpenalty10000}{}{}
+\begin{document}
+\frontmatter
+\npptitlepage{An $N^{-7/10}$ Bound for the\\ Finite-Size Bias of the\\ Sherrington--Kirkpatrick\\ Free Energy}{P.\ M.\ Aronow\\ Patrick Lopatto}
+\begin{authorsnote}
+With the exception of this note and small edits to the abstract, the entire
+document is machine written. We have taken care to supervise this writing to
+ensure that the proofs meet a minimum standard of readability and that
+previous literature is appropriately cited. However, the resulting document
+remains lacking in exposition and overall coherence. We are nonetheless
+releasing this manuscript on Hexagon to disseminate the result as quickly as
+possible, because we believe it may be of interest to the mathematics and
+physics communities. We welcome suggestions concerning mathematical
+corrections, omitted citations, and attribution of ideas.
+
+P.L.\ was partially supported by NSF grant DMS-2450004.
+\end{authorsnote}
+\begin{abstractpage}
+\input{abstract}
+\end{abstractpage}
+\tableofcontents
+\mainmatter
+
+\input{sections/01-intro}
+\input{sections/02-overview}
+
+\part{The interpolation}\label{part:interpolation}
+\input{sections/03-interpolation}
+\input{sections/04-gaussian}
+
+\part{Overlap estimates at a minimizer}\label{part:overlap}
+\input{sections/05-shells}
+\input{sections/06-meancov}
+
+\part{The minimizing profile and the scalar response}\label{part:profile}
+\input{sections/07-isolation}
+\input{sections/08-root}
+\input{sections/09-scalar}
+
+\part{The cavity contraction}\label{part:cavity}
+\input{sections/10-cavity}
+\input{sections/11-endpoint}
+\input{sections/12-closure}
+
+\part{Proof of the main theorem}\label{part:proof}
+\input{sections/13-proof}
+
+\backmatter
+
+\setlength{\bibsep}{3pt plus 1pt minus 1pt}
+\bibliographystyle{plainnat}
+\bibliography{refs}
+\end{document}

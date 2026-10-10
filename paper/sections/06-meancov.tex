@@ -1,0 +1,539 @@
+\chapter{The mean--covariance term}\label{sec:th}
+
+In this section, we bound the mean--covariance term
+$J=\int j_q\,\nu(\dd q)$ at a minimizing profile. Here
+$j_q=N^{-2}\E[m_q^TC_qm_q]$ is the expected conditional variance of the
+spin in the direction of its conditional mean. Our main result,
+\cref{prop:th-j}, states that $J\le341(1+\log_+M)^2/(Ms)$ at every
+minimizer. Together with the trace bound $A\le1/(Ms)$ of
+\eqref{eq:in-Lvar}, this controls the thermal part $A+2J$ of the defect
+$\calD_N(\rho)=\beta(A+2J+V)$. As
+$Ms=\beta^2N\rho\cdot\lambda/\beta=\beta N\rho\lambda$, the two bounds
+imply that
+\[
+ \beta(A+2J)\le\frac{1+682(1+\log_+M)^2}{N\rho\lambda}.
+\]
+We use \cref{prop:th-j} in this form in the proof of
+\cref{cor:c7-defect}, for those $\rho$ where the cavity inequality
+contracts, and in \eqref{eq:sm-AJ} in the proof of \cref{prop:sm-small},
+for small $\rho$.
+
+The proof has four steps.
+\begin{enumerate}
+\item In \cref{lem:th-ric}, we show by a scalar Riccati inequality that
+conditional covariances decay in every direction that is measurable at
+an earlier level: if $b$ is $\calG_{q'}$-measurable, then
+$\E[b^TC_qb]$ is at most $\E|b|^2$ divided by the accumulated clock
+$c\int_{q'}^qa(u)^2\dd u$. This holds for every admissible profile.
+\item In \cref{lem:th-gamma}, we use first-order optimality to show that
+$\mathsf S(r)=\E S_r$ is $2$-Lipschitz toward every point $q$ of
+$\supp\nu$, also when $r$ lies in a gap of the support. By
+\eqref{eq:th-orth} below, this bounds $\E|m_q-m_r|^2$ by $2N|q-r|$.
+\item In \cref{lem:th-res}, we combine these two estimates through a
+dyadic decomposition of $m_q-m_p$, for $q\in\supp\nu$ and $p\le q$. We
+bound $\calR(p,q)=N^{-2}\E[(m_q-m_p)^TC_q(m_q-m_p)]$ by a multiple of
+$(1+\log_+M)^2/(Ma((p+q)/2)^2)$.
+\item In \cref{prop:th-j}, we average earlier means $m_{Q(w)}$, $0<w<v$,
+over the whole quantile prefix with a quadratic weight, together with a
+deterministic weight on $m_0=0$. We control the conditional covariance in the direction of this average by
+\eqref{eq:in-Lvar}, and
+its distance from $m_{Q(v)}$ by \cref{lem:th-res}. The weight produces a factor $(s+v)^{-2}$, whose
+integral over $v\in(0,1-s)$ is at most $1/s$.
+\end{enumerate}
+
+We use \cref{prop:fnd-contact}, namely the martingale equation and
+covariance order \eqref{eq:in-martingale}, the first variation
+\eqref{eq:fnd-first-variation}, and the contact identities
+\eqref{eq:in-contact}; \cref{prop:fnd-variance}; and facts about the
+quantile function from \cref{sec:wi-setup}, including
+\eqref{eq:wi-supp}. \Cref{lem:th-ric,lem:th-gamma,lem:th-res} are used
+only in this section.
+
+\section{Standing assumptions}\label{sec:th-setup}
+
+Throughout this section, we fix $N\ge1$, $0<\rho\le1$, and $0<s\le1/2$,
+so that $t=1-\rho\in[0,1)$, $c>0$, and $M=Nc>0$. Expectations refer to the joint law of the
+deterministic admissible profile $\mu=s\delta_0+\nu$ under
+consideration. \Cref{lem:th-ric} holds for every admissible profile.
+The later results assume that $\mu$ minimizes $\mathcal F_{t,s}$; they
+hold for every minimizer, with absolute constants.
+
+We write $\mathsf S(q)=\E S_q$ for the expected self-overlap. Recall
+from \eqref{eq:in-martingale} that $a(q)C_q\preceq H_q\preceq C_q$, and
+in particular $0\preceq H_q\preceq C_q$. The diagonal entries of $C_q$
+are $1-m_{q,i}^2\le1$. These two facts give
+\begin{equation}\label{eq:th-op}
+ \|H_q\|_{\rm op}\le\|C_q\|_{\rm op}\le\Tr C_q\le N,\qquad
+ 0\le\mathsf S(q)\le1,
+\end{equation}
+where $\|\cdot\|_{\rm op}$ is the operator norm. The process $m$ is a
+bounded martingale, and $\E[m_q\mid\calG_p]=m_p$ for $p\le q$. Then
+$\E|m_q|^2=\E|m_p|^2+\E|m_q-m_p|^2$. In particular, $\mathsf S$ is
+nondecreasing, and
+\begin{equation}\label{eq:th-orth}
+ \E|m_q-m_p|^2=N\bigl(\mathsf S(q)-\mathsf S(p)\bigr)
+ \qquad(0\le p\le q\le1).
+\end{equation}
+For $0\le p\le q\le1$, we define
+\[
+ \calR(p,q)=N^{-2}\E\bigl[(m_q-m_p)^TC_q(m_q-m_p)\bigr],
+\]
+which is the analog of $j_q$ for the increment $m_q-m_p$ in place of
+$m_q$. Note that $\calR(0,q)=j_q$, since $m_0=0$ by
+\eqref{eq:in-martingale}.
+
+\section{Covariance along an earlier measurable direction}\label{sec:th-decay}
+
+Fix a direction that is measurable at some level. As more of the
+auxiliary field is revealed, the expected conditional variance of the
+spin in this direction can only decrease. The martingale equation
+determines the rate of decrease, and the covariance order bounds this
+rate from below by a multiple of the square of the variance itself. We integrate
+the resulting scalar Riccati inequality and obtain decay that is
+inversely proportional to the accumulated clock.
+
+\begin{lemma}[Directional covariance decay]\label{lem:th-ric}
+Let $\mu=s\delta_0+\nu$ be any deterministic admissible profile, let
+$0\le q'<q\le1$, and let
+\[
+ \mathcal I=c\int_{q'}^qa(u)^2\dd u .
+\]
+Then $\mathcal I\ge cs^2(q-q')>0$, and for every
+$\calG_{q'}$-measurable random vector $b\in\R^N$ with $\E|b|^2<\infty$,
+\[
+ \E[b^TC_qb]\le\frac{\E|b|^2}{\mathcal I}.
+\]
+\end{lemma}
+
+\begin{proof}
+The lower bound for $\mathcal I$ holds because $a\ge s$. We first prove
+the main bound for bounded $b$, by deriving a differential inequality for
+the function $r\mapsto\E[b^TC_rb]$ on $[q',q]$, and we then remove the
+boundedness by monotone convergence.
+
+\paragraph{Step 1: the rate of decrease.}
+Suppose that $b$ is bounded, and define $\varphi(r)=\E[b^TC_rb]$ for
+$r\in[q',q]$. For such $r$, the vector $b$ is $\calG_r$-measurable, so
+that $b^TC_rb=\E[(b\cdot(\sigma-m_r))^2\mid\calG_r]$ and
+$\varphi(r)=\E(b\cdot(\sigma-m_r))^2$. We write
+\[
+ b\cdot(\sigma-m_{q'})=b\cdot(\sigma-m_r)+b\cdot(m_r-m_{q'}).
+\]
+The second term is $\calG_r$-measurable, and the first has conditional
+mean zero given $\calG_r$. The cross term has expectation
+zero, and
+\[
+ \varphi(q')=\varphi(r)+\E\bigl(b\cdot(m_r-m_{q'})\bigr)^2 .
+\]
+By \eqref{eq:in-martingale}, and since $b$ is $\calG_{q'}$-measurable
+and bounded, we have
+$b\cdot(m_r-m_{q'})=\sqrt c\int_{q'}^r(H_ub)\cdot\dd B_u$. The integrand
+is progressive and bounded by $N|b|$, by \eqref{eq:th-op}. Itô's isometry
+gives
+\[
+ \varphi(r)=\varphi(q')-c\int_{q'}^r\E|H_ub|^2\dd u\qquad(q'\le r\le q).
+\]
+Then $\varphi$ is absolutely continuous and nonincreasing, with
+$\varphi'(r)=-c\E|H_rb|^2$ for almost every $r\in[q',q]$.
+
+\paragraph{Step 2: the Riccati inequality.}
+On the event $\{b\ne0\}$, the Cauchy--Schwarz inequality and the
+covariance order $0\le a(r)b^TC_rb\le b^TH_rb$ imply that
+\[
+ |H_rb|^2\ge\frac{(b^TH_rb)^2}{|b|^2}\ge\frac{a(r)^2(b^TC_rb)^2}{|b|^2}.
+\]
+Let $Z_r=|b|^{-1}b^TC_rb$ on $\{b\ne0\}$ and $Z_r=0$ otherwise. Then
+$\E|H_rb|^2\ge a(r)^2\E Z_r^2$. Further, $\varphi(r)=\E[Z_r|b|]$, and by the
+Cauchy--Schwarz inequality, $\varphi(r)^2\le\E Z_r^2\,\E|b|^2$. If
+$\E|b|^2>0$, we conclude that
+\[
+ \varphi'(r)\le-\frac{c\,a(r)^2\varphi(r)^2}{\E|b|^2}
+ \qquad\text{for almost every }r\in[q',q].
+\]
+
+\paragraph{Step 3: integration.}
+If $\E|b|^2=0$ or $\varphi(q)=0$, there is nothing to prove. Otherwise,
+$\varphi\ge\varphi(q)>0$ on $[q',q]$, because $\varphi$ is nonincreasing.
+The function $1/\varphi$ is then absolutely continuous, with
+$(1/\varphi)'=-\varphi'/\varphi^2\ge c\,a(r)^2/\E|b|^2$ almost
+everywhere. Integrating over $[q',q]$, we find
+\[
+ \frac1{\varphi(q)}\ge\frac1{\varphi(q')}+\frac{\mathcal I}{\E|b|^2}
+ \ge\frac{\mathcal I}{\E|b|^2},
+\]
+which is the claim for bounded $b$. The profile $a$ may have jumps, but
+only Lebesgue-almost every level enters this integration.
+
+\paragraph{Step 4: general directions.}
+For general $b$ with $\E|b|^2<\infty$, let $b_n=b\ind_{\{|b|\le n\}}$,
+which is bounded and $\calG_{q'}$-measurable. The quantity
+$b_n^TC_qb_n=(b^TC_qb)\ind_{\{|b|\le n\}}$ increases to $b^TC_qb$ as
+$n\to\infty$, because $C_q\succeq0$, and $|b_n|^2$ increases to
+$|b|^2$. The bound holds for each $b_n$, and monotone convergence as
+$n\to\infty$ yields the claim for $b$.
+\end{proof}
+
+\section{Mean increments toward a support point}\label{sec:th-support}
+
+In the dyadic argument below, we need $\E|m_q-m_r|^2$ to be at most of
+order $N|q-r|$ when $q$ is a point of $\supp\nu$, including when $r$
+lies in a gap of the support. In view of \eqref{eq:th-orth}, this is a
+Lipschitz bound for $\mathsf S$ toward $q$, and it follows from the global
+first-order optimality of a minimizer. Let
+\[
+ G(y)=\int_y^1(\mathsf S(u)-u)\dd u\qquad(0\le y\le1)
+\]
+be the function in the first variation \eqref{eq:fnd-first-variation}.
+\Cref{prop:fnd-contact} states that if $\mu$ is a minimizer, then
+$\supp\nu$ is contained in the set of minimum points of $G$ on $[0,1]$,
+that is,
+\begin{equation}\label{eq:th-argmin}
+ G(y)\ge G(q)\qquad(q\in\supp\nu,\ 0\le y\le1).
+\end{equation}
+We recall the argument from the proof of \cite[Proposition~2.1]{AL},
+because we will use \eqref{eq:th-argmin} at points $y$ outside
+$\supp\nu$. For $y\in[0,1]$, the profiles
+$s\delta_0+(1-\theta)\nu+\theta(1-s)\delta_y$, $0\le\theta\le1$, are
+admissible. At a minimizer, the right derivative of $\mathcal F_{t,s}$
+along them at $\theta=0$, which is \eqref{eq:fnd-first-variation} with
+$\nu'=(1-s)\delta_y$, is nonnegative. Dividing by $c/2$, we
+find that
+\[
+ (1-s)G(y)\ge\int G(p)\,\nu(\dd p)\qquad(0\le y\le1).
+\]
+The function $G$ is continuous. Taking $y$ to be a minimum point of $G$
+and recalling that $\nu$ has mass $1-s$, we find that
+$\int(G-\min G)\dd\nu\le0$. Then the open set $\{G>\min G\}$ is
+$\nu$-null and therefore does not meet $\supp\nu$.
+
+\begin{lemma}[Lipschitz bound toward the support]\label{lem:th-gamma}
+Let $\mu$ be a minimizer of $\mathcal F_{t,s}$. For every $q\in\supp\nu$
+and every $r\in[0,1]$,
+\[
+ |\mathsf S(r)-\mathsf S(q)|\le2|r-q|;\qquad\text{in particular,}\qquad
+ 0\le\mathsf S(q)-\mathsf S(r)\le2(q-r)\quad(0\le r\le q).
+\]
+\end{lemma}
+
+\begin{proof}
+Let $q\in\supp\nu$, so that $\mathsf S(q)=q$ by \eqref{eq:in-contact}.
+Recall that $\mathsf S$ is nondecreasing with values in $[0,1]$, and
+note that $G(y_1)-G(y_2)=\int_{y_1}^{y_2}(\mathsf S(u)-u)\dd u$ for
+$y_1\le y_2$. Let $r\in[0,1]$ and $\xi=\mathsf S(r)\in[0,1]$. We compare
+the values of $G$ at $\xi$ and at $q$. The point $\xi$ need not lie in
+$\supp\nu$, and this is why we need \eqref{eq:th-argmin} for every
+$y\in[0,1]$.
+
+\paragraph{The case $r\le q$.}
+By monotonicity, $\mathsf S(q)-\mathsf S(r)\ge0$. If $\xi\ge r$, then
+$\mathsf S(q)-\mathsf S(r)=q-\xi\le q-r$. If $\xi<r$, then
+$\mathsf S\le\mathsf S(r)=\xi$ on $[\xi,r]$ and
+$\mathsf S\le\mathsf S(q)=q$ on $[r,q]$, by monotonicity. By
+\eqref{eq:th-argmin} with $y=\xi$, we have
+\[
+ \begin{aligned}
+ 0\le G(\xi)-G(q)
+ &=\int_\xi^r(\mathsf S(u)-u)\dd u+\int_r^q(\mathsf S(u)-u)\dd u\\
+ &\le\int_\xi^r(\xi-u)\dd u+\int_r^q(q-u)\dd u
+ =\frac{(q-r)^2-(r-\xi)^2}2 .
+ \end{aligned}
+\]
+Then $r-\xi\le q-r$, and
+$\mathsf S(q)-\mathsf S(r)=(q-r)+(r-\xi)\le2(q-r)$.
+
+\paragraph{The case $r>q$.}
+By monotonicity, $\mathsf S(r)-\mathsf S(q)\ge0$. If $\xi\le r$, then
+$\mathsf S(r)-\mathsf S(q)=\xi-q\le r-q$. If $\xi>r$, then
+$\mathsf S\ge q$ on $[q,r]$ and $\mathsf S\ge\xi$ on $[r,\xi]$, and in
+the same way
+\[
+ \begin{aligned}
+ 0\le G(\xi)-G(q)
+ &=-\int_q^r(\mathsf S(u)-u)\dd u-\int_r^\xi(\mathsf S(u)-u)\dd u\\
+ &\le\int_q^r(u-q)\dd u+\int_r^\xi(u-\xi)\dd u
+ =\frac{(r-q)^2-(\xi-r)^2}2 .
+ \end{aligned}
+\]
+We obtain $\xi-r\le r-q$, and
+$\mathsf S(r)-\mathsf S(q)=(r-q)+(\xi-r)\le2(r-q)$. This completes the
+proof.
+\end{proof}
+
+Together, \eqref{eq:th-orth} and \cref{lem:th-gamma} imply that
+\[
+ \E|m_q-m_r|^2\le2N(q-r)\qquad(q\in\supp\nu,\ 0\le r\le q).
+\]
+
+\section{A dyadic decomposition of the mean increment}\label{sec:th-dyadic}
+
+\Cref{lem:th-ric} does not apply directly to the increment $m_q-m_p$,
+because this increment is not measurable at any level before $q$.
+Instead, we split it into increments whose right endpoints approach $q$
+geometrically. Each of them except the last is measurable strictly
+before $q$, and \cref{lem:th-ric} applies to it. By \cref{lem:th-gamma},
+its second moment is at most proportional to the remaining distance to $q$,
+which cancels the length of the clock in \cref{lem:th-ric}. The last,
+short increment is controlled by $C_q\preceq NI$.
+
+\begin{lemma}[Covariance of a mean increment]\label{lem:th-res}
+Let $\mu$ be a minimizer of $\mathcal F_{t,s}$, let $q\in\supp\nu$ and
+$0\le p\le q$, and let $a_*=a((p+q)/2)$. For every integer $K\ge1$,
+\begin{equation}\label{eq:th-res-K}
+ \calR(p,q)\le(K+1)\Bigl[\frac{4K}{Ma_*^2}+2(q-p)2^{-K}\Bigr].
+\end{equation}
+Moreover,
+\begin{equation}\label{eq:th-res}
+ \calR(p,q)\le\frac{56\bigl(1+\log_+(M(q-p))\bigr)^2}{Ma_*^2}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+We may assume that $p<q$, since for $p=q$ the left side vanishes and
+both bounds hold. The proof has three steps. We split $m_q-m_p$ into
+$K+1$ dyadic pieces; we bound the first $K$ pieces by
+\cref{lem:th-ric,lem:th-gamma} and the last piece directly; and we then
+choose $K$.
+
+For $0\le k\le K$, let $q_k=q-(q-p)2^{-k}$, so that $q_0=p$,
+$q_1=(p+q)/2$, and $q-q_k=(q-p)2^{-k}$. We set
+$b_k=m_{q_{k+1}}-m_{q_k}$ for $0\le k<K$ and $b_K=m_q-m_{q_K}$. Then
+$m_q-m_p=\sum_{k=0}^Kb_k$. Applying the Cauchy--Schwarz inequality to the
+quadratic form of $C_q$, which is positive semidefinite, we find
+\[
+ (m_q-m_p)^TC_q(m_q-m_p)\le(K+1)\sum_{k=0}^Kb_k^TC_qb_k .
+\]
+The points $q_k$ need not be contact levels; we use \cref{lem:th-gamma}
+only with the endpoint $q\in\supp\nu$.
+
+\paragraph{Step 1: the first $K$ pieces.}
+Let $0\le k<K$. The vector $b_k$ is $\calG_{q_{k+1}}$-measurable, and
+$q_{k+1}<q$. Since $a$ is nondecreasing and $q_{k+1}\ge q_1$, we have
+$a(u)\ge a(q_1)=a_*$ for $u\ge q_{k+1}$. The clock of \cref{lem:th-ric}
+with $q'=q_{k+1}$ satisfies
+\[
+ \mathcal I=c\int_{q_{k+1}}^qa(u)^2\dd u\ge ca_*^2(q-q_{k+1}),
+\]
+and \cref{lem:th-ric} implies that
+$\E[b_k^TC_qb_k]\le\E|b_k|^2/(ca_*^2(q-q_{k+1}))$. By \eqref{eq:th-orth},
+the monotonicity of $\mathsf S$, and \cref{lem:th-gamma} with $r=q_k$, we
+have
+\[
+ \E|b_k|^2=N\bigl(\mathsf S(q_{k+1})-\mathsf S(q_k)\bigr)
+ \le N\bigl(\mathsf S(q)-\mathsf S(q_k)\bigr)\le2N(q-q_k)=4N(q-q_{k+1}).
+\]
+The last two bounds imply that
+\[
+ N^{-2}\E[b_k^TC_qb_k]\le\frac4{Nca_*^2}=\frac4{Ma_*^2}
+ \qquad(0\le k<K).
+\]
+
+\paragraph{Step 2: the last piece.}
+Using $\|C_q\|_{\rm op}\le N$ from \eqref{eq:th-op}, then
+\eqref{eq:th-orth} and \cref{lem:th-gamma} with $r=q_K$, we have
+\[
+ N^{-2}\E[b_K^TC_qb_K]\le N^{-1}\E|b_K|^2=\mathsf S(q)-\mathsf S(q_K)
+ \le2(q-q_K)=2(q-p)2^{-K}.
+\]
+We sum the bounds of Steps~1 and~2 over the $K+1$ pieces and insert
+them into the Cauchy--Schwarz bound above. This proves
+\eqref{eq:th-res-K}.
+
+\paragraph{Step 3: the choice of $K$.}
+Let $z=M(q-p)$, $\theta=\log_+z$, and $K=\lceil\log_2(2+z)\rceil$, so that
+$K\ge1$. Then $2^K\ge2+z>z$, which gives
+\[
+ 2(q-p)2^{-K}=\frac{2z}{M2^K}\le\frac2M\le\frac2{Ma_*^2},
+\]
+where we used $a_*\le1$. With this choice of $K$, \eqref{eq:th-res-K}
+implies that
+\[
+ \calR(p,q)\le\frac{(K+1)(4K+2)}{Ma_*^2}.
+\]
+Since $2+z\le3\max\{1,z\}$, we have
+$\log_2(2+z)\le\log_23+\theta/\log2<2+2\theta$, where we used
+$\log_23<2$ and $1/\log2<2$. It follows that
+$K<1+\log_2(2+z)<3+2\theta$, and
+\[
+ (K+1)(4K+2)\le(4+2\theta)(14+8\theta)=56+60\theta+16\theta^2
+ \le56(1+\theta)^2 .
+\]
+This proves \eqref{eq:th-res}.
+\end{proof}
+
+The two powers of the logarithm in \eqref{eq:th-res} have different
+sources: there are $K$ increments of comparable cost, and the
+Cauchy--Schwarz inequality for their sum contributes the factor $K+1$.
+
+\section{An integrated bound for \texorpdfstring{$j$}{j}}\label{sec:th-integrated}
+
+With $p=0$, \cref{lem:th-res} bounds $j_q=\calR(0,q)$ by a multiple of
+$(1+\log_+M)^2/(Ma(q/2)^2)$. To integrate against $\nu$, we need a bound
+in terms of the cumulative mass $s+v$ at $q=Q(v)$, rather than
+$a(q/2)$, which may be as small as $s$. We therefore average the earlier
+means $m_{Q(w)}$, $0<w<v$, with density proportional to $(s+w)^2$, and
+assign the remaining weight to $m_0=0$. The conditional covariance in the direction of
+this average is controlled by the integrated variance bound
+\eqref{eq:in-Lvar}, and its distance from $m_{Q(v)}$ by
+\cref{lem:th-res}. With the quadratic weight, both estimates are of
+order $(s+v)^{-2}$, also for $v<s$, and no separate argument is needed
+near the root.
+
+\begin{proposition}[Covariance in the mean direction]\label{prop:th-j}
+Let $\mu=s\delta_0+\nu$ be a minimizer of $\mathcal F_{t,s}$. For every
+$v\in(0,1-s)$,
+\begin{equation}\label{eq:th-j-pointwise}
+ j_{Q(v)}\le\frac{341(1+\log_+M)^2}{M(s+v)^2},
+\end{equation}
+and
+\begin{equation}\label{eq:th-J}
+ J=\int j_q\,\nu(\dd q)\le\frac{341(1+\log_+M)^2}{Ms}.
+\end{equation}
+The constant is absolute. The bounds hold for all $N\ge1$, $c>0$,
+$0<s\le1/2$, and every minimizing profile, including profiles with atoms.
+\end{proposition}
+
+\begin{proof}
+Fix $v\in(0,1-s)$, and let $q=Q(v)$ and $\mathcal L=1+\log_+M$. By
+\eqref{eq:wi-supp}, we have $q\in\supp\nu$, and $Q(w)\le q$ for $w<v$
+because $Q$ is nondecreasing. If $q=0$, then $m_q=m_0=0$ and $j_q=0$, so
+we may assume that $q>0$. The proof has four steps. First, we write
+$m_q$ as a weighted average $\bar m$ of earlier means plus a remainder
+$\bar\Delta$, and we prove the bound \eqref{eq:th-split} below. Second,
+we bound the conditional covariance in the direction of $\bar m$ by
+\eqref{eq:in-Lvar},
+using the conditional Jensen inequality on quantile fibers. Third, we
+bound the remainder by \cref{lem:th-res}. Fourth, we combine the bounds
+and integrate over $v$.
+
+\paragraph{Step 1: the decomposition.}
+We use the deterministic weights
+\[
+ r_0=\frac{s^3}{(s+v)^3},\qquad
+ k_v(w)=\frac{3(s+w)^2}{(s+v)^3}\quad(0<w<v),
+\]
+which satisfy
+\[
+ r_0+\int_0^vk_v(w)\dd w=\frac{s^3+\bigl((s+v)^3-s^3\bigr)}{(s+v)^3}=1 .
+\]
+We use the probability measure $r_0\delta_0+k_v(w)\dd w$ on $[0,v)$ to
+average the vector $m_0=0$ and the vectors $m_{Q(w)}$, $0<w<v$. We define
+\[
+ \begin{gathered}
+ \bar m=\int_0^vk_v(w)m_{Q(w)}\dd w,\qquad
+ \bar L=\int_0^vk_v(w)L_{Q(w)}\dd w,\\
+ \bar\Delta=r_0m_q+\int_0^vk_v(w)\bigl(m_q-m_{Q(w)}\bigr)\dd w.
+ \end{gathered}
+\]
+By the normalization of the weights, $m_q=\bar m+\bar\Delta$. The vector
+$\bar m$ and the number $D=2^{-1}\int_0^vk_v(w)|m_{Q(w)}|^2\dd w$ are
+$\calG_q$-measurable, because $Q(w)\le q$ for $w<v$, and
+$N\bar L=\sigma\cdot\bar m-D$. It follows that
+$\Var(\bar L\mid\calG_q)=N^{-2}\bar m^TC_q\bar m$, and by the law of
+total variance,
+\[
+ N^{-2}\E[\bar m^TC_q\bar m]=\E\Var(\bar L\mid\calG_q)\le\Var(\bar L).
+\]
+Next, we write
+$\bar\Delta=r_0(m_q-m_0)+\int_0^vk_v(w)(m_q-m_{Q(w)})\dd w$, which is
+the average of the vectors $m_q-m_0$ and $m_q-m_{Q(w)}$ with respect to
+the probability measure above. By Jensen's inequality for the
+convex quadratic form of $C_q$, we have
+\[
+ \bar\Delta^TC_q\bar\Delta
+ \le r_0(m_q-m_0)^TC_q(m_q-m_0)
+ +\int_0^vk_v(w)(m_q-m_{Q(w)})^TC_q(m_q-m_{Q(w)})\dd w .
+\]
+The integrand is bounded by $4N^2$, by \eqref{eq:th-op}. We take
+expectations, use Fubini's theorem, and divide by $N^2$. This gives
+\[
+ N^{-2}\E[\bar\Delta^TC_q\bar\Delta]
+ \le r_0\calR(0,q)+\int_0^vk_v(w)\calR(Q(w),q)\dd w .
+\]
+Finally, since $C_q\succeq0$, we have
+$m_q^TC_qm_q\le2\bar m^TC_q\bar m+2\bar\Delta^TC_q\bar\Delta$. Combining
+the last three bounds, we obtain
+\begin{equation}\label{eq:th-split}
+ j_q\le2\Var(\bar L)
+       +2r_0\calR(0,q)+2\int_0^v k_v(w)\calR(Q(w),q)\dd w.
+\end{equation}
+The quantity $\calR(0,q)=j_q$ appears on the right side. This is not
+circular: in Step~3, we bound it by \cref{lem:th-res}, independently of
+\eqref{eq:th-split}.
+
+\paragraph{Step 2: the variance of the weighted prefix.}
+We extend $k_v$ by zero to $(0,1-s)$, and note that $k_v\le3/(s+v)$.
+The image of the measure $k_v(w)\dd w$ under $Q$ is then at most
+$3/(s+v)$ times $\nu$, and it has a density $\kappa_v$ with respect to
+$\nu$, with $0\le\kappa_v\le3/(s+v)$; in particular,
+$\kappa_v\in L^2(\nu)$. By the definition of $\kappa_v$ and the pushforward property of $Q$, we have,
+for every bounded Borel function $\varphi$,
+\[
+ \int_0^{1-s}k_v(w)\varphi(Q(w))\dd w=\int\kappa_v\varphi\dd\nu
+ =\int_0^{1-s}\kappa_v(Q(w))\varphi(Q(w))\dd w .
+\]
+Applied for each outcome to the bounded function $p\mapsto L_p$, the
+first identity shows that $\bar L=\int\kappa_v(p)L_p\,\nu(\dd p)$. The identity as a whole says
+that, under the normalized Lebesgue measure on $(0,1-s)$, the function
+$\kappa_v\circ Q$ is the conditional expectation of $k_v$ given the
+$\sigma$-algebra generated by $Q$. Explicitly, if $p$ is an atom of
+$\nu$ with mass $r_p$, then
+\[
+ \kappa_v(p)=\frac1{r_p}\int_{(F_-(p),F(p))}k_v(w)\dd w,
+\]
+with the notation of \cref{sec:wi-setup}. A prefix $(0,v)$ that ends
+inside the quantile interval of an atom gives the atom the average
+of $k_v$ over that interval. Since $1/a(Q)$ is a bounded nonnegative
+function of $Q$, we may apply the conditional Jensen inequality and find
+\[
+ \int\frac{\kappa_v(p)^2}{a(p)}\,\nu(\dd p)
+ =\int_0^{1-s}\frac{\kappa_v(Q(w))^2}{a(Q(w))}\dd w
+ \le\int_0^{1-s}\frac{k_v(w)^2}{a(Q(w))}\dd w
+ =\int_0^v\frac{k_v(w)^2}{a(Q(w))}\dd w .
+\]
+As $\mu$ is a minimizer, \cref{prop:fnd-variance} applies with
+$k=\kappa_v$. Together with $a(Q(w))\ge s+w$, this yields
+\[
+ \begin{aligned}
+ \Var(\bar L)
+ &\le\frac1M\int_0^v\frac{k_v(w)^2}{s+w}\dd w
+ =\frac9{M(s+v)^6}\int_0^v(s+w)^3\dd w\\
+ &=\frac9{4M(s+v)^2}\Bigl[1-\frac{s^4}{(s+v)^4}\Bigr]
+ \le\frac9{4M(s+v)^2}.
+ \end{aligned}
+\]
+
+\paragraph{Step 3: the remainder.}
+Let $0<w<v$ and $p=Q(w)$. Then $p\le q$, and since $a$ is
+nondecreasing, $a((p+q)/2)\ge a(p)\ge s+w$. For the root term, we have
+$a(q/2)\ge s$ by \eqref{eq:wi-supp}. All level differences are at most
+one, and hence $\log_+(M(q-p))\le\log_+M$. Applying \cref{lem:th-res}
+with the endpoint $q\in\supp\nu$ and the lower endpoints $0$ and $Q(w)$, we have
+\[
+ \calR(0,q)\le\frac{56\mathcal L^2}{Ms^2},\qquad
+ \calR(Q(w),q)\le\frac{56\mathcal L^2}{M(s+w)^2}\quad(0<w<v).
+\]
+Using $r_0s^{-2}=s/(s+v)^3$ and $k_v(w)(s+w)^{-2}=3/(s+v)^3$, we find
+that
+\[
+ r_0\calR(0,q)+\int_0^vk_v(w)\calR(Q(w),q)\dd w
+ \le\frac{56\mathcal L^2}{M}\cdot\frac{s+3v}{(s+v)^3}
+ \le\frac{168\mathcal L^2}{M(s+v)^2},
+\]
+where we used $s+3v\le3(s+v)$.
+
+\paragraph{Step 4: conclusion.}
+Inserting the bounds of Steps~2 and~3 into \eqref{eq:th-split} and using
+$\mathcal L\ge1$, we obtain
+\[
+ j_{Q(v)}\le\frac9{2M(s+v)^2}+\frac{336\mathcal L^2}{M(s+v)^2}
+ \le\frac{(9/2+336)\mathcal L^2}{M(s+v)^2}
+ \le\frac{341\mathcal L^2}{M(s+v)^2},
+\]
+which is \eqref{eq:th-j-pointwise}. Finally,
+$J=\int_0^{1-s}j_{Q(v)}\dd v$, because $Q$ pushes Lebesgue measure on
+$(0,1-s)$ forward to $\nu$, and \eqref{eq:th-J} follows from
+\[
+ \int_0^{1-s}\frac{\dd v}{(s+v)^2}=\frac1s-1\le\frac1s .
+\]
+This completes the proof.
+\end{proof}

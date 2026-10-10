@@ -1,0 +1,1516 @@
+\chapter{Scalar response and stability}\label{sec:sc}\label{sec:scalar-stability}
+
+In this section, we study the scalar Parisi equation of a single spin
+under an arbitrary profile and the scalar response operator
+$J^{\scal}_{a,d}$ built from it. The cavity interpolation of
+\cref{sec:c7} decouples one spin from the others. At the independent
+endpoint of that interpolation, the decoupled spin follows the scalar
+law of \cref{sec:sc-law} with coefficient $d=\beta^2(1-t/N)$, and in
+\cref{sec:c7-endpoint}, we express the derivative of the cavity covariance
+at this endpoint through $J^{\scal}_{a,d}$, applied to the
+covariance of the rest self-overlap. The contraction argument of
+\cref{sec:c7-closure} needs the order bound
+$J^{\scal}_{a,d}\preceq(1+\varepsilon_N)I$ with
+$\varepsilon_N\le\rho/4$ at a minimizing profile. The goal of this
+section is to prove this bound with
+$\varepsilon_N\le C_{\rm st}[\rho^{-3/4}\eta^{1/4}+\lambda^2+N^{-1}]$,
+where $\eta$ is a trial budget (\cref{prop:lz-stability}).
+
+The argument has four steps.
+\begin{enumerate}
+\item We show in \cref{lem:sc-response} that, for every profile,
+ $J_{a,d}$ is the derivative of the mean square magnetization
+ $\Gamma_{a,d}$ when the covariance levels are transported by
+ $q\mapsto q+\theta\varphi(q)$.
+\item The scalar Parisi functional is convex. We compare its second
+ derivative along a transport of levels with the lower bound given by
+ convexity and the first variation, and we find that $J^{\scal}_{a,d}$
+ is self-adjoint and that it is dominated by multiplication by the
+ multiplier $k_{a,d}(q)=d\,\E^0h_q^2$, for every profile
+ (\cref{lem:Jdom}).
+\item At the scalar Parisi measure, we have $k=1$ on
+ $\supp\mu_\beta=[0,q_\beta]$ and $k(q)\le e^{-\beta^2(q-q_\beta)/2}$
+ above it (\cref{lem:reference}). On the support, this follows from an
+ identity of Talagrand. Above the support, we use the log-concavity of
+ a transformed density of the scalar diffusion and its heat evolution,
+ both from \cite{Lopatto}.
+\item The multiplier depends Lipschitz continuously on the profile in
+ $L^1$ and on $d$ (\cref{lem:scalarcontinuity}). By
+ \cref{prop:loc-isolation}, a finite-dimensional minimizer is close in
+ $L^1$ to the scalar trial profile, which is close to
+ $\beta\alpha_\beta$. Combining these facts with the first three steps,
+ we obtain \cref{prop:lz-stability}.
+\end{enumerate}
+The bound is marginal: at the Parisi measure, $k=1$ on the support,
+where the multiplier gives no contraction. The contraction in
+\cref{sec:c7-closure} comes instead from the factor $t=1-\rho$, and it
+needs only $\varepsilon_N\le\rho/4$. In the physics literature, De
+Dominicis and Kondor~\cite[pp.~606--608]{DeDominicisKondor1983} found
+that Parisi's solution with replica symmetry breaking is marginally stable
+in a truncated replica model near the critical temperature. The
+scalar identity on the support that
+expresses this marginality appears in
+\cite[Eqs.~(22)--(23)]{CrisantiRizzo2002}.
+
+Sommers and Dupont gave an earlier variational formulation of the
+coupled equations for the local magnetization and the distribution
+of frozen fields~\cite[Section~2, Eqs.~(1)--(7), and
+Eq.~(33)]{SommersDupont1984}; see also
+\cite[Section~III, (14)--(18), (22)--(23)]{CrisantiRizzo2002}.
+Those equations use the physical field and the order-parameter function
+$q(x)$. Here we use the covariance level $q$ and the integrated
+formulation in terms of probability measures described below.
+
+We use the following results from earlier sections: the generalized
+law and \cref{lem:fnd-posterior} of \cref{sec:gauss} for the basic
+properties of the scalar law, \cref{lem:fnd-path-heat} for the
+differentiation in \cref{lem:sc-response}, and, from \cref{sec:lz}, the
+trial budget \eqref{eq:loc-trialbudget}, the root growth
+\eqref{eq:lz-gsroot}, the description \eqref{eq:loc-scalar-measure} of
+$\mu_\beta$, and \cref{prop:loc-isolation}. The results of this section
+are used later as follows. The scalar law, described by \eqref{eq:sc-pde} and
+\eqref{eq:sc-joint-law}, and the kernel bounds of \cref{lem:cl-scalar}
+enter the cavity expansion in \cref{sec:c7,sec:c7-endpoint}. The
+operator \eqref{eq:scalarJexplicit} and its kernel form
+\eqref{eq:sc-kernel-form} are used in \cref{lem:linear}, \cref{lem:Jdom}
+in \cref{prop:c7-closure}, and \cref{prop:lz-stability} in the proof of
+\cref{thm:main} in \cref{sec:b7}.
+
+\paragraph{Standing assumptions and notation.}
+Throughout this section, $\beta>1$ is fixed and
+$d\in[\beta^2/2,\beta^2]$. A \emph{profile} is the distribution function
+$a(q)=\mu([0,q])$ of a Borel probability measure $\mu$ on $[0,1]$; it is
+nondecreasing and right-continuous, and $a(1)=1$. We write
+$\mu=s\delta_0+\nu$ with $s\ge0$, where the measure $\nu\ge0$ may charge
+$0$. The scalar law depends only on $a$. The decomposition enters only
+through $\nu$, which appears in the response operator. A \emph{step
+profile} is a profile with finitely many values. Integrals over
+$[0,q]$ include an atom at $q$, and integrals over $(q,1]$ exclude it.
+Unless stated otherwise, $C_\beta$ denotes a constant depending only on
+$\beta$, whose value may change from line to line. It does not depend
+on $d\in[\beta^2/2,\beta^2]$, on $s$, or on the profile, including the
+positions and masses of its atoms. No profile is assumed to minimize a
+functional until \cref{sec:sc-minimizer}.
+
+\section{The scalar law}\label{sec:sc-law}
+
+The scalar Parisi equation and its diffusion are
+\begin{equation}\label{eq:sc-pde}
+ \begin{aligned}
+ \partial_q u&=-\frac d2\bigl(\partial_{xx}u+a(q)(\partial_xu)^2\bigr),
+ &u(1,x)&=\log(2\cosh x),\\
+ \dd Y_q&=d\,a(q)\partial_xu(q,Y_q)\dd q+\sqrt d\dd B_q,
+ &Y_0&=0,
+ \end{aligned}
+\end{equation}
+where $B$ is a standard Brownian motion. We write $u=u_{a,d}$ when the
+parameters need to be shown. Subscripts $x$ denote spatial derivatives,
+and $u_j=\partial_x^ju$. When $a=\alpha_\beta$ and
+$d=\beta^2$, the value $u(0,0)$ is the first term of the scalar Parisi
+functional \eqref{eq:intro-parisi} at its minimizer.
+
+\paragraph{Solutions and regularity.}
+For a step profile, \eqref{eq:sc-pde} has a classical solution on each
+interval where $a$ is constant. For a general profile, $u$ is the
+uniform limit of the solutions for step profiles whose measures
+converge weakly to $\mu$ \cite[Section~2.1]{Lopatto}. By
+\cite[Proposition~2.1]{Lopatto}, applied with $\beta^2$ replaced by $d$,
+the function $u(q,\cdot)$ is even, its spatial derivatives of every
+positive order are bounded and jointly continuous on $[0,1]\times\R$,
+and the spatial derivatives of the approximating solutions converge
+uniformly \cite[(2.2)]{Lopatto}. The terminal value in \cite{Lopatto}
+is $\log\cosh x$; it differs from ours by the constant $\log2$, which
+shifts $u$ by $\log2$ and does not change its spatial derivatives. The
+distribution functions of the approximating measures converge to $a$
+at every continuity point of $a$, that is, at all but countably many
+points. Passing to the limit in the equations integrated in the level
+variable, we find that
+\begin{equation}\label{eq:sc-pde-integrated}
+ u(q,x)-u(r,x)=\frac d2\int_q^r\bigl(u_{xx}+a\,u_x^2\bigr)(v,x)\dd v,
+ \qquad 0\le q\le r\le1,\ x\in\R .
+\end{equation}
+In particular, $u$ is Lipschitz in $q$, since the integrand is bounded.
+For the weak space--time interpretation of the Parisi equation for
+general measures, see \cite[Theorem~4]{JagannathTobasco2016}.
+At an atom of $\mu$, the solution need not be differentiable in $q$. We
+read \eqref{eq:sc-pde} and every other parabolic equation in this
+section in this integrated form, including the linearized equations
+derived below, and we never differentiate $a$.
+
+\paragraph{Linear backward equations.}
+Several proofs below use linear equations of the form
+\begin{equation}\label{eq:sc-linear}
+ \partial_qw+\frac{c(q)}2\,w_{xx}+b\,w_x+V\,w=-F,
+\end{equation}
+where $c$ is measurable with values in $[\beta^2/4,2\beta^2]$, and
+$b$, $V$, and $F$ are bounded functions of $(q,x)$ that are measurable
+in $q$ and have bounded continuous spatial derivatives. We use
+\eqref{eq:sc-linear} only for functions $w$ that are Lipschitz in $q$
+and have bounded continuous spatial derivatives of every order. We
+read it in integrated form, as in \eqref{eq:sc-pde-integrated}. Fix
+$(q,x)$, and let $Z$ solve $\dd Z_r=b(r,Z_r)\dd r+\sqrt{c(r)}\dd B_r$
+for $r\ge q$, with $Z_q=x$. Itô's formula applies to
+$r\mapsto e^{\int_q^rV(v,Z_v)\dd v}w(r,Z_r)$, with the derivative of
+$w$ in $q$ taken almost everywhere; to see this, one may mollify $w$ in
+the level variable and pass to the limit, using that the derivatives
+are bounded. Taking expectations, we obtain the Feynman--Kac
+representation
+\begin{equation}\label{eq:sc-backward}
+ w(q,x)=\E\Bigl[e^{\int_q^1V(v,Z_v)\dd v}\,w(1,Z_1)
+   +\int_q^1e^{\int_q^rV(v,Z_v)\dd v}F(r,Z_r)\dd r\Bigr].
+\end{equation}
+In particular, if $w(1,\cdot)=0$, then
+$\sup_x|w(q,x)|\le e^{\|V\|_\infty}\int_q^1\sup_x|F(r,x)|\dd r$.
+
+\paragraph{Notation.}
+We write $\Pp^0$ and $\E^0$ for probability and expectation under the
+law of $Y$, together with a terminal spin $\epsilon\in\{-1,1\}$, which
+is sampled given $Y_1$ with
+\[
+ \Pp^0(\epsilon=\pm1\mid Y_1)=\frac{e^{\pm Y_1}}{2\cosh Y_1}
+ =e^{\pm Y_1-u(1,Y_1)}.
+\]
+Let $\calG^0_q$ be the filtration of $Y$; the terminal spin is not
+$\calG^0_q$-measurable. We define
+\[
+ m_q=u_x(q,Y_q),\qquad h_q=u_{xx}(q,Y_q),\qquad
+ \Gamma_{a,d}(q)=\E^0m_q^2,\qquad k_{a,d}(q)=d\,\E^0h_q^2 .
+\]
+We call $k_{a,d}$ the \emph{scalar multiplier}. For $0\le r\le\ell\le1$,
+let $P^0_{r,\ell}\psi(y)=\E^0[\psi(Y_\ell)\mid Y_r=y]$ be the transition
+operator of the Markov process $Y$, and set
+\[
+ f_p=m_p^2,\qquad \bar f_p=f_p-\E^0f_p,\qquad
+ g_r^\ell(y)=P^0_{r,\ell}\bigl(u_x(\ell,\cdot)^2\bigr)(y),
+\]
+so that $g_r^\ell(Y_r)=\E^0[m_\ell^2\mid\calG_r^0]$. When we need the
+diffusion started from $y$ at level $r$, we write $Y^{r,y}$ and
+$\E_{r,y}$.
+
+\begin{lemma}[Basic properties of the scalar law]\label{lem:sc-basic}
+Let $a$ be a profile and $d\in[\beta^2/2,\beta^2]$.
+\begin{enumerate}
+\item[(a)] On $[0,1]\times\R$, we have
+\begin{equation}\label{eq:sc-basic-bounds}
+ |\partial_xu|\le1,\qquad
+ 0\le\partial_{xx}u\le1-(\partial_xu)^2\le1 .
+\end{equation}
+\item[(b)] For every $j\ge1$, there exists a constant $C_j(\beta)$,
+depending only on $\beta$ and $j$, such that $|u_j|\le C_j(\beta)$ on
+$[0,1]\times\R$. Further,
+$\sup_x|u_{xx}(q,x)-u_{xx}(r,x)|\le C_\beta|q-r|$ for all
+$q,r\in[0,1]$.
+\item[(c)] We have
+\begin{equation}\label{eq:sc-martingale}
+ m_q=\E^0[\epsilon\mid\calG_q^0],\qquad m_0=0,\qquad
+ \dd m_q=\sqrt d\,h_q\dd B_q,\qquad \Gamma_{a,d}'(q)=k_{a,d}(q).
+\end{equation}
+The function $k_{a,d}$ is continuous on $[0,1]$, and $\Gamma_{a,d}$ is
+continuously differentiable on $[0,1]$, with one-sided derivatives at
+the endpoints.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We first identify the scalar law as a generalized law. We consider the
+generalized law of \cref{def:gauss-law} with $N=1$, $\Lambda=d$, all
+coupling coefficients equal to zero, root mass $s=0$, and the
+probability measure $\mu$ in place of $\nu$; this choice is allowed for
+every probability measure. The terminal value in
+\eqref{eq:fnd-general-pde} is then
+$\log\sum_{\sigma=\pm1}e^{x\sigma}=\log(2\cosh x)$, the Gaussian
+disorder does not enter, and the outer density is one. Hence the
+generalized law is the law of $(Y,\epsilon)$; it depends only on $a$.
+For one spin, the conditional covariance is $C_q=1-m_q^2$, and
+$H_q=h_q$.
+\Cref{lem:fnd-posterior} implies that $m_q=\E^0[\epsilon\mid\calG^0_q]$,
+that $m_0=0$, and that, for every $q\in[0,1]$, almost surely,
+\begin{equation}\label{eq:sc-posterior-as}
+ a(q)\bigl(1-m_q^2\bigr)\le h_q\le1-m_q^2 .
+\end{equation}
+Differentiating \eqref{eq:sc-pde-integrated} in $x$, we see that $u_x$
+satisfies the integrated form of
+$\partial_qu_x=-(d/2)(u_{xxx}+2a\,u_xu_{xx})$. Using Itô's formula
+along $Y$, we find that the drift terms cancel and that
+$\dd m_q=\sqrt d\,h_q\dd B_q$. This is the case $N=1$ of
+\eqref{eq:gauss-martingale}.
+
+\emph{Proof of (a).} Fix $q\in(0,1]$. Since the drift of $Y$ is bounded
+by $d$, Girsanov's theorem implies that the law of $Y_q$ is equivalent
+to the centered Gaussian law with variance $dq$. In particular, it
+charges every nonempty open interval. The functions
+\[
+ u_{xx}(q,\cdot)-a(q)\bigl(1-u_x(q,\cdot)^2\bigr),\qquad
+ 1-u_x(q,\cdot)^2-u_{xx}(q,\cdot),\qquad
+ 1-u_x(q,\cdot)^2
+\]
+are continuous, and by \eqref{eq:sc-posterior-as} and $|m_q|\le1$, each
+of them is nonnegative at $Y_q$ almost surely. A continuous function
+with this property is nonnegative at every $x$. This proves \eqref{eq:sc-basic-bounds} for
+$q>0$, since $a(q)(1-u_x^2)\ge0$. Letting $q\downarrow0$ and using the
+joint continuity of $u_x$ and $u_{xx}$, we see that
+\eqref{eq:sc-basic-bounds} also holds at $q=0$. (With the right continuity of
+$a$, the lower bound $u_{xx}\ge a(q)(1-u_x^2)$ also holds everywhere.)
+
+\emph{Proof of (b).} We differentiate the equation and use the
+Feynman--Kac representation, following the method of
+\cite[Lemma~16]{JagannathTobasco2016}. By \eqref{eq:sc-basic-bounds}, we have
+$|u_1|\le1$ and $|u_2|\le1$. For $j\ge3$, the Leibniz rule gives
+\[
+ \partial_x^j(u_x^2)=2u_1u_{j+1}+2j\,u_2u_j
+ +\sum_{i=2}^{j-2}\binom ji u_{i+1}u_{j-i+1},
+\]
+with an empty sum for $j=3$. Differentiating
+\eqref{eq:sc-pde-integrated} $j$ times in $x$, we see that $u_j$ solves
+\eqref{eq:sc-linear} with
+\[
+ c=d,\qquad b=d\,a\,u_1,\qquad V=j\,d\,a\,u_2,\qquad
+ F=\frac{d\,a}2\sum_{i=2}^{j-2}\binom ji u_{i+1}u_{j-i+1},
+\]
+and terminal value $\partial_x^j\log(2\cosh x)$. Recall that the
+derivatives of $u$ are bounded by \cite[Proposition~2.1]{Lopatto}; in
+particular, the hypotheses of \eqref{eq:sc-backward} hold, with $Z=Y$.
+By \eqref{eq:sc-basic-bounds}, $V$ takes values in $[0,j\beta^2]$; note
+that the exponent in \eqref{eq:sc-backward} is nonnegative. Then
+\eqref{eq:sc-backward} implies that
+\[
+ \|u_j\|_\infty\le e^{j\beta^2}\Bigl(
+ \|\partial_x^j\log(2\cosh x)\|_\infty
+ +\frac{\beta^2}2\sum_{i=2}^{j-2}\binom ji
+          \|u_{i+1}\|_\infty\|u_{j-i+1}\|_\infty\Bigr).
+\]
+Every derivative on the right has order between $3$ and $j-1$. By
+induction on $j$, we conclude that $\|u_j\|_\infty\le C_j(\beta)$ for
+all $j\ge1$, uniformly over profiles and $d\in[\beta^2/2,\beta^2]$.
+Differentiating \eqref{eq:sc-pde-integrated} twice in $x$, we find
+\[
+ u_{xx}(q,x)-u_{xx}(r,x)=\frac d2\int_q^r
+ \Bigl[u_4+2a\bigl(u_2^2+u_1u_3\bigr)\Bigr](v,x)\dd v,
+\]
+and the integrand is bounded by a constant depending only on $\beta$.
+This proves the Lipschitz bound in (b).
+
+\emph{Proof of (c).} The first three identities in
+\eqref{eq:sc-martingale} were shown above. By Itô's isometry and
+$m_0=0$, we have
+\[
+ \Gamma_{a,d}(q)=\E^0m_q^2=d\int_0^q\E^0h_r^2\dd r
+ =\int_0^qk_{a,d}(r)\dd r .
+\]
+By (b), we have $|h_q-h_r|\le C_\beta|q-r|+C_3(\beta)|Y_q-Y_r|$. Since
+$Y$ has continuous paths and $|h|\le1$, dominated convergence implies
+that $k_{a,d}$ is continuous. It follows that $\Gamma_{a,d}$ is
+continuously differentiable on $[0,1]$, with $\Gamma_{a,d}'=k_{a,d}$.
+\end{proof}
+
+We also use the exact path likelihood of the scalar law, for every
+profile, including profiles with atoms. It is the change of measure of
+\cite[Lemma~8.5 and Corollary~8.7]{JagannathTobasco2017PhaseDiagram};
+we include the derivation in order to record the conventions at atoms.
+It extends the likelihood used for step profiles in the proof of
+\cref{lem:fnd-posterior} to every profile, without approximation.
+
+\begin{lemma}[Exact path likelihood]\label{lem:sc-likelihood}
+Let $a$ be a profile and $d\in[\beta^2/2,\beta^2]$. Under a reference
+law, let $X_q=\sqrt d\,B_q$, where $B$ is a standard Brownian motion.
+For every $q\in[0,1]$, the law of $(Y_r)_{0\le r\le q}$ has density
+\begin{equation}\label{eq:sc-prefix-law}
+ \exp\Bigl\{a(q)u(q,X_q)-\int_{[0,q]}u(r,X_r)\,\mu(\dd r)\Bigr\}
+\end{equation}
+with respect to the law of $(X_r)_{0\le r\le q}$. The joint law of
+$(Y,\epsilon)$ has density
+\begin{equation}\label{eq:sc-joint-law}
+ \exp\Bigl\{\epsilon X_1-su(0,0)-\int_{[0,1]}u(q,X_q)\,\nu(\dd q)\Bigr\}
+\end{equation}
+with respect to the product of the law of $X$ and counting measure on
+$\{-1,1\}$. The same holds if the coefficient $d$ in \eqref{eq:sc-pde}
+is replaced by a bounded measurable function $c(q)>0$ almost
+everywhere, and $X_q=\int_0^q\sqrt{c(r)}\dd B_r$.
+\end{lemma}
+
+\begin{proof}
+We write $\Upsilon_r=u(r,X_r)$. The drift $d\,a\,u_x$ of $Y$ is
+bounded, and by \eqref{eq:sc-basic-bounds}, we have
+\[
+ \exp\Bigl\{\frac d2\int_0^qa(r)^2u_x(r,X_r)^2\dd r\Bigr\}\le e^{\beta^2/2},
+\]
+which is Novikov's condition. By Girsanov's theorem, the density of the law of $(Y_r)_{r\le q}$ with
+respect to the law of $(X_r)_{r\le q}$ is
+\[
+ \exp\Bigl\{\int_0^qa(r)u_x(r,X_r)\dd X_r
+ -\frac d2\int_0^qa(r)^2u_x(r,X_r)^2\dd r\Bigr\}.
+\]
+Under the reference law, using Itô's formula and
+\eqref{eq:sc-pde-integrated}, we have
+\[
+ \dd\Upsilon_r=u_x(r,X_r)\dd X_r-\frac d2a(r)u_x(r,X_r)^2\dd r .
+\]
+The exponent therefore equals $\int_0^qa(r)\dd\Upsilon_r$. The function $a$ is
+right-continuous and of bounded variation, with $\dd a=\mu$ on
+$(0,1]$, and $\Upsilon$ is a continuous semimartingale. Integrating by
+parts, we have
+\[
+ a(q)\Upsilon_q-a(0)\Upsilon_0
+ =\int_{(0,q]}a(r-)\dd\Upsilon_r+\int_{(0,q]}\Upsilon_r\,\mu(\dd r).
+\]
+The functions $a(r-)$ and $a(r)$ differ only at the countably many
+atoms of $\mu$, which affects neither the stochastic integral nor the
+Lebesgue integral in $\dd\Upsilon_r$. Since $X_0=0$ and
+$a(0)=\mu(\{0\})$, we have
+$a(0)\Upsilon_0=\int_{\{0\}}u(r,X_r)\,\mu(\dd r)$. Inserting these facts
+into the previous display, we obtain
+\[
+ \int_0^qa(r)\dd\Upsilon_r=a(q)u(q,X_q)-\int_{[0,q]}u(r,X_r)\,\mu(\dd r).
+\]
+This proves \eqref{eq:sc-prefix-law}. At an atom of $\mu$ at $q$, the
+jump of the first term is canceled by the same atom in the integral,
+and at $q=0$ the density equals one.
+
+Given the path, the terminal spin has probability
+$e^{\epsilon Y_1-u(1,Y_1)}$ relative to counting measure. Multiplying
+\eqref{eq:sc-prefix-law} at $q=1$ by this factor, and using $a(1)=1$
+and $\mu=s\delta_0+\nu$, we obtain \eqref{eq:sc-joint-law}. No further
+normalization is needed, since both factors are probability densities.
+
+For a coefficient $c(q)$ that is positive almost everywhere, we first
+choose the everywhere positive representative
+$c^+(q)=c(q)$ when $c(q)>0$ and $c^+(q)=1$ otherwise. It is measurable
+and bounded and equals $c$ almost everywhere. This change preserves
+every prefix clock, the integrated equation and drift, and the
+stochastic integral defining $X$. Thus the law and the likelihood
+are independent of this choice of representative.
+Let $C(q)=\int_0^qc(r)\dd r$. The substitution
+$\tau=C(q)/C(1)$ turns the equation with coefficient $c(q)$ into
+\eqref{eq:sc-pde} with coefficient $C(1)$ and the profile of the image
+of $\mu$ under $q\mapsto C(q)/C(1)$. This substitution is made in the
+integrated equation, using $\dd\tau=c(q)\dd q/C(1)$. Since $c>0$ almost
+everywhere, $q\mapsto C(q)/C(1)$ is an increasing homeomorphism of
+$[0,1]$; no positive lower bound on $c$ is required. By
+\cite[Proposition~2.1]{Lopatto}, applied with coefficient $C(1)$, the
+solution satisfies $|u_x|\le1$ and has bounded spatial
+derivatives. The argument above then applies with $d\dd r$ replaced by
+$c(r)\dd r$; in Novikov's condition, $\beta^2$ is replaced by an
+upper bound for $c$.
+\end{proof}
+
+\section{Continuity and kernel bounds}
+\label{sec:sc-kernels}
+
+The proof of the next lemma follows the comparison argument of
+\cite[Lemma~14]{JagannathTobasco2016}, which bounds the differences of
+the solutions and of their first spatial derivatives by the $L^1$
+distance of the profiles. Here we also allow $d$ to vary and compare
+the second derivatives along the diffusion.
+
+\begin{lemma}[Continuity of the scalar multiplier]\label{lem:scalarcontinuity}
+There exists $C_\beta<\infty$ such that, for any two profiles
+$a,\widetilde a$ and any $d,\widetilde d\in[\beta^2/2,\beta^2]$,
+\begin{equation}\label{eq:scalarcontinuity}
+ \sup_{0\le q\le1}|k_{a,d}(q)-k_{\widetilde a,\widetilde d}(q)|
+ \le C_\beta\bigl(\|a-\widetilde a\|_{L^1(0,1)}+|d-\widetilde d|\bigr).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Let $u$ and $\widetilde u$ solve \eqref{eq:sc-pde} for the two
+parameter pairs, and let $Y$ and $\widetilde Y$ be the corresponding
+diffusions. We set $\hat u=u-\widetilde u$ and
+$\Delta=\|a-\widetilde a\|_{L^1(0,1)}+|d-\widetilde d|$. The proof has
+three steps. We first bound $\hat u_x$ and $\hat u_{xx}$ by
+$C_\beta\Delta$, then couple the two diffusions, and finally compare
+the multipliers.
+
+\paragraph{Step 1: the difference of the solutions.}
+Subtracting the two equations and writing
+$u_x^2-\widetilde u_x^2=(u_x+\widetilde u_x)\hat u_x$, we find that
+$\hat u$ solves \eqref{eq:sc-linear} with
+\[
+ c=d,\qquad b=\omega,\qquad V=0,\qquad F=\Xi,\qquad
+ \hat u(1,\cdot)=0,
+\]
+where
+\[
+ \omega=\frac{d\,a(q)}2\bigl(u_x+\widetilde u_x\bigr),\qquad
+ \Xi=\frac{d-\widetilde d}2\,\widetilde u_{xx}
+     +\delta(q)\,\widetilde u_x^2,\qquad
+ \delta(q)=\frac{d\,a(q)-\widetilde d\,\widetilde a(q)}2 .
+\]
+Using \cref{lem:sc-basic}(a) and~(b), we see that $0\le\omega_x\le\beta^2$ and
+$|\omega_{xx}|\le C_\beta$. Further,
+\[
+ \Xi_x=\frac{d-\widetilde d}2\,\widetilde u_3
+       +2\delta\,\widetilde u_1\widetilde u_2,\qquad
+ \Xi_{xx}=\frac{d-\widetilde d}2\,\widetilde u_4
+       +2\delta\bigl(\widetilde u_2^2+\widetilde u_1\widetilde u_3\bigr),
+\]
+and $2|\delta(q)|\le|d-\widetilde d|+\beta^2|a(q)-\widetilde a(q)|$.
+Using \cref{lem:sc-basic}(b) again, we find
+\[
+ \int_0^1\sup_x\bigl(|\Xi_x|+|\Xi_{xx}|\bigr)(q,x)\dd q
+ \le C_\beta\int_0^1\bigl(|d-\widetilde d|+|a(q)-\widetilde a(q)|\bigr)\dd q
+ \le C_\beta\Delta .
+\]
+Differentiating the equation for $\hat u$ once and twice in $x$, we see
+that $w_1=\hat u_x$ and $w_2=\hat u_{xx}$ solve \eqref{eq:sc-linear}
+with $c=d$, $b=\omega$, zero terminal values, and
+\[
+ V=\omega_x,\quad F=\Xi_x\qquad\text{and}\qquad
+ V=2\omega_x,\quad F=\Xi_{xx}+\omega_{xx}w_1,
+\]
+respectively. Then \eqref{eq:sc-backward} implies that
+\[
+ \begin{aligned}
+ \|w_1\|_\infty&\le e^{\beta^2}\int_0^1\|\Xi_x(q,\cdot)\|_\infty\dd q
+ \le C_\beta\Delta,\\
+ \|w_2\|_\infty&\le e^{2\beta^2}\int_0^1\bigl(\|\Xi_{xx}(q,\cdot)\|_\infty
+ +\|\omega_{xx}\|_\infty\|w_1\|_\infty\bigr)\dd q\le C_\beta\Delta .
+ \end{aligned}
+\]
+This shows that
+\begin{equation}\label{eq:sc-pde-distance}
+ \sup_{q,x}\bigl(|u_x-\widetilde u_x|+|u_{xx}-\widetilde u_{xx}|\bigr)
+ \le C_\beta\Delta .
+\end{equation}
+
+\paragraph{Step 2: coupling the diffusions.}
+We drive $Y$ and $\widetilde Y$ by the same Brownian motion and set
+$D(q)=\sup_{r\le q}|Y_r-\widetilde Y_r|$. By
+\eqref{eq:sc-basic-bounds}, the drift $d\,a(r)u_x(r,\cdot)$ is
+$\beta^2$-Lipschitz in space, and at a common point it differs from
+$\widetilde d\,\widetilde a(r)\widetilde u_x(r,\cdot)$ by at most
+$|d-\widetilde d|+\beta^2|a(r)-\widetilde a(r)|+\beta^2C_\beta\Delta$,
+where we used \eqref{eq:sc-pde-distance}. Subtracting the integral
+equations for $Y$ and $\widetilde Y$, we obtain
+\[
+ D(q)\le\beta^2\int_0^qD(r)\dd r+C_\beta\Delta
+ +|\sqrt d-\sqrt{\widetilde d}\,|\sup_{r\le1}|B_r| .
+\]
+Since $d,\widetilde d\ge\beta^2/2$, we have
+$|\sqrt d-\sqrt{\widetilde d}\,|\le|d-\widetilde d|/(\sqrt2\,\beta)$.
+By Gronwall's inequality and $\E\sup_{r\le1}|B_r|\le2$, we conclude
+that
+\begin{equation}\label{eq:sc-coupling}
+ \E\sup_{q\le1}|Y_q-\widetilde Y_q|
+ \le C_\beta\bigl(\Delta+|\sqrt d-\sqrt{\widetilde d}\,|\,
+                     \E\sup_{q\le1}|B_q|\bigr)\le C_\beta\Delta .
+\end{equation}
+The same argument, applied to the two diffusions started from a common
+point $y$ at a common level $r$, yields the same bound, uniformly in
+$(r,y)$.
+
+\paragraph{Step 3: the multipliers.}
+We write $h=u_{xx}(q,Y_q)$ and $\widetilde h=\widetilde u_{xx}(q,\widetilde Y_q)$.
+Note that $|h^2-\widetilde h^2|\le2|h-\widetilde h|$, because
+$0\le h,\widetilde h\le1$. Then
+\[
+ \begin{aligned}
+ |k_{a,d}(q)-k_{\widetilde a,\widetilde d}(q)|
+ &\le|d-\widetilde d|+2\beta^2\,\E|h-\widetilde h|\\
+ &\le|d-\widetilde d|+2\beta^2\Bigl(\|u_{xx}-\widetilde u_{xx}\|_\infty
+   +\|u_3\|_\infty\,\E|Y_q-\widetilde Y_q|\Bigr).
+ \end{aligned}
+\]
+Inserting \eqref{eq:sc-pde-distance}, \eqref{eq:sc-coupling}, and the
+bound $\|u_3\|_\infty\le C_3(\beta)$ into the last line, we obtain
+\eqref{eq:scalarcontinuity}.
+\end{proof}
+
+The next lemma collects the bounds on the kernels of the response
+operator that the cavity estimates of \cref{sec:c7-endpoint} use. Each
+bound retains a factor $\Gamma$ at the relevant levels.
+
+\begin{lemma}[Scalar kernels and their level weight]\label{lem:cl-scalar}
+For every profile $a$ and $d\in[\beta^2/2,\beta^2]$, write
+$\Gamma=\Gamma_{a,d}$. Then $\Gamma$ is nondecreasing and
+\begin{equation}\label{eq:cl-Gamma-bound}
+ 0\le\Gamma(p)\le\min\{1,dp\}\le\min\{1,\beta^2p\}.
+\end{equation}
+For all $p,r,\ell\in[0,1]$,
+\begin{align}
+ |\E^0[m_ph_pm_r]|&\le\sqrt{\Gamma(p)\Gamma(r)},&
+ |\E^0[\bar f_p\epsilon m_r]|&\le\sqrt{\Gamma(p)\Gamma(r)},
+                                                        \label{eq:cl-k1}\\
+ |\E^0[\bar f_pm_rm_\ell]|&\le\sqrt{\Gamma(p)\Gamma(r\wedge\ell)},&
+ |\E^0[\bar f_pm_pm_r]|&\le\sqrt{\Gamma(p)\Gamma(p\wedge r)},
+                                                        \label{eq:cl-k2}\\
+ 0\le\Var^0(f_p)&\le\Gamma(p),&
+ 0\le\E^0[m_p^2h_p]&\le\Gamma(p).                       \label{eq:cl-k3}
+\end{align}
+For $\ell\ge p$,
+\begin{equation}\label{eq:cl-k4}
+ |\Cov^0(f_p,g_p^\ell(Y_p))|\le\sqrt{\Gamma(p)\Gamma(\ell)}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+By \cref{lem:sc-basic}(c) and \eqref{eq:sc-basic-bounds}, we have
+$\Gamma(p)=d\int_0^p\E^0h_r^2\dd r$, where $0\le h_r\le1$. This implies
+that $\Gamma$ is nondecreasing and that $0\le\Gamma(p)\le dp$. We also
+have $\Gamma\le1$, because $|m_p|\le1$. This proves \eqref{eq:cl-Gamma-bound}. Using $|m_p|\le1$
+again, we have
+\[
+ \Var^0(f_p)=\E^0\bar f_p^2\le\E^0m_p^4\le\E^0m_p^2=\Gamma(p).
+\]
+The bounds below follow from the Cauchy--Schwarz inequality, together
+with $|h_p|\le1$, $|\epsilon|=1$, and $|m|\le1$:
+\[
+ \begin{aligned}
+ |\E^0[m_ph_pm_r]|^2
+ &\le\E^0[m_p^2h_p^2]\,\E^0m_r^2\le\Gamma(p)\Gamma(r),\\
+ |\E^0[\bar f_p\epsilon m_r]|^2
+ &\le\E^0\bar f_p^2\,\E^0m_r^2\le\Gamma(p)\Gamma(r),\\
+ |\E^0[\bar f_pm_rm_\ell]|^2
+ &\le\E^0\bar f_p^2\,\E^0[m_r^2m_\ell^2]\le\Gamma(p)\Gamma(r\wedge\ell).
+ \end{aligned}
+\]
+In the last line, we used $m_r^2m_\ell^2\le m_{r\wedge\ell}^2$, which
+holds because the factor at the smaller level is one of the two factors
+and the other is at most one. This proves \eqref{eq:cl-k1} and the first
+bound in \eqref{eq:cl-k2}; the second bound in \eqref{eq:cl-k2} is the
+case $\ell=p$. The bounds \eqref{eq:cl-k3} follow from the estimate on
+$\Var^0(f_p)$ and from $0\le h_p\le1$, which gives
+$0\le\E^0[m_p^2h_p]\le\E^0m_p^2$. Finally, let $\ell\ge p$. We have
+$0\le g_p^\ell\le1$ and $\E^0g_p^\ell(Y_p)=\E^0m_\ell^2=\Gamma(\ell)$,
+which imply that
+\[
+ \Var^0\bigl(g_p^\ell(Y_p)\bigr)\le\E^0\bigl(g_p^\ell(Y_p)\bigr)^2
+ \le\E^0g_p^\ell(Y_p)=\Gamma(\ell),
+\]
+and \eqref{eq:cl-k4} follows from the Cauchy--Schwarz inequality and
+the bound on $\Var^0(f_p)$.
+\end{proof}
+
+\section{The response operator}\label{sec:sc-response}
+
+For every profile, the operator defined below is the response of
+$\Gamma$ to a transport of covariance levels (\cref{lem:sc-response}).
+In \cite[Lemma~5.2, (H2)]{OpenAILimitingLaw}, a scalar response is
+written as a diagonal multiplier minus a positive semidefinite Hessian
+kernel. Here we identify the second variation of the scalar Parisi
+functional along transports of levels, and we compare it using the
+convexity of this functional along segments of distribution functions
+\cite{AuffingerChen2015Uniqueness}. In \cref{sec:sc-domination}, this
+shows that the scalar response operator is dominated by multiplication by
+$k_{a,d}$ at every profile. The transports fix the levels $0$ and $1$,
+and the operator acts on the \emph{scalar transport space}
+\[
+ \mathcal H_\nu=\bigl\{v\in L^2(\nu):
+                 v(0)=0\text{ if }\nu(\{0\})>0,
+                 \ v(1)=0\text{ if }\nu(\{1\})>0\bigr\}.
+\]
+This is a closed subspace of $L^2(\nu)$, and the orthogonal projection
+onto it is multiplication by $\ind_{(0,1)}$.
+
+The operator involves the derivative of $g_r^\ell$ in its argument.
+Since the noise of $Y$ is additive, the diffusion $Y^{r,y}$ started
+from $y$ at level $r$ solves an ordinary differential equation driven
+by the Brownian path, and it is differentiable in $y$. Its derivative
+is $\xi_\ell=\exp\{d\int_r^\ell a(v)u_{xx}(v,Y^{r,y}_v)\dd v\}$, which
+lies in $[1,e^{\beta^2}]$ by \eqref{eq:sc-basic-bounds}.
+Differentiating $g_r^\ell(y)=\E[u_x(\ell,Y^{r,y}_\ell)^2]$ under the
+expectation, we find
+\begin{equation}\label{eq:sc-dg}
+ \partial_yg_r^\ell(y)=\E\bigl[2u_x(\ell,Y_\ell^{r,y})
+ u_{xx}(\ell,Y_\ell^{r,y})\,\xi_\ell\bigr],\qquad
+ |\partial_yg_r^\ell|\le2e^{\beta^2}.
+\end{equation}
+
+\begin{definition}[Response operator]\label{def:sc-response}
+Let $a$ be a profile with $\mu=s\delta_0+\nu$, and let
+$d\in[\beta^2/2,\beta^2]$. For a bounded Borel function $\varphi$ on
+$[0,1]$ and $p\in[0,1]$, we define
+\begin{align}
+ \frac1d(J_{a,d}\varphi)(p)={}&
+ \E^0\bigl[h_p^2+2(1-a(p))m_p^2h_p\bigr]\varphi(p)
+ -\int_{(p,1]}\E^0\bigl[m_p\partial_y g_p^\ell(Y_p)\bigr]
+                                      \varphi(\ell)\,\nu(\dd\ell)\nonumber\\
+ &-2\int\E^0[m_ph_pm_r]\varphi(p\wedge r)\,\nu(\dd r)
+  -\int\E^0[\bar f_p\epsilon m_r]\varphi(r)\,\nu(\dd r)\nonumber\\
+ &+\frac12\int a(r)\E^0[\bar f_pm_r^2]\varphi(r)\,\nu(\dd r)
+  +\frac12\iint\E^0[\bar f_pm_rm_\ell]\varphi(r\wedge\ell)
+                                      \,\nu(\dd r)\nu(\dd\ell)\nonumber\\
+ &+\frac12\int\nu(\dd r)\int_{(r,1]}
+           \E^0\bigl[\bar f_pg_r^\ell(Y_r)\bigr]\varphi(\ell)\,\nu(\dd\ell).
+ \label{eq:scalarJexplicit}
+\end{align}
+Integrals without a domain are over $[0,1]$. The same formula defines
+$J_{a,d}v$ for $v\in L^2(\nu)$. The \emph{scalar response operator}
+$J^{\scal}_{a,d}$ is the compression of $J_{a,d}$ to $\mathcal H_\nu$,
+that is, $J^{\scal}_{a,d}v=\ind_{(0,1)}J_{a,d}v$ for $v\in\mathcal H_\nu$.
+\end{definition}
+
+At an atom of $\nu$ at $p$, the right-continuous value $a(p)$ includes
+the atom, and the strict future interval $(p,1]$ excludes it. For
+$v\in L^2(\nu)$, the formula involves $v$ only through $v(p)$ and
+through values at points that are integrated against $\nu$, because
+$p\wedge r\in\{p,r\}$ and $r\wedge\ell\in\{r,\ell\}$. We show in the
+next paragraph that it defines $J_{a,d}v$ as an element of $L^2(\nu)$.
+
+\paragraph{Kernel form and boundedness.}
+We now rewrite \eqref{eq:scalarJexplicit}. For $r>p$, conditioning on
+$\calG^0_p$ and using \eqref{eq:sc-martingale}, we have
+$\E^0[m_ph_pm_r]=\E^0[m_p^2h_p]$, and $\nu((p,1])=1-a(p)$. Splitting the
+third term of \eqref{eq:scalarJexplicit} at $r=p$, we see that its part
+over $(p,1]$ equals $-2(1-a(p))\E^0[m_p^2h_p]\varphi(p)$, which cancels
+the second part of the first coefficient. In the double integral, we
+split $\varphi(r\wedge\ell)$ into the regions $r<\ell$, $\ell<r$, and the
+diagonal $r=\ell$, which carries mass only at atoms of $\nu$; the first
+two regions give equal contributions by symmetry. In the last term, we
+exchange the order of integration. All integrands are bounded, and
+Fubini's theorem justifies these steps. The result is
+\begin{equation}\label{eq:sc-kernel-form}
+ (J_{a,d}v)(p)=k_{a,d}(p)v(p)+d\int\mathcal K_{a,d}(p,r)v(r)\,\nu(\dd r),
+\end{equation}
+for every bounded Borel $v$, where
+\begin{equation}\label{eq:sc-kernel}
+ \begin{aligned}
+ \mathcal K_{a,d}(p,r)={}&
+ -\ind_{\{r>p\}}\E^0\bigl[m_p\partial_yg_p^r(Y_p)\bigr]
+ -2\,\ind_{\{r\le p\}}\E^0[m_ph_pm_r]
+ -\E^0[\bar f_p\epsilon m_r]\\
+ &+\frac12a(r)\E^0[\bar f_pm_r^2]
+ +\int_{(r,1]}\E^0[\bar f_pm_rm_\ell]\,\nu(\dd\ell)
+ +\frac12\nu(\{r\})\E^0[\bar f_pm_r^2]\\
+ &+\frac12\int_{[0,r)}\E^0\bigl[\bar f_pg_\ell^r(Y_\ell)\bigr]\,\nu(\dd\ell).
+ \end{aligned}
+\end{equation}
+The term with $\nu(\{r\})$ is the diagonal part of the double integral.
+The kernel $\mathcal K_{a,d}$ is a bounded Borel function. Indeed, the
+first two terms are never both nonzero and are bounded by
+$2e^{\beta^2}$ by \eqref{eq:sc-dg}; since $|\bar f_p|\le1$, $|m|\le1$, and $0\le g\le1$, the
+third and fourth terms are bounded by $1$ and $1/2$, and the last three
+terms together by $\nu([0,1])\le1$. We conclude that
+$|\mathcal K_{a,d}|\le2e^{\beta^2}+3$. By the Cauchy--Schwarz
+inequality,
+$\|\int\mathcal K_{a,d}(\cdot,r)v(r)\,\nu(\dd r)\|_{L^2(\nu)}
+\le(2e^{\beta^2}+3)\nu([0,1])\|v\|_{L^2(\nu)}$. It follows that
+\eqref{eq:sc-kernel-form} extends to $v\in L^2(\nu)$, where it agrees
+with \eqref{eq:scalarJexplicit}. Using $0\le k_{a,d}\le d\le\beta^2$,
+we find $\|J_{a,d}\|_{L^2(\nu)\to L^2(\nu)}\le\beta^2(4+2e^{\beta^2})$.
+Compression does not increase the norm, which gives
+\begin{equation}\label{eq:sc-J-bounded}
+ \|J^{\scal}_{a,d}\|_{\mathcal H_\nu\to\mathcal H_\nu}\le C_\beta .
+\end{equation}
+
+\paragraph{Transports of levels.}
+Let $\varphi$ be the restriction to $[0,1]$ of a smooth function, with
+$\varphi(0)=\varphi(1)=0$, and define $T_\theta(q)=q+\theta\varphi(q)$.
+We fix $\theta_0\in(0,1]$ such that $\theta_0\|\varphi'\|_\infty\le1/2$.
+For $|\theta|\le\theta_0$, the map $T_\theta$ is an
+increasing bijection of $[0,1]$ with $T_\theta'\in[1/2,3/2]$. We replace
+the covariance $d\,(q\wedge r)$ of $X$ in \eqref{eq:sc-joint-law} by
+$d\,T_\theta(q\wedge r)$ while keeping $\nu$. Equivalently, we replace
+the coefficient $d$ in \eqref{eq:sc-pde} by
+\[
+ c_\theta(q)=d\,T_\theta'(q)=d\bigl(1+\theta\varphi'(q)\bigr)
+ \in\Bigl[\frac d2,\frac{3d}2\Bigr]\subset\Bigl[\frac{\beta^2}4,2\beta^2\Bigr],
+\]
+and keep $a$. We write $u_\theta$ and $Y^\theta$ for the resulting
+solution and diffusion, $u_{\theta,x}=\partial_xu_\theta$ and similarly
+for higher derivatives, and
+\[
+ \widetilde\Gamma_\theta(p)=\E\bigl[\partial_xu_\theta(p,Y^\theta_p)^2\bigr]
+\]
+for the resulting mean square magnetization. Let
+$a_\theta=a\circ T_\theta^{-1}$ be the distribution function of the
+image measure $T_{\theta\#}\mu$. Under the substitution $x'=T_\theta(q)$
+in the level variable, the equation for $u_\theta$ becomes
+\eqref{eq:sc-pde} with coefficient $d$ and profile $a_\theta$, and the
+diffusion $Y^\theta$ becomes a time change of the diffusion for
+$a_\theta$. In formulas,
+\begin{equation}\label{eq:sc-transported}
+ u_\theta(q,x)=u_{a_\theta,d}(T_\theta(q),x),\qquad
+ \widetilde\Gamma_\theta(p)=\Gamma_{a_\theta,d}(T_\theta(p)),
+\end{equation}
+that is, $(u_\theta,Y^\theta)$ is the scalar law of $T_{\theta\#}\mu$
+with coefficient $d$, observed at the transported levels. In
+particular, $\widetilde\Gamma_0=\Gamma_{a,d}$, and by
+\cref{lem:sc-basic}(b), the spatial derivatives of $u_\theta$ of each
+order are bounded uniformly in $|\theta|\le\theta_0$ and over profiles.
+
+\begin{lemma}[Response identity]\label{lem:sc-response}
+Let $a$ be a profile, let $d\in[\beta^2/2,\beta^2]$, and let $\varphi$
+and $\widetilde\Gamma_\theta$ be as above. Then, for every $p\in[0,1]$,
+the function $\theta\mapsto\widetilde\Gamma_\theta(p)$ is continuously
+differentiable near $\theta=0$, and
+\[
+ \frac{\dd}{\dd\theta}\widetilde\Gamma_\theta(p)\Big|_{\theta=0}
+ =(J_{a,d}\varphi)(p).
+\]
+\end{lemma}
+
+\begin{proof}
+The proof has four steps. In Step 1, we show that $u_\theta$ and its
+spatial derivatives are continuously differentiable in $\theta$; the
+argument works with the integrated equations and never differentiates
+$a$. In Step 2, we compute the parameter derivative of $u_\theta$ and
+prove \eqref{eq:scalarNodeVariation}. In Step 3, we write
+$\widetilde\Gamma_\theta(p)$ as a normalized expectation on a fixed
+Gaussian path space and differentiate it with
+\cref{lem:fnd-path-heat}. In Step 4, we match the resulting terms with
+those of \eqref{eq:scalarJexplicit}. Throughout the proof,
+$|\theta|\le\theta_0$, and constants may depend on $\beta$ and
+$\varphi$.
+
+\paragraph{Step 1: differentiability in the parameter.}
+Fix $\theta$, and for small $\delta\ne0$ let $v=u_{\theta+\delta}$,
+$u=u_\theta$, and $D_\delta=(v-u)/\delta$. Since
+$c_{\theta+\delta}-c_\theta=\delta d\varphi'$, subtracting the two
+equations and dividing by $\delta$, we find
+\begin{equation}\label{eq:sc-Dh}
+ \partial_qD_\delta+\frac{c_\theta}2(D_\delta)_{xx}
+       +\frac{c_\theta a}2(v_x+u_x)(D_\delta)_x
+ =-\frac{d\varphi'}2\bigl(v_{xx}+a\,v_x^2\bigr),\qquad D_\delta(1,\cdot)=0 .
+\end{equation}
+This is \eqref{eq:sc-linear} with $c=c_\theta$, $V=0$, and a drift and
+a source whose spatial derivatives of each order are bounded uniformly
+in $\delta$ and $\theta$. Differentiating \eqref{eq:sc-Dh} $j$ times in
+$x$, we see that $\partial_x^jD_\delta$ solves an equation of the same
+form, with zeroth-order coefficient $j$ times the spatial derivative
+of the drift, and with a source that involves only derivatives of
+$D_\delta$ of order less than $j$ and spatial derivatives of the drift
+and of the source of \eqref{eq:sc-Dh}. By \eqref{eq:sc-backward} and
+induction on $j$, we have
+$\sup_{q,x}|\partial_x^jD_\delta|\le C_j$ for every $j\ge0$, uniformly
+in $\delta$ and $\theta$. In particular, $v-u=\delta D_\delta$ and all
+its spatial derivatives are $O(|\delta|)$.
+
+Next, we write the drift in \eqref{eq:sc-Dh} as
+$c_\theta a\,u_x+(c_\theta a/2)(v_x-u_x)$ and move the second part
+to the right side. For two increments $\delta$ and $\delta'$, the
+difference $D_\delta-D_{\delta'}$ then solves \eqref{eq:sc-linear} with
+drift $c_\theta a\,u_x$, $V=0$, zero terminal value, and the source
+\[
+ \frac{d\varphi'}2\Bigl[(v-v')_{xx}+a\bigl(v_x^2-v_x'^2\bigr)\Bigr]
+ +\frac{c_\theta a}2\Bigl[(v_x-u_x)(D_\delta)_x-(v'_x-u_x)(D_{\delta'})_x\Bigr],
+\]
+where $v'=u_{\theta+\delta'}$. By the bounds just proved, every spatial
+derivative of this source is bounded by $C_j(|\delta|+|\delta'|)$. By
+the same induction, we have
+$\sup_{q,x}|\partial_x^j(D_\delta-D_{\delta'})|\le C_j(|\delta|+|\delta'|)$.
+It follows that, as $\delta\to0$, the functions $D_\delta$ converge
+uniformly, together with all their spatial derivatives, to a function
+$\dot u_\theta$. Passing to the limit in the integrated form of
+\eqref{eq:sc-Dh}, we find that $\dot u_\theta$ solves
+\begin{equation}\label{eq:sc-W}
+ \partial_q\dot u_\theta+\frac{c_\theta}2(\dot u_\theta)_{xx}
+   +c_\theta a\,u_{\theta,x}(\dot u_\theta)_x
+ =-\frac{d\varphi'}2\bigl(u_{\theta,xx}+a\,u_{\theta,x}^2\bigr),
+ \qquad \dot u_\theta(1,\cdot)=0 .
+\end{equation}
+We conclude that $u_\theta$ and each of its spatial derivatives are
+differentiable in $\theta$, with
+$\partial_\theta\partial_x^ju_\theta=\partial_x^j\dot u_\theta$, and that
+these derivatives are bounded uniformly in $(q,x)$ and $\theta$.
+To prove that these derivatives depend continuously on $\theta$, we
+set $b_\theta=c_\theta a\,u_{\theta,x}$,
+$F_\theta=(d\varphi'/2)(u_{\theta,xx}+a\,u_{\theta,x}^2)$, and
+$R=\dot u_\theta-\dot u_{\theta'}$. Subtracting \eqref{eq:sc-W} at the
+two parameters, we obtain
+\[
+ \Bigl(\partial_q+\frac{c_\theta}2\partial_{xx}+b_\theta\partial_x\Bigr)R
+ =-(F_\theta-F_{\theta'})
+  -\frac{c_\theta-c_{\theta'}}2(\dot u_{\theta'})_{xx}
+  -(b_\theta-b_{\theta'})(\dot u_{\theta'})_x,
+ \qquad R(1,\cdot)=0 .
+\]
+Since $c_\theta-c_{\theta'}=(\theta-\theta')d\varphi'$, and since
+$u_\theta-u_{\theta'}$ and all its spatial derivatives are
+$O(|\theta-\theta'|)$ by the bound on $\partial_\theta\partial_x^ju_\theta$,
+every fixed-order spatial derivative of the right side is
+$O(|\theta-\theta'|)$. Using the same backward estimates, we have
+$\sup_{q,x}|\partial_x^jR|\le C_j|\theta-\theta'|$, so
+$\partial_x^j\dot u_\theta$ depends continuously on $\theta$, uniformly
+in $(q,x)$. The same argument applies without
+change to transports $q\mapsto q+\theta_1\varphi_1(q)+\theta_2\varphi_2(q)$
+with several parameters, and gives continuous partial derivatives in
+each parameter.
+
+\paragraph{Step 2: the variation of the solution.}
+We write $\dot u=\dot u_0$ for the derivative at $\theta=0$. By
+\eqref{eq:sc-W} and \eqref{eq:sc-backward}, with $Z=Y$, we have
+\begin{equation}\label{eq:sc-udot-rep}
+ \dot u(q,y)=\frac d2\int_q^1\varphi'(r)\Psi_q(r;y)\dd r,\qquad
+ \Psi_q(r;y)=\E_{q,y}\bigl[h_r+a(r)m_r^2\bigr],
+\end{equation}
+where $\E_{q,y}$ refers to the diffusion started from $y$ at level $q$.
+To evaluate $\Psi_q(r;y)$, we use Itô's formula along $Y$. Differentiating
+\eqref{eq:sc-pde-integrated} twice in $x$ and using Itô's formula for
+$u_{xx}(r,Y_r)$, we find
+\[
+ \dd h_r=-d\,a(r)h_r^2\dd r+\sqrt d\,u_{xxx}(r,Y_r)\dd B_r,
+\]
+and by \eqref{eq:sc-martingale},
+$\dd(m_r^2)=d\,h_r^2\dd r+2\sqrt d\,m_rh_r\dd B_r$. The product rule for
+the continuous semimartingale $m_r^2$ and the deterministic function
+$a$ of bounded variation gives
+$\dd(a(r)m_r^2)=a(r-)\dd(m_r^2)+m_r^2\,\mu(\dd r)$ on $(0,1]$, and
+$a(r-)=a(r)$ except at countably many $r$. Adding the two
+differentials, we see that the drift terms $\mp d\,a(r)h_r^2\dd r$
+cancel, and
+\[
+ \dd\bigl(h_r+a(r)m_r^2\bigr)
+ =\sqrt d\bigl[u_{xxx}(r,Y_r)+2a(r)m_rh_r\bigr]\dd B_r+m_r^2\,\mu(\dd r).
+\]
+Taking conditional expectations given $Y_q=y$, and recalling that
+$\mu=\nu$ on $(q,r]\subset(0,1]$, we obtain
+\begin{equation}\label{eq:sc-Fq}
+ \Psi_q(r;y)-\Psi_q(q;y)=\int_{(q,r]}g_q^v(y)\,\nu(\dd v),\qquad q\le r\le1,
+\end{equation}
+where $\Psi_q(q;y)=u_{xx}(q,y)+a(q)u_x(q,y)^2$.
+
+We insert \eqref{eq:sc-Fq} into \eqref{eq:sc-udot-rep} and exchange the
+order of integration over $q<v\le r\le1$. Note that
+$\int_q^1\varphi'(r)\dd r=-\varphi(q)$ and
+$\int_v^1\varphi'(r)\dd r=-\varphi(v)$, since $\varphi(1)=0$. We obtain
+\begin{equation}\label{eq:scalarNodeVariation}
+ \dot u(q,y)=-\frac d2\Bigl[
+  \varphi(q)\bigl(u_{xx}(q,y)+a(q)u_x(q,y)^2\bigr)
+  +\int_{(q,1]}\varphi(r)g_q^r(y)\,\nu(\dd r)\Bigr].
+\end{equation}
+An atom at $q$ belongs to $a(q)$ and not to the integral over $(q,1]$.
+An atom at $1$ belongs to the integral, but its factor $\varphi(1)$
+vanishes.
+
+The same computation holds at every base point $\theta$, with $Y^\theta$
+in place of $Y$. The diffusion coefficient $d$ is then replaced by
+$c_\theta(r)$; the drift terms $\mp c_\theta(r)a(r)h_r^2\dd r$ still
+cancel, and the source in \eqref{eq:sc-W} still carries the factor
+$d\varphi'$, which is the derivative of $c_\theta$ in $\theta$. At
+$(q,y)=(0,0)$, we have $\varphi(0)=0$ and
+$\E[\partial_xu_\theta(r,Y^\theta_r)^2\mid Y^\theta_0=0]
+=\widetilde\Gamma_\theta(r)$. This gives
+\begin{equation}\label{eq:sc-root-variation}
+ \frac{\dd}{\dd\theta}u_\theta(0,0)
+ =-\frac d2\int\varphi(r)\widetilde\Gamma_\theta(r)\,\nu(\dd r),
+ \qquad|\theta|<\theta_0 .
+\end{equation}
+
+\paragraph{Step 3: Gaussian differentiation at the fixed profile.}
+Let $B$ be a standard Brownian motion, and under the reference law let
+$X^\theta_q=B_{dT_\theta(q)}$. This Gaussian path has covariance
+$K_\theta(q,r)=d\,T_\theta(q\wedge r)$ and the law of
+$\int_0^q\sqrt{c_\theta(r)}\dd B_r$. Then \cref{lem:sc-likelihood},
+applied with the coefficient $c_\theta$, implies that the joint law of $(Y^\theta,\epsilon)$
+has density \eqref{eq:sc-joint-law} with $u_\theta$ in place of $u$,
+relative to the law of $X^\theta$ and counting measure. The factor
+$e^{-su_\theta(0,0)}$ does not depend on the path and cancels from
+normalized expectations. With
+\[
+ \ell_\theta(X,\epsilon)=\epsilon X_1-\int u_\theta(r,X_r)\,\nu(\dd r),
+ \qquad\Phi_\theta(X)=u_{\theta,x}(p,X_p)^2,
+\]
+we have
+$\widetilde\Gamma_\theta(p)=\E_\theta\Phi_\theta$, where $\E_\theta$ is
+the normalized expectation with weight $W_\theta=e^{\ell_\theta}$ in
+the notation of \cref{lem:fnd-path-heat}. At $\theta=0$, the path $X$
+under $\E_0$ has the law of $Y$. As in \cref{sec:sc-law}, we write
+$m_r=u_x(r,X_r)$ and $h_r=u_{xx}(r,X_r)$, and we also write
+$u_{3,r}=u_{xxx}(r,X_r)$.
+
+We check that the assumptions (A1)--(A4) of \cref{lem:fnd-path-heat}
+hold, with $z=\theta$ in the compact interval
+$I=[-\theta_0/2,\theta_0/2]$. The Gaussian coordinates consist of one
+field path on one edge, with the deterministic clock $dT_\theta(q)$,
+which is continuous in $(q,\theta)$, continuously differentiable in
+$\theta$, and strictly increasing in $q$; there are no finite
+coordinates, and the terminal spin $\epsilon$ is the counting variable.
+This is (A1). The kernels $K_\theta$ and
+$\dot K_\theta(q,r)=d\varphi(q\wedge r)$ are jointly continuous in
+$(\theta,q,r)$, which is (A2). In the notation of
+\cref{lem:fnd-path-heat}, where $M$ and $Q$ denote derivative measures,
+the derivative measures of $\ell_\theta$ and $\Phi_\theta$ are
+\[
+ \begin{aligned}
+ S&=\epsilon\delta_1-u_{\theta,x}(r,X_r)\,\nu(\dd r),&\qquad
+ M&=-\iota_\#\bigl(u_{\theta,xx}(r,X_r)\,\nu(\dd r)\bigr),\\
+ P&=2u_{\theta,x}u_{\theta,xx}(p,X_p)\,\delta_p,&\qquad
+ Q&=2\bigl(u_{\theta,xx}^2+u_{\theta,x}u_{\theta,xxx}\bigr)(p,X_p)\,
+   \delta_{(p,p)},
+ \end{aligned}
+\]
+where $\iota(r)=(r,r)$. The measure $M$ is carried by the diagonal,
+with an atom at $(r,r)$ for each atom $r$ of $\nu$, as in
+\cref{rem:gauss-local}. Using \cref{lem:sc-basic}(b), we see that these
+measures have
+total variation bounded uniformly in $\theta$ and $X$, and by Step 1,
+they are continuous in $(\theta,X)$ in total variation, where $X$
+carries the supremum norm. The maps $X\mapsto\ell_\theta(X,\epsilon)$
+and $X\mapsto\Phi_\theta(X)$ are twice continuously differentiable,
+since $u_\theta$ has bounded continuous spatial derivatives. This is
+(A4). The observable $\Phi_\theta$ takes values in $[0,1]$, and the
+explicit parameter derivatives
+\[
+ \dot\Phi_\theta=2u_{\theta,x}(p,X_p)\,\partial_x\dot u_\theta(p,X_p),\qquad
+ \dot\ell_\theta=-\int\dot u_\theta(r,X_r)\,\nu(\dd r)
+\]
+are bounded and jointly continuous in $(\theta,X)$ by Step 1. Since
+$|u_{\theta,x}|\le1$ and $u_\theta(r,0)$ is bounded, we have
+$|\ell_\theta|\le C+2\sup_r|X_r|$, which is the linear growth required
+in (A3). We conclude that \cref{lem:fnd-path-heat} applies to
+$\E_\theta\Phi_\theta$. By \cref{rem:gauss-local}, the right side of
+\eqref{eq:fnd-path-heat} is continuous in $\theta$, which proves that
+$\theta\mapsto\widetilde\Gamma_\theta(p)$ is continuously differentiable
+on $(-\theta_0/2,\theta_0/2)$. Each term on the right side is bounded
+by a constant depending only on $\beta$ and $\varphi$; in particular,
+the derivative is bounded uniformly in $p\in[0,1]$ and $\theta$. We use
+this uniform bound in the proof of \cref{lem:Jdom}.
+
+\paragraph{Step 4: the terms of the identity.}
+We evaluate the right side of \eqref{eq:fnd-path-heat} at $\theta=0$
+and divide it by $d$. For a signed measure $R$ on $[0,1]^2$, we have
+$d^{-1}\langle\dot K_0,R\rangle=\iint\varphi(q\wedge r)\,R(\dd q,\dd r)$.
+Note that, under $\E_0$, the centered observable is
+$\Phi_0-\E_0\Phi_0=\bar f_p$.
+We group the contributions as follows.
+\begin{enumerate}
+\item The second derivative of the observable contributes
+ \[
+  \mathrm I_1=\frac1{2d}\E_0\langle\dot K_0,Q\rangle
+  =\varphi(p)\E^0\bigl[h_p^2+m_pu_{3,p}\bigr].
+ \]
+\item The explicit derivative of the observable is
+ $\dot\Phi_0=2m_p\partial_y\dot u(p,X_p)$. Differentiating
+ \eqref{eq:scalarNodeVariation} in $y$ under the integral, which is
+ allowed by \eqref{eq:sc-dg}, we find
+ \[
+  \mathrm I_2=\frac1d\E_0\dot\Phi_0
+  =-\varphi(p)\E^0\bigl[m_pu_{3,p}+2a(p)m_p^2h_p\bigr]
+  -\int_{(p,1]}\varphi(\ell)\E^0\bigl[m_p\partial_yg_p^\ell(Y_p)\bigr]
+   \,\nu(\dd\ell).
+ \]
+\item Since $\dot K_0$ is symmetric and $\dot K_0(1,p)=d\varphi(p)$,
+ the score--observable terms give
+ \[
+  \begin{aligned}
+  \mathrm I_3&=\frac1{2d}\E_0\langle\dot K_0,S\otimes P+P\otimes S\rangle
+  =\frac1d\E_0\langle\dot K_0,S\otimes P\rangle\\
+  &=2\varphi(p)\E^0[m_ph_p\epsilon]
+  -2\int\varphi(p\wedge r)\E^0[m_ph_pm_r]\,\nu(\dd r).
+  \end{aligned}
+ \]
+\item The product of the scores contributes the following; the
+ terminal--terminal term vanishes, since $\varphi(1)=0$:
+ \[
+  \begin{aligned}
+  \mathrm I_4&=\frac1{2d}\E_0\bigl[\bar f_p\langle\dot K_0,S\otimes S\rangle\bigr]\\
+  &=-\int\varphi(r)\E^0[\bar f_p\epsilon m_r]\,\nu(\dd r)
+  +\frac12\iint\varphi(r\wedge\ell)\E^0[\bar f_pm_rm_\ell]
+   \,\nu(\dd r)\nu(\dd\ell).
+  \end{aligned}
+ \]
+\item The Hessian of the logarithmic weight contributes
+ \[
+  \mathrm I_5=\frac1{2d}\E_0\bigl[\bar f_p\langle\dot K_0,M\rangle\bigr]
+  =-\frac12\int\varphi(r)\E^0[\bar f_ph_r]\,\nu(\dd r).
+ \]
+\item The explicit derivative of the weight is
+ $\dot\ell_0=-\int\dot u(r,X_r)\,\nu(\dd r)$. Evaluating it with
+ \eqref{eq:scalarNodeVariation}, we find
+ \[
+  \begin{aligned}
+  \mathrm I_6=\frac1d\Cov_0(\Phi_0,\dot\ell_0)
+  ={}&\frac12\int\varphi(r)\E^0\bigl[\bar f_p\bigl(h_r+a(r)m_r^2\bigr)\bigr]
+   \,\nu(\dd r)\\
+  &+\frac12\int\nu(\dd r)\int_{(r,1]}\varphi(\ell)
+   \E^0\bigl[\bar f_pg_r^\ell(Y_r)\bigr]\,\nu(\dd\ell).
+  \end{aligned}
+ \]
+\end{enumerate}
+By \eqref{eq:fnd-path-heat}, we have
+\[
+ \frac1d\,\frac{\dd}{\dd\theta}\widetilde\Gamma_\theta(p)\Big|_{\theta=0}
+ =\mathrm I_1+\cdots+\mathrm I_6 .
+\]
+Conditioning on $\calG^0_p$ and using \eqref{eq:sc-martingale}, we
+have
+$\E^0[m_ph_p\epsilon]=\E^0[m_p^2h_p]$. The following table records
+where each part of $\mathrm I_1,\ldots,\mathrm I_6$ goes; ``line $i$''
+refers to the $i$-th line of \eqref{eq:scalarJexplicit}.
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Group & Part & Contribution\\
+\midrule
+$\mathrm I_1$ & $\varphi(p)\E^0h_p^2$ & line 1, diagonal coefficient\\
+ & $\varphi(p)\E^0[m_pu_{3,p}]$ & cancels with $\mathrm I_2$\\
+$\mathrm I_2$ & $-\varphi(p)\E^0[m_pu_{3,p}]$ & cancels with $\mathrm I_1$\\
+ & $-2a(p)\varphi(p)\E^0[m_p^2h_p]$ & line 1, diagonal coefficient\\
+ & integral over $(p,1]$ & line 1, second term\\
+$\mathrm I_3$ & $2\varphi(p)\E^0[m_ph_p\epsilon]=2\varphi(p)\E^0[m_p^2h_p]$
+ & line 1, diagonal coefficient\\
+ & integral of $\E^0[m_ph_pm_r]$ & line 2, first term\\
+$\mathrm I_4$ & integral of $\E^0[\bar f_p\epsilon m_r]$ & line 2, second term\\
+ & double integral & line 3, second term\\
+$\mathrm I_5$ & $-(1/2)\int\varphi(r)\E^0[\bar f_ph_r]\,\nu(\dd r)$
+ & cancels with $\mathrm I_6$\\
+$\mathrm I_6$ & $(1/2)\int\varphi(r)\E^0[\bar f_ph_r]\,\nu(\dd r)$
+ & cancels with $\mathrm I_5$\\
+ & $(1/2)\int\varphi(r)a(r)\E^0[\bar f_pm_r^2]\,\nu(\dd r)$
+ & line 3, first term\\
+ & iterated integral & line 4\\
+\bottomrule
+\end{tabular}
+\end{center}
+In summary, the terms with $m_pu_{3,p}$ cancel, the covariance terms with
+$h_r$ cancel, and the diagonal coefficient is
+$\E^0[h_p^2-2a(p)m_p^2h_p+2m_p^2h_p]=\E^0[h_p^2+2(1-a(p))m_p^2h_p]$.
+The sum $\mathrm I_1+\cdots+\mathrm I_6$ is the right side of
+\eqref{eq:scalarJexplicit}, including its signs, its factors $1/2$, and
+its strict future intervals. This completes the proof.
+\end{proof}
+
+\section{Domination by the scalar multiplier}\label{sec:sc-domination}
+
+We now show that the scalar response operator is dominated by its
+multiplier.
+We use the scalar Parisi functional with coefficient $d$,
+\[
+ \mathcal P_d(a)=u_{a,d}(0,0)-\frac d2\int_0^1q\,a(q)\dd q,
+\]
+defined on the convex set of profiles. For $d=\beta^2$, it is the
+functional $\mathcal P_\beta$ of \eqref{eq:intro-parisi}.
+
+\begin{lemma}[Scalar multiplier domination]\label{lem:Jdom}
+For every profile $a$ and $d\in[\beta^2/2,\beta^2]$, the operator
+$J^{\scal}_{a,d}$ is self-adjoint on $\mathcal H_\nu$, with norm at most
+$C_\beta$, and
+\begin{equation}\label{eq:Jdom}
+ J^{\scal}_{a,d}\preceq M_{k_{a,d}},
+ \qquad (M_{k_{a,d}}v)(q)=k_{a,d}(q)v(q).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The bound on the norm is \eqref{eq:sc-J-bounded}. The proof of the rest
+has five steps. We first recall that $\mathcal P_d$ is convex and
+compute its first variation. Then we follow $\mathcal P_d$ along a
+transport of levels and compute its second derivative with
+\cref{lem:sc-response}. Next, we bound the same second derivative from
+below, using convexity with the first variation frozen at $a$; the
+comparison yields the inequality \eqref{eq:Jdom} for smooth directions.
+Two-parameter transports then give the symmetry, and a density argument
+extends both conclusions to $\mathcal H_\nu$. No minimizing property of
+$a$ is used. We abbreviate $\Gamma=\Gamma_{a,d}$ and $k=k_{a,d}$, and
+$\langle\cdot,\cdot\rangle$ denotes the inner product of $L^2(\nu)$.
+
+\paragraph{Step 1: convexity and the first variation.}
+We first note that $\mathcal P_d$ is convex on profiles. Indeed, by
+\cite[Theorem~2]{AuffingerChen2015Uniqueness}, applied with
+$\xi(q)=dq^2/2$ and zero external field, the value at $(0,0)$ of the
+solution with terminal value $\log\cosh x$ is a strictly convex
+function of the measure, and hence of its distribution function. This
+value differs from $u_{a,d}(0,0)$ by $\log2$, and the penalty term of
+$\mathcal P_d$ is affine in $a$.
+
+The first variation of $\mathcal P_d$ along segments is the scalar case of
+\cite[(2.8)]{AL} (see also \cite[Lemma~3.2]{JagannathTobasco2017PhaseDiagram}
+and \cite[Theorem~2]{Chen2017Variational}): for profiles $a$ and
+$\widetilde a$,
+\begin{equation}\label{eq:sc-first-variation}
+ \lim_{\vartheta\downarrow0}\frac{\mathcal P_d(a+\vartheta(\widetilde a-a))
+                               -\mathcal P_d(a)}{\vartheta}
+ =\frac d2\int_0^1(\Gamma(q)-q)(\widetilde a(q)-a(q))\dd q .
+\end{equation}
+The statement in \cite{AL} assumes a positive root mass. We note
+that the argument of Step 1 of the proof of \cref{lem:sc-response},
+with the coefficient fixed and the profile varied, gives a direct proof
+of \eqref{eq:sc-first-variation} for all profiles. The difference
+quotients of
+$u_{a+\vartheta(\widetilde a-a),d}$ converge, with all spatial
+derivatives, to the solution $\dot u$ of
+\[
+ \partial_q\dot u+\frac d2\dot u_{xx}+d\,a\,u_x\dot u_x
+ =-\frac d2(\widetilde a-a)u_x^2,\qquad \dot u(1,\cdot)=0,
+\]
+and \eqref{eq:sc-backward} gives
+\[
+ \dot u(0,0)=\frac d2\int_0^1(\widetilde a(q)-a(q))\,\E^0m_q^2\dd q
+ =\frac d2\int_0^1(\widetilde a(q)-a(q))\Gamma(q)\dd q .
+\]
+The penalty contributes $-(d/2)\int_0^1q(\widetilde a(q)-a(q))\dd q$.
+Since $\mathcal P_d$ is convex, the difference quotient in
+\eqref{eq:sc-first-variation} is nondecreasing in $\vartheta\in(0,1]$.
+Comparing its value at $\vartheta=1$ with its limit as
+$\vartheta\downarrow0$, we obtain
+\begin{equation}\label{eq:sc-convexity}
+ \mathcal P_d(\widetilde a)-\mathcal P_d(a)
+ \ge\frac d2\int_0^1(\Gamma(q)-q)(\widetilde a(q)-a(q))\dd q .
+\end{equation}
+
+\paragraph{Step 2: the second derivative along a transport.}
+Let $\varphi$, $T_\theta$, $\theta_0$, and $a_\theta=a\circ T_\theta^{-1}$
+be as in \cref{sec:sc-response}, and let
+$\Pi(\theta)=\mathcal P_d(a_\theta)$ for $|\theta|<\theta_0/2$. By
+\eqref{eq:sc-transported} at $q=0$, we have
+$u_{a_\theta,d}(0,0)=u_\theta(0,0)$. Using Fubini's theorem, we have
+\[
+ \int_0^1x\,a_\theta(x)\dd x
+ =\int\Bigl(\int_{T_\theta(q)}^1x\dd x\Bigr)\mu(\dd q)
+ =\frac12-\frac12\int T_\theta(q)^2\,\mu(\dd q),
+\]
+which gives
+\[
+ \Pi(\theta)=u_\theta(0,0)-\frac d4+\frac d4\int T_\theta^2\dd\mu .
+\]
+The derivative of the last term is $(d/2)\int T_\theta\varphi\dd\mu$,
+in which the atom $s\delta_0$ does not contribute, since $\varphi(0)=0$.
+Combining this with \eqref{eq:sc-root-variation}, we obtain
+\begin{equation}\label{eq:transporthess}
+ \Pi'(\theta)=\frac d2\int\varphi\bigl(T_\theta-\widetilde\Gamma_\theta\bigr)\dd\nu,
+ \qquad
+ \Pi''(0)=\frac d2\langle\varphi,(I-J_{a,d})\varphi\rangle .
+\end{equation}
+For the second identity, we used \cref{lem:sc-response} and
+differentiated under the integral over $\nu$. This is justified by
+dominated convergence, since by Step 3 of the proof of
+\cref{lem:sc-response}, $\partial_\theta\widetilde\Gamma_\theta(p)$ is
+continuous in $\theta$ and bounded uniformly in $p$ and $\theta$. By
+the same argument, $\Pi''$ is continuous near $0$. At $\theta=0$, the first identity
+in \eqref{eq:transporthess} is the first variation along transports in
+\cite[Section~3, (19)]{AuffingerChen2015Properties}, where it is
+credited to \cite[Lemma~3.7, Eq.~(3.34)]{Talagrand2006ParisiMeasures}.
+
+\paragraph{Step 3: the lower bound from convexity.}
+Let $G(y)=\int_y^1(\Gamma(q)-q)\dd q$. Recall that
+$a_\theta(q)=\mu(\{y:T_\theta(y)\le q\})$. By Fubini's theorem, we have
+$\int_0^1(\Gamma(q)-q)a_\theta(q)\dd q=\int G(T_\theta y)\,\mu(\dd y)$.
+Applying \eqref{eq:sc-convexity} with $\widetilde a=a_\theta$, we obtain
+\[
+ \Pi(\theta)-\Pi(0)\ge\frac d2\int\bigl(G(T_\theta y)-G(y)\bigr)\mu(\dd y)
+ =\frac d2\int\bigl(G(T_\theta y)-G(y)\bigr)\nu(\dd y),
+\]
+where the atom $s\delta_0$ does not contribute because $T_\theta(0)=0$.
+Then \cref{lem:sc-basic}(c) implies that $G$ is twice continuously
+differentiable on $[0,1]$, with
+\[
+ G'(y)=y-\Gamma(y),\qquad G''(y)=1-k(y).
+\]
+The function $G''$ is uniformly continuous and $\varphi$ is bounded, so
+by Taylor's formula, we have
+\[
+ G(T_\theta y)-G(y)=\theta\varphi(y)G'(y)
+ +\frac{\theta^2}2\varphi(y)^2\bigl(1-k(y)\bigr)+o(\theta^2),
+\]
+uniformly in $y\in[0,1]$. By \eqref{eq:transporthess} at $\theta=0$,
+we have $\Pi'(0)=(d/2)\int\varphi G'\dd\nu$. Integrating the expansion
+against $\nu$ and inserting it into the previous inequality, we obtain
+\[
+ \Pi(\theta)-\Pi(0)-\theta\Pi'(0)
+ \ge\frac{\theta^2}2\cdot\frac d2\int(1-k)\varphi^2\dd\nu+o(\theta^2).
+\]
+On the other hand, $\Pi$ is twice continuously differentiable near
+$0$, so the left side equals
+$(\theta^2/2)\Pi''(0)+o(\theta^2)$. Dividing by $\theta^2/2$ and
+letting $\theta\to0$, we find
+\[
+ \Pi''(0)\ge\frac d2\int(1-k)\varphi^2\dd\nu .
+\]
+Comparing this with
+\eqref{eq:transporthess}, we conclude that
+\begin{equation}\label{eq:sc-dom-smooth}
+ \langle\varphi,J_{a,d}\varphi\rangle\le\langle\varphi,k\varphi\rangle .
+\end{equation}
+Note that $\Pi$ need not be convex, since $\theta\mapsto a_\theta$ is
+not affine. The lower bound accounts for this through the term
+$1-k=G''$.
+
+\paragraph{Step 4: symmetry.}
+We now take two functions $\varphi_1$ and $\varphi_2$ as above, and we
+consider the transport $T(q)=q+\theta_1\varphi_1(q)+\theta_2\varphi_2(q)$, which
+fixes both endpoints. Let $\widetilde\Gamma_{\theta_1,\theta_2}$ and
+$\Pi(\theta_1,\theta_2)$ be defined as before, for small
+$|\theta_1|,|\theta_2|$. By Step 1 of the proof of
+\cref{lem:sc-response} for several parameters, and by
+\cref{lem:fnd-path-heat} applied in each parameter with the other one
+fixed, the function $\widetilde\Gamma_{\theta_1,\theta_2}(p)$ has
+continuous first partial derivatives, bounded uniformly in $p$. The
+computation of Step 2 of that proof at every base point, with the
+coefficient derivative $d\varphi_i'$, yields
+\[
+ \partial_{\theta_i}\Pi
+ =\frac d2\int\varphi_i\bigl(T-\widetilde\Gamma_{\theta_1,\theta_2}\bigr)\dd\nu,
+ \qquad i=1,2 .
+\]
+It follows that $\Pi$ has continuous second partial derivatives, and
+using \cref{lem:sc-response} in the direction $\varphi_2$ (with
+$\theta_1=0$), we find that
+\[
+ \partial_{\theta_2}\partial_{\theta_1}\Pi(0,0)
+ =\frac d2\langle\varphi_1,(I-J_{a,d})\varphi_2\rangle .
+\]
+By the equality of mixed partial derivatives, we conclude that this
+bilinear form is symmetric, that is, $\langle\varphi_1,J_{a,d}\varphi_2\rangle
+=\langle\varphi_2,J_{a,d}\varphi_1\rangle$.
+
+\paragraph{Step 5: extension to the transport space.}
+In Steps 3 and 4, we proved the domination inequality and the symmetry
+for restrictions to $[0,1]$ of smooth functions vanishing at both
+endpoints. Such functions lie in $\mathcal H_\nu$, and they are dense
+in it. Indeed, let $v\in\mathcal H_\nu$, and let $\psi_n$ be
+continuous functions with $\|\psi_n-v\|\to0$, which exist because
+continuous functions are dense in $L^2(\nu)$. For $n\ge3$, let $\chi_n$ be
+continuous with values in $[0,1]$, vanishing at $0$ and $1$, and equal
+to one on $[1/n,1-1/n]$. Then
+$\|\chi_n\psi_n-v\|\le\|\psi_n-v\|+\|(1-\chi_n)v\|$, and
+$\|(1-\chi_n)v\|\to\|\ind_{\{0,1\}}v\|=0$ by dominated convergence,
+because $v$ vanishes $\nu$-almost everywhere on $\{0,1\}$. Finally, let
+$f$ be continuous with $f(0)=f(1)=0$. If $P$ is a polynomial with
+$|P-f|\le\tau$ on $[0,1]$, then the polynomial
+$P(x)-P(0)(1-x)-P(1)x$ vanishes at both endpoints and is within
+$3\tau$ of $f$; by the Weierstrass theorem, $f$ is a uniform limit of
+such polynomials. For $v\in\mathcal H_\nu$, we have
+$\langle v,J^{\scal}_{a,d}v\rangle=\langle v,J_{a,d}v\rangle$, and both
+sides of \eqref{eq:sc-dom-smooth} and of the symmetry identity are
+continuous on $L^2(\nu)$, since $J_{a,d}$ is bounded on $L^2(\nu)$ (see
+the proof of \eqref{eq:sc-J-bounded}) and $0\le k\le\beta^2$. Both conclusions extend to $\mathcal H_\nu$ by
+continuity. Multiplication by $k$ maps $\mathcal H_\nu$ into
+itself, and \eqref{eq:Jdom} follows.
+\end{proof}
+
+\section{The reference multiplier}\label{sec:sc-reference}
+
+A finite-dimensional minimizer may place mass outside the scalar
+support. For this reason, we control the multiplier at the scalar
+Parisi measure on all of $[0,1]$. Recall from
+\eqref{eq:loc-scalar-measure} that $\supp\mu_\beta=[0,q_\beta]$ with
+$0<q_\beta<1$ \cite[Theorem~1.1]{Lopatto}, and that $\mu_\beta$ has an
+atom at $q_\beta$. In particular, $\alpha_\beta=1$ on $[q_\beta,1]$.
+
+\begin{lemma}[Reference multiplier on the whole interval]\label{lem:reference}
+At the scalar Parisi measure,
+\begin{equation}\label{eq:referencek}
+ k_{\alpha_\beta,\beta^2}(q)=1\quad(0\le q\le q_\beta),
+ \qquad
+ k_{\alpha_\beta,\beta^2}(q)
+       \le e^{-\beta^2(q-q_\beta)/2}\quad(q_\beta\le q\le1).
+\end{equation}
+In particular, $\sup_{q\in[0,1]}k_{\alpha_\beta,\beta^2}(q)\le1$.
+\end{lemma}
+
+\begin{proof}
+We abbreviate $d=\beta^2$, $a=\alpha_\beta$, $k=k_{\alpha_\beta,d}$,
+and $\Gamma=\Gamma_{\alpha_\beta,d}$, and we write $u$ and $Y$ for the
+corresponding solution and diffusion. The proof has four steps. We
+first prove that $k=1$ on the support. We then recall that a
+transformed density of $Y_{q_\beta}$ is even and log-concave, show that
+this density evolves by the heat equation above $q_\beta$, and finally
+use a rearrangement inequality to bound $k$ there.
+
+\paragraph{Step 1: the support.}
+By an identity of Talagrand \cite{Talagrand2006ParisiMeasures}, in the
+form stated in \cite[Theorem~5]{AuffingerChen2015Properties} and
+\cite[Lemma~2.6]{Lopatto} (see also
+\cite[Proposition~1.1]{JagannathTobasco2017PhaseDiagram} and
+\cite[Proposition~1]{Chen2017Variational}), we have $\Gamma(q)=q$ for
+every $q\in\supp\mu_\beta=[0,q_\beta]$. The function $\Gamma$ of
+\cite{Lopatto} coincides with ours, since $u_x$ does not depend on the constant
+$\log2$ in the terminal value. By \cref{lem:sc-basic}(c), we have
+$\Gamma'=k$, which implies that $k=1$ on $(0,q_\beta)$. Since $k$ is
+continuous, we conclude that $k=1$ on $[0,q_\beta]$.
+
+\paragraph{Step 2: log-concavity of the transformed density.}
+For $q\in(0,1]$, let $\pi_q$ be the density of $Y_q$, and set
+\[
+ z_q(x)=\pi_q(x)e^{-a(q)u(q,x)},\qquad
+ V_q(x)=-\log z_q(x)=a(q)u(q,x)-\log\pi_q(x).
+\]
+By \eqref{eq:sc-prefix-law}, $z_q(x)\dd x$ is the distribution of the endpoint
+$X_q$ under the finite measure obtained by weighting the law of the
+Gaussian path, without normalization, by
+$\exp\{-\int_{[0,q]}u(r,X_r)\,\mu_\beta(\dd r)\}$. By
+\cite[Proposition~4.1]{Lopatto}, which applies to every probability
+measure on $[0,1]$, including measures with atoms, the density $\pi_q$
+is smooth and positive, and the potential $a(q)u^{\rm L}(q,x)-\log\pi_q(x)$
+is smooth, even, and has second derivative at least $1/(dq)$; here
+$u^{\rm L}=u-\log2$ is the solution with the terminal value of
+\cite{Lopatto}, and $a(q)$ is the right-continuous value. The two
+potentials differ by the constant $a(q)\log2$, which implies that
+\[
+ V_q''(x)\ge\frac1{dq}>0,\qquad V_q(-x)=V_q(x),\qquad x\in\R .
+\]
+Note that $V_q'(0)=0$ by evenness. Then $V_q'(x)\ge x/(dq)>0$ for
+$x>0$.
+This implies that $z_q$ is even, log-concave, and decreasing on
+$(0,\infty)$. We use this at $q=q_\beta$, where the right-continuous
+value is $a(q_\beta)=1$, including the atom of $\mu_\beta$ at
+$q_\beta$; in particular, $z_{q_\beta}=\pi_{q_\beta}e^{-u(q_\beta,\cdot)}$.
+
+\paragraph{Step 3: heat evolution above the support.}
+On $[q_\beta,1]$, we have $a=1$, and the solution of \eqref{eq:sc-pde}
+is
+\[
+ u(q,x)=\log(2\cosh x)+\frac{d(1-q)}2,\qquad q_\beta\le q\le1,
+\]
+by \cite[Lemma~2.4(i)]{Lopatto}; this formula can also be checked by
+direct substitution, since $u_x=\tanh x$, $u_{xx}=\sech^2x$,
+$u_{xx}+u_x^2=1$, and $\partial_qu=-d/2$. We write $G_v$ for the centered
+Gaussian density with variance $v$. By \cite[Lemma~2.4(ii)]{Lopatto},
+applied with mass $m=1$ on $[q_\beta,1)$, we have, for
+$q_\beta<q\le1$,
+\[
+ \pi_q(x)=e^{u(q,x)}\int G_{d(q-q_\beta)}(x-y)\,e^{-u(q_\beta,y)}\pi_{q_\beta}(y)\dd y ;
+\]
+the constants $\log2$ in $u(q,x)$ and $u(q_\beta,y)$ cancel. This means
+that
+\begin{equation}\label{eq:sc-heat}
+ z_q=G_{d(q-q_\beta)}*z_{q_\beta},\qquad q_\beta<q\le1 .
+\end{equation}
+Equivalently, $z_q$ solves the heat equation
+$\partial_qz_q=(d/2)\partial_{xx}z_q$. To see this directly, we
+substitute $\pi_q=e^{u}z_q$ into the forward equation of $Y$ on the
+plateau, which gives
+\[
+ \partial_qz_q+(\partial_qu)z_q
+ =e^{-u}\Bigl(\frac d2\partial_{xx}\pi_q-d\,\partial_x(u_x\pi_q)\Bigr)
+ =\frac d2\partial_{xx}z_q-\frac d2\bigl(u_{xx}+u_x^2\bigr)z_q ;
+\]
+the zeroth-order terms cancel because $u_{xx}+u_x^2=1$ and
+$\partial_qu=-d/2$.
+
+On the plateau, we have $u_{xx}=\sech^2$ and
+$\pi_q=e^{u(q,\cdot)}z_q=2\cosh(\cdot)\,e^{d(1-q)/2}z_q$. The multiplier
+is therefore
+\begin{equation}\label{eq:sc-k-plateau}
+ k(q)=d\int\pi_q(x)\sech^4x\dd x
+ =2d\,e^{d(1-q)/2}\int_\R z_q(x)\sech^3x\dd x,\qquad q_\beta\le q\le1 .
+\end{equation}
+
+\paragraph{Step 4: the rearrangement inequality.}
+Let $f$ and $g$ be nonnegative, even, continuous functions that are
+nonincreasing on $[0,\infty)$. We claim that
+\begin{equation}\label{eq:sc-rearrangement}
+ \int f(x-y)g(x)\dd x\le\int f(x)g(x)\dd x,\qquad y\in\R .
+\end{equation}
+This is the centered rearrangement inequality in one dimension, which
+also follows from Anderson's inequality~\cite[Theorem~1]{Anderson1955}
+by the layer-cake representation. We include a proof based on intersections of intervals.
+By the layer-cake representation and Tonelli's theorem,
+\[
+ \int f(x-y)g(x)\dd x=\int_0^\infty\!\!\int_0^\infty
+ \bigl|(\{f>t\}+y)\cap\{g>t'\}\bigr|\dd t\dd t',
+\]
+where $|\cdot|$ is Lebesgue measure. The superlevel sets $\{f>t\}$ and
+$\{g>t'\}$ are open intervals centered at $0$. For two centered intervals
+$I$ and $I'$, we have $|(I+y)\cap I'|\le\min\{|I|,|I'|\}=|I\cap I'|$, and
+\eqref{eq:sc-rearrangement} follows.
+
+We use \eqref{eq:sc-rearrangement} with $f=z_{q_\beta}$ and
+$g=\sech^3$, which satisfy its hypotheses by Step 2. All the integrals
+below are finite, since $\sech\le1$ and
+$\int z_{q_\beta}=\E[e^{-u(q_\beta,Y_{q_\beta})}]\le1/2$. By
+\eqref{eq:sc-heat} and Tonelli's theorem, for $q_\beta<q\le1$,
+\[
+ \int z_q(x)\sech^3x\dd x
+ =\int G_{d(q-q_\beta)}(y)\Bigl(\int z_{q_\beta}(x-y)\sech^3x\dd x\Bigr)\dd y
+ \le\int z_{q_\beta}(x)\sech^3x\dd x .
+\]
+Inserting this into \eqref{eq:sc-k-plateau}, and using
+\eqref{eq:sc-k-plateau} at $q=q_\beta$ and $k(q_\beta)=1$ from Step 1,
+we find
+\[
+ k(q)\le2d\,e^{d(1-q)/2}\int z_{q_\beta}(x)\sech^3x\dd x
+ =e^{-d(q-q_\beta)/2}k(q_\beta)=e^{-d(q-q_\beta)/2},
+ \qquad q_\beta\le q\le1 .
+\]
+Together with Step 1, this proves \eqref{eq:referencek}.
+\end{proof}
+
+\section{Stability at a minimizing profile}\label{sec:sc-minimizer}
+
+The isolation estimate of \cref{prop:loc-isolation} compares a
+minimizer with the scalar trial profile
+$\gamma^{\rm tr}_\lambda=\max\{\lambda,\gamma_\beta\}$, where
+$\gamma_\beta=\beta\alpha_\beta$. We first bound the distance between
+the trial profile and $\gamma_\beta$. Recall from \eqref{eq:lz-gsroot}
+that $\gamma_\beta(q)\ge k_0q$ for $0\le q\le T_0$, with constants
+$k_0,T_0>0$ depending only on $\beta$. We claim that, for every
+$\lambda>0$,
+\begin{equation}\label{eq:sc-floor}
+ \|\gamma^{\rm tr}_\lambda-\gamma_\beta\|_{L^1(0,1)}
+ \le C_\beta\lambda^2 .
+\end{equation}
+Indeed, $\gamma^{\rm tr}_\lambda-\gamma_\beta=(\lambda-\gamma_\beta)_+$.
+Suppose first that $\lambda\le k_0T_0$. For $q\ge T_0$, since
+$\gamma_\beta$ is nondecreasing, we have
+$\gamma_\beta(q)\ge\gamma_\beta(T_0)\ge k_0T_0\ge\lambda$, and the
+difference vanishes there. This gives
+\[
+ \|\gamma^{\rm tr}_\lambda-\gamma_\beta\|_{L^1(0,1)}
+ =\int_0^{T_0}(\lambda-\gamma_\beta(q))_+\dd q
+ \le\int_0^{\lambda/k_0}(\lambda-k_0q)\dd q=\frac{\lambda^2}{2k_0}.
+\]
+If $\lambda>k_0T_0$, the difference is at most $\lambda$ everywhere,
+and $\lambda\le\lambda^2/(k_0T_0)$. Since $T_0\le1/4<2$, both cases give
+\eqref{eq:sc-floor} with $C_\beta=1/(k_0T_0)$.
+
+\begin{proposition}[Scalar stability at the minimizing profile]
+\label{prop:lz-stability}
+There exists a constant $C_{\rm st}\ge1$, depending only on $\beta$ (in
+particular, not on the minimizer or its atoms), with the following
+property. Let $N\ge2$, $0<\rho\le1$, $t=1-\rho$, and
+$0<\lambda\le\lambda_0$, and set $s=\lambda/\beta$. Let
+$\mu_N=s\delta_0+\nu_N$ be a minimizer of $\mathcal F_{t,s}$ in
+\eqref{eq:fnd-functional}, let $a_N(q)=\mu_N([0,q])$ be its profile,
+and let $\eta$ be a trial budget for the minimizer $\beta a_N$ of
+$F_\rho$, in the sense of \eqref{eq:loc-trialbudget}. Let
+$d_N=\beta^2(1-t/N)$. Then
+\begin{equation}\label{eq:lz-profileconvergence}
+ \|a_N-\alpha_\beta\|_{L^1(0,1)}
+ \le\min\bigl\{1,C_{\rm st}[\rho^{-3/4}\eta^{1/4}+\lambda^2]\bigr\}.
+\end{equation}
+Further, let
+$\varepsilon_N=\max\{0,\sup_{q\in[0,1]}k_{a_N,d_N}(q)-1\}$. Then, on the
+scalar transport space $\mathcal H_{\nu_N}$ of $\mu_N$,
+\begin{equation}\label{eq:lz-stability}
+ J^{\scal}_{a_N,d_N}\preceq(1+\varepsilon_N)I,
+ \qquad
+ \varepsilon_N\le C_{\rm st}
+       \bigl[\rho^{-3/4}\eta^{1/4}+\lambda^2+N^{-1}\bigr].
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+We use the energy normalization of \cref{sec:fnd}, in which
+$\gamma=\beta a$ and $F_\rho(\gamma)=\beta^{-1}\mathcal F_{t,s}(\mu)$.
+The map $\mu\mapsto\beta a$ is a bijection onto the admissible profiles
+of \cref{sec:lz}, and multiplication by $\beta^{-1}$ preserves
+minimizers. Hence $\gamma_N=\beta a_N$ is a minimizer of $F_\rho$, and
+$\eta$ is a trial budget for it. The hypotheses of
+\cref{prop:loc-isolation} hold, and \eqref{eq:loc-isolation} implies
+that
+$\|\gamma_N-\gamma^{\rm tr}_\lambda\|_{L^1}\le C\rho^{-3/4}\eta^{1/4}$,
+with a constant $C$ depending only on $\beta$. Using the triangle
+inequality and \eqref{eq:sc-floor}, we have
+\[
+ \|a_N-\alpha_\beta\|_{L^1}
+ \le\beta^{-1}\bigl(\|\gamma_N-\gamma^{\rm tr}_\lambda\|_{L^1}
+       +\|\gamma^{\rm tr}_\lambda-\gamma_\beta\|_{L^1}\bigr)
+ \le C_\beta[\rho^{-3/4}\eta^{1/4}+\lambda^2].
+\]
+The distance is also at most one, since both functions take values in
+$[0,1]$. This proves \eqref{eq:lz-profileconvergence}.
+
+Since $N\ge2$ and $0\le t<1$, we have $d_N\in[\beta^2/2,\beta^2]$ and
+$|d_N-\beta^2|=\beta^2t/N\le\beta^2/N$. Then
+\cref{lem:scalarcontinuity}, applied with $(a,d)=(a_N,d_N)$ and
+$(\widetilde a,\widetilde d)=(\alpha_\beta,\beta^2)$, and
+\cref{lem:reference} imply that, for every $q\in[0,1]$, whether or not
+$q$ lies in $\supp\mu_\beta$,
+\[
+ k_{a_N,d_N}(q)\le k_{\alpha_\beta,\beta^2}(q)
+ +C_\beta\bigl(\|a_N-\alpha_\beta\|_{L^1}+N^{-1}\bigr)
+ \le1+C_\beta\bigl(\|a_N-\alpha_\beta\|_{L^1}+N^{-1}\bigr).
+\]
+Together with \eqref{eq:lz-profileconvergence}, this yields the bound
+on $\varepsilon_N$ in \eqref{eq:lz-stability}. Finally, since
+$k_{a_N,d_N}\le1+\varepsilon_N$ pointwise, \cref{lem:Jdom}, applied to
+the profile $a_N$ with $\nu=\nu_N$, implies that
+$J^{\scal}_{a_N,d_N}\preceq M_{k_{a_N,d_N}}\preceq(1+\varepsilon_N)I$ on
+$\mathcal H_{\nu_N}$. Note that only the multipliers of the two
+profiles are compared; the operator inequality is proved on the
+transport space of the minimizer itself. We choose $C_{\rm st}\ge1$
+larger than the constants in the two bounds; it depends only on
+$\beta$.
+\end{proof}
